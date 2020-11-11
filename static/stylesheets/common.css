@@ -1,0 +1,340 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald:300,400,500|Raleway&display=swap");
+/**
+ * Reset all formatting.
+ * In particular, set margin and padding of all elements to 0.
+ */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * TYPOGRAPHY
+ *
+ * + h1, h2, h3, h4, h5, h6
+ * + p
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/** Set the default font style for heading text. */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Oswald", sans-serif;
+  color: #1a1a1a;
+}
+
+/** h1: Main Heading: "Reilly Thate" */
+h1 {
+  padding: 0.5rem;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: calc(2.5rem / 20);
+  font-weight: 400;
+  text-align: center;
+}
+
+/** h2: Reserved for page headings; i.e. "Blog" */
+h2 {
+  padding: 0.5rem;
+  font-size: 1.9rem;
+  line-height: 1.9rem;
+  letter-spacing: calc(1.9rem / 20);
+  font-weight: 400;
+  text-align: left;
+}
+
+/** h3 */
+/** h4 */
+/** h5 */
+/** h6 */
+/** Set the default font style for body text. */
+p, li {
+  font-family: "Raleway", sans-serif;
+  line-height: 1rem;
+  color: #1a1a1a;
+}
+
+li {
+  font-size: calc(1rem * 1.1);
+  letter-spacing: calc(1rem / 15);
+  text-align: center;
+}
+
+/** Set the default font style for form elements. */
+input[type=text], label, textarea, button {
+  font-family: "Raleway", sans-serif;
+  font-size: calc(1rem * 1.0);
+  letter-spacing: calc(1rem / 12.5);
+}
+
+#identity_tagline {
+  font-size: calc(2.5rem / (5 / 3));
+  line-height: calc(2.5rem / (5 / 3));
+  letter-spacing: calc(calc(2.5rem / (5 / 3)) / 15);
+  text-align: center;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * LINKS
+ *
+ * + a, a:link, a:hover, a:visited, a:visited:hover, etc.
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/** Anchor tag styling. */
+a {
+  /* Remove UNDERLINES from links. */
+  text-decoration: none;
+}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  /* Set color of headings w/ links to contrast */
+  color: #1a1a1a;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Page Layout
+ *
+ * + LIGHT THEME
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+html {
+  background: #f2f2f2;
+}
+
+body {
+  padding: 1rem;
+}
+
+header {
+  margin: 0 auto;
+}
+
+nav {
+  margin: 1rem;
+}
+nav ul {
+  list-style: none;
+}
+nav ul li {
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
+}
+nav ul li a {
+  display: block;
+  padding: 0.75rem;
+  color: var(--CONTRAST);
+}
+
+main {
+  margin: 0.25rem 1rem;
+  padding: 1rem;
+}
+
+footer {
+  padding: 1rem 1rem 0 1rem;
+  border-top: 3px solid rgba(9, 64, 109, 0.45);
+}
+footer p {
+  text-align: center;
+}
+
+#video_selection {
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 0.5rem;
+}
+
+#identity_title {
+  padding: 1rem 0 1.5rem 0;
+  width: 100%;
+}
+
+.header-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+  grid-template-rows: auto auto;
+  grid-template-areas: "logo identity" "nav nav";
+}
+.header-grid #identity_logo {
+  grid-area: logo;
+  justify-self: right;
+  align-self: center;
+}
+.header-grid #identity_title {
+  grid-area: identity;
+  justify-self: left;
+  align-self: center;
+}
+.header-grid nav {
+  grid-area: nav;
+}
+
+.nav-ul-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 1rem;
+}
+
+/**
+ * Form CSS
+ */
+button {
+  margin: 0 auto;
+  border-radius: 0.75rem;
+  flex-basis: 20%;
+  padding: calc(1rem * 0.3);
+  transition-duration: 0.4s;
+  background: white;
+  color: #1a1a1a;
+  border: none;
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
+}
+button:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 1px 1px 4px 1px white, -1px -1px 4px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem 1.25rem;
+}
+
+input {
+  flex-basis: 100%;
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+
+label {
+  flex-basis: 100%;
+}
+
+textarea {
+  flex-basis: 100%;
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+
+img {
+  max-width: 200px;
+}
+
+.youtube_container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+
+.youtube_video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media only screen and (min-width: 666px) and (orientation: portrait) {
+  .header-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: "identity logo nav";
+  }
+  .header-grid #identity_logo {
+    grid-area: logo;
+    justify-self: center;
+    align-self: center;
+  }
+  .header-grid #identity_title {
+    grid-area: identity;
+    justify-self: center;
+    align-self: center;
+  }
+  .header-grid nav {
+    grid-area: nav;
+    align-self: center;
+  }
+  .header-grid .nav-ul-grid {
+    display: grid;
+    margin-left: 7vmin;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 1rem;
+  }
+}
+@media only screen and (min-width: 666px) and (orientation: landscape) {
+  body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  header {
+    position: fixed;
+    padding: 1.5rem;
+    top: 0;
+    left: 0;
+    width: calc(50% - 1.5rem * 1.5);
+    height: calc(100vh - 3rem);
+  }
+
+  .header-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none;
+  }
+  .header-grid #identity_logo {
+    max-width: 40vmin;
+    width: 40vmin;
+    height: 40vmin;
+    align-self: flex-end;
+  }
+  .header-grid #identity_title {
+    align-self: flex-start;
+  }
+
+  main {
+    position: absolute;
+    margin: 0;
+    padding: 1.5rem;
+    width: calc(50% - calc(1.5rem * 1.5));
+    top: 0;
+    right: 0;
+  }
+
+  nav {
+    align-self: center;
+    width: 100%;
+  }
+
+  footer {
+    position: fixed;
+    width: calc(50% - 3rem);
+    bottom: calc(1.5rem / 2);
+    left: 1.5rem;
+    border-top: none;
+  }
+}
+@media only screen and (min-width: 666px) and (orientation: landscape) and (max-height: 500px) {
+  #identity_logo, #identity_title, nav {
+    align-self: flex-start;
+  }
+
+  #identity_title {
+    padding: 0;
+  }
+}
+
+/*# sourceMappingURL=common.css.map */

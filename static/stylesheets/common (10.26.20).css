@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald:300,400,500|Raleway&display=swap");
+*
+{
+    margin: 0;
+    padding: 0;
+
+    --BACKGROUND: hsla(0, 0%, 95%, 1.0);
+    --CONTRAST: hsla(0, 0%, 10%, 1.0);
+
+    --THATE_HEADER_WIDTH: 35%;
+
+    --BODY_SIZE: 1rem;
+}
+
+html
+{
+    margin: 0;
+    padding: 0;
+    background: var(--BACKGROUND);
+}
+body
+{
+    margin: 0 auto;
+    padding: 1rem;
+
+    font-family: "Raleway", sans-serif;
+    color: var(--CONTRAST);
+}
+
+footer
+{
+    padding: 1rem 1rem 0 1rem;
+    border-top: 3px solid hsla(207, 85%, 23%, 0.45);
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    font-family: "Oswald", sans-serif;
+}
+img
+{
+    max-width: 200px;
+    margin: 0;
+    padding: 0;
+}
+
+header
+{
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "logo identity" "nav nav";
+}
+#logo
+{
+    grid-area: logo;
+    justify-self: right;
+    align-self: center;
+}
+#identity
+{
+    margin: 0;
+    padding: 1rem 0 1.5rem 0;
+    /* background: lightgray; */
+
+    width: 100%;
+    grid-area: identity;
+    justify-self: left;
+    align-self: center;
+}
+h1
+{
+    --H1_SIZE: 2.5rem;
+    margin: 0;
+    padding: 0.5rem;
+    font-size: var(--H1_SIZE);
+    line-height: var(--H1_SIZE);
+    letter-spacing: calc(var(--H1_SIZE) / 20);
+    font-weight: 400;
+    text-align: center;
+}
+#identity_tagline
+{
+    --IDENTITY_SIZE: 1.5rem;
+    text-align: center;
+    font-size: var(--IDENTITY_SIZE);
+    line-height: var(--IDENTITY_SIZE);
+    letter-spacing: calc(var(--IDENTITY_SIZE) / 15);
+}
+nav
+{
+    margin: 1rem;
+    padding: 0;
+    grid-area: nav;
+}
+nav ul
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    justify-self: center;
+    align-self: top;
+
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+}
+nav li
+{
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 
+        1px 1px 4px 1px hsla(0, 0%, 0%, 0.2), 
+        -1px -1px 4px 1px white;
+
+    font-size: calc(var(--BODY_SIZE) * 1.1);
+    text-align: center;
+    letter-spacing: calc(var(--BODY_SIZE) / 15);
+}
+a
+{
+    text-decoration: none;
+}
+h1 a, h2 a
+{
+    color: var(--CONTRAST);
+}
+nav li a
+{
+    display: block;
+    margin: 0;
+    padding: 0.75rem;
+    color: var(--CONTRAST);
+}
+
+main
+{
+    margin: 0.25rem 1rem;
+    padding: 1rem 0;
+}
+#video_selection
+{
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 0.5rem;
+}
+.youtube_container
+{
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+}
+.youtube_video
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+footer p
+{
+    text-align: center;
+}
+p
+{
+    
+}
+@media only screen and (min-width:666px)
+{
+    *
+    {
+        --RENEGADE_SIZE: 40vmin;
+        --EDGE_PADDING: 1.5rem;
+    }
+    html
+    {
+        margin: 0;
+        padding: 0;
+    }
+    body
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+    header
+    {
+        position: fixed;
+        padding: var(--EDGE_PADDING);
+        top: 0;
+        left: 0;
+
+        width: calc(50% - calc(var(--EDGE_PADDING) * 1.5));
+        height: calc(100vh - 3rem);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        border-bottom: none;
+    }
+    main
+    {
+        position: absolute;
+
+        margin: 0;
+        padding: var(--EDGE_PADDING);
+        width: calc(50% - calc(var(--EDGE_PADDING) * 1.5));
+        top: 0;
+        right: 0;
+    }
+    nav
+    {
+        align-self: center;
+        width: 100%;
+    }
+    nav ul
+    {
+        
+    }
+    footer
+    {
+        position: fixed;
+        width: calc(50% - 3rem);
+        bottom: var(--EDGE_PADDING);
+        left: var(--EDGE_PADDING);
+        border-top: none;
+    }
+    #logo
+    {
+        max-width: var(--RENEGADE_SIZE);
+        width: var(--RENEGADE_SIZE);
+        height: var(--RENEGADE_SIZE);
+        align-self: flex-end;
+    }
+    #identity
+    {
+        align-self: flex-start;
+    }
+
+    @media only screen and (max-height:500px)
+    {
+        *
+        {
+            --EDGE_PADDING: 0.75rem;
+        }
+        #logo, #identity, nav
+        {
+            align-self: flex-start;
+        }
+        #identity
+        {
+            padding: 0;
+        }
+    }
+}

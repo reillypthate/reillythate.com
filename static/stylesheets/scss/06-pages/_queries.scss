@@ -1,0 +1,125 @@
+$RENEGADE_SIZE: 40vmin;
+$EDGE_PADDING: 1.5rem;
+
+@media only screen and (min-width:666px) and (orientation:portrait)
+{
+    .header-grid
+    {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        grid-template-areas: "identity logo nav";
+
+        #identity_logo
+        {
+            grid-area: logo;
+            justify-self: center;
+            align-self: center;
+        }
+        #identity_title
+        {
+            grid-area: identity;
+            justify-self: center;
+            align-self: center;
+        }
+        nav
+        {
+            grid-area: nav;
+            align-self: center;
+        }
+
+        .nav-ul-grid
+        {
+            display: grid;
+            margin-left: 7vmin;
+
+            grid-template-columns: auto;
+            grid-template-rows: repeat(2, 1fr);
+            grid-gap: 1rem;
+        }
+    }
+    
+}
+@media only screen and (min-width:666px) and (orientation:landscape)
+{
+    body
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+    header
+    {
+        position: fixed;
+        padding: $EDGE_PADDING;
+        top: 0;
+        left: 0;
+
+        width: calc(50% - #{$EDGE_PADDING} * 1.5);
+        height: calc(100vh - 3rem);
+    }
+
+    .header-grid
+    {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        border-bottom: none;
+        
+        #identity_logo
+        {
+            max-width: $RENEGADE_SIZE;
+            width: $RENEGADE_SIZE;
+            height: $RENEGADE_SIZE;
+            align-self: flex-end;
+        }
+        #identity_title
+        {
+            align-self: flex-start;
+        }
+    }
+    main
+    {
+        position: absolute;
+
+        margin: 0;
+        padding: $EDGE_PADDING;
+        width: calc(50% - calc(#{$EDGE_PADDING} * 1.5));
+        top: 0;
+        right: 0;
+    }
+    nav
+    {
+        align-self: center;
+        width: 100%;
+    }
+    nav ul
+    {
+        
+    }
+    footer
+    {
+        position: fixed;
+        width: calc(50% - 3rem);
+        bottom: calc(#{$EDGE_PADDING} / 2);
+        left: $EDGE_PADDING;
+        border-top: none;
+    }
+
+    @media only screen and (max-height:500px)
+    {
+        #identity_logo, #identity_title, nav
+        {
+            align-self: flex-start;
+        }
+        #identity_title
+        {
+            padding: 0;
+        }
+    }
+}

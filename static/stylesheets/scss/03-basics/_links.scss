@@ -1,0 +1,33 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * LINKS
+ *
+ * + a, a:link, a:hover, a:visited, a:visited:hover, etc.
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+/** Anchor tag styling. */
+a
+{
+    /* Remove UNDERLINES from links. */
+    text-decoration: none;
+
+    &:link
+    {
+
+    }
+    &:hover
+    {
+
+    }
+    &:visited
+    {
+        &:hover
+        {
+
+        }
+    }
+}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a
+{
+    /* Set color of headings w/ links to contrast */
+    color: $col-contrast;
+}

@@ -1,0 +1,72 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Page Layout
+ *
+ * + LIGHT THEME
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+html
+{
+    background: $col-background;
+}
+body
+{
+    padding: 1rem;
+}
+header
+{
+    margin: 0 auto;
+}
+nav
+{
+    margin: 1rem;
+
+    ul
+    {
+        list-style: none;
+
+        li
+        {
+            border: none;
+            border-radius: 0.75rem;
+            box-shadow: 
+                1px 1px 4px 1px hsla(0, 0%, 0%, 0.2), 
+                -1px -1px 4px 1px white;
+
+            a
+            {
+                display: block;
+                padding: 0.75rem;
+                color: var(--CONTRAST);
+            }
+        }
+    }
+}
+main
+{
+    margin: 0.25rem 1rem;
+    padding: 1rem;
+}
+footer
+{
+    padding: 1rem 1rem 0 1rem;
+    border-top: 3px solid hsla(207, 85%, 23%, 0.45);
+
+    p
+    {
+        text-align: center;
+    }
+}
+#video_selection
+{
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 0.5rem;
+}
+#identity_title
+{
+    padding: 1rem 0 1.5rem 0;
+
+    width: 100%;
+}
+@import 'a-grids/header-grids';

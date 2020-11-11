@@ -1,0 +1,66 @@
+/**
+ * Form CSS
+ */
+button
+{
+    margin: 0 auto;
+    border-radius: 0.75rem;
+
+    flex-basis: 20%;
+    padding: calc(#{$body-size} * 0.3);
+
+    transition-duration: 0.4s;
+
+    background: white;
+    color: $col-contrast;
+    border: none;
+    box-shadow: 
+        1px 1px 4px 1px hsla(0, 0%, 0%, 0.2), 
+        -1px -1px 4px 1px white;
+
+    &:hover
+    {
+        background-color: white;
+        color: black;
+        box-shadow: 
+            1px 1px 4px 1px white, 
+            -1px -1px 4px 1px hsla(0, 0%, 0%, 0.2);
+        cursor: pointer;
+    }
+}
+form
+{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5rem 1.25rem;
+}
+input
+{
+    flex-basis: 100%;
+    border-radius: 0.5rem;
+
+    border: none;
+    box-shadow: 
+        1px 1px 4px 1px hsla(0, 0%, 0%, 0.2), 
+        -1px -1px 4px 1px white;
+
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+}
+label
+{
+    flex-basis: 100%;
+}
+textarea
+{
+    flex-basis: 100%;
+    border-radius: 0.5rem;
+
+    border: none;
+    box-shadow: 
+        1px 1px 4px 1px hsla(0, 0%, 0%, 0.2), 
+        -1px -1px 4px 1px white;
+
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+}

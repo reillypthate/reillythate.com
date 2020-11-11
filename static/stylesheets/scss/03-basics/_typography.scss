@@ -1,0 +1,81 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * TYPOGRAPHY
+ *
+ * + h1, h2, h3, h4, h5, h6
+ * + p
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/** Set the default font style for heading text. */
+h1, h2, h3, h4, h5, h6
+{
+    font-family: $font-family-header;
+    color: $col-contrast;
+}
+/** h1: Main Heading: "Reilly Thate" */
+h1
+{
+    padding: 0.5rem;
+    font-size: $h1-size;
+    line-height: $h1-size;
+    letter-spacing: calc(#{$h1-size} / 20);
+    font-weight: 400;
+    text-align: center;
+}
+/** h2: Reserved for page headings; i.e. "Blog" */
+h2
+{
+    padding: 0.5rem;
+    font-size: $h2-size;
+    line-height: $h2-size;
+    letter-spacing: calc(#{$h2-size} / 20);
+    font-weight: 400;
+    text-align: left;
+}
+/** h3 */
+h3
+{
+
+}
+/** h4 */
+h4
+{
+
+}
+/** h5 */
+h5
+{
+
+}
+/** h6 */
+h6
+{
+
+}
+/** Set the default font style for body text. */
+p, li
+{
+    font-family: $font-family-body;
+    line-height: $body-size;
+    color: $col-contrast;
+}
+li
+{
+    font-size: calc(#{$body-size} * 1.1);
+    letter-spacing: calc(#{$body-size} / 15);
+
+    text-align: center;
+}
+/** Set the default font style for form elements. */
+input[type="text"], label, textarea, button
+{
+    font-family: $font-family-body;
+    font-size: calc(#{$body-size} * 1.0);
+    letter-spacing: calc(#{$body-size} / 12.5);
+}
+#identity_tagline
+{
+    font-size: $thate-tagline-size;
+    line-height: $thate-tagline-size;
+    letter-spacing: calc(#{$thate-tagline-size} / 15);
+
+    text-align: center;
+}
