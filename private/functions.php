@@ -1,40 +1,33 @@
 <?php 
 
     /**
-     * Links to the home page.
+     * Use database functions to build a URL to a specific directory.
+     * Each directory has its own index.php file.
+     * 
      * If OB_Conversion is set, we'll have an absolute link to the page.
      */
-    function linktoHomePage()
+    function linkToPage($page_title)
     {
         global $to_static;
 
         if($to_static == true)
-            return "http://reillythate.com";
-        return PROJECT_PATH;
-    }
-    function linkToAboutPage()
-    {
-        global $to_static;
+        {
+            return "http://" . buildURL(getPageIdFromPageTitle($page_title));
+        }
+        return "/" . buildURL(getPageIdFromPageTitle($page_title));
 
-        if($to_static == true)
-            return "http://reillythate.com/about/";
-        return PROJECT_PATH . "/about"; 
+        ////Hard-coded template for page-specific methods (linkToHomePage(), etc).
+        //  global $to_static;
+        //  if($to_static == true)
+        //      return "http://reillythate.com";
+        //  return PROJECT_PATH;
     }
-    function linkToBlogPage()
-    {
-        global $to_static;
-
-        if($to_static == true)
-            return "http://reillythate.com/blog/";
-        return PROJECT_PATH . "/blog"; 
-    }
-
+    /**
+     * Use database functions to build a URL to the Images directory
+     * and appand the $image filename to it.
+     */
     function linkToImage($image)
     {
-        global $to_static;
-
-        if($to_static == true)
-            return "http://reillythate.com/static/" . $image;
-        return PROJECT_PATH . "/static/images/" . $image;
+        return linkToPage("Images") . "/" . $image;
     }
 ?>

@@ -5,8 +5,8 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "Blog";
-    $page_description = "Blogs written by Reilly Thate on a variety of topics.";
+	$page_title = "Static";
+    $page_description = "The collection of static assets used in Reilly Thate's website.";
     $wanted_stylesheets = "common.css";
     $wanted_ext_js = "test_head.js";
 
@@ -20,10 +20,7 @@
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_head.php"); ?>
 		
 		<main>
-            <h2>Blog</h2>
-            <p>
-                This page will contain a collection of Reilly's blog posts.
-            </p>
+        
 		</main>
 
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>

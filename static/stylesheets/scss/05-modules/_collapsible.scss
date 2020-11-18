@@ -1,0 +1,43 @@
+.collapsible
+{
+    background: $col-background;
+
+    @include edge(0, 0.75rem);
+    width: 100%;
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 
+    1px 1px 4px 1px hsla(0, 0%, 0%, 0.2), 
+    -1px -1px 4px 1px white;
+
+    font-size: calc(#{$body-size} * 1.1);
+    letter-spacing: calc(#{$body-size} / 15);
+    text-align: center;
+    transition-duration: 250ms;
+
+    cursor: pointer;
+}
+.active
+{
+    background: $col-background-active;
+}
+button.collapsible
+{
+    &:hover
+    {
+        background: $col-background-highlight;
+        box-shadow: 
+        1px 1px 4px 1px hsla(0, 0%, 0%, 0.2), 
+        -1px -1px 4px 1px white;
+    }
+}
+.collapsible_content
+{
+    display: none;
+    overflow: hidden;
+}
+
+#nav_primary ul.collapsible_open
+{
+    display: grid;
+}

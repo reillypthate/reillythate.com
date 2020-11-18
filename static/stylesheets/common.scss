@@ -6,9 +6,18 @@
 @import 'scss/03-basics/links';
 
 @import 'scss/04-layouts/all-pages';
+@import 'scss/04-layouts/header';
+@import 'scss/04-layouts/footer';
+@import 'scss/04-layouts/nav';
 
+@import 'scss/05-modules/collapsible';
 @import 'scss/05-modules/forms';
 @import 'scss/05-modules/images';
-@import 'scss/05-modules/youtube';
+@import 'scss/05-modules/videos';
 
 @import 'scss/06-pages/queries';
+
+*
+{
+    outline: none;
+}

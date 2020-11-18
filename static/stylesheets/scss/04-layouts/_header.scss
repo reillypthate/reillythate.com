@@ -1,0 +1,52 @@
+/*** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Mobile Default Header
+ *** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#public_header
+{
+    // outline: 3px dotted hsla(0, 50%, 50%, 0.5);
+    @include flex(row, space-around, center, wrap);
+    @include edge(0.5rem, 0.5rem);
+    border-bottom: 3px groove $accent-primary;
+    border-radius: 0.5rem;
+
+    & hr
+    {
+        display: none;
+        border: none;
+        border-radius: 0.25rem;
+        width: 4vw;
+        height: 3px;
+        background-color: $accent-primary;
+    }
+}
+#home_logo
+{
+    @include edge(0);
+    width: $identity_logo-mobile-width;
+    height: $identity_logo-mobile-width;
+    
+    justify-self: flex-end;
+}
+#identity_logo
+{
+    // outline: 3px dotted hsla(200, 50%, 50%, 0.75);
+
+    width: 100%;
+}
+#identity_title
+{
+    // outline: 3px dotted hsla(0, 50%, 50%, 0.5);
+    @include edge(0);
+    @include flex(column, center, center);
+
+
+    height: $identity_logo-mobile-width;
+    & h1
+    {
+        justify-self: flex-end;
+    }
+    & #identity_tagline
+    {
+        justify-self: flex-start;
+    }
+}

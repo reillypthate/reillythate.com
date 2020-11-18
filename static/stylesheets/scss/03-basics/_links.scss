@@ -9,6 +9,7 @@ a
 {
     /* Remove UNDERLINES from links. */
     text-decoration: none;
+    width: auto;
 
     &:link
     {
@@ -16,7 +17,7 @@ a
     }
     &:hover
     {
-
+        
     }
     &:visited
     {

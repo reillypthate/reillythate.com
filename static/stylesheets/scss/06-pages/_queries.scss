@@ -1,6 +1,93 @@
 $RENEGADE_SIZE: 40vmin;
 $EDGE_PADDING: 1.5rem;
 
+@media only screen and (max-width:374px)
+{
+    #home_logo
+    {
+        width: calc(125vw / 3.75);
+        height: calc(125vw / 3.75);
+    }
+    #identity_title
+    {
+        h1
+        {
+            font-size: calc(#{$h1-size} * 0.80);
+        }
+    }
+}
+@media only screen and (min-width:375px)
+{
+    main
+    {
+        margin: 1rem;
+    }
+}
+@media only screen and(min-width:667px)
+{
+    #public_header
+    {
+        @include flex(row, space-between, center, nowrap);
+
+        & hr
+        {
+            display: block;
+        }
+    }
+    #home_logo
+    {
+        justify-self: flex-start;
+        width: $identity_logo-mobile-width-667px;
+        height: $identity_logo-mobile-width-667px;
+    }
+    #identity_logo
+    {
+        width: $identity_logo-mobile-width-667px;
+    }
+    #nav_primary
+    {
+        margin: 0;
+        flex-basis: 25%;
+        button.collapsible
+        {
+            display: none;
+            overflow: hidden;
+        }
+        ul
+        {
+            display: grid; // Overrrides MENU button.
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat($num_nav_items, 1fr);
+        }
+        a
+        {
+            padding: 0.75rem 1.5rem;
+        }
+    }
+}
+@media only screen and (min-width: 1024px)
+{
+    #public_header
+    {
+        justify-content: space-between;
+        align-items: center;
+    }
+    #identity_title
+    {
+        justify-self: flex-start;
+    }
+    #nav_primary
+    {
+        display: flex;
+        align-items: center;
+        ul
+        {
+            grid-template-rows: 1fr;
+            grid-template-columns: repeat($num_nav_items, 1fr);
+        }
+    }
+}
+/*
 @media only screen and (min-width:666px) and (orientation:portrait)
 {
     .header-grid
@@ -59,7 +146,7 @@ $EDGE_PADDING: 1.5rem;
         left: 0;
 
         width: calc(50% - #{$EDGE_PADDING} * 1.5);
-        height: calc(100vh - 3rem);
+        // height: calc(100vh - 10rem - 3rem);
     }
 
     .header-grid
@@ -74,8 +161,8 @@ $EDGE_PADDING: 1.5rem;
         #identity_logo
         {
             max-width: $RENEGADE_SIZE;
-            width: $RENEGADE_SIZE;
-            height: $RENEGADE_SIZE;
+            width: 20vh;
+            height: 20vh;
             align-self: flex-end;
         }
         #identity_title
@@ -123,3 +210,38 @@ $EDGE_PADDING: 1.5rem;
         }
     }
 }
+@media only screen and (min-width:800px)
+{
+    body
+    {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); // Left and Right side.
+        grid-template-rows: 80% 20%;
+        grid-template-areas: "header main" "footer main";
+    }
+    header
+    {
+        grid-area: header;
+
+        position: relative;
+        @include edge(0);
+        width: 100%;
+    }
+    main
+    {
+        grid-area: main;
+
+        position: relative;
+        @include edge(0);
+        width: 100%;
+    }
+    footer
+    {
+        grid-area: footer;
+
+        position: relative;
+        @include edge(0);
+        width: 100%;
+    }
+
+}*/

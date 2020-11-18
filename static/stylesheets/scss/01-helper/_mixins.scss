@@ -1,0 +1,32 @@
+@mixin edge($margin-all, $padding-all:$margin-all, $border:false, $border-radius:false)
+{
+    /* Spacing & Border */
+    margin: $margin-all;
+    padding: $padding-all;
+    @if $border
+    {
+        border: $border;
+    }
+    @if $border-radius
+    {
+        border-radius: $border-radius;
+    }
+    /* */
+}
+@mixin flex($flex-direction, $justify-content:false, $align-items:false, $flex-wrap:true)
+{
+    display: flex;
+    flex-direction: $flex-direction;
+    @if $justify-content
+    {
+        justify-content: $justify-content;
+    }
+    @if $align-items
+    {
+        align-items: $align-items;
+    }
+    @if $flex-wrap
+    {
+        flex-wrap: $flex-wrap;
+    }
+}

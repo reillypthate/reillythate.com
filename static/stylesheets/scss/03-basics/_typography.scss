@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, h6
 /** h1: Main Heading: "Reilly Thate" */
 h1
 {
-    padding: 0.5rem;
+    @include edge(0, 0.5rem);
     font-size: $h1-size;
     line-height: $h1-size;
     letter-spacing: calc(#{$h1-size} / 20);
@@ -23,7 +23,7 @@ h1
 /** h2: Reserved for page headings; i.e. "Blog" */
 h2
 {
-    padding: 0.5rem;
+    @include edge(0, 0 0 0.5rem 0);
     font-size: $h2-size;
     line-height: $h2-size;
     letter-spacing: calc(#{$h2-size} / 20);
@@ -33,7 +33,12 @@ h2
 /** h3 */
 h3
 {
-
+    @include edge(0, 0 0 0.5rem 0);
+    font-size: $h3-size;
+    line-height: $h3-size;
+    letter-spacing: calc(#{$h3-size} / 20);
+    font-weight: 400;
+    text-align: left;
 }
 /** h4 */
 h4
@@ -57,12 +62,23 @@ p, li
     line-height: $body-size;
     color: $col-contrast;
 }
+p
+{
+    @include edge(0, 0 0 0.5rem 0);
+
+    & + ul
+    {
+        @include edge(0 0 0.5rem 2rem, 0);
+
+        &:last-child
+        {
+            margin-bottom: 0.25rem;
+        }
+    }
+}
 li
 {
-    font-size: calc(#{$body-size} * 1.1);
-    letter-spacing: calc(#{$body-size} / 15);
-
-    text-align: center;
+    font-size: $body_size;
 }
 /** Set the default font style for form elements. */
 input[type="text"], label, textarea, button
@@ -73,9 +89,15 @@ input[type="text"], label, textarea, button
 }
 #identity_tagline
 {
+    @include edge(0);
     font-size: $thate-tagline-size;
     line-height: $thate-tagline-size;
     letter-spacing: calc(#{$thate-tagline-size} / 15);
 
     text-align: center;
+}
+
+#copyright
+{
+    @include edge(0);
 }

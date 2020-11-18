@@ -1,0 +1,17 @@
+footer
+{
+    @include edge(0.5rem, 0.5rem);
+    border-top: 3px groove $accent-primary;
+    border-radius: 0.5rem;
+
+    @include flex(row, center, center, wrap);
+
+    & *
+    {
+        flex-basis: 100%;
+    }
+    p
+    {
+        text-align: center;
+    }
+}

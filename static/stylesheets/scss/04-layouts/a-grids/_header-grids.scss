@@ -22,12 +22,3 @@
         grid-area: nav;
     }
 }
-
-.nav-ul-grid
-{
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
-    grid-gap: 1rem;
-}
