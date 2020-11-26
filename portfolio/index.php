@@ -24,16 +24,14 @@
             <p>
                 In his film endeavors, Reilly aims to bring his interesting and creative visions to life.
             </p>
-            <section id="video_selection">
-                <div class="vimeo_container">
-                    <iframe class="vimeo_video" src="https://player.vimeo.com/video/460666013" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                </div>
-                <div class="vimeo_container">
-                    <iframe class="vimeo_video" src="https://player.vimeo.com/video/467477083" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                </div>
-                <div class="vimeo_container">
-                    <iframe class="vimeo_video" src="https://player.vimeo.com/video/465210163" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                </div>
+
+            <section id="portfolio_grid">
+                <?php //echo constructPortfolioCard("birthday-toast");?>
+<?php 
+    $pc_slugs = getPortfolioCardSlugs();
+    for($pc_i = 0; $pc_i < count($pc_slugs); $pc_i++): ?>
+                <?php echo constructPortfolioCard($pc_slugs[$pc_i]); ?>
+<?php endfor; ?>
             </section>
 		</main>
 

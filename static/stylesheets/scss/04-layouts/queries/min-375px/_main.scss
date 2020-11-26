@@ -1,0 +1,13 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * MAIN
+ * -- min-width: 375px --
+ *
+ * main
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/**
+ * Styling for the document's <main> element.
+ */
+main
+{
+    @include edge(1rem, 0);
+}

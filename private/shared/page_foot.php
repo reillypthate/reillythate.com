@@ -9,7 +9,9 @@
 				</ul>
 			</nav>
 			<p id="copyright">&copy; 2020 Reilly Thate</p>
-			<img id="renegade_footer" src="<?php echo linkToImage("Renegade_Blues.svg"); ?>" alt="Renegade logo.">
+			<a href="<?php echo linkToPage("Home"); ?>">
+				<img id="renegade_footer" src="<?php echo linkToImage("Renegade_Blues.svg"); ?>" alt="Renegade logo.">
+			</a>
 		</footer>
 
 <?php insertJavascriptFromSrcFiles(); ?>

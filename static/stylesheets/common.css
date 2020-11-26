@@ -10,6 +10,7 @@
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * TYPOGRAPHY
+ * -- default --
  *
  * + h1, h2, h3, h4, h5, h6
  * + p
@@ -63,17 +64,17 @@ h3 {
 /** h5 */
 /** h6 */
 /** Set the default font style for body text. */
-p, li {
-  font-family: "Raleway", sans-serif;
-  line-height: 1rem;
-  color: #1a1a1a;
-}
-
 p {
   /* Spacing & Border */
   margin: 0;
   padding: 0 0 0.5rem 0;
   /* */
+  font-family: "Raleway", sans-serif;
+  line-height: calc(1rem * 1.25);
+  color: #1a1a1a;
+}
+p:last-child {
+  padding-bottom: 0;
 }
 p + ul {
   /* Spacing & Border */
@@ -86,6 +87,7 @@ p + ul:last-child {
 }
 
 li {
+  font-family: "Raleway", sans-serif;
   font-size: 1rem;
 }
 
@@ -125,9 +127,17 @@ a {
   text-decoration: none;
   width: auto;
 }
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-  /* Set color of headings w/ links to contrast */
+a:link {
   color: #1a1a1a;
+}
+a:hover {
+  color: rgba(9, 64, 109, 0.9);
+}
+a:visited {
+  color: #1a1a1a;
+}
+a:visited:hover {
+  color: rgba(9, 64, 109, 0.9);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -153,86 +163,47 @@ main {
   grid-gap: 0.5rem;
 }
 
-/*** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Mobile Default Header
- *** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * HEADER
+ * -- default --
+ *
+ * #public_header,
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/**
+ * Styling for the <header> element when defined as #public_header.
+ */
 #public_header {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   /* Spacing & Border */
   margin: 0.5rem;
   padding: 0.5rem;
   /* */
-  border-bottom: 3px groove rgba(9, 64, 109, 0.9);
-  border-radius: 0.5rem;
+  border-bottom: 3px groove rgba(9, 64, 109, 0.45);
 }
-#public_header hr {
-  display: none;
-  border: none;
-  border-radius: 0.25rem;
-  width: 4vw;
-  height: 3px;
-  background-color: rgba(9, 64, 109, 0.9);
-}
-
-#home_logo {
+#public_header > a {
   /* Spacing & Border */
   margin: 0;
   padding: 0;
   /* */
-  width: 8rem;
-  height: 8rem;
-  justify-self: flex-end;
+  width: calc(8rem * 0.75);
+  height: calc(8rem * 0.75);
 }
-
-#identity_logo {
+#public_header img {
   width: 100%;
 }
-
-#identity_title {
-  /* Spacing & Border */
-  margin: 0;
-  padding: 0;
-  /* */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: true;
-  height: 8rem;
+#public_header img:hover {
+  opacity: 90%;
 }
-#identity_title h1 {
-  justify-self: flex-end;
-}
-#identity_title #identity_tagline {
-  justify-self: flex-start;
-}
-
-footer {
-  /* Spacing & Border */
-  margin: 0.5rem;
-  padding: 0.5rem;
-  /* */
-  border-top: 3px groove rgba(9, 64, 109, 0.9);
-  border-radius: 0.5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-footer * {
-  flex-basis: 100%;
-}
-footer p {
-  text-align: center;
-}
-
+/**
+ * Styling for the <nav> element within the <header> element.
+ */
 #nav_primary {
   margin: 1rem;
+  margin-bottom: 0;
   flex-basis: 100%;
 }
 #nav_primary ul {
@@ -243,70 +214,54 @@ footer p {
   list-style: none;
 }
 #nav_primary li {
-  border: none;
-  border-radius: 0.75rem;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
-  font-size: calc(1rem * 1.1);
-  letter-spacing: calc(1rem / 15);
-  text-align: center;
+  text-align: right;
+  font-weight: normal;
+  font-size: calc(1.25rem * 1.1);
+  letter-spacing: calc(1.25rem / 15);
 }
 #nav_primary a {
   display: block;
   padding: 0.75rem;
+  padding-right: 1.5rem;
+}
+#nav_primary .nav_active_page {
+  cursor: default;
+  border-right: 0.25rem groove rgba(9, 64, 109, 0.9);
+  padding-right: 1.25rem;
+}
+#nav_primary .nav_active_page:hover {
   color: #1a1a1a;
 }
-#nav_primary a:hover {
-  border-radius: 0.75rem;
-  background: #d9d9d9;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
-}
 
-#nav_footer {
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * MAIN
+ * -- default --
+ *
+ * main
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/**
+ * Styling for the document's <main> element.
+ */
+#portfolio_grid {
   /* Spacing & Border */
-  margin: 0 1rem 1rem 1rem;
+  margin: 1rem 0;
   padding: 0;
   /* */
-}
-#nav_footer ul {
-  /* Spacing & Border */
-  margin: 0;
-  padding: 0;
-  /* */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-  list-style: none;
-}
-#nav_footer li {
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  text-align: center;
-}
-#nav_footer a {
-  text-decoration: underline;
-  display: block;
-  padding: 0.5rem;
-  color: #1a1a1a;
-}
-#nav_footer a:hover {
-  color: blue;
-}
-
-.nav-ul-grid {
   display: grid;
+  grid-template-rows: auto;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, 1fr);
   grid-gap: 0.5rem;
 }
 
-.nav_active_page {
-  background: #bfbfbf;
-  border-radius: 0.75rem;
-}
-
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * FOOTER
+ * -- default --
+ *
+ * footer, #nav_footer,
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/**
+* Styling for the footer's <nav> element.
+*/
 .collapsible {
   background: #f2f2f2;
   /* Spacing & Border */
@@ -317,20 +272,24 @@ footer p {
   border: none;
   border-radius: 0.75rem;
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
-  font-size: calc(1rem * 1.1);
-  letter-spacing: calc(1rem / 15);
+  font-size: calc(1.25rem * 1.1);
+  letter-spacing: calc(1.25rem / 15);
   text-align: center;
   transition-duration: 250ms;
   cursor: pointer;
 }
 
-.active {
-  background: #bfbfbf;
+button.collapsible {
+  margin-bottom: 1rem;
 }
-
 button.collapsible:hover {
   background: #d9d9d9;
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
+}
+
+.active {
+  background: #bfbfbf;
+  margin-bottom: 0 !important;
 }
 
 .collapsible_content {
@@ -340,6 +299,59 @@ button.collapsible:hover {
 
 #nav_primary ul.collapsible_open {
   display: grid;
+}
+
+.portfolio_card {
+  position: relative;
+  overflow: hidden;
+}
+.portfolio_card img {
+  display: block;
+  filter: brightness(100%) contrast(100%) sepia(0%);
+  transition: filter 0.5s ease;
+}
+.portfolio_card h3, .portfolio_card .pc_description {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 1rem;
+  /* */
+  position: absolute;
+  left: 0;
+  background: rgba(9, 64, 109, 0.45);
+  color: #cbcdcb;
+  text-align: left;
+}
+.portfolio_card h3 {
+  top: 0;
+  right: auto;
+  border-radius: 0 0.5rem 0.5rem 0.5rem;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+.portfolio_card .pc_description {
+  border-radius: 0.5rem 0.5rem 0 0;
+  right: 0;
+  bottom: -50px;
+  opacity: 0%;
+  transition: bottom 0.5s ease, background-color 0.5s ease, color 0.5s ease, opacity 0.5s ease;
+}
+.portfolio_card p {
+  transition: color 0.5s ease;
+}
+.portfolio_card:hover img {
+  filter: brightness(50%) contrast(87.5%) sepia(100%);
+}
+.portfolio_card:hover h3 {
+  background: rgba(9, 64, 109, 0.45);
+  color: white;
+}
+.portfolio_card:hover .pc_description {
+  bottom: 0;
+  background: rgba(9, 64, 109, 0.45);
+  bottom: 0;
+  opacity: 100%;
+}
+.portfolio_card:hover p {
+  color: white;
 }
 
 /**
@@ -391,11 +403,10 @@ textarea {
   padding: 0.5rem;
 }
 
-#renegade_footer {
-  margin-top: 1rem;
-  max-width: 50px;
-  filter: grayscale(50%);
-  filter: opacity(50%);
+img {
+  position: relative;
+  display: block;
+  width: 100%;
 }
 
 .vimeo_container, .youtube_container {
@@ -413,46 +424,289 @@ textarea {
   border: 0;
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * ABOUT
+ * -- default --
+ *
+ * #about_thesis, 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 @media only screen and (max-width: 374px) {
-  #home_logo {
+  #renegade_home_link {
     width: calc(125vw / 3.75);
     height: calc(125vw / 3.75);
   }
 
-  #identity_title h1 {
+  h1 {
     font-size: calc(2.5rem * 0.80);
   }
 }
 @media only screen and (min-width: 375px) {
-  main {
-    margin: 1rem;
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * TYPOGRAPHY
+   * -- min-width: 375px --
+   *
+   * + h1, h2, h3, h4, h5, h6
+   * + p
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /** Set the default font style for heading text. */
+  /** h1: Main Heading: "Reilly Thate" */
+  /** h2: Reserved for page headings; i.e. "Blog" */
+  /** h3 */
+  /** h4 */
+  /** h5 */
+  /** h6 */
+  /** Set the default font style for body text. */
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * LINKS
+   * -- min-width: 375px --
+   *
+   * + a, a:link, a:hover, a:visited, a:visited:hover, etc.
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /** Anchor tag styling. */
+  a {
+    /* Remove UNDERLINES from links. */
+    text-decoration: none;
+    width: auto;
   }
-}
-@media only screen and (min-width: 667px) {
+  h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    /* Set color of headings w/ links to contrast */
+    color: #1a1a1a;
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * HEADER
+   * -- min-width: 375px --
+   *
+   * #public_header, #nav_primary
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /**
+   * Styling for the <header> element when defined as #public_header.
+   */
   #public_header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    /* Spacing & Border */
+    margin: 0.5rem;
+    padding: 0.5rem;
+    /* */
+    border-bottom: 3px groove rgba(9, 64, 109, 0.45);
   }
-  #public_header hr {
-    display: block;
+  #public_header > a {
+    /* Spacing & Border */
+    margin: 0;
+    padding: 0;
+    /* */
+    width: 8rem;
+    height: 8rem;
+  }
+  #public_header img {
+    width: 100%;
+  }
+  #public_header img:hover {
+    opacity: 90%;
   }
 
-  #home_logo {
+  /**
+   * Styling for the <nav> element within the <header> element.
+   */
+  #nav_primary {
+    margin: 1rem;
+    margin-bottom: 0;
+    flex-basis: 100%;
+  }
+  #nav_primary ul {
+    /* Spacing & Border */
+    margin: 0;
+    padding: 0.5rem;
+    /* */
+    list-style: none;
+  }
+  #nav_primary li {
+    text-align: right;
+    font-weight: normal;
+    font-size: calc(1.25rem * 1.1);
+    letter-spacing: calc(1.25rem / 15);
+  }
+  #nav_primary a {
+    display: block;
+    padding: 0.75rem;
+    padding-right: 1.5rem;
+  }
+  #nav_primary .nav_active_page {
+    cursor: default;
+    border-right: 0.25rem groove rgba(9, 64, 109, 0.9);
+    padding-right: 1.25rem;
+  }
+  #nav_primary .nav_active_page:hover {
+    color: #1a1a1a;
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * MAIN
+   * -- min-width: 375px --
+   *
+   * main
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /**
+   * Styling for the document's <main> element.
+   */
+  main {
+    /* Spacing & Border */
+    margin: 1rem;
+    padding: 0;
+    /* */
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * FOOTER
+   * -- min-width: 375px --
+   *
+   * footer, #nav_footer,
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  footer {
+    /* Spacing & Border */
+    margin: 0.5rem;
+    padding: 0.5rem;
+    /* */
+    border-top: 3px solid rgba(9, 64, 109, 0.45);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  footer > * {
+    flex-basis: 100%;
+  }
+  footer p {
+    text-align: center;
+  }
+  footer > a {
+    text-align: center;
+    width: 50px;
+    flex-basis: auto;
+  }
+  footer > a img {
+    margin-top: 1rem;
+    max-width: 50px;
+    filter: grayscale(50%);
+    filter: opacity(50%);
+  }
+  footer > a img:hover {
+    opacity: 90%;
+  }
+
+  /**
+   * Styling for the footer's <nav> element.
+   */
+  #nav_footer {
+    /* Spacing & Border */
+    margin: 0 1rem 1rem 1rem;
+    padding: 0;
+    /* */
+  }
+  #nav_footer ul {
+    /* Spacing & Border */
+    margin: 0;
+    padding: 0;
+    /* */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    list-style: none;
+  }
+  #nav_footer li {
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+  #nav_footer a {
+    text-decoration: underline;
+    display: block;
+    padding: 0.5rem;
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * ABOUT
+   * -- min-width: 375px --
+   *
+   * #about_thesis, 
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+}
+@media only screen and (min-width: 667px) {
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * TYPOGRAPHY
+   * -- min-width: 667px --
+   *
+   * + h1, h2, h3, h4, h5, h6
+   * + p
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /** Set the default font style for heading text. */
+  /** h1: Main Heading: "Reilly Thate" */
+  h1 {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  /** h2: Reserved for page headings; i.e. "Blog" */
+  /** h3 */
+  /** h4 */
+  /** h5 */
+  /** h6 */
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * LINKS
+   * -- min-width: 667px --
+   *
+   * + a, a:link, a:hover, a:visited, a:visited:hover, etc.
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /** Anchor tag styling. */
+  a {
+    /* Remove UNDERLINES from links. */
+    text-decoration: none;
+    width: auto;
+  }
+  h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    /* Set color of headings w/ links to contrast */
+    color: #1a1a1a;
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * HEADER
+   * -- min-width: 667px --
+   *
+   * #public_header, #nav_primary
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /**
+   * Styling for the <header> element when defined as #public_header.
+   */
+  #public_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  #public_header > a {
     justify-self: flex-start;
     width: 10rem;
     height: 10rem;
   }
-
-  #identity_logo {
+  #public_header img {
     width: 10rem;
   }
 
+  /**
+   * Styling for the <nav> element within the <header> element.
+   */
   #nav_primary {
     margin: 0;
-    flex-basis: 25%;
+    flex-basis: auto;
   }
   #nav_primary button.collapsible {
     display: none;
@@ -460,30 +714,178 @@ textarea {
   }
   #nav_primary ul {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
   }
   #nav_primary a {
     padding: 0.75rem 1.5rem;
   }
+  #nav_primary .nav_active_page {
+    cursor: default;
+    border-right: 0.25rem groove rgba(9, 64, 109, 0.9);
+    padding-right: 1.25rem;
+  }
+  #nav_primary .nav_active_page:hover {
+    color: #1a1a1a;
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * MAIN
+   * -- min-width: 667px --
+   *
+   * main
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /**
+   * Styling for the document's <main> element.
+   */
+  #portfolio_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * ABOUT
+   * -- min-width: 667px --
+   *
+   * #about_thesis, 
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 }
 @media only screen and (min-width: 1024px) {
-  #public_header {
-    justify-content: space-between;
-    align-items: center;
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * TYPOGRAPHY
+   * min-width: 1024px
+   *
+   * + h1, h2, h3, h4, h5, h6
+   * + p
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /** Set the default font style for heading text. */
+  /** h1: Main Heading: "Reilly Thate" */
+  /** h2: Reserved for page headings; i.e. "Blog" */
+  /** h3 */
+  /** h4 */
+  /** h5 */
+  /** h6 */
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * LINKS
+   * -- min-width: 1024px --
+   *
+   * + a, a:link, a:hover, a:visited, a:visited:hover, etc.
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /** Anchor tag styling. */
+  a {
+    /* Remove UNDERLINES from links. */
+    text-decoration: none;
+    width: auto;
+  }
+  h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    /* Set color of headings w/ links to contrast */
+    color: #1a1a1a;
   }
 
-  #identity_title {
-    justify-self: flex-start;
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * HEADER
+   * -- min-width: 1024px --
+   *
+   * #public_header, #nav_primary
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /**
+   * Styling for the <header> element when defined as #public_header.
+   */
+  #public_header > a {
+    float: left;
   }
-
+  /**
+   * Styling for the <nav> element within the <header> element.
+   */
   #nav_primary {
-    display: flex;
-    align-items: center;
+    position: relative;
+    top: 0.125rem;
+    flex-basis: 50%;
+    justify-self: flex-end;
   }
   #nav_primary ul {
-    grid-template-rows: 1fr;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  #nav_primary li {
+    text-align: center;
+    flex-basis: calc(100% / 3);
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+  }
+  #nav_primary li:last-child {
+    margin-right: 0;
+    border-right: none;
+  }
+  #nav_primary .nav_active_page {
+    cursor: default;
+    border-right: none;
+    border-bottom: 0.25rem groove rgba(9, 64, 109, 0.9);
+    padding-right: 1.5rem;
+    padding-bottom: 0.5rem;
+  }
+  #nav_primary .nav_active_page:hover {
+    color: #1a1a1a;
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * MAIN
+   * -- min-width: 1024px --
+   *
+   * main
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /**
+   * Styling for the document's <main> element.
+   */
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * ABOUT
+   * -- min-width: 1024px --
+   *
+   * #about_thesis, 
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  #about_card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+  }
+  #about_card img {
+    width: 35%;
+    border-radius: 1.25rem;
+  }
+  #about_card > div {
+    /* Spacing & Border */
+    margin: 1rem;
+    padding: 0;
+    /* */
+  }
+  #about_card > div > ul {
+    /* Spacing & Border */
+    margin: 0 0 0 1rem;
+    padding: 0;
+    /* */
+  }
+
+  #about_gallery_education, #about_gallery_experience {
+    /* Spacing & Border */
+    margin: 1rem 0;
+    padding: 0;
+    /* */
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+  }
+
+  #about_gallery_education {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  #about_gallery_experience {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 /*

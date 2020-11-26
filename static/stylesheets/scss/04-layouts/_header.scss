@@ -1,52 +1,83 @@
-/*** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Mobile Default Header
- *** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-#public_header
-{
-    // outline: 3px dotted hsla(0, 50%, 50%, 0.5);
-    @include flex(row, space-around, center, wrap);
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * HEADER
+ * -- default --
+ *
+ * #public_header,
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/**
+ * Styling for the <header> element when defined as #public_header.
+ */
+ #public_header
+{ // outline: 3px dotted hsla(0, 50%, 50%, 0.5);
+    @include flex(row, space-between, center, wrap);
     @include edge(0.5rem, 0.5rem);
-    border-bottom: 3px groove $accent-primary;
-    border-radius: 0.5rem;
+    border-bottom: 3px groove $accent-secondary;
+    // border-radius: 0.5rem;
 
-    & hr
+    & > a // Link Container for Renegade Logo
     {
-        display: none;
-        border: none;
-        border-radius: 0.25rem;
-        width: 4vw;
-        height: 3px;
-        background-color: $accent-primary;
+        @include edge(0);
+        width: calc(#{$identity_logo-mobile-width} * 0.75);
+        height: calc(#{$identity_logo-mobile-width} * 0.75);
+
     }
-}
-#home_logo
-{
-    @include edge(0);
-    width: $identity_logo-mobile-width;
-    height: $identity_logo-mobile-width;
+    & img // Renegade Logo
+    {
+        // outline: 3px dotted hsla(200, 50%, 50%, 0.75);
     
-    justify-self: flex-end;
-}
-#identity_logo
-{
-    // outline: 3px dotted hsla(200, 50%, 50%, 0.75);
+        width: 100%;
 
-    width: 100%;
-}
-#identity_title
-{
-    // outline: 3px dotted hsla(0, 50%, 50%, 0.5);
-    @include edge(0);
-    @include flex(column, center, center);
-
-
-    height: $identity_logo-mobile-width;
-    & h1
-    {
-        justify-self: flex-end;
+        &:hover
+        {
+            opacity: 90%;
+        }
     }
-    & #identity_tagline
+    & > a // Link Container for Renegade Logo
     {
-        justify-self: flex-start;
+
+    }
+    & img // Renegade Logo
+    {
+
     }
 }
+/**
+ * Styling for the <nav> element within the <header> element.
+ */
+ #nav_primary
+ {
+     margin: 1rem;
+     margin-bottom: 0;
+     flex-basis: 100%;
+ 
+     ul
+     {
+         @include edge(0, 0.5rem);
+ 
+         list-style: none;
+     }
+     li
+     {
+         text-align: right;
+         font-weight: normal;
+ 
+         font-size: calc(#{$nav_primary_li_size} * 1.1);
+         letter-spacing: calc(#{$nav_primary_li_size} / 15);
+     }
+     a
+     {
+         display: block;
+         padding: 0.75rem;
+         padding-right: 1.5rem;
+     }
+     .nav_active_page
+     {
+         cursor: default;
+         border-right: 0.25rem groove $accent-primary;
+         padding-right: 1.25rem;
+         &:hover
+         {
+             color: $col-contrast;
+         }
+     }
+ }

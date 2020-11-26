@@ -1,0 +1,206 @@
+$RENEGADE_SIZE: 40vmin;
+$EDGE_PADDING: 1.5rem;
+
+@media only screen and (max-width:374px)
+{
+    #renegade_home_link
+    {
+        width: calc(125vw / 3.75);
+        height: calc(125vw / 3.75);
+    }
+    h1
+    {
+        font-size: calc(#{$h1-size} * 0.80);
+    }
+}
+@media only screen and (min-width:375px)
+{
+    @import "03-basics/queries/min-375px/typography";
+    @import "03-basics/queries/min-375px/links";
+
+    @import "04-layouts/queries/min-375px/header";
+    @import "04-layouts/queries/min-375px/main";
+    @import "04-layouts/queries/min-375px/footer";
+
+    @import "06-pages/queries/min-375px/about";
+}
+@media only screen and(min-width:667px)
+{
+    @import "03-basics/queries/min-667px/typography";
+    @import "03-basics/queries/min-667px/links";
+
+    @import "04-layouts/queries/min-667px/header";
+    @import "04-layouts/queries/min-667px/main";
+    @import "04-layouts/queries/min-667px/footer";
+
+    @import "06-pages/queries/min-667px/about";
+}
+@media only screen and (min-width: 1024px)
+{
+    @import "03-basics/queries/min-1024px/typography";
+    @import "03-basics/queries/min-1024px/links";
+
+    @import "04-layouts/queries/min-1024px/header";
+    @import "04-layouts/queries/min-1024px/main";
+    @import "04-layouts/queries/min-1024px/footer";
+
+    @import "06-pages/queries/min-1024px/about";
+}
+/*
+@media only screen and (min-width:666px) and (orientation:portrait)
+{
+    .header-grid
+    {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        grid-template-areas: "identity logo nav";
+
+        #identity_logo
+        {
+            grid-area: logo;
+            justify-self: center;
+            align-self: center;
+        }
+        #identity_title
+        {
+            grid-area: identity;
+            justify-self: center;
+            align-self: center;
+        }
+        nav
+        {
+            grid-area: nav;
+            align-self: center;
+        }
+
+        .nav-ul-grid
+        {
+            display: grid;
+            margin-left: 7vmin;
+
+            grid-template-columns: auto;
+            grid-template-rows: repeat(2, 1fr);
+            grid-gap: 1rem;
+        }
+    }
+    
+}
+@media only screen and (min-width:666px) and (orientation:landscape)
+{
+    body
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+    header
+    {
+        position: fixed;
+        padding: $EDGE_PADDING;
+        top: 0;
+        left: 0;
+
+        width: calc(50% - #{$EDGE_PADDING} * 1.5);
+        // height: calc(100vh - 10rem - 3rem);
+    }
+
+    .header-grid
+    {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        border-bottom: none;
+        
+        #identity_logo
+        {
+            max-width: $RENEGADE_SIZE;
+            width: 20vh;
+            height: 20vh;
+            align-self: flex-end;
+        }
+        #identity_title
+        {
+            align-self: flex-start;
+        }
+    }
+    main
+    {
+        position: absolute;
+
+        margin: 0;
+        padding: $EDGE_PADDING;
+        width: calc(50% - calc(#{$EDGE_PADDING} * 1.5));
+        top: 0;
+        right: 0;
+    }
+    nav
+    {
+        align-self: center;
+        width: 100%;
+    }
+    nav ul
+    {
+        
+    }
+    footer
+    {
+        position: fixed;
+        width: calc(50% - 3rem);
+        bottom: calc(#{$EDGE_PADDING} / 2);
+        left: $EDGE_PADDING;
+        border-top: none;
+    }
+
+    @media only screen and (max-height:500px)
+    {
+        #identity_logo, #identity_title, nav
+        {
+            align-self: flex-start;
+        }
+        #identity_title
+        {
+            padding: 0;
+        }
+    }
+}
+@media only screen and (min-width:800px)
+{
+    body
+    {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); // Left and Right side.
+        grid-template-rows: 80% 20%;
+        grid-template-areas: "header main" "footer main";
+    }
+    header
+    {
+        grid-area: header;
+
+        position: relative;
+        @include edge(0);
+        width: 100%;
+    }
+    main
+    {
+        grid-area: main;
+
+        position: relative;
+        @include edge(0);
+        width: 100%;
+    }
+    footer
+    {
+        grid-area: footer;
+
+        position: relative;
+        @include edge(0);
+        width: 100%;
+    }
+
+}*/

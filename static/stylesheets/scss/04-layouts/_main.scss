@@ -1,0 +1,25 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * MAIN
+ * -- default --
+ *
+ * main
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/**
+ * Styling for the document's <main> element.
+ */
+main
+{
+
+}
+section
+{
+    
+}
+#portfolio_grid
+{
+    @include edge(1rem 0, 0);
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+    grid-gap: 0.5rem;
+}

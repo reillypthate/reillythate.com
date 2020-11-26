@@ -7,15 +7,18 @@
 
 @import 'scss/04-layouts/all-pages';
 @import 'scss/04-layouts/header';
+@import 'scss/04-layouts/main';
 @import 'scss/04-layouts/footer';
-@import 'scss/04-layouts/nav';
 
 @import 'scss/05-modules/collapsible';
+@import 'scss/05-modules/cards';
 @import 'scss/05-modules/forms';
 @import 'scss/05-modules/images';
 @import 'scss/05-modules/videos';
 
-@import 'scss/06-pages/queries';
+@import "scss/06-pages/about";
+
+@import 'scss/queries';
 
 *
 {

@@ -10,19 +10,16 @@
     1px 1px 4px 1px hsla(0, 0%, 0%, 0.2), 
     -1px -1px 4px 1px white;
 
-    font-size: calc(#{$body-size} * 1.1);
-    letter-spacing: calc(#{$body-size} / 15);
+    font-size: calc(#{$nav_primary_li_size} * 1.1);
+    letter-spacing: calc(#{$nav_primary_li_size} / 15);
     text-align: center;
     transition-duration: 250ms;
 
     cursor: pointer;
 }
-.active
-{
-    background: $col-background-active;
-}
 button.collapsible
 {
+    margin-bottom: 1rem;
     &:hover
     {
         background: $col-background-highlight;
@@ -30,6 +27,11 @@ button.collapsible
         1px 1px 4px 1px hsla(0, 0%, 0%, 0.2), 
         -1px -1px 4px 1px white;
     }
+}
+.active
+{
+    background: $col-background-active;
+    margin-bottom: 0 !important;
 }
 .collapsible_content
 {

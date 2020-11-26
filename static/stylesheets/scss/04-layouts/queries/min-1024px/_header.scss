@@ -1,0 +1,63 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * HEADER
+ * -- min-width: 1024px --
+ *
+ * #public_header, #nav_primary
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/**
+ * Styling for the <header> element when defined as #public_header.
+ */
+ #public_header
+{
+    & > a  // Link Container for Renegade Logo
+    {
+        float: left;
+    }
+    & img
+    {
+        
+    }
+}
+
+/**
+ * Styling for the <nav> element within the <header> element.
+ */
+#nav_primary
+{
+    position: relative;
+    top: 0.125rem;
+    flex-basis: 50%;
+    justify-self: flex-end;
+    
+    ul
+    {
+        @include flex(row, space-between, center, nowrap);
+    }
+    li
+    {
+        text-align: center;
+        flex-basis: calc(100% / #{$num_nav_items});
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+        
+        &:last-child
+        {
+            margin-right: 0;
+            border-right: none;
+        }
+    }
+
+    .nav_active_page
+    {
+        cursor: default;
+        border-right: none;
+        border-bottom: 0.25rem groove $accent_primary;
+        padding-right: 1.5rem;
+        padding-bottom: 0.5rem;
+        &:hover
+        {
+            color: $col-contrast;
+        }
+    }
+}

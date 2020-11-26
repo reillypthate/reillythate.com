@@ -20,17 +20,20 @@
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_head.php"); ?>
 		
 		<main>
-            <section id="video_selection">
-                <div class="vimeo_container">
-                    <iframe class="vimeo_video" src="https://player.vimeo.com/video/460666013" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                </div>
-                <div class="vimeo_container">
-                    <iframe class="vimeo_video" src="https://player.vimeo.com/video/467477083" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                </div>
-                <div class="vimeo_container">
-                    <iframe class="vimeo_video" src="https://player.vimeo.com/video/465210163" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                </div>
+            <h2>About Reilly</h2>
+<?php include(DOC_PREFIX . SHARED_PATH . "/about_education.php"); ?>
+<?php include(DOC_PREFIX . SHARED_PATH . "/about_experience.php"); ?>
+            <h2>Reilly&rsquo;s Work</h2>
+            <section id="portfolio_grid">
+<?php 
+    $pc_slugs = getPortfolioCardSlugs();
+    for($pc_i = 0; $pc_i < count($pc_slugs); $pc_i++): ?>
+                <?php echo constructPortfolioCard($pc_slugs[$pc_i]); ?>
+<?php endfor; ?>
             </section>
+            <h2>Reilly's Blog</h2>
+<?php include(DOC_PREFIX . SHARED_PATH . "/about_experience.php"); ?>
+<?php include(DOC_PREFIX . SHARED_PATH . "/about_education.php"); ?>
 		</main>
 
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>

@@ -1,17 +1,17 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * FOOTER
+ * -- default --
+ *
+ * footer, #nav_footer,
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 footer
 {
-    @include edge(0.5rem, 0.5rem);
-    border-top: 3px groove $accent-primary;
-    border-radius: 0.5rem;
 
-    @include flex(row, center, center, wrap);
+}
+/**
+* Styling for the footer's <nav> element.
+*/
+#nav_footer
+{
 
-    & *
-    {
-        flex-basis: 100%;
-    }
-    p
-    {
-        text-align: center;
-    }
 }

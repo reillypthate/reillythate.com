@@ -22,15 +22,10 @@
     </head>
     <body>
         <header id="public_header">
-            <a href="<?php echo linkToPage("Home"); ?>" id="home_logo">
-                <img id="identity_logo" src="<?php echo linkToImage("Renegade_Blues.svg"); ?>" alt="Renegade logo.">
+            <a href="<?php echo linkToPage("Home"); ?>">
+                <img src="<?php echo linkToImage("Renegade_Blues.svg"); ?>" alt="Renegade logo.">
             </a>
-            <hr>
-            <div id="identity_title">
-                <h1><a href="<?php echo linkToPage("Home"); ?>">Reilly Thate</a></h1>
-                <p id="identity_tagline">Filmmaker</p>
-            </div>
-            <hr>
+            <h1><a href="<?php echo linkToPage("Home"); ?>">Reilly Thate</a></h1>
             <nav id="nav_primary">
                 <button type="button" class="collapsible">Menu</button>
                 <ul class="nav-ul-grid collapsible_content">
