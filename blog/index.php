@@ -5,8 +5,8 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "Blog";
-    $page_description = "Blogs written by Reilly Thate on a variety of topics.";
+    $SLUG = "blog";
+    
     $wanted_stylesheets = "common.css";
     $wanted_ext_js = "test_head.js";
 

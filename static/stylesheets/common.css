@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Oswald:300,400,500|Raleway&display=swap");
 /**
  * Reset all formatting.
@@ -70,7 +71,8 @@ p {
   padding: 0 0 0.5rem 0;
   /* */
   font-family: "Raleway", sans-serif;
-  line-height: calc(1rem * 1.25);
+  font-size: 1.05rem;
+  line-height: calc(1.05rem * 1.25);
   color: #1a1a1a;
 }
 p:last-child {
@@ -86,16 +88,23 @@ p + ul:last-child {
   margin-bottom: 0.25rem;
 }
 
+ul {
+  /* Spacing & Border */
+  margin: 0 0 0.75rem 1rem;
+  padding: 0;
+  /* */
+}
+
 li {
   font-family: "Raleway", sans-serif;
-  font-size: 1rem;
+  font-size: 1.05rem;
 }
 
 /** Set the default font style for form elements. */
 input[type=text], label, textarea, button {
   font-family: "Raleway", sans-serif;
-  font-size: calc(1rem * 1.0);
-  letter-spacing: calc(1rem / 12.5);
+  font-size: calc(1.05rem * 1.0);
+  letter-spacing: calc(1.05rem / 12.5);
 }
 
 #identity_tagline {
@@ -114,6 +123,15 @@ input[type=text], label, textarea, button {
   margin: 0;
   padding: 0;
   /* */
+}
+
+.after_button {
+  padding-left: 0.5rem;
+}
+
+.error_message {
+  color: red;
+  font-style: italic;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -182,6 +200,7 @@ main {
   margin: 0.5rem;
   padding: 0.5rem;
   /* */
+  margin-bottom: 0;
   border-bottom: 3px groove rgba(9, 64, 109, 0.45);
 }
 #public_header > a {
@@ -242,6 +261,54 @@ main {
 /**
  * Styling for the document's <main> element.
  */
+article {
+  /* Spacing & Border */
+  margin: 0.75rem 0;
+  padding: 0;
+  /* */
+}
+
+#backticks {
+  /* Spacing & Border */
+  margin: 0.5rem;
+  padding: 0.5rem 1rem 1rem 1rem;
+  /* */
+  border-bottom: 3px groove rgba(9, 64, 109, 0.45);
+}
+#backticks ul {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0;
+  /* */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  list-style: none;
+}
+#backticks ul li {
+  text-decoration: underline;
+}
+#backticks ul li:first-child::before {
+  display: inline-block;
+  text-decoration: none;
+  content: "";
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0;
+  /* */
+}
+#backticks ul li::before {
+  display: inline-block;
+  text-decoration: none;
+  content: "»";
+  /* Spacing & Border */
+  margin: 0 1rem;
+  padding: 0;
+  /* */
+}
+
 #portfolio_grid {
   /* Spacing & Border */
   margin: 1rem 0;
@@ -301,16 +368,42 @@ button.collapsible:hover {
   display: grid;
 }
 
-.portfolio_card {
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * CARDS
+ * -- default --
+ *
+ * .card_gallery, .card_count_(1-4)
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.card_gallery {
+  /* Spacing & Border */
+  margin: 1rem 0 0.5rem 0;
+  padding: 0;
+  /* */
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  grid-gap: 0.5rem;
+}
+.card_gallery + .card_gallery {
+  margin-top: 0.5rem;
+}
+.card_gallery:last-child {
+  margin-bottom: 1rem;
+}
+
+/**
+**
+**/
+.portfolio_card, .card {
   position: relative;
   overflow: hidden;
 }
-.portfolio_card img {
+.portfolio_card img, .card img {
   display: block;
   filter: brightness(100%) contrast(100%) sepia(0%);
   transition: filter 0.5s ease;
 }
-.portfolio_card h3, .portfolio_card .pc_description {
+.portfolio_card h2, .portfolio_card h3, .portfolio_card .pc_description, .portfolio_card .card_description, .card h2, .card h3, .card .pc_description, .card .card_description {
   /* Spacing & Border */
   margin: 0;
   padding: 1rem;
@@ -321,86 +414,176 @@ button.collapsible:hover {
   color: #cbcdcb;
   text-align: left;
 }
-.portfolio_card h3 {
+.portfolio_card h2, .portfolio_card h3, .card h2, .card h3 {
   top: 0;
   right: auto;
   border-radius: 0 0.5rem 0.5rem 0.5rem;
   transition: background-color 0.5s ease, color 0.5s ease;
 }
-.portfolio_card .pc_description {
+.portfolio_card .pc_description, .portfolio_card .card_description, .card .pc_description, .card .card_description {
   border-radius: 0.5rem 0.5rem 0 0;
   right: 0;
   bottom: -50px;
   opacity: 0%;
   transition: bottom 0.5s ease, background-color 0.5s ease, color 0.5s ease, opacity 0.5s ease;
 }
-.portfolio_card p {
+.portfolio_card p, .card p {
   transition: color 0.5s ease;
 }
-.portfolio_card:hover img {
+.portfolio_card:hover img, .card:hover img {
   filter: brightness(50%) contrast(87.5%) sepia(100%);
 }
-.portfolio_card:hover h3 {
+.portfolio_card:hover h2, .portfolio_card:hover h3, .card:hover h2, .card:hover h3 {
   background: rgba(9, 64, 109, 0.45);
   color: white;
 }
-.portfolio_card:hover .pc_description {
+.portfolio_card:hover .pc_description, .portfolio_card:hover .card_description, .card:hover .pc_description, .card:hover .card_description {
   bottom: 0;
   background: rgba(9, 64, 109, 0.45);
   bottom: 0;
   opacity: 100%;
 }
-.portfolio_card:hover p {
+.portfolio_card:hover p, .card:hover p {
   color: white;
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * FORM
+ * -- default --
+ *
+ * form, fieldset...
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 /**
- * Form CSS
- */
+** Styling for <form> element.
+**/
+form {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0;
+  /* */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+form > * {
+  flex-basis: 100%;
+}
+
+/**
+** Styling for <fieldset> element.
+**/
+fieldset {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 1rem;
+  /* */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+fieldset > * {
+  flex-basis: 100%;
+}
+
+/**
+** Styling for <fieldset> element.
+**/
+legend {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0 0.5rem;
+  /* */
+  font-family: "Oswald", sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: calc(body-size / 5);
+}
+
+/**
+** Styling for <button> element.
+**/
 button {
-  margin: 0 auto;
+  /* Spacing & Border */
+  margin: 1rem;
+  padding: 0.5rem;
+  border: auto;
   border-radius: 0.75rem;
-  flex-basis: 20%;
-  padding: calc(1rem * 0.3);
-  transition-duration: 0.4s;
-  background: white;
-  color: #1a1a1a;
-  border: none;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
+  /* */
+  font-family: "Oswald", sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: calc(body-size / 5);
+  background: rgba(9, 64, 109, 0.9);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 button:hover {
-  background-color: white;
-  color: black;
-  box-shadow: 1px 1px 4px 1px white, -1px -1px 4px 1px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-}
-
-form {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0.5rem 1.25rem;
-}
-
-input {
-  flex-basis: 100%;
-  border-radius: 0.5rem;
-  border: none;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
+  background: rgba(9, 64, 109, 0.45);
+  color: #1a1a1a;
 }
 
 label {
-  flex-basis: 100%;
+  text-align: left;
+  flex-basis: 95%;
 }
 
-textarea {
-  flex-basis: 100%;
-  border-radius: 0.5rem;
+/**
+** Styling for <input> element.
+**/
+input {
+  /* Spacing & Border */
+  margin: 0.5rem 0;
+  padding: 0.75rem;
   border: none;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
-  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  /* */
+  box-shadow: inset 0.5rem 0.5rem 1rem #e1e1e1, inset -0.5rem -0.5rem 1rem #ffffff;
+}
+input:first-child, input:nth-child(2) {
+  margin-top: 0;
+}
+input:last-child {
+  margin-bottom: 0;
+}
+input[type=checkbox] {
+  margin: 0;
+  flex-basis: 5%;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid black;
+}
+
+/**
+** Styling for <textarea> element.
+**/
+textarea {
+  /* Spacing & Border */
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.25rem;
+  /* */
+  box-shadow: inset 0.5rem 0.5rem 1rem #e1e1e1, inset -0.5rem -0.5rem 1rem #ffffff;
+}
+textarea:first-child, textarea:nth-child(2) {
+  margin-top: 0;
+}
+textarea:last-child {
+  margin-bottom: 0;
+}
+
+/**
+** Styling for <select> element.
+**/
+select {
+  /* Spacing & Border */
+  margin: 0;
   padding: 0.5rem;
+  /* */
+  font-size: 1.05rem;
 }
 
 img {
@@ -425,11 +608,111 @@ img {
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * TABLE
+ * -- default --
+ *
+ * table, thead, tbody, tfoot, tr, th, td
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/**
+* Styling for the <table> element.
+*/
+table {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0.5;
+  border: 4px groove gray;
+  /* */
+  font-family: "Raleway", sans-serif;
+}
+
+/**
+* Styling for the <thead> element.
+*/
+thead {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0;
+  /* */
+  font-family: "Oswald", sans-serif;
+  letter-spacing: calc(1.05rem / 10);
+}
+
+/**
+* Styling for the <tbody> element.
+*/
+tbody {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0;
+  /* */
+}
+
+/**
+* Styling for the <tfoot> element.
+*/
+tfoot {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0;
+  /* */
+}
+
+/**
+* Styling for the <tr> element.
+*/
+tr:nth-child(2n) {
+  background: lightgray;
+}
+
+/**
+* Styling for the <th> element.
+*/
+th {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0.5rem;
+  border: none;
+  /* */
+}
+
+/**
+* Styling for the <td> element.
+*/
+td {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0.5rem;
+  border: none;
+  /* */
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * ABOUT
  * -- default --
  *
  * #about_thesis, 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * BACKEND
+ * -- default --
+ *
+ * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/**
+ * Container for every element used in #backend.
+ */
+#backend #manager {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(2, 1fr);
+}
+#backend section {
+  /* Spacing & Border */
+  margin: 1rem;
+  padding: 0;
+  /* */
+}
+
 @media only screen and (max-width: 374px) {
   #renegade_home_link {
     width: calc(125vw / 3.75);
@@ -623,7 +906,7 @@ img {
   #nav_footer li {
     border: none;
     border-radius: 0.5rem;
-    font-size: 1rem;
+    font-size: 1.05rem;
     text-align: center;
   }
   #nav_footer a {
@@ -633,11 +916,98 @@ img {
   }
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * CARDS
+   * -- min-width: 1024px --
+   *
+   * .card_gallery, .card_count_(1-4)
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  .card_count_1 {
+    grid-template-columns: 1fr;
+  }
+
+  .card_count_2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card_count_3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card_count_4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /**
+  **
+  **/
+  .portfolio_card, .card {
+    position: relative;
+    overflow: hidden;
+  }
+  .portfolio_card img, .card img {
+    display: block;
+    filter: brightness(100%) contrast(100%) sepia(0%);
+    transition: filter 0.5s ease;
+  }
+  .portfolio_card h2, .portfolio_card h3, .portfolio_card .pc_description, .portfolio_card .card_description, .card h2, .card h3, .card .pc_description, .card .card_description {
+    /* Spacing & Border */
+    margin: 0;
+    padding: 0.5rem;
+    /* */
+    position: absolute;
+    left: 0;
+    background: rgba(9, 64, 109, 0.45);
+    color: #cbcdcb;
+    text-align: left;
+  }
+  .portfolio_card h2, .portfolio_card h3, .card h2, .card h3 {
+    top: 0;
+    right: auto;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .portfolio_card .pc_description, .portfolio_card .card_description, .card .pc_description, .card .card_description {
+    border-radius: 0.5rem 0.5rem 0 0;
+    right: 0;
+    bottom: -50px;
+    opacity: 0%;
+    transition: bottom 0.5s ease, background-color 0.5s ease, color 0.5s ease, opacity 0.5s ease;
+  }
+  .portfolio_card p, .card p {
+    transition: color 0.5s ease;
+  }
+  .portfolio_card:hover img, .card:hover img {
+    filter: brightness(50%) contrast(87.5%) sepia(100%);
+  }
+  .portfolio_card:hover h2, .portfolio_card:hover h3, .card:hover h2, .card:hover h3 {
+    background: rgba(9, 64, 109, 0.45);
+    color: white;
+  }
+  .portfolio_card:hover .pc_description, .portfolio_card:hover .card_description, .card:hover .pc_description, .card:hover .card_description {
+    bottom: 0;
+    background: rgba(9, 64, 109, 0.45);
+    bottom: 0;
+    opacity: 100%;
+  }
+  .portfolio_card:hover p, .card:hover p {
+    color: white;
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    * ABOUT
    * -- min-width: 375px --
    *
    * #about_thesis, 
    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * BACKEND
+   * -- min-width: 375p --
+   *
+   * 
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /**
+   * Container for every element used in #backend.
+   */
 }
 @media only screen and (min-width: 667px) {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -743,11 +1113,98 @@ img {
   }
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * CARDS
+   * -- min-width: 667px --
+   *
+   * .card_gallery, .card_count_(1-4)
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  .card_count_1 {
+    grid-template-columns: 1fr;
+  }
+
+  .card_count_2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card_count_3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card_count_4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /**
+  **
+  **/
+  .portfolio_card, .card {
+    position: relative;
+    overflow: hidden;
+  }
+  .portfolio_card img, .card img {
+    display: block;
+    filter: brightness(100%) contrast(100%) sepia(0%);
+    transition: filter 0.5s ease;
+  }
+  .portfolio_card h2, .portfolio_card h3, .portfolio_card .pc_description, .portfolio_card .card_description, .card h2, .card h3, .card .pc_description, .card .card_description {
+    /* Spacing & Border */
+    margin: 0;
+    padding: 1rem;
+    /* */
+    position: absolute;
+    left: 0;
+    background: rgba(9, 64, 109, 0.45);
+    color: #cbcdcb;
+    text-align: left;
+  }
+  .portfolio_card h2, .portfolio_card h3, .card h2, .card h3 {
+    top: 0;
+    right: auto;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .portfolio_card .pc_description, .portfolio_card .card_description, .card .pc_description, .card .card_description {
+    border-radius: 0.5rem 0.5rem 0 0;
+    right: 0;
+    bottom: -50px;
+    opacity: 0%;
+    transition: bottom 0.5s ease, background-color 0.5s ease, color 0.5s ease, opacity 0.5s ease;
+  }
+  .portfolio_card p, .card p {
+    transition: color 0.5s ease;
+  }
+  .portfolio_card:hover img, .card:hover img {
+    filter: brightness(50%) contrast(87.5%) sepia(100%);
+  }
+  .portfolio_card:hover h2, .portfolio_card:hover h3, .card:hover h2, .card:hover h3 {
+    background: rgba(9, 64, 109, 0.45);
+    color: white;
+  }
+  .portfolio_card:hover .pc_description, .portfolio_card:hover .card_description, .card:hover .pc_description, .card:hover .card_description {
+    bottom: 0;
+    background: rgba(9, 64, 109, 0.45);
+    bottom: 0;
+    opacity: 100%;
+  }
+  .portfolio_card:hover p, .card:hover p {
+    color: white;
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    * ABOUT
    * -- min-width: 667px --
    *
    * #about_thesis, 
    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * BACKEND
+   * -- min-width: 667px --
+   *
+   * 
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /**
+   * Container for every element used in #backend.
+   */
 }
 @media only screen and (min-width: 1024px) {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -764,6 +1221,11 @@ img {
   /** h4 */
   /** h5 */
   /** h6 */
+  .error_message {
+    color: red;
+    font-style: italic;
+  }
+
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    * LINKS
    * -- min-width: 1024px --
@@ -840,6 +1302,138 @@ img {
   /**
    * Styling for the document's <main> element.
    */
+  main {
+    margin: 1rem auto;
+    max-width: 1500px;
+  }
+
+  #backticks {
+    /* Spacing & Border */
+    margin: 0.5rem;
+    padding: 0.5rem 1rem 1rem 1rem;
+    /* */
+    border-bottom: 3px groove rgba(9, 64, 109, 0.45);
+  }
+  #backticks ul {
+    /* Spacing & Border */
+    margin: 0;
+    padding: 0;
+    /* */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    list-style: none;
+  }
+  #backticks ul li {
+    text-decoration: underline;
+  }
+  #backticks ul li:first-child::before {
+    display: inline-block;
+    text-decoration: none;
+    content: "";
+    /* Spacing & Border */
+    margin: 0;
+    padding: 0;
+    /* */
+  }
+  #backticks ul li::before {
+    display: inline-block;
+    text-decoration: none;
+    content: "»";
+    /* Spacing & Border */
+    margin: 0 1rem;
+    padding: 0;
+    /* */
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * CARDS
+   * -- min-width: 1024px --
+   *
+   * .card_gallery, .card_count_(1-4)
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  .card_count_1 {
+    grid-template-columns: 1fr;
+  }
+
+  .card_count_2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card_count_3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card_count_4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .card_count_5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .card_count_6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  /**
+  **
+  **/
+  .portfolio_card, .card {
+    position: relative;
+    overflow: hidden;
+  }
+  .portfolio_card img, .card img {
+    display: block;
+    filter: brightness(100%) contrast(100%) sepia(0%);
+    transition: filter 0.5s ease;
+  }
+  .portfolio_card h2, .portfolio_card h3, .portfolio_card .pc_description, .portfolio_card .card_description, .card h2, .card h3, .card .pc_description, .card .card_description {
+    /* Spacing & Border */
+    margin: 0;
+    padding: 1rem;
+    /* */
+    position: absolute;
+    left: 0;
+    background: rgba(9, 64, 109, 0.45);
+    color: #cbcdcb;
+    text-align: left;
+  }
+  .portfolio_card h2, .portfolio_card h3, .card h2, .card h3 {
+    top: 0;
+    right: auto;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .portfolio_card .pc_description, .portfolio_card .card_description, .card .pc_description, .card .card_description {
+    border-radius: 0.5rem 0.5rem 0 0;
+    right: 0;
+    bottom: -50px;
+    opacity: 0%;
+    transition: bottom 0.5s ease, background-color 0.5s ease, color 0.5s ease, opacity 0.5s ease;
+  }
+  .portfolio_card p, .card p {
+    transition: color 0.5s ease;
+  }
+  .portfolio_card:hover img, .card:hover img {
+    filter: brightness(50%) contrast(87.5%) sepia(100%);
+  }
+  .portfolio_card:hover h2, .portfolio_card:hover h3, .card:hover h2, .card:hover h3 {
+    background: rgba(9, 64, 109, 0.45);
+    color: white;
+  }
+  .portfolio_card:hover .pc_description, .portfolio_card:hover .card_description, .card:hover .pc_description, .card:hover .card_description {
+    bottom: 0;
+    background: rgba(9, 64, 109, 0.45);
+    bottom: 0;
+    opacity: 100%;
+  }
+  .portfolio_card:hover p, .card:hover p {
+    color: white;
+  }
+
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    * ABOUT
    * -- min-width: 1024px --
@@ -849,203 +1443,38 @@ img {
   #about_card {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    border-bottom: 3px groove rgba(9, 64, 109, 0.45);
   }
   #about_card img {
     width: 35%;
-    border-radius: 1.25rem;
   }
-  #about_card > div {
+  #about_card > article {
     /* Spacing & Border */
     margin: 1rem;
     padding: 0;
     /* */
   }
-  #about_card > div > ul {
+  #about_card > article > ul {
     /* Spacing & Border */
-    margin: 0 0 0 1rem;
+    margin: 0 0 0.75rem 1rem;
     padding: 0;
     /* */
   }
 
-  #about_gallery_education, #about_gallery_experience {
-    /* Spacing & Border */
-    margin: 1rem 0;
-    padding: 0;
-    /* */
-    display: grid;
-    grid-template-rows: auto;
-    grid-gap: 1rem;
-  }
-
-  #about_gallery_education {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  #about_gallery_experience {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * BACKEND
+   * -- min-width: 1024px --
+   *
+   * 
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /**
+   * Container for every element used in #backend.
+   */
 }
-/*
-@media only screen and (min-width:666px) and (orientation:portrait)
-{
-    .header-grid
-    {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: auto;
-        grid-template-areas: "identity logo nav";
-
-        #identity_logo
-        {
-            grid-area: logo;
-            justify-self: center;
-            align-self: center;
-        }
-        #identity_title
-        {
-            grid-area: identity;
-            justify-self: center;
-            align-self: center;
-        }
-        nav
-        {
-            grid-area: nav;
-            align-self: center;
-        }
-
-        .nav-ul-grid
-        {
-            display: grid;
-            margin-left: 7vmin;
-
-            grid-template-columns: auto;
-            grid-template-rows: repeat(2, 1fr);
-            grid-gap: 1rem;
-        }
-    }
-
-}
-@media only screen and (min-width:666px) and (orientation:landscape)
-{
-    body
-    {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 0;
-        width: 100vw;
-        height: 100vh;
-    }
-    header
-    {
-        position: fixed;
-        padding: $EDGE_PADDING;
-        top: 0;
-        left: 0;
-
-        width: calc(50% - 1.5rem * 1.5);
-        // height: calc(100vh - 10rem - 3rem);
-    }
-
-    .header-grid
-    {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-
-        border-bottom: none;
-
-        #identity_logo
-        {
-            max-width: $RENEGADE_SIZE;
-            width: 20vh;
-            height: 20vh;
-            align-self: flex-end;
-        }
-        #identity_title
-        {
-            align-self: flex-start;
-        }
-    }
-    main
-    {
-        position: absolute;
-
-        margin: 0;
-        padding: $EDGE_PADDING;
-        width: calc(50% - calc(1.5rem * 1.5));
-        top: 0;
-        right: 0;
-    }
-    nav
-    {
-        align-self: center;
-        width: 100%;
-    }
-    nav ul
-    {
-
-    }
-    footer
-    {
-        position: fixed;
-        width: calc(50% - 3rem);
-        bottom: calc(1.5rem / 2);
-        left: $EDGE_PADDING;
-        border-top: none;
-    }
-
-    @media only screen and (max-height:500px)
-    {
-        #identity_logo, #identity_title, nav
-        {
-            align-self: flex-start;
-        }
-        #identity_title
-        {
-            padding: 0;
-        }
-    }
-}
-@media only screen and (min-width:800px)
-{
-    body
-    {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); // Left and Right side.
-        grid-template-rows: 80% 20%;
-        grid-template-areas: "header main" "footer main";
-    }
-    header
-    {
-        grid-area: header;
-
-        position: relative;
-        @include edge(0);
-        width: 100%;
-    }
-    main
-    {
-        grid-area: main;
-
-        position: relative;
-        @include edge(0);
-        width: 100%;
-    }
-    footer
-    {
-        grid-area: footer;
-
-        position: relative;
-        @include edge(0);
-        width: 100%;
-    }
-
-}*/
 * {
   outline: none;
 }

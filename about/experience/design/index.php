@@ -5,8 +5,7 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "Design";
-    $page_description = "";
+	$SLUG = "design";
     $wanted_stylesheets = "common.css";
     $wanted_ext_js = "wzrd.io.js";
 
@@ -21,8 +20,8 @@
 		
 		<main>
             <section id="about_card">
-				<img src="<?php echo linkToImage("GALLERY_Renegade-Spray-Design.jpg");?>" alt="<?php echo getRowFromImageSlug("renegade-spray-design")['alt'];?>";>
-				<div id="about_thesis">
+				<img src="<?php echo $directory_table->linkToImage("GALLERY_Renegade-Spray-Design.jpg");?>" alt="<?php echo $image_table->getRowFromImageSlug("renegade-spray-design")['alt'];?>";>
+				<article id="about_thesis">
 					<h2>Design</h2>
 					<p>
 						Skilled in web design, graphic design, and still art.
@@ -36,9 +35,16 @@
 					<p>
 						By combining his unique creative mind with a professional approach to tasks, Reilly is able to apply his talents to professional endeavors. 
 					</p>
-				</div>
+				</article>
             </section>
-<?php include_once(DOC_PREFIX . SHARED_PATH . "/about_experience.php"); ?>
+
+<?php $card_set_1 = array("experience", "film", "science"); ?>
+            <section class="card_gallery card_count_<?php echo count($card_set_1);?>">
+<?php foreach($card_set_1 as $key=>$card): ?>
+                <!-- <?php echo $card; ?> card -->
+                <?php $card_table->printCard($card, 3); ?>
+<?php endforeach; ?>
+            </section>
         </main>
 
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>

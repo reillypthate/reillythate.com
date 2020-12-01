@@ -5,8 +5,7 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "Anne Arundel Community College";
-    $page_description = "An About sub-page.";
+	$SLUG = "aacc";
     $wanted_stylesheets = "common.css";
     $wanted_ext_js = "wzrd.io.js";
 
@@ -21,8 +20,8 @@
 		
 		<main>
             <section id="about_card">
-				<img src="<?php echo linkToImage("GALLERY_AACC-VideoEditing-Screenshot.jpg");?>" alt="<?php echo getRowFromImageSlug("aacc-video-editing-screenshot")['alt'];?>";>
-				<div id="about_thesis">
+				<img src="<?php echo $directory_table->linkToImage("GALLERY_AACC-VideoEditing-Screenshot.jpg");?>" alt="<?php echo $image_table->getRowFromImageSlug("aacc-video-editing-screenshot")['alt'];?>";>
+				<article id="about_thesis">
 					<h2>Anne Arundel Community College</h2>
 					<p>
 						Reilly is currently pursuing an associate's degree in Media Production at A.A.C.C. His expected graduation date is May 2021.
@@ -34,9 +33,15 @@
 						<li>Film Production</li>
 						<li>Web/Graphic Design</li>
 					</ul>
-				</div>
+				</article>
 			</section>
-<?php include_once(DOC_PREFIX . SHARED_PATH . "/about_education.php"); ?>
+<?php $card_set_1 = array("education", "rit", "film", "design"); ?>
+            <section class="card_gallery card_count_<?php echo count($card_set_1);?>">
+<?php foreach($card_set_1 as $key=>$card): ?>
+                <!-- <?php echo $card; ?> card -->
+                <?php $card_table->printCard($card, 3); ?>
+<?php endforeach; ?>
+            </section>
         </main>
 
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>

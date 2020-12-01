@@ -63,6 +63,7 @@ p
     @include edge(0, 0 0 0.5rem 0);
 
     font-family: $font-family-body;
+    font-size: $body_size;
     line-height: calc(#{$body-size} * 1.25);
     color: $col-contrast;
 
@@ -80,6 +81,10 @@ p
             margin-bottom: 0.25rem;
         }
     }
+}
+ul
+{
+    @include edge(0 0 $content_spacer 1rem, 0);
 }
 li
 {
@@ -106,4 +111,14 @@ input[type="text"], label, textarea, button
 #copyright
 {
     @include edge(0);
+}
+
+.after_button
+{
+    padding-left: 0.5rem;
+}
+.error_message
+{
+    color: red;
+    font-style: italic;
 }

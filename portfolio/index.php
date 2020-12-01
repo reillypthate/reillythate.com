@@ -5,8 +5,7 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "Portfolio";
-    $page_description = "A curated collection of Reilly Thate's work.";
+	$SLUG = "portfolio";
     $wanted_stylesheets = "common.css";
     $wanted_ext_js = "test_head.js";
 
@@ -25,13 +24,12 @@
                 In his film endeavors, Reilly aims to bring his interesting and creative visions to life.
             </p>
 
-            <section id="portfolio_grid">
-                <?php //echo constructPortfolioCard("birthday-toast");?>
-<?php 
-    $pc_slugs = getPortfolioCardSlugs();
-    for($pc_i = 0; $pc_i < count($pc_slugs); $pc_i++): ?>
-                <?php echo constructPortfolioCard($pc_slugs[$pc_i]); ?>
-<?php endfor; ?>
+<?php $card_set_1 = array("birthday-toast", "night-lift", "ruthless-the-final-chapter", "bud-light-for-a-soul"); ?>
+            <section class="card_gallery card_count_<?php echo count($card_set_1);?>" id="about_gallery_education">
+<?php foreach($card_set_1 as $key=>$card): ?>
+                <!-- <?php echo $card; ?> card -->
+                <?php $card_table->printCard($card, 3); ?>
+<?php endforeach; ?>
             </section>
 		</main>
 

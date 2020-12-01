@@ -22,7 +22,12 @@ $EDGE_PADDING: 1.5rem;
     @import "04-layouts/queries/min-375px/main";
     @import "04-layouts/queries/min-375px/footer";
 
+    @import "05-modules/queries/min-375px/cards";
+
     @import "06-pages/queries/min-375px/about";
+
+    // Backend Stuff; to implement separately from COMMON.scss.
+    @import "04-layouts/queries/min-375px/backend";
 }
 @media only screen and(min-width:667px)
 {
@@ -33,7 +38,12 @@ $EDGE_PADDING: 1.5rem;
     @import "04-layouts/queries/min-667px/main";
     @import "04-layouts/queries/min-667px/footer";
 
+    @import "05-modules/queries/min-667px/cards";
+
     @import "06-pages/queries/min-667px/about";
+
+    // Backend Stuff; to implement separately from COMMON.scss.
+    @import "04-layouts/queries/min-667px/backend";
 }
 @media only screen and (min-width: 1024px)
 {
@@ -44,163 +54,10 @@ $EDGE_PADDING: 1.5rem;
     @import "04-layouts/queries/min-1024px/main";
     @import "04-layouts/queries/min-1024px/footer";
 
+    @import "05-modules/queries/min-1024px/cards";
+
     @import "06-pages/queries/min-1024px/about";
+
+    // Backend Stuff; to implement separately from COMMON.scss.
+    @import "04-layouts/queries/min-1024px/backend";
 }
-/*
-@media only screen and (min-width:666px) and (orientation:portrait)
-{
-    .header-grid
-    {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: auto;
-        grid-template-areas: "identity logo nav";
-
-        #identity_logo
-        {
-            grid-area: logo;
-            justify-self: center;
-            align-self: center;
-        }
-        #identity_title
-        {
-            grid-area: identity;
-            justify-self: center;
-            align-self: center;
-        }
-        nav
-        {
-            grid-area: nav;
-            align-self: center;
-        }
-
-        .nav-ul-grid
-        {
-            display: grid;
-            margin-left: 7vmin;
-
-            grid-template-columns: auto;
-            grid-template-rows: repeat(2, 1fr);
-            grid-gap: 1rem;
-        }
-    }
-    
-}
-@media only screen and (min-width:666px) and (orientation:landscape)
-{
-    body
-    {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 0;
-        width: 100vw;
-        height: 100vh;
-    }
-    header
-    {
-        position: fixed;
-        padding: $EDGE_PADDING;
-        top: 0;
-        left: 0;
-
-        width: calc(50% - #{$EDGE_PADDING} * 1.5);
-        // height: calc(100vh - 10rem - 3rem);
-    }
-
-    .header-grid
-    {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-
-        border-bottom: none;
-        
-        #identity_logo
-        {
-            max-width: $RENEGADE_SIZE;
-            width: 20vh;
-            height: 20vh;
-            align-self: flex-end;
-        }
-        #identity_title
-        {
-            align-self: flex-start;
-        }
-    }
-    main
-    {
-        position: absolute;
-
-        margin: 0;
-        padding: $EDGE_PADDING;
-        width: calc(50% - calc(#{$EDGE_PADDING} * 1.5));
-        top: 0;
-        right: 0;
-    }
-    nav
-    {
-        align-self: center;
-        width: 100%;
-    }
-    nav ul
-    {
-        
-    }
-    footer
-    {
-        position: fixed;
-        width: calc(50% - 3rem);
-        bottom: calc(#{$EDGE_PADDING} / 2);
-        left: $EDGE_PADDING;
-        border-top: none;
-    }
-
-    @media only screen and (max-height:500px)
-    {
-        #identity_logo, #identity_title, nav
-        {
-            align-self: flex-start;
-        }
-        #identity_title
-        {
-            padding: 0;
-        }
-    }
-}
-@media only screen and (min-width:800px)
-{
-    body
-    {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); // Left and Right side.
-        grid-template-rows: 80% 20%;
-        grid-template-areas: "header main" "footer main";
-    }
-    header
-    {
-        grid-area: header;
-
-        position: relative;
-        @include edge(0);
-        width: 100%;
-    }
-    main
-    {
-        grid-area: main;
-
-        position: relative;
-        @include edge(0);
-        width: 100%;
-    }
-    footer
-    {
-        grid-area: footer;
-
-        position: relative;
-        @include edge(0);
-        width: 100%;
-    }
-
-}*/

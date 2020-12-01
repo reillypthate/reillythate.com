@@ -1,0 +1,22 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * BACKEND
+ * -- default --
+ *
+ * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/**
+ * Container for every element used in #backend.
+ */
+#backend
+{
+    #manager
+    {
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    section
+    {
+        @include edge(1rem, 0);
+    }
+}

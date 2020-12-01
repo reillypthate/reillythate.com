@@ -5,8 +5,8 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "Home";
-    // $page_description = "Reilly Thate's personal website.";
+    $SLUG = "reillythate.com";
+    
     $wanted_stylesheets = "common.css";
     $wanted_ext_js = "test_head.js";
 
@@ -20,20 +20,20 @@
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_head.php"); ?>
 		
 		<main>
-            <h2>About Reilly</h2>
-<?php include(DOC_PREFIX . SHARED_PATH . "/about_education.php"); ?>
-<?php include(DOC_PREFIX . SHARED_PATH . "/about_experience.php"); ?>
-            <h2>Reilly&rsquo;s Work</h2>
-            <section id="portfolio_grid">
-<?php 
-    $pc_slugs = getPortfolioCardSlugs();
-    for($pc_i = 0; $pc_i < count($pc_slugs); $pc_i++): ?>
-                <?php echo constructPortfolioCard($pc_slugs[$pc_i]); ?>
-<?php endfor; ?>
+<?php $card_set_1 = array("about", "blog", "portfolio"); ?>
+            <section class="card_gallery card_count_<?php echo count($card_set_1);?>">
+<?php foreach($card_set_1 as $key=>$card): ?>
+                <!-- <?php echo $card; ?> card -->
+                <?php $card_table->printCard($card, 2); ?>
+<?php endforeach; ?>
             </section>
-            <h2>Reilly's Blog</h2>
-<?php include(DOC_PREFIX . SHARED_PATH . "/about_experience.php"); ?>
-<?php include(DOC_PREFIX . SHARED_PATH . "/about_education.php"); ?>
+<?php $card_set_2 = array("education", "experience", "rit", "aacc", "film", "design"); ?>
+            <section class="card_gallery card_count_<?php echo count($card_set_2);?>">
+<?php foreach($card_set_2 as $key=>$card): ?>
+                <!-- <?php echo $card; ?> card -->
+                <?php $card_table->printCard($card, 3); ?>
+<?php endforeach; ?>
+            </section>
 		</main>
 
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>

@@ -1,6 +1,7 @@
 <?php
 
 $to_static = false;
+$errors = [];
 
 define("HTTP_PREFIX", $_SERVER['HTTP_HOST']);
 define("DOC_PREFIX", $_SERVER['DOCUMENT_ROOT']);
@@ -26,6 +27,5 @@ require_once('database_functions.php');
 // require_once('validation_functions.php');
 
 // $db = db_connect();
-$errors = [];
 
 ?>

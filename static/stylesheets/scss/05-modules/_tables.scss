@@ -1,0 +1,64 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * TABLE
+ * -- default --
+ *
+ * table, thead, tbody, tfoot, tr, th, td
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ 
+/**
+* Styling for the <table> element.
+*/
+table
+{
+    @include edge(0, 0.5, 4px groove gray);
+
+    font-family: $font-family-body;
+}
+/**
+* Styling for the <thead> element.
+*/
+thead
+{
+    @include edge(0);
+
+    font-family: $font-family-header;
+    letter-spacing: calc(#{$body-size} / 10);
+}
+/**
+* Styling for the <tbody> element.
+*/
+tbody
+{
+    @include edge(0);
+}
+/**
+* Styling for the <tfoot> element.
+*/
+tfoot
+{
+    @include edge(0);
+}
+/**
+* Styling for the <tr> element.
+*/
+tr
+{
+    &:nth-child(2n)
+    {
+        background: lightgray;
+    }
+}
+/**
+* Styling for the <th> element.
+*/
+th
+{
+    @include edge(0, 0.5rem, none);
+}
+/**
+* Styling for the <td> element.
+*/
+td
+{
+    @include edge(0, 0.5rem, none);
+}

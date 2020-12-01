@@ -5,8 +5,7 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "Science";
-    $page_description = "";
+	$SLUG = "science";
     $wanted_stylesheets = "common.css";
     $wanted_ext_js = "wzrd.io.js";
 
@@ -21,8 +20,8 @@
 		
 		<main>
             <section id="about_card">
-				<img src="<?php echo linkToImage("GALLERY_Science-Culture.jpg");?>" alt="<?php echo getRowFromImageSlug("science-culture")['alt'];?>";>
-				<div id="about_thesis">
+				<img src="<?php echo $directory_table->linkToImage("GALLERY_Science-Culture.jpg");?>" alt="<?php echo $image_table->getRowFromImageSlug("science-culture")['alt'];?>";>
+				<article id="about_thesis">
 					<h2>Science</h2>
 					<p>
 						Reilly graduated from Rochester Institute of Technology in 2018 with a B.S. in Bioinformatics and immersion in Mathematics.
@@ -39,9 +38,16 @@
 					<p>
 						Reilly hopes to apply his extensive STEM background and scientific mind to his creative endeavors.
 					</p>
-				</div>
+				</article>
             </section>
-<?php include_once(DOC_PREFIX . SHARED_PATH . "/about_experience.php"); ?>
+
+<?php $card_set_1 = array("experience", "film", "design"); ?>
+            <section class="card_gallery card_count_<?php echo count($card_set_1);?>">
+<?php foreach($card_set_1 as $key=>$card): ?>
+                <!-- <?php echo $card; ?> card -->
+                <?php $card_table->printCard($card, 3); ?>
+<?php endforeach; ?>
+            </section>
         </main>
 
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>

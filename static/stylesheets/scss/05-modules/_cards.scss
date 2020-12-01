@@ -1,4 +1,46 @@
-.portfolio_card
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * CARDS
+ * -- default --
+ *
+ * .card_gallery, .card_count_(1-4)
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.card_gallery
+{
+    @include edge($section_spacer 0 $card_grid_spacer 0, 0);
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+    grid-gap: 0.5rem;
+
+    & + .card_gallery
+    {
+        margin-top: $card_grid_spacer;
+    }
+    &:last-child
+    {
+        margin-bottom: $section_spacer;
+    }
+}
+.card_count_1
+{
+    
+}
+.card_count_2
+{
+    
+}
+.card_count_3
+{
+    
+}
+.card_count_4
+{
+    
+}
+/**
+**
+**/
+.portfolio_card, .card
 {
     position: relative;
     overflow: hidden;
@@ -10,7 +52,7 @@
 
         transition: filter $trans_portfolio_card ease;
     }
-    & h3, .pc_description
+    & h2, h3, .pc_description, .card_description
     {
         @include edge(0, 1rem);
         position: absolute;
@@ -22,7 +64,7 @@
         color: $bright_secondary;
         text-align: left;
     }
-    & h3
+    & h2, h3
     {
         top: 0;
         right: auto;
@@ -32,7 +74,7 @@
             color $trans_portfolio_card ease;
             //right $trans_portfolio_card ease;
     }
-    & .pc_description
+    & .pc_description, .card_description
     {
         border-radius: 0.5rem 0.5rem 0 0;
         right: 0;
@@ -58,13 +100,13 @@
             filter: brightness(50%) contrast(87.5%) sepia(100%);
         }
 
-        & h3
+        & h2, h3
         {
             background: $accent_secondary;
             color: $bright_primary;
             //right: 0;
         }
-        & .pc_description
+        & .pc_description, .card_description
         {
             bottom: 0;
             background: $accent_secondary;

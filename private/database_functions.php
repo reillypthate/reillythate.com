@@ -1,13 +1,23 @@
 <?php
 define("DB_FUNCS", 'database_functions/');
-require_once(DB_FUNCS . 'site_directory_functions.php');
-require_once(DB_FUNCS . 'image_directory_functions.php');
-require_once(DB_FUNCS . 'portfolio_card_functions.php');
 
-$site_directory = db_getSiteDirectory();
-$image_directory = db_getImageDirectory();
+require_once(DB_FUNCS . 'abstract_db_functions.php');
 
-$portfolio_cards = db_getPortfolioCards();
+require_once(DB_FUNCS . 'directory_functions.php');
+require_once(DB_FUNCS . 'image_table_functions.php');
+require_once(DB_FUNCS . 'card_functions.php');
+
+$directory_table = new DirectoryTable();
+$image_table = new ImageTable();
+$card_table = new CardTable();
+
+require_once(DB_FUNCS . 'html5_functions.php');
+
+$elements = db_getHTML5();
+
+require_once(DB_FUNCS . 'backend_sd_functions.php');
+require_once(DB_FUNCS . 'backend_id_functions.php');
+require_once(DB_FUNCS . 'backend_card_functions.php');
 
 
 ?>

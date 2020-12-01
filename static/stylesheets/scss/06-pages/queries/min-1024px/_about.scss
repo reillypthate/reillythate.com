@@ -7,36 +7,23 @@
 #about_card
 {
     //@include edge(0, 1rem, 3px groove $accent_primary, 2.5rem);
-    @include flex(row, space-between, flex-start, nowrap);
+    @include flex(row, flex-start, flex-start, nowrap);
+
+    padding-bottom: $section_spacer;
+    border-bottom: 3px groove $accent-secondary;
 
     & img
     {
         width: 35%;
-        border-radius: 1.25rem;
+        // border-radius: 1.25rem;
     }
-    & > div
+    & > article
     {
         @include edge(1rem, 0);
         & > ul
         {
-            @include edge(0 0 0 1rem, 0);
+            @include edge(0 0 $content_spacer 1rem, 0);
         }
     }
 
-}
-
-#about_gallery_education, #about_gallery_experience
-{
-    @include edge(1rem 0, 0);
-    display: grid;
-    grid-template-rows: auto;
-    grid-gap: 1rem;
-}
-#about_gallery_education
-{
-    grid-template-columns: repeat(3, 1fr);
-}
-#about_gallery_experience
-{
-    grid-template-columns: repeat(4, 1fr);
 }

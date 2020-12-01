@@ -5,8 +5,7 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "Film";
-    $page_description = "";
+	$SLUG = "film";
     $wanted_stylesheets = "common.css";
     $wanted_ext_js = "wzrd.io.js";
 
@@ -21,8 +20,8 @@
 		
 		<main>
             <section id="about_card">
-				<img src="<?php echo linkToImage("GALLERY_Birthday-Toast-Rehearsal.jpg");?>" alt="<?php echo getRowFromImageSlug("birthday-toast-rehearsal")['alt'];?>";>
-				<div id="about_thesis">
+				<img src="<?php echo $directory_table->linkToImage("GALLERY_Birthday-Toast-Rehearsal.jpg");?>" alt="<?php echo $image_table->getRowFromImageSlug("birthday-toast-rehearsal")['alt'];?>";>
+				<article id="about_thesis">
 					<h2>Film</h2>
 					<p>
 						Experienced in roles throughout all phases of production.
@@ -39,9 +38,16 @@
 					<p>
 						In addition to work behind the camera, Reilly brings finely-tuned acting instincts from the stage (as Juror Three in Twelve Angry Men) to the screen with a diverse character range that enables him to bring his visions to life.
 					</p>
-				</div>
+				</article>
             </section>
-<?php include_once(DOC_PREFIX . SHARED_PATH . "/about_experience.php"); ?>
+
+<?php $card_set_2 = array("experience", "science", "design"); ?>
+            <section class="card_gallery card_count_<?php echo count($card_set_2);?>">
+<?php foreach($card_set_2 as $key=>$card): ?>
+                <!-- <?php echo $card; ?> card -->
+                <?php $card_table->printCard($card, 3); ?>
+<?php endforeach; ?>
+            </section>
         </main>
 
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>

@@ -5,8 +5,7 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "Education";
-    $page_description = "";
+	$SLUG = "education";
     $wanted_stylesheets = "common.css";
     $wanted_ext_js = "wzrd.io.js";
 
@@ -21,8 +20,8 @@
 		
 		<main>
             <section id="about_card">
-				<img src="<?php echo linkToImage("GALLERY_Reilly-Lucas-Graduation.jpg");?>" alt="<?php echo getRowFromImageSlug("graduation-reilly-lucas")['alt'];?>";>
-				<div id="about_thesis">
+				<img src="<?php echo $directory_table->linkToImage("GALLERY_Reilly-Lucas-Graduation.jpg");?>" alt="<?php echo $image_table->getRowFromImageSlug("graduation-reilly-lucas")['alt'];?>">
+				<article id="about_thesis">
 					<h2>Education</h2>
 					<p>Reilly's academic career has enriched him with knowledge from a broad range of scientific and artistic disciplines.</p>
 					<p>
@@ -31,7 +30,7 @@
 					<p>
 						B.S. Bioinformatics &mdash; Rochester Institute of Technology (2018)
 					</p>
-					<h3><a href="<?php echo linkToPage("Rochester Institute of Technology");?>">Rochester Institute of Technology (R.I.T.)</a></h3>
+					<h3><a href="<?php echo $directory_table->linkToPage("rit");?>">Rochester Institute of Technology (R.I.T.)</a></h3>
 					<p>
 						Reilly's education at R.I.T. incorporated intensive study where he developed proficiency in:
 					</p>
@@ -40,7 +39,7 @@
 						<li>Statistical Analysis</li>
 						<li>Genetic Engineering</li>
 					</ul>
-					<h3><a href="<?php echo linkToPage("Anne Arundel Community College");?>">Anne Arundel Community College (A.A.C.C.)</a></h3>
+					<h3><a href="<?php echo $directory_table->linkToPage("aacc");?>">Anne Arundel Community College (A.A.C.C.)</a></h3>
 					<p>
 						At A.A.C.C., his education is focused on artistic endeavors with a focus on:
 					</p>
@@ -48,9 +47,15 @@
 						<li>Film Production</li>
 						<li>Web/Graphic Design</li>
 					</ul>
-				</div>
+				</article>
 			</section>
-<?php include_once(DOC_PREFIX . SHARED_PATH . "/about_education.php"); ?>
+<?php $about_page_cards_1 = array("rit", "aacc"); ?>
+            <section class="card_gallery card_count_<?php echo count($about_page_cards_1);?>">
+<?php foreach($about_page_cards_1 as $key=>$card): ?>
+                <!-- <?php echo $card; ?> card -->
+                <?php $card_table->printCard($card, 3); ?>
+<?php endforeach; ?>
+            </section>
 		</main>
 
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>

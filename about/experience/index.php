@@ -5,8 +5,7 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "Experience";
-    $page_description = "An overview of Reilly Thate.";
+	$SLUG = "experience";
     $wanted_stylesheets = "common.css";
     $wanted_ext_js = "wzrd.io.js";
 
@@ -21,20 +20,26 @@
 		
 		<main>
             <section id="about_card">
-				<img src="<?php echo linkToImage("GALLERY_Experience-Books.jpg");?>" alt="<?php echo getRowFromImageSlug("experience-books")['alt'];?>";>
-				<div id="about_thesis">
+				<img src="<?php echo $directory_table->linkToImage("GALLERY_Experience-Books.jpg");?>" alt="<?php echo $image_table->getRowFromImageSlug("experience-books")['alt'];?>";>
+				<article id="about_thesis">
 					<h2>Experience</h2>
 					<p>
 						Reilly Thate's experiences throughout his education and his life have enabled him to become knowledgable and skilled in a range of different subjects.
 					</p>
 					<ul>
-						<li><a href="<?php echo linkToPage("Film");?>">Film</a></li>
-						<li><a href="<?php echo linkToPage("Science");?>">Science</a></li>
-						<li><a href="<?php echo linkToPage("Design");?>">Design</a></li>
+						<li><a href="<?php echo $directory_table->linkToPage("film");?>">Film</a></li>
+						<li><a href="<?php echo $directory_table->linkToPage("science");?>">Science</a></li>
+						<li><a href="<?php echo $directory_table->linkToPage("design");?>">Design</a></li>
 					</ul>
-				</div>
+				</article>
             </section>
-<?php include_once(DOC_PREFIX . SHARED_PATH . "/about_experience.php"); ?>
+<?php $card_set_1 = array("film", "science", "design"); ?>
+            <section class="card_gallery card_count_<?php echo count($card_set_1);?>">
+<?php foreach($card_set_1 as $key=>$card): ?>
+                <!-- <?php echo $card; ?> card -->
+                <?php $card_table->printCard($card, 3); ?>
+<?php endforeach; ?>
+            </section>
         </main>
 
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>

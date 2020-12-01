@@ -5,8 +5,7 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "Contact";
-    $page_description = "Get in touch with Reilly Thate!";
+	$SLUG = "contact";
     $wanted_stylesheets = "common.css";
     $wanted_ext_js = "wzrd.io.js";
 

@@ -15,6 +15,42 @@ section
 {
     
 }
+article
+{
+    @include edge($content_spacer 0, 0);
+}
+#backticks
+{
+    @include edge(0.5rem, 0.5rem 1rem 1rem 1rem);
+    border-bottom: 3px groove $accent-secondary;
+    ul
+    {
+        @include edge(0, 0);
+        @include flex(row, flex-start, flex-start, wrap);
+        list-style: none;
+        li
+        {
+            text-decoration: underline;
+            &:first-child
+            {
+                &::before
+                {
+                    display: inline-block;
+                    text-decoration: none;
+                    content: "";
+                    @include edge(0);
+                }
+            }
+            &::before
+            {
+                display: inline-block;
+                text-decoration: none;
+                content: "»";
+                @include edge(0 1rem, 0);
+            }
+        }
+    }
+}
 #portfolio_grid
 {
     @include edge(1rem 0, 0);
