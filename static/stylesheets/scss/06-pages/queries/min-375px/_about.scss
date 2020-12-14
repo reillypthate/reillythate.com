@@ -2,9 +2,12 @@
  * ABOUT
  * -- min-width: 375px --
  *
- * #about_thesis, 
+ * #about_card, 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-#about_thesis
-{
-    
-}
+ #about_card
+ {
+     & > article
+     {
+         @include edge($content_spacer, 0);
+     }
+ }

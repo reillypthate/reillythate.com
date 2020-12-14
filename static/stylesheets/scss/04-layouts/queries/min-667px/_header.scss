@@ -9,7 +9,9 @@
  */
 #public_header
 {
-    @include flex(row, flex-start, center, nowrap);
+    // Flex Settings
+    justify-content: flex-start;
+    flex-wrap: nowrap;
 
     & > a // Link Container for Renegade Logo
     {

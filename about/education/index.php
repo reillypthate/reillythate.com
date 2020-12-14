@@ -6,17 +6,8 @@
 <?php
     // Page Metadata
 	$SLUG = "education";
-    $wanted_stylesheets = "common.css";
-    $wanted_ext_js = "wzrd.io.js";
-
-    // Page Options
-    $header_option = "";
-    $footer_option = "";
-
-    // Body Scripts
-    $wanted_body_js = "test_body.js";
 ?>
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/page_head.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		
 		<main>
             <section id="about_card">
@@ -30,6 +21,7 @@
 					<p>
 						B.S. Bioinformatics &mdash; Rochester Institute of Technology (2018)
 					</p>
+<?php /*
 					<h3><a href="<?php echo $directory_table->linkToPage("rit");?>">Rochester Institute of Technology (R.I.T.)</a></h3>
 					<p>
 						Reilly's education at R.I.T. incorporated intensive study where he developed proficiency in:
@@ -47,15 +39,12 @@
 						<li>Film Production</li>
 						<li>Web/Graphic Design</li>
 					</ul>
+*/ ?>
 				</article>
 			</section>
-<?php $about_page_cards_1 = array("rit", "aacc"); ?>
-            <section class="card_gallery card_count_<?php echo count($about_page_cards_1);?>">
-<?php foreach($about_page_cards_1 as $key=>$card): ?>
-                <!-- <?php echo $card; ?> card -->
-                <?php $card_table->printCard($card, 3); ?>
-<?php endforeach; ?>
-            </section>
+
+<?php $card_table->generateCardSection(array("rit", "aacc"), 3, 3); ?>
+
 		</main>
 
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

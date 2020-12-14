@@ -12,7 +12,7 @@
     @include flex(row, space-between, center, wrap);
     @include edge(0.5rem, 0.5rem);
     margin-bottom: 0;
-    border-bottom: 3px groove $accent-secondary;
+    border-bottom: 3px solid $accent-secondary;
     // border-radius: 0.5rem;
 
     & > a // Link Container for Renegade Logo
@@ -82,3 +82,58 @@
          }
      }
  }
+
+#backticks
+{
+    @include edge(0.5rem, 0.5rem 1rem 1rem 1rem);
+    border-bottom: 3px solid $accent-secondary;
+    ul
+    {
+        @include edge(0, 0);
+        @include flex(row, flex-start, flex-start, wrap);
+        list-style: none;
+        li
+        {
+            text-decoration: underline;
+            &:first-child
+            {
+                &::before
+                {
+                    display: inline-block;
+                    text-decoration: none;
+                    content: "";
+                    @include edge(0);
+                }
+            }
+            &::before
+            {
+                display: inline-block;
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+                text-decoration: none;
+                content: "»";
+            }
+        }
+    }
+    /*
+    .level_1
+    {
+        margin-left: 0;
+    }
+    .level_2
+    {
+        margin-left: 0;
+    }
+    .level_3
+    {
+        margin-left: 0.5rem;
+    }
+    .level_4
+    {
+        margin-left: 1rem;
+    }
+    .level_5
+    {
+        margin-left: 1.5rem;
+    }*/
+}

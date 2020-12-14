@@ -25,6 +25,7 @@ $EDGE_PADDING: 1.5rem;
     @import "05-modules/queries/min-375px/cards";
 
     @import "06-pages/queries/min-375px/about";
+    @import "06-pages/queries/min-375px/blog";
 
     // Backend Stuff; to implement separately from COMMON.scss.
     @import "04-layouts/queries/min-375px/backend";
@@ -41,6 +42,7 @@ $EDGE_PADDING: 1.5rem;
     @import "05-modules/queries/min-667px/cards";
 
     @import "06-pages/queries/min-667px/about";
+    @import "06-pages/queries/min-667px/blog";
 
     // Backend Stuff; to implement separately from COMMON.scss.
     @import "04-layouts/queries/min-667px/backend";
@@ -57,7 +59,8 @@ $EDGE_PADDING: 1.5rem;
     @import "05-modules/queries/min-1024px/cards";
 
     @import "06-pages/queries/min-1024px/about";
+    @import "06-pages/queries/min-1024px/blog";
 
-    // Backend Stuff; to implement separately from COMMON.scss.
     @import "04-layouts/queries/min-1024px/backend";
+    @import "05-modules/js_testing";
 }

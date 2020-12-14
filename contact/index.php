@@ -6,17 +6,9 @@
 <?php
     // Page Metadata
 	$SLUG = "contact";
-    $wanted_stylesheets = "common.css";
-    $wanted_ext_js = "wzrd.io.js";
-
-    // Page Options
-    $header_option = "";
-    $footer_option = "";
-
-    // Body Scripts
-    $wanted_body_js = "test_body.js";
+    array_push($wanted_ext_js, "wzrd.io.js");
 ?>
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/page_head.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		
 		<main>
             <h2>Contact</h2>
@@ -49,4 +41,4 @@
             </script>
         </main>
 
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

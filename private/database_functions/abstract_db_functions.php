@@ -44,6 +44,81 @@ abstract class DB_Functions
         return -1; // No row exists with this cell value in the respective column.
     }
 
+    protected function buildTableWithEditButton($hasEditColumn, $backendDirective)
+    {
+        echo '<table>';
+        echo '<thead>';
+        if($hasEditColumn)
+        {
+            echo '<th scope="col"></th>';
+        }
+        foreach(array_keys($this->table[0]) as $index=>$column)
+        {
+            echo '<th scope="col">' . $column . '</th>';
+        }
+        echo '</thead>';
+        echo '<tbody>';
+        foreach($this->table as $index=>$row)
+        {
+            echo '<tr>';
+            if($hasEditColumn)
+            {
+                echo '<td>';
+                echo '<button onclick="window.location.href=\'' . $backendDirective . '=' . $row['id'] . '\'">Edit</button>';
+                echo '</td>';
+            }
+            foreach(array_keys($this->table[0]) as $col_key=>$key)
+            {
+                echo '<td>' . $row[$key] . '</td>';
+            }
+            echo '</tr>';
+        }
+        echo '</tbody>';
+        echo '<tfoot></tfoot>';
+        echo '</table>';
+    }
+    protected function getTableLines($hasEditColumn, $backendDirective, $db_columns, $extra_columns)
+    {
+        $tableLines = array();
+        array_push($tableLines, str_repeat("\t", 1) . '<table>');
+
+        // Thead Section
+        array_push($tableLines, str_repeat("\t", 2) . '<thead>');
+        array_push($tableLines, str_repeat("\t", 3) . '<tr>');
+        if($hasEditColumn)
+        {
+            array_push($tableLines, str_repeat("\t", 4) . '<th scope="col"></th>');
+        }
+        foreach(array_keys($this->table[0]) as $key_index=>$column)
+        {
+            array_push($tableLines, str_repeat("\t", 4) . '<th scope="col">' . $column . '</th>');
+        }
+        array_push($tableLines, str_repeat("\t", 3) . '</tr>');
+        array_push($tableLines, str_repeat("\t", 2) . '</thead>');
+        // TBody Section
+        array_push($tableLines, str_repeat("\t", 2) . '<tbody>');
+        foreach($this->table as $table_index=>$row)
+        {
+            array_push($tableLines, str_repeat("\t", 3) . '<tr>');
+            if($hasEditColumn)
+            {
+                array_push($tableLines, str_repeat("\t", 4) . '<td><button onclick="window.location.ref=\'' . $backendDirective . '=' . $row['id'] . '\'">Edit</button></td>');
+            }
+            foreach(array_keys($this->table[0]) as $key_index=>$column)
+            {
+                array_push($tableLines, str_repeat("\t", 4) . '<td>' . $row[$column] . '</td>');
+            }
+            array_push($tableLines, str_repeat("\t", 3) . '</tr>');
+        }
+        array_push($tableLines, str_repeat("\t", 2) . '</tbody>');
+        array_push($tableLines, str_repeat("\t", 2) . '<tfoot>');
+        
+        array_push($tableLines, str_repeat("\t", 2) . '</tfoot>');
+        array_push($tableLines, str_repeat("\t", 1) . '</table>');
+
+        return $tableLines;
+    }
+
     /**
      * Getter method for the `table` variable.
      */

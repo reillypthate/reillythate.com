@@ -65,7 +65,7 @@ h3 {
 /** h5 */
 /** h6 */
 /** Set the default font style for body text. */
-p {
+p, time {
   /* Spacing & Border */
   margin: 0;
   padding: 0 0 0.5rem 0;
@@ -75,16 +75,16 @@ p {
   line-height: calc(1.05rem * 1.25);
   color: #1a1a1a;
 }
-p:last-child {
+p:last-child, time:last-child {
   padding-bottom: 0;
 }
-p + ul {
+p + ul, time + ul {
   /* Spacing & Border */
   margin: 0 0 0.5rem 2rem;
   padding: 0;
   /* */
 }
-p + ul:last-child {
+p + ul:last-child, time + ul:last-child {
   margin-bottom: 0.25rem;
 }
 
@@ -158,6 +158,19 @@ a:visited:hover {
   color: rgba(9, 64, 109, 0.9);
 }
 
+.end-preview-link {
+  text-align: right;
+  color: rgba(9, 64, 109, 0.9);
+}
+.end-preview-link::before {
+  content: "»";
+  padding-right: 0.5rem;
+}
+.end-preview-link > a:link, .end-preview-link > a:visited {
+  text-decoration: underline;
+  color: rgba(9, 64, 109, 0.9);
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Page Layout -- Default (No Queries)
  *
@@ -201,7 +214,7 @@ main {
   padding: 0.5rem;
   /* */
   margin-bottom: 0;
-  border-bottom: 3px groove rgba(9, 64, 109, 0.45);
+  border-bottom: 3px solid rgba(9, 64, 109, 0.45);
 }
 #public_header > a {
   /* Spacing & Border */
@@ -252,28 +265,33 @@ main {
   color: #1a1a1a;
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * MAIN
- * -- default --
- *
- * main
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-/**
- * Styling for the document's <main> element.
- */
-article {
-  /* Spacing & Border */
-  margin: 0.75rem 0;
-  padding: 0;
-  /* */
-}
-
 #backticks {
   /* Spacing & Border */
   margin: 0.5rem;
   padding: 0.5rem 1rem 1rem 1rem;
   /* */
-  border-bottom: 3px groove rgba(9, 64, 109, 0.45);
+  border-bottom: 3px solid rgba(9, 64, 109, 0.45);
+  /*
+  .level_1
+  {
+      margin-left: 0;
+  }
+  .level_2
+  {
+      margin-left: 0;
+  }
+  .level_3
+  {
+      margin-left: 0.5rem;
+  }
+  .level_4
+  {
+      margin-left: 1rem;
+  }
+  .level_5
+  {
+      margin-left: 1.5rem;
+  }*/
 }
 #backticks ul {
   /* Spacing & Border */
@@ -301,10 +319,31 @@ article {
 }
 #backticks ul li::before {
   display: inline-block;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   text-decoration: none;
   content: "»";
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * MAIN
+ * -- default --
+ *
+ * main
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/**
+ * Styling for the document's <main> element.
+ */
+main {
   /* Spacing & Border */
-  margin: 0 1rem;
+  margin: 1rem;
+  padding: 0;
+  /* */
+}
+
+article {
+  /* Spacing & Border */
+  margin: 0.75rem 0;
   padding: 0;
   /* */
 }
@@ -330,7 +369,7 @@ article {
 * Styling for the footer's <nav> element.
 */
 .collapsible {
-  background: #f2f2f2;
+  background: rgba(9, 64, 109, 0.9);
   /* Spacing & Border */
   margin: 0;
   padding: 0.75rem;
@@ -355,7 +394,7 @@ button.collapsible:hover {
 }
 
 .active {
-  background: #bfbfbf;
+  background: rgba(32, 64, 223, 0.45);
   margin-bottom: 0 !important;
 }
 
@@ -524,6 +563,15 @@ button:hover {
   background: rgba(9, 64, 109, 0.45);
   color: #1a1a1a;
 }
+button[disabled=""] {
+  cursor: default;
+  background: none;
+  color: lightgray;
+}
+button[disabled=""]:hover {
+  background: none;
+  color: lightgray;
+}
 
 label {
   text-align: left;
@@ -540,7 +588,6 @@ input {
   border: none;
   border-radius: 0.25rem;
   /* */
-  box-shadow: inset 0.5rem 0.5rem 1rem #e1e1e1, inset -0.5rem -0.5rem 1rem #ffffff;
 }
 input:first-child, input:nth-child(2) {
   margin-top: 0;
@@ -674,6 +721,9 @@ th {
   border: none;
   /* */
 }
+th[scope=rowgroup]:nth-child(2n) {
+  background: lightgray;
+}
 
 /**
 * Styling for the <td> element.
@@ -688,6 +738,19 @@ td {
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * ABOUT
+ * -- default --
+ *
+ * #about_thesis, 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#about_card > article {
+  /* Spacing & Border */
+  margin: 1rem;
+  padding: 0;
+  /* */
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * BLOG
  * -- default --
  *
  * #about_thesis, 
@@ -711,6 +774,18 @@ td {
   margin: 1rem;
   padding: 0;
   /* */
+}
+#backend #myEditor {
+  /* Spacing & Border */
+  margin: 1rem;
+  padding: 0.75rem;
+  border: 3px solid rgba(9, 64, 109, 0.9);
+  /* */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 @media only screen and (max-width: 374px) {
@@ -765,18 +840,6 @@ td {
   /**
    * Styling for the <header> element when defined as #public_header.
    */
-  #public_header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    /* Spacing & Border */
-    margin: 0.5rem;
-    padding: 0.5rem;
-    /* */
-    border-bottom: 3px groove rgba(9, 64, 109, 0.45);
-  }
   #public_header > a {
     /* Spacing & Border */
     margin: 0;
@@ -836,13 +899,6 @@ td {
   /**
    * Styling for the document's <main> element.
    */
-  main {
-    /* Spacing & Border */
-    margin: 1rem;
-    padding: 0;
-    /* */
-  }
-
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    * FOOTER
    * -- min-width: 375px --
@@ -937,6 +993,14 @@ td {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .cards-home-primary {
+    grid-template-columns: 1fr;
+  }
+
+  .film-portfolio {
+    grid-template-columns: 1fr;
+  }
+
   /**
   **
   **/
@@ -995,6 +1059,19 @@ td {
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    * ABOUT
+   * -- min-width: 375px --
+   *
+   * #about_card, 
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  #about_card > article {
+    /* Spacing & Border */
+    margin: 0.75rem;
+    padding: 0;
+    /* */
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * BLOG
    * -- min-width: 375px --
    *
    * #about_thesis, 
@@ -1056,10 +1133,7 @@ td {
    * Styling for the <header> element when defined as #public_header.
    */
   #public_header {
-    display: flex;
-    flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
     flex-wrap: nowrap;
   }
   #public_header > a {
@@ -1134,6 +1208,10 @@ td {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .film-portfolio {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   /**
   **
   **/
@@ -1192,6 +1270,35 @@ td {
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    * ABOUT
+   * -- min-width: 667px --
+   *
+   * #about_card, 
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  #about_card {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    border-bottom: 3px groove rgba(9, 64, 109, 0.45);
+  }
+  #about_card img {
+    width: 35%;
+  }
+  #about_card > article {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  #about_card > article > ul {
+    /* Spacing & Border */
+    margin: 0 0 0.75rem 1rem;
+    padding: 0;
+    /* */
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * BLOG
    * -- min-width: 667px --
    *
    * #about_thesis, 
@@ -1293,27 +1400,6 @@ td {
     color: #1a1a1a;
   }
 
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * MAIN
-   * -- min-width: 1024px --
-   *
-   * main
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /**
-   * Styling for the document's <main> element.
-   */
-  main {
-    margin: 1rem auto;
-    max-width: 1500px;
-  }
-
-  #backticks {
-    /* Spacing & Border */
-    margin: 0.5rem;
-    padding: 0.5rem 1rem 1rem 1rem;
-    /* */
-    border-bottom: 3px groove rgba(9, 64, 109, 0.45);
-  }
   #backticks ul {
     /* Spacing & Border */
     margin: 0;
@@ -1349,6 +1435,23 @@ td {
   }
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * MAIN
+   * -- min-width: 1024px --
+   *
+   * main
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /**
+   * Styling for the document's <main> element.
+   */
+  main {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 1500px;
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    * CARDS
    * -- min-width: 1024px --
    *
@@ -1376,6 +1479,10 @@ td {
 
   .card_count_6 {
     grid-template-columns: repeat(6, 1fr);
+  }
+
+  .film-portfolio {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   /**
@@ -1438,31 +1545,86 @@ td {
    * ABOUT
    * -- min-width: 1024px --
    *
-   * #about_thesis, 
+   * #about_card, 
    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  #about_card {
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   * BLOG
+   * -- min-width: 1024px --
+   * 
+   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  #blog-preview {
+    /* Spacing & Border */
+    margin: 0 auto;
+    padding: 0;
+    /* */
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
+    flex-wrap: wrap;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+  }
+  #blog-preview > * {
+    flex-basis: 45%;
+  }
+
+  .blog-preview {
+    /* Spacing & Border */
+    margin: 0;
+    padding: 0;
+    /* */
+    border-bottom: 2px solid rgba(9, 64, 109, 0.45);
+    border-radius: 0 0 1rem 1rem;
+  }
+  .blog-preview .banner {
+    width: 100%;
+  }
+  .blog-preview .preview-head {
+    /* Spacing & Border */
+    margin: 1rem;
+    padding: 0;
+    /* */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     flex-wrap: nowrap;
-    padding-bottom: 1rem;
-    border-bottom: 3px groove rgba(9, 64, 109, 0.45);
   }
-  #about_card img {
-    width: 35%;
+  .blog-preview .preview-head img {
+    width: 12.5%;
   }
-  #about_card > article {
+  .blog-preview .preview-head_details {
+    /* Spacing & Border */
+    margin: 0 0 0 0.5rem;
+    padding: 0;
+    /* */
+  }
+  .blog-preview .preview-head_details p {
+    /* Spacing & Border */
+    margin: 0.5rem;
+    padding: 0;
+    /* */
+    font-size: 0.9rem;
+  }
+  .blog-preview .preview-head_details time {
+    /* Spacing & Border */
+    margin: 0.5rem;
+    padding: 0;
+    /* */
+    display: block;
+    font-size: 0.8rem;
+  }
+  .blog-preview .preview-body {
     /* Spacing & Border */
     margin: 1rem;
     padding: 0;
     /* */
   }
-  #about_card > article > ul {
-    /* Spacing & Border */
-    margin: 0 0 0.75rem 1rem;
-    padding: 0;
-    /* */
+  .blog-preview .preview-body h2 {
+    flex-basis: 100%;
   }
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1474,6 +1636,58 @@ td {
   /**
    * Container for every element used in #backend.
    */
+  #backend #potential_elements {
+    /* Spacing & Border */
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 3px solid gray;
+    /* */
+    list-style: none;
+  }
+  #backend #potential_elements li {
+    /* Spacing & Border */
+    margin: 1rem;
+    padding: 0.5rem;
+    border: 2px dotted gray;
+    /* */
+    text-align: center;
+  }
+  #backend #potential_elements .ui-selected {
+    background-color: lightgray;
+  }
+  #backend #drop_zone {
+    /* Spacing & Border */
+    margin: 1rem 0;
+    padding: 1rem;
+    /* */
+    border: 3px solid gray;
+    width: 100%;
+  }
+  #backend .token {
+    /* Spacing & Border */
+    margin: 1rem;
+    padding: 1rem;
+    border: 3px solid rgba(9, 64, 109, 0.45);
+    border-radius: 0.5rem;
+    /* */
+  }
+  #backend .token_slot {
+    /* Spacing & Border */
+    margin: 1rem;
+    padding: 1rem;
+    border: 3px dashed rgba(9, 64, 109, 0.45);
+    border-radius: 0.5rem;
+    /* */
+  }
+  #backend .before, #backend .after {
+    /* Spacing & Border */
+    margin: 0.5rem;
+    padding: 1rem;
+    /* */
+    border: 3px solid red;
+    width: 100%;
+    height: 50px;
+  }
 }
 * {
   outline: none;

@@ -54,6 +54,13 @@ tr
 th
 {
     @include edge(0, 0.5rem, none);
+    &[scope="rowgroup"]
+    {
+        &:nth-child(2n)
+        {
+            background: lightgray;
+        }
+    }
 }
 /**
 * Styling for the <td> element.

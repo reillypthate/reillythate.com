@@ -6,46 +6,13 @@
 <?php
     // Page Metadata
 	$SLUG = "directory";
-    $wanted_stylesheets = "common.css";
-    $wanted_ext_js = "test_head.js";
-
-    // Page Options
-    $header_option = "";
-    $footer_option = "";
-
-    // Body Scripts
-    $wanted_body_js = "test_body.js";
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/private_head.php"); ?>
-		
+        
 		<main id="manager">
-            <table>
-                <thead>
-<?php $directory_keys = $directory_table->getKeys(); ?>
-                    <th scope="col"></th>
-<?php foreach($directory_keys as $index=>$column): ?>
-                    <th scope="col"><?php echo $column; ?></th>
-<?php endforeach; ?>
-                </thead>
-
-                <tbody>
-<?php foreach($directory_table->getTable() as $index=>$row): ?>
-                    <tr>
-                        <td>
-<?php if(isset($row['p_id'])):?>
-                            <button onclick="window.location.href='index.php?edit-dir=<?php echo $row['id'];?>'">Edit</button>
-<?php endif; ?>
-                        </td>
-<?php foreach($directory_keys as $col_key=>$index): ?>
-                        <td><?php echo $row[$index];?></td>
-<?php endforeach; ?>
-                    </tr>
-<?php endforeach; ?>
-                </tbody>
-
-                <tfoot>
-                </tfoot>
-            </table>
+            <section>
+<?php $directory_table->printTable(3); //printLines($directory_table->printTableLines(3), 3); ?>
+            </section>
             <section>
 <?php if($isEditingDirectory): ?>
                 <!-- Edit Directory -->
@@ -81,6 +48,14 @@
                         </legend>
                         <label for="dir_public">
                             <input name="dir_public" type="checkbox" <?php echo $directory_public; ?>><span class="after_button">Public</span>
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>
+                            Published?
+                        </legend>
+                        <label for="dir_published">
+                            <input name="dir_published" type="checkbox" <?php echo $directory_published; ?>><span class="after_button">Published</span>
                         </label>
                     </fieldset>
                     <button type="submit" name="dir_UPDATE">Update Directory</button>
@@ -119,6 +94,14 @@
                         </legend>
                         <label for="dir_public">
                             <input name="dir_public" type="checkbox" checked><span class="after_button">Public</span>
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>
+                            Published?
+                        </legend>
+                        <label for="dir_published">
+                            <input name="dir_published" type="checkbox" checked><span class="after_button">Published</span>
                         </label>
                     </fieldset>
                     <?php console_log("Above Button"); ?>

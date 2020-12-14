@@ -5,41 +5,34 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "HTML5 Elements";
-    $wanted_stylesheets = "common.css";
-    $wanted_ext_js = "test_head.js";
-
-    // Page Options
-    $header_option = "";
-    $footer_option = "";
-
-    // Body Scripts
-    $wanted_body_js = "test_body.js";
+	$SLUG = "html5-elements";
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/private_head.php"); ?>
 		
 		<main id="manager">
-            <table>
-                <thead>
+            <section>
+                <table>
+                    <thead>
 <?php $html5_keys = array_keys($elements[0]); ?>
 <?php foreach($html5_keys as $key=>$column): ?>
-                    <th scope="col"><?php echo $column; ?></th>
+                        <th scope="col"><?php echo $column; ?></th>
 <?php endforeach; ?>
-                </thead>
+                    </thead>
 
-                <tbody>
+                    <tbody>
 <?php foreach($elements as $key=>$element): ?>
-                    <tr>
+                        <tr>
 <?php foreach($html5_keys as $key2=>$column): ?>
-                        <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/<?php echo $element['element']; ?>" target="_blank"><?php echo $element[$column]; ?></a></td>
+                            <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/<?php echo $element['element']; ?>" target="_blank"><?php echo $element[$column]; ?></a></td>
 <?php endforeach; ?>
-                    </tr>
+                        </tr>
 <?php endforeach; ?>
-                </tbody>
+                    </tbody>
 
-                <tfoot>
-                </tfoot>
-            </table>
+                    <tfoot>
+                    </tfoot>
+                </table>
+            </section>
 		</main>
         
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/private_foot.php"); ?>

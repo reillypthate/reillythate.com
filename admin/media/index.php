@@ -6,44 +6,13 @@
 <?php
     // Page Metadata
 	$SLUG = "media";
-    $wanted_stylesheets = "common.css";
-    $wanted_ext_js = "test_head.js";
-
-    // Page Options
-    $header_option = "";
-    $footer_option = "";
-
-    // Body Scripts
-    $wanted_body_js = "test_body.js";
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/private_head.php"); ?>
 		
-<main id="manager">
-            <table>
-                <thead>
-<?php $keys = $image_table->getKeys(); ?>
-                    <th scope="col"></th>
-<?php foreach($keys as $index=>$key): ?>
-                    <th scope="col"><?php echo $key; ?></th>
-<?php endforeach; ?>
-                </thead>
-
-                <tbody>
-<?php foreach($image_table->getTable() as $index=>$row): ?>
-                    <tr>
-                        <td>
-                            <button onclick="window.location.href='index.php?edit-img=<?php echo $row['id'];?>'">Edit</button>
-                        </td>
-<?php foreach($keys as $col_key=>$index): ?>
-                        <td><?php echo $row[$index];?></td>
-<?php endforeach; ?>
-                    </tr>
-<?php endforeach; ?>
-                </tbody>
-
-                <tfoot>
-                </tfoot>
-            </table>
+        <main id="manager">
+            <section>
+                <?php $image_table->buildTable(); ?>
+            </section>
             <section>
 <?php if($isEditingImg): ?>
                 <!-- Edit Image -->

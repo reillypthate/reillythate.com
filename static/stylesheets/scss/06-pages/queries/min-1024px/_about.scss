@@ -2,28 +2,12 @@
  * ABOUT
  * -- min-width: 1024px --
  *
- * #about_thesis, 
+ * #about_card, 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #about_card
 {
-    //@include edge(0, 1rem, 3px groove $accent_primary, 2.5rem);
-    @include flex(row, flex-start, flex-start, nowrap);
-
-    padding-bottom: $section_spacer;
-    border-bottom: 3px groove $accent-secondary;
-
-    & img
-    {
-        width: 35%;
-        // border-radius: 1.25rem;
-    }
     & > article
     {
-        @include edge(1rem, 0);
-        & > ul
-        {
-            @include edge(0 0 $content_spacer 1rem, 0);
-        }
-    }
 
+    }
 }

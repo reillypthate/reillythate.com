@@ -9,39 +9,9 @@
  */
 main
 {
-    margin: $section_spacer auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $section_spacer;
+    padding-right: $section_spacer;
     max-width: 1500px;
-}
-
-#backticks
-{
-    @include edge(0.5rem, 0.5rem 1rem 1rem 1rem);
-    border-bottom: 3px groove $accent-secondary;
-    ul
-    {
-        @include edge(0, 0);
-        @include flex(row, flex-start, flex-start, nowrap);
-        list-style: none;
-        li
-        {
-            text-decoration: underline;
-            &:first-child
-            {
-                &::before
-                {
-                    display: inline-block;
-                    text-decoration: none;
-                    content: "";
-                    @include edge(0);
-                }
-            }
-            &::before
-            {
-                display: inline-block;
-                text-decoration: none;
-                content: "»";
-                @include edge(0 1rem, 0);
-            }
-        }
-    }
 }

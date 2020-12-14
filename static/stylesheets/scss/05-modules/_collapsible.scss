@@ -1,6 +1,6 @@
 .collapsible
 {
-    background: $col-background;
+    background: $accent_primary;
 
     @include edge(0, 0.75rem);
     width: 100%;
@@ -30,7 +30,7 @@ button.collapsible
 }
 .active
 {
-    background: $col-background-active;
+    background: $shade_secondary;
     margin-bottom: 0 !important;
 }
 .collapsible_content

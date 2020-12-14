@@ -21,7 +21,15 @@ class CardTable extends DB_Functions
         return $this->getRowFromCellValue("slug", $card_slug);
     }
 
-    public function printCard($card_slug, $heading_level)
+    public function buildTable()
+    {
+        return $this->buildTableWithEditButton(TRUE, 'index.php?edit-card');
+    }
+
+    /**
+     * Generate the lines of "Card" code and return them in an array.
+     */
+    public function getCardLines($card_slug, $heading_level)
     {
         global $directory_table, $image_table;
 
@@ -31,22 +39,42 @@ class CardTable extends DB_Functions
 
         $card_id = $card['id'];
         $card_title = $card['title'];
-        $card_description = $card['description'];
+        $card_description = getArticleLines($card['description']);
 
         $image_row = $image_table->getRowFromImageId($card['image_id']);
         $image_src = $directory_table->linkToImage($image_row['name']);
         $image_alt = $image_row['alt'];
 
-        echo '<a href="' . $card_link . '">';
-        echo '<div class="card">';
-        echo '<img src="' . $image_src . '" alt="' . $image_alt . '">';
-        echo '<h' . $heading_level . '>' . $card_title . '</h' . $heading_level . '>';
-        echo '<div class="card_description">';
-        echo $card_description;
-        echo '</div>';
-        echo '</div>';
-        echo '</a>';
-    }
+        $cardLines = array();
+        array_push($cardLines, str_repeat("\t", 1) . '<a href="' . $card_link . '">');
+        array_push($cardLines, str_repeat("\t", 2) . '<div class="card">');
+        array_push($cardLines, str_repeat("\t", 3) . '<img src="' . $image_src . '" alt="' . $image_alt . '">');
+        array_push($cardLines, str_repeat("\t", 3) . '<h' . $heading_level . '>' . $card_title . '</h' . $heading_level . '>');
+        array_push($cardLines, str_repeat("\t", 3) . '<div class="card_description">');
+        foreach($card_description as $line_index=>$cd)
+        {
+            array_push($cardLines, str_repeat("\t", 4) . $cd);
+        }
+        array_push($cardLines, str_repeat("\t", 3) . '</div>');
+        array_push($cardLines, str_repeat("\t", 2) . '</div>');
+        array_push($cardLines, str_repeat("\t", 1) . '</a>');
 
+        return $cardLines;
+    }
+    /**
+     * Builds a <section> containing a grid of cards.
+     */
+    public function generateCardSection($card_slugs, $heading_level, $num_tabs, $classes="")
+    {
+        $cardSection = array();
+        array_push($cardSection, '<section class="card_gallery card_count_' . count($card_slugs) . ' ' . $classes  . '">');
+        foreach($card_slugs as $cs_index=>$slug)
+        {
+            $cardSection = array_merge($cardSection, $this->getCardLines($slug, $heading_level));
+        }
+        array_push($cardSection, '</section>');
+
+        printLines($cardSection, $num_tabs);
+    }
 }
 ?>

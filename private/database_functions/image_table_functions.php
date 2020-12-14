@@ -26,6 +26,11 @@ class ImageTable extends DB_Functions
     {
         return $this->getRowFromCellValue("id", $image_id);
     }
+
+    public function buildTable()
+    {
+        return $this->buildTableWithEditButton(TRUE, 'index.php?edit-img');
+    }
 }
 
 ?>

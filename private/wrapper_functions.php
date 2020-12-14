@@ -1,4 +1,14 @@
 <?php
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **
+ * Wrapper Functions
+ * -- Focused on adding CSS and JavaScript to pages that request it.
+ * -- Default CSS: common.css
+ * -- Default JS: jquery-3.5.1.min.js
+**/
+    $wanted_stylesheets = array("common.css");
+    $wanted_ext_js = array("jquery-3.5.1.min.js");
+    $wanted_body_js = array("collapsible.js");
+
     /**
      * Take the list of $wanted_stylesheets and apply them to the page.
      */
@@ -6,15 +16,19 @@
     {
         global $wanted_stylesheets;
 
-        if($wanted_stylesheets == "") return;
-        echo "\n\t\t<!-- Stylesheet(s) -->";
+        if(count($wanted_stylesheets) == 0) return;
 
-        $stylesheet_names = explode(",", $wanted_stylesheets);
+        // Add comment to <head> section of page to signify Stylesheet group.
+        echo "\n\t\t<!-- Stylesheet(s) -->";
+        /* 
+         * Initialize the attributes that'll be used to define the <link>
+         * element(s) as stylesheets.
+         */
         $_attributes = array(
             "rel" => "stylesheet",
             "href" => STATIC_PATH . "/stylesheets"
         );
-        foreach($stylesheet_names as $key => $stylesheet_name)
+        foreach($wanted_stylesheets as $index => $stylesheet_name)
         {
             $_attributes["href"] = STATIC_PATH. "/stylesheets/" . $stylesheet_name;
             echo "\n\t\t" . generateElement("link", $_attributes);
@@ -28,15 +42,19 @@
     {
         global $wanted_ext_js;
 
-        if($wanted_ext_js == "") return;
-        echo "\n\t\t<!-- External Javascript files -->";
+        if(count($wanted_ext_js) == 0) return;
 
-        $js_file_names = explode(",", $wanted_ext_js);
+        // Add comment to <head> section of page to signify Javascript group.
+        echo "\n\t\t<!-- External Javascript files -->";
+        /* 
+         * Initialize the attributes that'll be used to define the <script>
+         * element(s) as Javascript.
+         */
         $_attributes = array(
             "src" => STATIC_PATH . "/scripts",
             "type"=> "text/javascript"
         );
-        foreach($js_file_names as $key => $js_file_name)
+        foreach($wanted_ext_js as $index => $js_file_name)
         {
             $_attributes["src"] = STATIC_PATH. "/scripts/" . $js_file_name;
             echo "\n\t\t" . generateElement("script", $_attributes, true);
@@ -49,15 +67,19 @@
     {
         global $wanted_body_js;
 
-        if($wanted_body_js == "") return;
-        echo "\n\t\t<!-- Ext. Javascript Files -->";
+        if(count($wanted_body_js) == 0) return;
 
-        $js_file_names = explode(",", $wanted_body_js);
+        // Add comment to <head> section of page to signify Javascript group.
+        echo "\n\t\t<!-- Ext. Javascript Files -->";
+        /* 
+         * Initialize the attributes that'll be used to define the <script>
+         * element(s).
+         */
         $_attributes = array(
             "src" => STATIC_PATH . "/scripts",
             "type"=> "text/javascript"
         );
-        foreach($js_file_names as $key => $script_file_name)
+        foreach($wanted_body_js as $key => $script_file_name)
         {
             $_attributes["src"] = STATIC_PATH. "/scripts/" . $script_file_name;
             echo "\n\t\t" . generateElement("script", $_attributes, true);

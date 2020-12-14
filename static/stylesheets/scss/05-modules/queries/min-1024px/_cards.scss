@@ -6,7 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 .card_gallery
 {
-    
+
 }
 .card_count_1
 {
@@ -31,6 +31,10 @@
 .card_count_6
 {
     grid-template-columns: repeat(6, 1fr);
+}
+.film-portfolio
+{
+    grid-template-columns: repeat(3, 1fr);
 }
 /**
 **

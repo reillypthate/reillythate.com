@@ -1,4 +1,8 @@
-<?php $footer_slugs = array("admin", "about", "blog", "contact", "portfolio"); ?>
+<?php 
+	$footer_slugs = array("about", "blog", "contact", "portfolio"); 
+if(!$to_static)
+	array_push($footer_slugs, "admin");
+?>
 		<footer>
 			<nav id="nav_footer">
 				<ul>
@@ -16,4 +20,10 @@
 
 
 	</body>
-</html>
+</html><?php // Finishing touches; for file output.
+	if($to_static)
+	{
+		file_put_contents("index.html", callback(ob_get_contents()));
+		html_refresh(array_fill_keys(array("refresh_id"), $_GET['html-refresh'])); // database_functions/backend_sd_functions.php
+	}
+?>

@@ -1,26 +1,10 @@
 <?php 
-
     /**
-     * Use database functions to build a URL to a specific directory.
-     * Each directory has its own index.php file.
-     * 
-     * If OB_Conversion is set, we'll have an absolute link to the page.
+     * User-Defined callback function that replaces the server working root directory with a static root directory.
      */
-    function linkToPage($page_title)
+    function callback($buffer)
     {
-        global $to_static;
-
-        if($to_static == true)
-        {
-            return "http://" . buildURL(getPageIdFromPageTitle($page_title));
-        }
-        return "/" . buildURL(getPageIdFromPageTitle($page_title));
-
-        ////Hard-coded template for page-specific methods (linkToHomePage(), etc).
-        //  global $to_static;
-        //  if($to_static == true)
-        //      return "http://reillythate.com";
-        //  return PROJECT_PATH;
+        return (str_replace("/reillythate.com", "http://reillythate.com", $buffer));
     }
     /**
      * Use database functions to build a URL to the Images directory
@@ -31,10 +15,45 @@
         return linkToPage("Images") . "/" . $image;
     }
 
+    /**
+     * For debugging -- print to browser's console.
+     */
     function console_log( $data ){
         echo '<script>';
         echo 'console.log('. json_encode( $data ) .')';
         echo '</script>';
       }
+
+    /**
+     * Echo an array of lines to HTML with the proper number of tabs before each line.
+     */
+    function printLines($lines, $tabStart)
+    {
+        foreach($lines as $index=>$line)
+        {
+            for($i = 0; $i < $tabStart; $i++)
+            {
+                echo "\t";
+            }
+            echo $line;
+            echo "\n";
+        }
+    }
+    function getArticleLines($article)
+    {
+        preg_match_all('/<p>(.*?)<\/p>/', $article, $breaks);
+
+        return $breaks[0];
+    }
+
+    function file_force_contents($dir, $contents)
+    {
+        $parts = explode('/', $dir);
+        $file = array_pop($parts);
+        $dir = '';
+        foreach($parts as $part)
+            if(!is_dir($dir .= "/$part")) mkdir($dir);
+        file_put_contents("$dir/$file", $contents);
+    }
       
 ?>

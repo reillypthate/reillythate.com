@@ -6,21 +6,12 @@
 <?php
     // Page Metadata
 	$SLUG = "film";
-    $wanted_stylesheets = "common.css";
-    $wanted_ext_js = "wzrd.io.js";
-
-    // Page Options
-    $header_option = "";
-    $footer_option = "";
-
-    // Body Scripts
-    $wanted_body_js = "test_body.js";
 ?>
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/page_head.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		
 		<main>
             <section id="about_card">
-				<img src="<?php echo $directory_table->linkToImage("GALLERY_Birthday-Toast-Rehearsal.jpg");?>" alt="<?php echo $image_table->getRowFromImageSlug("birthday-toast-rehearsal")['alt'];?>";>
+				<img src="<?php echo $directory_table->linkToImage("GALLERY_Birthday-Toast-Rehearsal.jpg");?>" alt="<?php echo $image_table->getRowFromImageSlug("birthday-toast-rehearsal")['alt']; ?>">
 				<article id="about_thesis">
 					<h2>Film</h2>
 					<p>
@@ -29,6 +20,8 @@
 					<p>
 						Reilly has produced numerous short films with ambitious concepts that have allowed him to express his unique voice and tell interesting stories about multi-facted characters.
 					</p>
+					<p class="end-preview-link"><a href="<?php echo $directory_table->linkToPage("portfolio"); ?>">Visit Portfolio</a></p>
+<?php /*
 					<p>
 						All of his short films were written by him. As an aspiring filmmaker, he spends his free time writing screenplays for prospective projects ranging from a serialized comedy with elements of tragedy ("Under New Ownership") to a feature-length drama with elements of science fiction ("Mind Over").
 					</p>
@@ -38,16 +31,12 @@
 					<p>
 						In addition to work behind the camera, Reilly brings finely-tuned acting instincts from the stage (as Juror Three in Twelve Angry Men) to the screen with a diverse character range that enables him to bring his visions to life.
 					</p>
+*/ ?>
 				</article>
             </section>
 
-<?php $card_set_2 = array("experience", "science", "design"); ?>
-            <section class="card_gallery card_count_<?php echo count($card_set_2);?>">
-<?php foreach($card_set_2 as $key=>$card): ?>
-                <!-- <?php echo $card; ?> card -->
-                <?php $card_table->printCard($card, 3); ?>
-<?php endforeach; ?>
-            </section>
+<?php $card_table->generateCardSection(array("experience", "science", "design"), 3, 3); ?>
+
         </main>
 
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

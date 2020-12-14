@@ -63,6 +63,18 @@ button
         background: $accent-secondary;
         color: $col-contrast;
     }
+
+    &[disabled=""]
+    {
+        cursor: default;
+        background: none;
+        color: lightgray;
+        &:hover
+        {
+            background: none;
+            color: lightgray;
+        }
+    }
 }
 label
 {
@@ -75,9 +87,6 @@ label
 input
 {
     @include edge(0.5rem 0, 0.75rem, none, 0.25rem);
-    box-shadow:
-        inset 0.5rem 0.5rem 1rem #e1e1e1,
-        inset -0.5rem -0.5rem 1rem #ffffff;
     
 
     &:first-child, &:nth-child(2)

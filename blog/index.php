@@ -6,24 +6,13 @@
 <?php
     // Page Metadata
     $SLUG = "blog";
-    
-    $wanted_stylesheets = "common.css";
-    $wanted_ext_js = "test_head.js";
-
-    // Page Options
-    $header_option = "";
-    $footer_option = "";
-
-    // Body Scripts
-    $wanted_body_js = "test_body.js";
 ?>
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/page_head.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		
 		<main>
-            <h2>Blog</h2>
-            <p>
-                This page will contain a collection of Reilly's blog posts.
-            </p>
+            <section id="blog-preview">
+<?php $post_table->printBlogPreviews(4); ?>
+            </section>
 		</main>
 
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/page_foot.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

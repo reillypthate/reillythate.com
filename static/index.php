@@ -5,17 +5,7 @@
 ?>
 <?php
     // Page Metadata
-	$page_title = "Static";
-    $page_description = "The collection of static assets used in Reilly Thate's website.";
-    $wanted_stylesheets = "common.css";
-    $wanted_ext_js = "test_head.js";
-
-    // Page Options
-    $header_option = "";
-    $footer_option = "";
-
-    // Body Scripts
-    $wanted_body_js = "test_body.js";
+	$page_title = "static";
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/page_head.php"); ?>
 		

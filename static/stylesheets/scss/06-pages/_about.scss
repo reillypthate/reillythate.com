@@ -4,7 +4,10 @@
  *
  * #about_thesis, 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-#about_thesis
-{
-    
-}
+ #about_card
+ {
+     & > article
+     {
+         @include edge($section_spacer, 0);
+     }
+ }

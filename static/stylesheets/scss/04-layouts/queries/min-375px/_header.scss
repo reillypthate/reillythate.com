@@ -9,11 +9,8 @@
  */
 #public_header
 {
-    // outline: 3px dotted hsla(0, 50%, 50%, 0.5);
-    @include flex(row, space-between, center, wrap);
-    @include edge(0.5rem, 0.5rem);
-    border-bottom: 3px groove $accent-secondary;
-    // border-radius: 0.5rem;
+    // Flex Settings
+    // -- No changes from default.
 
     & > a // Link Container for Renegade Logo
     {
@@ -24,8 +21,6 @@
     }
     & img // Renegade Logo
     {
-        // outline: 3px dotted hsla(200, 50%, 50%, 0.75);
-    
         width: 100%;
 
         &:hover

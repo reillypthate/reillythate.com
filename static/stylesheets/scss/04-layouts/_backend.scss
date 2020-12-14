@@ -19,4 +19,11 @@
     {
         @include edge(1rem, 0);
     }
+
+    #myEditor
+    {
+        @include edge($section_spacer, $content_spacer, 3px solid $accent_primary);
+        @include flex(row, flex-start, flex-start, wrap);
+        
+    }
 }

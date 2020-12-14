@@ -8,6 +8,40 @@
  * Container for every element used in #backend.
  */
 #backend
-{
-
+{   
+    #potential_elements
+    {
+        @include edge(1rem 0, 1rem, 3px solid gray);
+        list-style: none;
+        li
+        {
+            @include edge(1rem, 0.5rem, 2px dotted gray);
+            text-align: center;
+        }
+        .ui-selected
+        {
+            background-color: lightgray;
+        }
+    }
+    #drop_zone
+    {
+        @include edge(1rem 0, 1rem);
+        border: 3px solid gray;
+        width: 100%;
+    }
+    .token
+    {
+        @include edge(1rem, 1rem, 3px solid $accent_secondary, 0.5rem);
+    }
+    .token_slot
+    {
+        @include edge(1rem, 1rem, 3px dashed $accent_secondary, 0.5rem);
+    }
+    .before, .after
+    {
+        @include edge(0.5rem, 1rem);
+        border: 3px solid red;
+        width: 100%;
+        height: 50px;
+    }
 }

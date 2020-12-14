@@ -28,3 +28,23 @@ a
         }
     }
 }
+
+.end-preview-link
+{
+    text-align: right;
+    color: $accent_primary;
+    &::before
+    {
+
+        content: "»";
+        padding-right: 0.5rem;
+    }
+    & > a
+    {
+        &:link, &:visited
+        {
+            text-decoration: underline;
+            color: $accent_primary;
+        }
+    }
+}
