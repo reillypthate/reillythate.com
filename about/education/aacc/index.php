@@ -29,7 +29,7 @@
 				</article>
 			</section>
 
-<?php $card_table->generateCardSection(array("education", "rit", "film", "design"), 3, 3); ?>
+<?php $card_table->generateCardSection(array("education", "rit"), 3, 3); ?>
 
         </main>
 

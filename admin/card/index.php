@@ -6,8 +6,9 @@
 <?php
     // Page Metadata
 	$SLUG = "card";
+    $PAGE_SET = "admin";
 ?>
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/private_head.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		
         <main id="manager">
             <section>
@@ -17,7 +18,7 @@
 <?php if($isEditingCard): ?>
                 <!-- Edit Image -->
                 <h2>Edit Image</h2>
-                <form method="post" action="<?php echo $directory_table->linkToPage("card") . "/index.php"; ?>">
+                <form method="post" action="<?php echo $directory_table->linkBySlug("card") . "/index.php"; ?>">
                     <input type="hidden" name="card_id" value="<?php echo $card_id; ?>">
                     <fieldset>
                         <legend>
@@ -50,7 +51,7 @@
                 <!-- Add Directory -->
                 <h2>Add New Card</h2>
 <?php include(DOC_PREFIX . SHARED_PATH . "/errors/errors.php"); ?>
-                <form method="post" action="<?php echo $directory_table->linkToPage("card") . "/index.php"; ?>">
+                <form method="post" action="<?php echo $directory_table->linkBySlug("card") . "/index.php"; ?>">
                     <fieldset>
                         <legend>
                             Card Slug
@@ -81,4 +82,4 @@
             </section>
         </main>
 
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/private_foot.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

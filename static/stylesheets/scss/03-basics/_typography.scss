@@ -5,73 +5,64 @@
  * + h1, h2, h3, h4, h5, h6
  * + p
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+/** Set the default font style for all inheriting elements. */
+html, body
+{
+    font-family: $font-family-body;
+    font-size: $default-font-size;
+    @include line-format($default-font-size);
+    @include element-color(gray(off-white), gray(off-black));
+}
 /** Set the default font style for heading text. */
 h1, h2, h3, h4, h5, h6
 {
     font-family: $font-family-header;
-    color: $col-contrast;
+    @include edge(0.5rem 0, 0);
+    @include font-look($weight: 400);
+    color: gray(off-black);
+
+    @extend %p-child;
 }
 /** h1: Main Heading: "Reilly Thate" */
 h1
 {
     @include edge(0, 0.5rem);
-    font-size: $h1-size;
-    line-height: $h1-size;
-    letter-spacing: calc(#{$h1-size} / 20);
-    font-weight: 400;
-    text-align: center;
+    @include line-format($h1-size, $align:center);
 }
 /** h2: Reserved for page headings; i.e. "Blog" */
 h2
 {
-    @include edge(0, 0 0 0.5rem 0);
-    font-size: $h2-size;
-    line-height: $h2-size;
-    letter-spacing: calc(#{$h2-size} / 20);
-    font-weight: 400;
-    text-align: left;
+    @include line-format($h2-size);
 }
 /** h3 */
 h3
 {
-    @include edge(0, 0 0 0.5rem 0);
-    font-size: $h3-size;
-    line-height: $h3-size;
-    letter-spacing: calc(#{$h3-size} / 20);
-    font-weight: 400;
-    text-align: left;
+    @include line-format($h3-size);
 }
 /** h4 */
 h4
 {
-
+    @include line-format($h4-size);
 }
 /** h5 */
 h5
 {
-
+    @include line-format($h5-size);
 }
 /** h6 */
 h6
 {
-
+    @include line-format($h6-size);
 }
 
 /** Set the default font style for body text. */
-p, time
+p
 {
-    @include edge(0, 0 0 0.5rem 0);
+    @include line-format($default-font-size, calc(#{$default-font-size} * 1.25));
 
-    font-family: $font-family-body;
-    font-size: $body_size;
-    line-height: calc(#{$body-size} * 1.25);
-    color: $col-contrast;
-
-    &:last-child
-    {
-        padding-bottom: 0;
-    }
-
+    @extend %p-child;
+    @extend %adjacent-heading-spacer;
     & + ul
     {
         @include edge(0 0 0.5rem 2rem, 0);
@@ -89,7 +80,7 @@ ul
 li
 {
     font-family: $font-family-body;
-    font-size: $body_size;
+    font-size: $body-size;
 }
 /** Set the default font style for form elements. */
 input[type="text"], label, textarea, button
@@ -98,20 +89,6 @@ input[type="text"], label, textarea, button
     font-size: calc(#{$body-size} * 1.0);
     letter-spacing: calc(#{$body-size} / 12.5);
 }
-#identity_tagline
-{
-    @include edge(0);
-    font-size: $thate-tagline-size;
-    line-height: $thate-tagline-size;
-    letter-spacing: calc(#{$thate-tagline-size} / 15);
-
-    text-align: center;
-}
-
-#copyright
-{
-    @include edge(0);
-}
 
 .after_button
 {
@@ -119,6 +96,6 @@ input[type="text"], label, textarea, button
 }
 .error_message
 {
-    color: red;
+    color: color(red);
     font-style: italic;
 }

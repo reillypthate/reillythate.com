@@ -52,12 +52,12 @@
     {
         cursor: default;
         border-right: none;
-        border-bottom: 0.25rem groove $accent_primary;
+        border-bottom: 0.25rem groove theme(primary);
         padding-right: 1.5rem;
         padding-bottom: 0.5rem;
         &:hover
         {
-            color: $col-contrast;
+            color: gray(off-black);
         }
     }
 }

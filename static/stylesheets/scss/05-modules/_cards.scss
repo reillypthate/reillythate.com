@@ -67,9 +67,9 @@
 
         left: 0;
 
-        background: $accent_secondary;
+        background: theme(primary, trans);
         
-        color: $bright_secondary;
+        color: gray(off-white);
         text-align: left;
     }
     & h2, h3
@@ -110,20 +110,20 @@
 
         & h2, h3
         {
-            background: $accent_secondary;
-            color: $bright_primary;
+            background: theme(primary, trans);
+            color: white;
             //right: 0;
         }
         & .pc_description, .card_description
         {
             bottom: 0;
-            background: $accent_secondary;
+            background: theme(primary, trans);
             bottom: 0;
             opacity: 100%;
         }
         & p
         {
-            color: $bright_primary;
+            color: white;
         }
     }
 }

@@ -22,7 +22,7 @@
 
     #myEditor
     {
-        @include edge($section_spacer, $content_spacer, 3px solid $accent_primary);
+        @include edge($section_spacer, $content_spacer, 3px solid theme(primary));
         @include flex(row, flex-start, flex-start, wrap);
         
     }

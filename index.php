@@ -12,7 +12,6 @@
 		<main>
 <?php $card_table->generateCardSection(array("portfolio", "education", "about"), 2, 3, "cards-home-primary"); ?>
 
-
-		</main>
+        </main>
 
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

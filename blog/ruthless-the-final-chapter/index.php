@@ -5,17 +5,16 @@
 ?>
 <?php
     // Page Metadata
-    $SLUG = "site-builder";
-    $PAGE_SET = "admin";
-    array_push($wanted_ext_js, "jquery-ui.min.js");
-    array_push($wanted_ext_js, "ckeditor/ckeditor.js");
-    //array_push($wanted_body_js, "site-builder.js");
-    //array_push($wanted_body_js, "richEditor.js");
+    $SLUG = "ruthless-the-final-chapter";
+    $PAGE_SET = "blog";
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
-		
-		<main id="manager">
-
+			
+        <main>
+<?php $post_table->generateBlogLines($SLUG, 3); ?>
+     
+            <h2>Other Works</h2>
+<?php $card_table->generateCardSection(array("project-birthday-toast", "project-night-lift", "project-ruthless-the-final-chapter", "project-bud-light-for-a-soul"), 3, 3); ?>
 		</main>
-        
+
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

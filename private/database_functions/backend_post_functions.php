@@ -67,15 +67,17 @@ function post_add($req_vals)
     else
         $post_published = 0;
 
+    $read_time = strlen($post_body) / 800.0;
     if(count($errors) == 0)
     {
         if(isset($req_vals['post_banner']))
         {
-            $insert_statement = $conn->prepare("INSERT INTO `posts` (slug, title, body, banner, published) VALUES (?, ?, ?, ?, ?)");
-            $insert_statement->bind_param('sssii',
+            $insert_statement = $conn->prepare("INSERT INTO `posts` (slug, title, body, read_time, banner, published) VALUES (?, ?, ?, ?, ?, ?)");
+            $insert_statement->bind_param('sssiii',
                 $post_slug,
                 $post_title, 
                 $post_body, 
+                $read_time,
                 $req_vals['post_banner'],
                 $post_published
             );
@@ -110,7 +112,8 @@ function post_edit($post_id)
         $post_id, 
         $post_slug, 
         $post_title, 
-        $post_body, 
+        $post_body,
+        $post_banner, 
         $post_published;
     
     foreach($post_table->getTable() as $key=>$check)
@@ -125,6 +128,7 @@ function post_edit($post_id)
     $post_slug = $row['slug'];
     $post_title = $row['title'];
     $post_body = $row['body'];
+    $post_banner = $row['banner'];
     $post_published = $row['published'];
 }
 /**
@@ -166,26 +170,30 @@ function post_update($req_vals)
     else
         $post_published = 0;
 
+    $read_time = strlen($post_body) / 800.0;
+
     if(count($errors) == 0)
     {
         if(isset($req_vals['post_banner']))
         {
-            $update_statement = $conn->prepare("UPDATE `posts` SET slug=?, title=?, body=?, published=?, banner=?, updated_at=now() WHERE id=?");
-            $update_statement->bind_param('sssiii',
+            $update_statement = $conn->prepare("UPDATE `posts` SET slug=?, title=?, body=?, read_time=?, published=?, banner=?, updated_at=now() WHERE id=?");
+            $update_statement->bind_param('sssiiii',
                 $post_slug,
                 $post_title, 
                 $post_body, 
+                $read_time,
                 $post_published,
                 $req_vals['post_banner'],
                 $post_id
             );
         }else
         {
-            $update_statement = $conn->prepare("UPDATE `posts` SET slug=?, title=?, body=?, published=?, updated_at=now() WHERE id=?");
+            $update_statement = $conn->prepare("UPDATE `posts` SET slug=?, title=?, body=?, read_time=?, published=?, updated_at=now() WHERE id=?");
             $update_statement->bind_param('sssii',
                 $post_slug,
                 $post_title, 
                 $post_body, 
+                $read_time,
                 $post_published,
                 $post_id
             );

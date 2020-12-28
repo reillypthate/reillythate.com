@@ -5,7 +5,8 @@
 ?>
 <?php
     // Page Metadata
-	$SLUG = "night-lift";
+    $SLUG = "project-night-lift";
+    $PAGE_SET = "portfolio";
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		
@@ -19,7 +20,7 @@
             </div>
 
             <h2>Other Works</h2>
-<?php $card_table->generateCardSection(array("birthday-toast", "ruthless-the-final-chapter", "bud-light-for-a-soul"), 3, 3); ?>
+<?php $card_table->generateCardSection(array("project-birthday-toast", "project-night-lift", "project-ruthless-the-final-chapter", "project-bud-light-for-a-soul"), 3, 3); ?>
 		</main>
 
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

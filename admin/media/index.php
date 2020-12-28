@@ -6,8 +6,9 @@
 <?php
     // Page Metadata
 	$SLUG = "media";
+    $PAGE_SET = "admin";
 ?>
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/private_head.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		
         <main id="manager">
             <section>
@@ -17,7 +18,7 @@
 <?php if($isEditingImg): ?>
                 <!-- Edit Image -->
                 <h2>Edit Image</h2>
-                <form method="post" action="<?php echo $directory_table->linkToPage("media") . "/index.php"; ?>">
+                <form method="post" action="<?php echo $directory_table->linkBySlug("media") . "/index.php"; ?>">
                     <input type="hidden" name="img_id" value="<?php echo $img_id; ?>">
                     <fieldset>
                         <legend>
@@ -38,7 +39,7 @@
                 <!-- Add Directory -->
                 <h2>Add New Image</h2>
 <?php include(DOC_PREFIX . SHARED_PATH . "/errors/errors.php"); ?>
-                <form method="post" action="<?php echo $directory_table->linkToPage("media") . "/index.php"; ?>">
+                <form method="post" action="<?php echo $directory_table->linkBySlug("media") . "/index.php"; ?>">
                     <fieldset>
                         <legend>
                             Image Slug
@@ -58,4 +59,4 @@
             </section>
         </main>
 
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/private_foot.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

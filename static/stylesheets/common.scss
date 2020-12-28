@@ -1,5 +1,7 @@
+@import 'scss/01-helper/functions';
 @import 'scss/01-helper/variables';
 @import 'scss/01-helper/mixins';
+@import 'scss/01-helper/extensions';
 
 @import 'scss/03-basics/reset';
 @import 'scss/03-basics/typography';
@@ -10,6 +12,7 @@
 @import 'scss/04-layouts/main';
 @import 'scss/04-layouts/footer';
 
+@import 'scss/05-modules/admin-sidebar';
 @import 'scss/05-modules/collapsible';
 @import 'scss/05-modules/cards';
 @import 'scss/05-modules/forms';
@@ -24,8 +27,3 @@
 @import 'scss/04-layouts/backend';
 
 @import 'scss/queries';
-
-*
-{
-    outline: none;
-}

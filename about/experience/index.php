@@ -18,9 +18,9 @@
 						Reilly Thate's experiences throughout his education and his life have enabled him to become knowledgable and skilled in a range of different subjects.
 					</p>
 					<ul>
-						<li><a href="<?php echo $directory_table->linkToPage("film");?>">Film</a></li>
-						<li><a href="<?php echo $directory_table->linkToPage("science");?>">Science</a></li>
-						<li><a href="<?php echo $directory_table->linkToPage("design");?>">Design</a></li>
+						<li><a href="<?php echo $directory_table->linkBySlug("film");?>">Film</a></li>
+						<li><a href="<?php echo $directory_table->linkBySlug("science");?>">Science</a></li>
+						<li><a href="<?php echo $directory_table->linkBySlug("design");?>">Design</a></li>
 					</ul>
 				</article>
 			</section>

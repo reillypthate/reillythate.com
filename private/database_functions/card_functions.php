@@ -23,7 +23,8 @@ class CardTable extends DB_Functions
 
     public function buildTable()
     {
-        return $this->buildTableWithEditButton(TRUE, 'index.php?edit-card');
+        global $directory_table;
+        return $this->buildTableWithEditButton(TRUE, $directory_table->linkBySlug('card') . '/index.php?edit-card');
     }
 
     /**
@@ -35,7 +36,7 @@ class CardTable extends DB_Functions
 
         $card = $this->getRowFromCardSlug($card_slug);
 
-        $card_link = $directory_table->linkToPage($card_slug);
+        $card_link = $directory_table->linkBySlug($card_slug);
 
         $card_id = $card['id'];
         $card_title = $card['title'];

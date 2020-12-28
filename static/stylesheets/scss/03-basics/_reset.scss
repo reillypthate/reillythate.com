@@ -1,9 +1,29 @@
 /**
+**  Set variables.
+**/
+:root
+{
+    @each $color, $value in $grays
+    {
+        --#{$color}: #{$value};
+    }
+
+    @each $color, $value in $theme-colors
+    {
+        $hue:       map-get($value, "hue");
+        $shade:     map-get($value, "shade");
+        $lightness: map-get($value, "lightness");
+
+        --#{$color}-solid: hsla(#{$hue}, #{$shade}, #{$lightness}, 1.0);
+        --#{$color}-off: hsla(#{$hue}, #{$shade}, #{$lightness}, 0.95);
+        --#{$color}-trans: hsla(#{$hue}, #{$shade}, #{$lightness}, 0.45);
+    }
+}
+/**
  * Reset all formatting.
  * In particular, set margin and padding of all elements to 0.
  */
-*
-{
-    margin: 0;
-    padding: 0;
-}
+ *
+ {
+     @include edge(0);
+ }

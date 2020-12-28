@@ -5,11 +5,12 @@
 ?>
 <?php
     // Page Metadata
-	$SLUG = "post";
+    $SLUG = "post";
+    $PAGE_SET = "admin";
     array_push($wanted_ext_js, "jquery-3.5.1.min.js");
     array_push($wanted_ext_js, "ckeditor/ckeditor.js");
 ?>
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/private_head.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 <?php 
     if(isset($_GET['create-new-post'])) {
         $createNewPost = true;
@@ -41,7 +42,7 @@
 <?php if($isEditingPost): ?>
                 <!-- Edit Post -->
                 <h2>Edit Post</h2>
-                <form method="post" action="<?php echo $directory_table->linkToPage("blog-admin") . "/index.php"; ?>">
+                <form method="post" action="<?php echo $directory_table->linkBySlug("blog-admin") . "/index.php"; ?>">
                     <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
                     <fieldset>
                         <legend>
@@ -81,7 +82,7 @@
                 <!-- Add Post -->
                 <h2>Add Post</h2>
 <?php include(DOC_PREFIX . SHARED_PATH . "/errors/errors.php"); ?>
-                <form method="post" action="<?php echo $directory_table->linkToPage("blog-admin") . "/index.php"; ?>">
+                <form method="post" action="<?php echo $directory_table->linkBySlug("blog-admin") . "/index.php"; ?>">
                     <fieldset>
                         <legend>
                             Post Slug
@@ -133,4 +134,4 @@
             </script>
         </main>
 
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/private_foot.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

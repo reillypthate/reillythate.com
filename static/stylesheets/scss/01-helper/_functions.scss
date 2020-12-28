@@ -1,0 +1,28 @@
+// Get the var(--`$key`) name.
+@function gray($key)
+{
+    @return #{var(--#{$key})};
+}
+@function color($key)
+{
+    @return #{var(--#{$key})};
+}
+@function theme($key, $opacity:off)
+{
+    @return #{var(--#{$key}-#{$opacity})};
+}
+
+@function pow($number, $exponent)
+{
+    $value: 1;
+
+    @if $exponent > 0
+    {
+        @for $i from 1 through $exponent
+        {
+            $value: $value * $number;
+        }
+    }
+
+    @return $value;
+}

@@ -30,7 +30,7 @@
 						By combining his unique creative mind with a professional approach to tasks, Reilly is able to apply his talents to professional endeavors. 
 					</p>
 */ ?>
-					<p class="end-preview-link"><a href="<?php echo $directory_table->linkToPage("portfolio"); ?>">Visit Portfolio</a></p>
+					<p class="end-preview-link"><a href="<?php echo $directory_table->linkBySlug("portfolio"); ?>">Visit Portfolio</a></p>
 				</article>
             </section>
 

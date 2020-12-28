@@ -9,7 +9,17 @@
  */
 main
 {
+    @include element-color(theme(off-white), theme(off-black));
     @include edge($section_spacer, 0);
+}
+#manager
+{
+    @include flex(row, flex-start, flex-start, nowrap);
+    & > section
+    {
+        @include edge(0 1rem, 0);
+        flex-basis: 45%;
+    }
 }
 section
 {

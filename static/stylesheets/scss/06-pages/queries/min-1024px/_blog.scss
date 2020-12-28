@@ -5,62 +5,25 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #blog-preview
 {
-    @include edge(0 auto, 0);
-    @include flex(row, flex-start, flex-start, wrap);
-
-    display: grid;
-    grid-gap: 1rem;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-
-    & > *
-    {
-        flex-basis: 45%;
-    }
 }
 .blog-preview
 {
-    @include edge(0);// 0 $section_spacer 0);
-    border-bottom: 2px solid $accent_secondary;
-    border-radius: 0 0 1rem 1rem;
-
-    .banner
-    {
-        width: 100%;
-    }
+    
+}
+.blog
+{
     .preview-head
     {
-        @include edge($section_spacer, 0);
-        @include flex(row, flex-start, center, nowrap);
-        img
-        {
-            width: 12.5%;
-        }
+        position: absolute;
+        top: 0;
     }
-    .preview-head_details
-    {
-        @include edge(0 0 0 $section_spacer/2, 0);
-        p
-        {
-            @include edge(0.5rem, 0);
+}
 
-            font-size: 0.9rem;
-        }
-        time
-        {
-            @include edge(0.5rem, 0);
+.blog-gallery
+{
+    @include grid($gap:($content-spacer/4));
 
-            display: block;
-            font-size: 0.8rem;
-        }
-    }
-
-    .preview-body
-    {
-        @include edge($section_spacer, 0);
-        h2
-        {
-            flex-basis: 100%;
-        }
-    }
+    @extend %p-child;
+    @extend %adjacent-heading-spacer;
 }

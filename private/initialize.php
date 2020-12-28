@@ -11,6 +11,7 @@ if(isset($_GET['html-refresh']))
 date_default_timezone_set("America/New_York");
 
 $errors = [];
+$PAGE_SET = "";
 
 define("HTTP_PREFIX", $_SERVER['HTTP_HOST']);       /* 10.0.0.2                         */
 define("DOC_PREFIX", $_SERVER['DOCUMENT_ROOT']);    /* C:/xampp/htdocs/                 */

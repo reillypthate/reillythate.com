@@ -1,0 +1,20 @@
+%flex-center
+{
+    @include flex(row, center, center, nowrap);
+}
+
+%p-child
+{
+    & + p, & + div
+    {
+        margin-top: $content-spacer*2;
+    }
+}
+%adjacent-heading-spacer
+{
+    & + h2, & + h3, & + h4, & + h5, & + h6, & + div
+    {
+        margin-top: $section-spacer*2;
+        margin-bottom: $content-spacer*2;
+    }
+}

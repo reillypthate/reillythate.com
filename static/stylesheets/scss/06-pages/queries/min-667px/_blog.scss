@@ -4,7 +4,20 @@
  *
  * #about_thesis, 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-.blog-preview
+#blog-preview
 {
-    
+    grid-template-columns: repeat(2, 1fr);
 }
+
+@for $i from 1 through 4
+{
+    .cols-#{$i}
+    {
+        grid-template-columns: repeat($i, 1fr);
+    }
+    .rows-#{$i}
+    {
+        grid-template-rows: repeat($i, 1fr);
+    }
+}
+

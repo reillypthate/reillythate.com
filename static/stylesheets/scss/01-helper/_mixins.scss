@@ -11,8 +11,8 @@
     {
         border-radius: $border-radius;
     }
-    /* */
 }
+
 @mixin flex($flex-direction, $justify-content:false, $align-items:false, $flex-wrap:true)
 {
     display: flex;
@@ -28,5 +28,89 @@
     @if $flex-wrap
     {
         flex-wrap: $flex-wrap;
+    }
+}
+
+@mixin grid($columns:false, $rows:false, $areas:false, $gap:false, $inline:false, $place:false)
+{
+    @if $inline
+    {
+        display: inline-grid;
+    } @else
+    {
+        display: grid;
+    }
+    @if $gap
+    {
+        gap: $gap;
+    }
+    @if $columns
+    {
+        grid-template-columns: $columns;
+    }
+    @if $rows
+    {
+        grid-template-rows: $rows;
+    }
+    @if $areas
+    {
+        grid-template-areas: $areas;
+    }
+    @if $place
+    {
+        place-items: $place;
+    }
+}
+
+// Set the color of an element and its text.
+@mixin element-color($background-color:$col-background, $text-color:$col-contrast)
+{
+    @if $background-color
+    {
+        background: $background-color;
+    }
+    @if $text-color
+    {
+        color: $text-color;
+    } 
+}
+// Set the style of a font: bold, italic, or small-caps.
+@mixin font-look($style:false, $weight:false, $variant:false)
+{
+    @if $style
+    {
+        font-style: $style;
+    }
+    @if $weight
+    {
+        font-weight: $weight;
+    }
+    @if $variant
+    {
+        font-variant: $variant;
+    }
+}
+// Set the spacing between lines, letters, and words.
+@mixin line-format($font-size:$default-font-size, $line-height:false, $letter-spacing:false, $word-spacing:false, $align:false)
+{
+    font-size: $font-size;
+    line-height: $font-size;
+    letter-spacing: calc(#{$font-size} / 20);
+
+    @if $line-height
+    {
+        line-height: $line-height;
+    }
+    @if $letter-spacing
+    {
+        letter-spacing: $letter-spacing;
+    }
+    @if $word-spacing
+    {
+        word-spacing: $word-spacing;
+    }
+    @if $align
+    {
+        text-align: $align;
     }
 }

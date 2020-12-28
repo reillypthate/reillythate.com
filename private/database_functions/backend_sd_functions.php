@@ -258,7 +258,7 @@ function html_refresh($req_vals)
     $update_statement->close();
 
     $_SESSION['message'] = "Sub-directory updated successfully!";
-    header('location: ' . $directory_table->linkToPage('directory') . '/index.php');
+    header('location: ' . $directory_table->linkBySlug('directory') . '/index.php');
     exit(0);
 }
 ?>

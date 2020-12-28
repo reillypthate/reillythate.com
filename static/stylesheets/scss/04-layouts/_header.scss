@@ -7,12 +7,12 @@
 /**
  * Styling for the <header> element when defined as #public_header.
  */
- #public_header
-{ // outline: 3px dotted hsla(0, 50%, 50%, 0.5);
+#public_header
+{
     @include flex(row, space-between, center, wrap);
     @include edge(0.5rem, 0.5rem);
     margin-bottom: 0;
-    border-bottom: 3px solid $accent-secondary;
+    border-bottom: 3px solid theme(primary, trans);
     // border-radius: 0.5rem;
 
     & > a // Link Container for Renegade Logo
@@ -45,48 +45,49 @@
 /**
  * Styling for the <nav> element within the <header> element.
  */
- #nav_primary
- {
-     margin: 1rem;
-     margin-bottom: 0;
-     flex-basis: 100%;
- 
-     ul
-     {
-         @include edge(0, 0.5rem);
- 
-         list-style: none;
-     }
-     li
-     {
-         text-align: right;
-         font-weight: normal;
- 
-         font-size: calc(#{$nav_primary_li_size} * 1.1);
-         letter-spacing: calc(#{$nav_primary_li_size} / 15);
-     }
-     a
-     {
-         display: block;
-         padding: 0.75rem;
-         padding-right: 1.5rem;
-     }
-     .nav_active_page
-     {
-         cursor: default;
-         border-right: 0.25rem groove $accent-primary;
-         padding-right: 1.25rem;
-         &:hover
-         {
-             color: $col-contrast;
-         }
-     }
- }
+#nav_primary
+{
+    margin: 1rem;
+    margin-bottom: 0;
+    flex-basis: 100%;
+
+    ul
+    {
+        @include edge(0, 0.5rem);
+
+        list-style: none;
+    }
+    li
+    {
+        text-align: right;
+        font-weight: normal;
+
+        font-size: calc(#{$nav_primary_li_size} * 1.1);
+        letter-spacing: calc(#{$nav_primary_li_size} / 15);
+    }
+    a
+    {
+        display: block;
+        padding: 0.75rem;
+        padding-right: 1.5rem;
+    }
+    .nav_active_page
+    {
+        cursor: default;
+        border-right: 0.25rem groove theme(primary);
+        padding-right: 1.25rem;
+        &:hover
+        {
+            color: gray(off-black);
+        }
+    }
+}
 
 #backticks
 {
     @include edge(0.5rem, 0.5rem 1rem 1rem 1rem);
-    border-bottom: 3px solid $accent-secondary;
+    
+    border-bottom: 3px solid theme(primary, trans);
     ul
     {
         @include edge(0, 0);
@@ -115,25 +116,4 @@
             }
         }
     }
-    /*
-    .level_1
-    {
-        margin-left: 0;
-    }
-    .level_2
-    {
-        margin-left: 0;
-    }
-    .level_3
-    {
-        margin-left: 0.5rem;
-    }
-    .level_4
-    {
-        margin-left: 1rem;
-    }
-    .level_5
-    {
-        margin-left: 1.5rem;
-    }*/
 }

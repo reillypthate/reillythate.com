@@ -8,10 +8,6 @@
 /** Anchor tag styling. */
 a
 {
-    /* Remove UNDERLINES from links. */
-    text-decoration: none;
-    width: auto;
-
     &:link
     {
 
@@ -27,9 +23,4 @@ a
 
         }
     }
-}
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a
-{
-    /* Set color of headings w/ links to contrast */
-    color: $col-contrast;
 }

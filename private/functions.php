@@ -41,7 +41,7 @@
     }
     function getArticleLines($article)
     {
-        preg_match_all('/<p>(.*?)<\/p>/', $article, $breaks);
+        preg_match_all('/<.+>(.*?)<\/.+>/', $article, $breaks);
 
         return $breaks[0];
     }

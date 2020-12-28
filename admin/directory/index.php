@@ -6,8 +6,9 @@
 <?php
     // Page Metadata
 	$SLUG = "directory";
+    $PAGE_SET = "admin";
 ?>
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/private_head.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
         
 		<main id="manager">
             <section>
@@ -17,7 +18,7 @@
 <?php if($isEditingDirectory): ?>
                 <!-- Edit Directory -->
                 <h2>Edit Directory</h2>
-                <form method="post" action="<?php echo $directory_table->linkToPage("directory") . "/index.php"; ?>">
+                <form method="post" action="<?php echo $directory_table->linkBySlug("directory") . "/index.php"; ?>">
                     <input type="hidden" name="dir_id" value="<?php echo $directory_id; ?>">
                     <fieldset>
                         <legend>
@@ -64,7 +65,7 @@
                 <!-- Add Directory -->
                 <h2>Add New Directory</h2>
 <?php include(DOC_PREFIX . SHARED_PATH . "/errors/errors.php"); ?>
-                <form method="post" action="<?php echo $directory_table->linkToPage("directory") . "/index.php"; ?>">
+                <form method="post" action="<?php echo $directory_table->linkBySlug("directory") . "/index.php"; ?>">
                     <fieldset>
                         <legend>
                             Parent Directory
@@ -111,4 +112,4 @@
             </section>
 		</main>
         
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/private_foot.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

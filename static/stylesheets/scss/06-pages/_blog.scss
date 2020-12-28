@@ -4,7 +4,206 @@
  *
  * #about_thesis, 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#blog-preview
+{
+    @include edge(0 auto, 0);
+    @include flex(row, flex-start, flex-start, wrap);
+
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+}
 .blog-preview
 {
+    @include edge(0);// 0 $section_spacer 0);
+    border-bottom: 2px solid theme(primary, trans);
+    border-radius: 0 0 1rem 1rem;
 
+    .banner
+    {
+        display: block;
+        width: 100%;
+    }
+    .blog-title
+    {
+        @include edge(0, 1rem);
+        flex-basis: 100%;
+        background: theme(primary);
+        color: $bright_primary;
+    }
+    .preview-head
+    {
+        @include edge(0, $content-spacer);
+        border-bottom: 1px solid theme(primary, trans);
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        img
+        {
+            padding: 0;
+            width: 100%;
+            filter: none;
+        }
+    }
+    .preview-head_details
+    {
+        @include edge(0 $section_spacer/2, $content_spacer);
+        @include flex(row, flex-start, center, wrap);
+        color: gray(off-black);
+
+        flex-basis: 87.5%;
+        p
+        {
+            @include edge(0);
+            &::after
+            {
+                content: "|";
+                margin: 0 1rem;
+            }
+            &:last-child
+            {
+                flex-basis: 100%;
+                margin-top: $content_spacer / 2;
+                font-style: italic;
+                &::after
+                {
+                    content: "";
+                    margin: 0;
+                }
+            }
+        }
+        time
+        {
+            @include edge(0);
+            display: block;
+            font-size: 0.8rem;
+        }
+    }
+
+    .preview-body
+    {
+        @include edge($content_spacer, 0);
+        h2
+        {
+            flex-basis: 100%;
+        }
+        p
+        {
+            //@include edge($section_spacer, 0);
+        }
+    }
+    .tag
+    {
+        @include edge(0, 0.25rem 0.5rem, 1px solid theme(primary), 0.25rem);
+        background: none;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+    }
+}
+.blog
+{
+    position: relative;
+    //border: 2px solid red;
+    overflow: hidden;
+}
+.blog-header
+{
+    @include edge(0 auto, 0);
+    position: relative;
+    max-width: $blog-image-max-width;
+    
+
+    @extend %p-child;
+}
+.blog-banner
+{
+    opacity: 50%;
+}
+.blog-header_details
+{
+    @include edge(0, 0);
+    @include flex(row, flex-start, center, wrap);
+    background: theme(primary, trans);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.blog-title
+{
+    @include edge($section_spacer, 0);
+    color: $bright_primary;
+}
+.renegade
+{
+    @include edge(0, $section_spacer);
+    filter: invert(95%);
+    width: 5%;
+}
+.preview-head_details
+{
+    @include edge($section_spacer, 0);
+    @include flex(row, flex-start, center, wrap);
+    color: $bright_primary;
+    p
+    {
+        @include edge(0);
+        &::after
+        {
+            content: "|";
+            margin: 0 1rem;
+        }
+        &:last-child
+        {
+            flex-basis: 100%;
+            margin-top: $content_spacer / 2;
+            font-style: italic;
+            &::after
+            {
+                content: "";
+                margin: 0;
+            }
+        }
+    }
+    time
+    {
+        @include edge(0);
+        display: block;
+        font-size: 0.8rem;
+    }
+}
+.preview-head_tags
+{
+    @include edge($section_spacer, 0);
+    margin: 0;
+    grid-column: -1;
+}
+
+.tag
+{
+    @include edge(0, 0.25rem 0.5rem, 1px solid $accent_primary, 0.25rem);
+    background: $bright_primary;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+.blog-body
+{
+    @include edge($section_spacer, 0);
+    & > *
+    {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    & > p, h3, h4
+    {
+        max-width: $blog-body-max-width;
+    }
+}
+.blog-gallery
+{
+    @include grid($gap:($content-spacer/4));
+    max-width: $blog-image-max-width * 1.2;
+
+    @extend %p-child;
+    @extend %adjacent-heading-spacer;
 }

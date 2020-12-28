@@ -37,80 +37,8 @@
 **/
 .portfolio_card, .card
 {
-    position: relative;
-    overflow: hidden;
-
-    & img
-    {
-        display: block;
-        filter: brightness(100%) contrast(100%) sepia(0%);
-
-        transition: filter $trans_portfolio_card ease;
-    }
     & h2, h3, .pc_description, .card_description
     {
         @include edge(0, 0.5rem);
-        position: absolute;
-
-        left: 0;
-
-        background: $accent_secondary;
-        
-        color: $bright_secondary;
-        text-align: left;
-    }
-    & h2, h3
-    {
-        top: 0;
-        right: auto;
-        border-radius: 0 0.5rem 0.5rem 0.5rem;
-        transition: 
-            background-color $trans_portfolio_card ease, 
-            color $trans_portfolio_card ease;
-            //right $trans_portfolio_card ease;
-    }
-    & .pc_description, .card_description
-    {
-        border-radius: 0.5rem 0.5rem 0 0;
-        right: 0;
-        bottom: -50px;
-
-        opacity: 0%;
-        transition: 
-            bottom $trans_portfolio_card ease,
-            background-color $trans_portfolio_card ease, 
-            color $trans_portfolio_card ease, 
-            opacity $trans_portfolio_card ease;
-            //opacity $trans_portfolio_card ease,
-    }
-    & p
-    {
-        transition: 
-            color $trans_portfolio_card ease;
-    }
-    &:hover
-    {
-        & img
-        {
-            filter: brightness(50%) contrast(87.5%) sepia(100%);
-        }
-
-        & h2, h3
-        {
-            background: $accent_secondary;
-            color: $bright_primary;
-            //right: 0;
-        }
-        & .pc_description, .card_description
-        {
-            bottom: 0;
-            background: $accent_secondary;
-            bottom: 0;
-            opacity: 100%;
-        }
-        & p
-        {
-            color: $bright_primary;
-        }
     }
 }

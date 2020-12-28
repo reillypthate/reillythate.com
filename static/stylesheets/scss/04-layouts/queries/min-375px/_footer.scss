@@ -6,65 +6,12 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 footer
 {
-    @include edge(0.5rem, 0.5rem);
-    border-top: 3px solid $accent-secondary;
-
-    @include flex(row, center, center, wrap);
-
-    & > *
-    {
-        flex-basis: 100%;
-    }
-    p
-    {
-        text-align: center;
-    }
-
-    & > a
-    {
-        text-align: center;
-        width: 50px;
-        flex-basis: auto;
-        & img
-        {
-            margin-top: 1rem;
-            max-width: 50px;
-            filter: grayscale(50%);
-            filter: opacity(50%);
-
-            &:hover
-            {
-                opacity: 90%;
-            }
-        }
-    }
+    
 }
 /**
  * Styling for the footer's <nav> element.
  */
 #nav_footer
 {
-    @include edge(0 1rem 1rem 1rem, 0);
 
-    ul
-    {
-        @include edge(0);
-        @include flex(row, space-around, center, nowrap);
-        
-        list-style: none;
-    }
-    li
-    {
-        border: none;
-        border-radius: 0.5rem;
-
-        font-size: $body-size;
-        text-align: center;
-    }
-    a
-    {
-        text-decoration: underline;
-        display: block;
-        padding: 0.5rem;
-    }
 }

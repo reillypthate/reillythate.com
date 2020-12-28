@@ -1,15 +1,13 @@
 <?php
 
 use Trick\Element; // Call the `Element` class from the "Trick" namespace.
+// Use ELEMENT for:
+    // Backend Admin table generator
 
 /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Site Directory Functions
- * + db_getSiteDirectory()
- * + getPageDescriptionFromTitle($page_title)
- * + getPageRobotsFromPageTitle($page_title)
- * + getPageIdFromPageTitle($page_title)
- * + buildURL($page_id)
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 /**
 ** This class contains the functions required to work with the Site Directory.
 **/
@@ -20,8 +18,49 @@ class DirectoryTable extends DB_Functions
     function __construct()
     {
         parent::__construct("site_directory");
+
+        $this->convertTableToAssoc();
+        
+
         $this->hierarchy = array();
         $this->chunkSubdirectories();
+    }
+
+    /**
+     * Return a URL to the page requested.
+     */
+    public function linkBySlug($page_slug)
+    {
+        // Check to see how the variable has been passed; if it's a slug (string), pass the associated ID to the function.
+        // Otherwise, pass the 
+        return "/" . $this->buildURL($this->getIdFromSlug($page_slug));
+    }
+    /**
+     * Return a URL to the page requested.
+     */
+    public function linkById($page_id)
+    {
+        // Check to see how the variable has been passed; if it's a slug (string), pass the associated ID to the function.
+        // Otherwise, pass the 
+        return "/" . $this->buildURL($page_id);
+    }
+    public function linkToImage($image)
+    {
+        return $this->linkBySlug("images") . "/" . $image;
+    }
+
+    /**
+     * Convert the table into an assoc array by 'id'.
+     */
+    private function convertTableToAssoc()
+    {
+        $tableAssoc = array();
+        foreach($this->table as $t_index=>$row)
+        {
+            $tableAssoc[$row['id']] = $row;
+        }
+        $this->table = $tableAssoc;
+        //print_r($this->table);
     }
     /**
      * Creates a dictionary that details the parent-child relationship between subdirectories.
@@ -88,11 +127,16 @@ class DirectoryTable extends DB_Functions
         return $this->getRowFromCellValue("slug", $page_slug)['robots'];
     }
 
+
     // TABLE functions.
     public function getIdFromSlug($page_slug)
     {
-        return $this->getRowFromCellValue("slug", $page_slug)['id'];
+        $temp = $this->getRowFromCellValue("slug", $page_slug);
+        //print_r($temp);
+        return $this->getRowFromCellValue("slug", $page_slug)
+        ['id'];
     }
+
     /**
      * A recursive function that constructs a URL backwards from a particular page in the `directory`.
      * 
@@ -106,9 +150,8 @@ class DirectoryTable extends DB_Functions
         }
 
         // 1st, find the url associated with the $page_id and get the p_id.
-        // ($page_id - 1) corresponds to $site_directory row index (if ordered by ID).
-        $path_chunk = $this->table[$page_id - 1]['slug'];
-        $parent_dir = $this->table[$page_id - 1]['p_id'];
+        $path_chunk = $this->table[$page_id]['slug'];
+        $parent_dir = $this->table[$page_id]['p_id'];
 
         if($parent_dir) // If not null, it's a sub-directory. Continue recursion.
         {
@@ -117,6 +160,9 @@ class DirectoryTable extends DB_Functions
         // $parent_dir is null; this is the website root. End recursion.
         return $path_chunk;
     }
+    /**
+     * Used for navigation backticks.
+     */
     public function getLinkStack($page_id, $stack)
     {
         if($page_id == -1)
@@ -124,10 +170,10 @@ class DirectoryTable extends DB_Functions
             return "Error: Invalid page id.";
         }
 
-        $current_link = array($this->table[$page_id - 1]['title'], $this->linkToPage($this->table[$page_id - 1]['slug']));
+        $current_link = array($this->table[$page_id]['title'], $this->linkBySlug($this->table[$page_id]['slug']));
         array_push($stack, $current_link);
 
-        $parent_dir = $this->table[$page_id - 1]['p_id'];
+        $parent_dir = $this->table[$page_id]['p_id'];
 
         if($parent_dir) // If not null, it's a sub-directory. Continue recursion.
         {
@@ -135,15 +181,6 @@ class DirectoryTable extends DB_Functions
         }
         // $parent_dir is null; this is the website root. End recursion.
         return $stack;
-    }
-
-    public function linkToPage($page_slug)
-    {
-        return "/" . $this->buildURL($this->getIdFromSlug($page_slug));
-    }
-    public function linkToImage($image)
-    {
-        return $this->linkToPage("images") . "/" . $image;
     }
     public function buildTable()
     {
@@ -179,7 +216,7 @@ class DirectoryTable extends DB_Functions
 
         $table->pushLine(2, "<tbody>");
 
-        $head_updated = (strtotime($this->fileLastUpdated($this->getIdFromSlug('public-head'))) > strtotime($this->table[34]['last_updated']));
+        $head_updated = (strtotime($this->fileLastUpdated($this->getIdFromSlug('public-head'))) > strtotime($this->table[$this->getIdFromSlug('public-head')]['last_updated']));
         echo $head_updated ? "Head Updated" : "";
 
         foreach($this->hierarchy as $h_keys=>$parent)
@@ -197,11 +234,11 @@ class DirectoryTable extends DB_Functions
                 $table->pushLine(4, '<td>' . $row['title'] . '</td>');
                 //$table->pushLine(4, '<td>' . $row['slug'] . '</td>');
                 $table->pushLine(4, '<td>' . ($row['published'] ? 'Yes' : 'No') . '</td>');
-                $table->pushLine(4, '<td><button onclick="window.location.href=\'index.php?edit-dir=' . $row['id'] . '\'">Edit</button></td>');
+                $table->pushLine(4, '<td><button onclick="window.location.href=\'' . $this->linkBySlug('directory') . '/index.php?edit-dir=' . $row['id'] . '\'">Edit</button></td>');
 
                 $table->pushLine(4, '<td>');
                 $table->pushLine(5, $last_updated);
-                $table->pushLine(5, '<button onclick="window.location.href=\'' . $this->linkToPage($row['slug']) . '/index.php?html-refresh=' . $row['id'] . '\'"' . $needs_update . '>HTML</button>');
+                $table->pushLine(5, '<button onclick="window.location.href=\'' . $this->linkById($row['id']) . '/index.php?html-refresh=' . $row['id'] . '\'"' . $needs_update . '>HTML</button>');
                 $table->pushLine(4, '</td>');
 
                 $table->pushLine(3, '</tr>');
@@ -220,11 +257,11 @@ class DirectoryTable extends DB_Functions
                     $table->pushLine(4, '<td>&mdash; ' . $row['title'] . '</td>');
                     //$table->pushLine(4, '<td>' . $row['slug'] . '</td>');
                     $table->pushLine(4, '<td>' . ($row['published'] ? 'Yes' : 'No') . '</td>');
-                    $table->pushLine(4, '<td><button onclick="window.location.href=\'index.php?edit-dir=' . $row['id'] . '\'">Edit</button></td>');
+                    $table->pushLine(4, '<td><button onclick="window.location.href=\'' . $this->linkBySlug('directory') . '/index.php?edit-dir=' . $row['id'] . '\'">Edit</button></td>');
 
                     $table->pushLine(4, '<td>');
                     $table->pushLine(5, $last_updated);
-                    $table->pushLine(5, '<button onclick="window.location.href=\'' . $this->linkToPage($row['slug']) . '/index.php?html-refresh=' . $row['id'] . '\'"' . $needs_update . '>HTML</button>');
+                    $table->pushLine(5, '<button onclick="window.location.href=\'' . $this->linkById($row['id']) . '/index.php?html-refresh=' . $row['id'] . '\'"' . $needs_update . '>HTML</button>');
                     $table->pushLine(4, '</td>');
 
                     $table->pushLine(3, '</tr>');
@@ -242,6 +279,11 @@ class DirectoryTable extends DB_Functions
         $table->pushLine(1, "</table>");
 
         return $table->printLines($num_tabs);
+    }
+
+    public function printHierarchy()
+    {
+        return $this->hierarchy;
     }
 }
 ?>

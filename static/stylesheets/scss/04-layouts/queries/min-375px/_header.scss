@@ -61,11 +61,11 @@
     .nav_active_page
     {
         cursor: default;
-        border-right: 0.25rem groove $accent-primary;
+        border-right: 0.25rem groove theme(primary);
         padding-right: 1.25rem;
         &:hover
         {
-            color: $col-contrast;
+            color: gray(off-black);
         }
     }
 }

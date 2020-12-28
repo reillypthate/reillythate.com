@@ -18,7 +18,7 @@
                     </p>
                 </article>
             </section>
-<?php $card_table->generateCardSection(array("birthday-toast", "night-lift", "ruthless-the-final-chapter", "bud-light-for-a-soul"), 3, 3, "film-portfolio"); ?>
+<?php $card_table->generateCardSection(array("project-birthday-toast", "project-night-lift", "project-ruthless-the-final-chapter", "project-bud-light-for-a-soul"), 3, 3, "film-portfolio"); ?>
 
 		</main>
 

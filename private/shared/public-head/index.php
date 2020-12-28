@@ -3,6 +3,7 @@
     {
         ob_start("callback"); // Begins output buffer. 
     }
+    $home_link = $directory_table->linkBySlug("reillythate.com");
 ?>
 <!doctype html>
 <html>
@@ -15,7 +16,7 @@
         <meta name="description" content="<?php echo $page_row['description']; ?>">
         <meta name="keywords" content="Filmmaker, Developer, Designer">
 
-        <base href="<?php // echo $directory_table->linkToPage("reillythate.com"); ?>">
+        <base href="<?php echo $directory_table->linkBySlug("reillythate.com"); ?>">
         
         <meta name="author" content="Reilly Thate">
 <?php if($page_row['robots']): ?>
@@ -26,7 +27,7 @@
         <meta property="og:type" content="website">
         <meta property="og:title" content="<?php echo $page_row['title'];?> | Reilly Thate">
         <meta property="og:description" content="<?php echo $page_row['description']; ?>">
-        <meta property="og:url" content="<?php echo $directory_table->linkToPage($SLUG); ?>">
+        <meta property="og:url" content="<?php echo $directory_table->linkBySlug($SLUG); ?>">
         <meta property="og:site_name" content="Reilly Thate">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:creator" content="@trickthate">
@@ -41,18 +42,27 @@
 <?php insertJavascriptSrcFiles(); ?>
 
     </head>
+
     <body>
         <header id="public_header">
-            <a href="<?php echo $directory_table->linkToPage("reillythate.com"); ?>">
+            <a href="<?php echo $home_link; ?>">
                 <img src="<?php echo $directory_table->linkToImage("Renegade_Blues.svg"); ?>" alt="Renegade logo.">
             </a>
-            <h1><a href="<?php echo $directory_table->linkToPage("reillythate.com"); ?>">Reilly Thate</a></h1>
+            <h1><a href="<?php echo $home_link; ?>">Reilly Thate</a></h1>
             <nav id="nav_primary">
                 <button type="button" class="collapsible">Menu</button>
                 <ul class="nav-ul-grid collapsible_content">
-<?php $page_slugs = array("portfolio", "blog", "about"); ?>
+<?php 
+    if($PAGE_SET == "admin")
+    {
+        $page_slugs = array("directory", "media", "card", "blog-admin");
+    }else
+    {
+        $page_slugs = array("portfolio", "blog", "about");
+    }
+?>
 <?php foreach($page_slugs as $key=>$slug): ?>
-                    <li><a <?php if($SLUG == $slug): ?>class="nav_active_page"<?php else: ?>href="<?php echo $directory_table->linkToPage($slug); ?>"<?php endif; ?>><?php echo ucwords($slug); ?></a></li>
+                    <li><a <?php if($SLUG == $slug): ?>class="nav_active_page"<?php else: ?>href="<?php echo $directory_table->linkBySlug($slug); ?>"<?php endif; ?>><?php echo ucwords($slug); ?></a></li>
 <?php endforeach; ?>
                 </ul>
             </nav>

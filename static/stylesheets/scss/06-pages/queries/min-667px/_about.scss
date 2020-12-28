@@ -10,7 +10,7 @@
     @include flex(row, flex-start, flex-start, nowrap);
 
     padding-bottom: $section_spacer;
-    border-bottom: 3px groove $accent-secondary;
+    border-bottom: 3px groove theme(primary, trans);
 
     & img
     {

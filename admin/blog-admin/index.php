@@ -6,19 +6,20 @@
 <?php
     // Page Metadata
 	$SLUG = "blog-admin";
+    $PAGE_SET = "admin";
 ?>
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/private_head.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 
         <main id="manager">
             <section>
                 <?php $post_table->buildTable(); ?>
             </section>
             <section>
-                <form method="get" action="<?php echo $directory_table->linkToPage("post") . "/index.php" ?>">
+                <form method="get" action="<?php echo $directory_table->linkBySlug("post") . "/index.php" ?>">
                     <input type="hidden" name="create-new-post" value="true">
                     <button type="submit">Create New Post</button>
                 </form>
             </section>
         </main>
 
-<?php require_once(DOC_PREFIX . SHARED_PATH . "/private_foot.php"); ?>
+<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

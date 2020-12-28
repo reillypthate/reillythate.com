@@ -4,10 +4,6 @@
  * + LIGHT THEME
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-html
-{
-    background: $col-background;
-}
 main
 {
     @include edge(1rem, 0 1rem);

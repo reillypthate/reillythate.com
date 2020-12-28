@@ -1,4 +1,13 @@
-@import url("https://fonts.googleapis.com/css?family=Oswald:300,400,500|Raleway&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Oswald:300,400,500|Raleway:100,200,300,400,500,600,700,800,900&display=swap");
+
+// Variables
+// 
+// Variables should follow the `$component-state-property-size` formula for consistent naming.
+// Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+
+// Color System
+//
+// The colors will be applied as :root variables in the preprocessed CSS document.
 
 $col-background: hsla(0, 0%, 95%, 1.0);
 $col-contrast: hsla(0, 0%, 10%, 1.0);
@@ -6,21 +15,129 @@ $col-contrast: hsla(0, 0%, 10%, 1.0);
 $col-background-highlight: hsla(0, 0%, 85%, 1.0);
 $col-background-active: hsla(0, 0%, 75%, 1.0);
 
+// Grays
+
+// Used for background theming.
+$white:     hsla(0, 0%, 100%, 1.0) !default;
+$off-white: hsla(0, 0%, 95%, 1.0) !default;
+
+// Used for text/contrast theming.
+$dark-gray: hsla(0, 0%, 25%, 1.0) !default;
+$off-black: hsla(0, 0%, 10%, 1.0) !default;
+$black:     hsla(0, 0%, 0%, 1.0) !default;
+
+$grays: () !default;
+$grays: map-merge(
+    (
+        "white": $white,
+        "off-white": $off-white,
+        "dark-gray": $dark-gray,
+        "off-black": $off-black,
+        "black": $black
+    ),
+    $grays
+);
+
+// Colors
+
+$blue:   blue !default;
+$indigo: indigo !default;
+$purple: purple !default;
+$pink:   pink !default;
+$red:    red !default;
+$orange: orange !default;
+$yellow: yellow !default;
+$green:  green !default;
+$teal:   teal !default;
+$cyan:   cyan !default;
+
+$colors: () !default;
+$colors: map-merge(
+    (
+        "blue":         $blue,
+        "indigo":       $indigo,
+        "purple":       $purple,
+        "pink":         $pink,
+        "red":          $red,
+        "orange":       $orange,
+        "yellow":       $yellow,
+        "green":        $green,
+        "teal":         $teal,
+        "cyan":         $cyan
+    ),
+    $colors
+);
+
+// Theme Colors
+
+$primary: (
+    "hue": 207,
+    "shade": 85%,
+    "lightness": 23%
+);
+$secondary: (
+    "hue": 230,
+    "shade": 75%,
+    "lightness": 50%
+);
+
+$theme-colors: () !default;
+$theme-colors: map-merge(
+    (
+        "primary":      $primary,
+        "secondary":    $secondary,
+    ),
+    $theme-colors
+);
+
+$primary-solid: #{var(--primary-solid)};
+$primary-off: #{var(--primary-off)};
+$primary-trans: #{var(--primary-trans)};
+$secondary-solid: #{var(--secondary-solid)};
+$secondary-off: #{var(--secondary-off)};
+$secondary-trans: #{var(--secondary-trans)};
+
+$dominant-hue: 207;
+$dominant-shade: 85%;
+$dominant-lightness: 23%;
+$auxiliary-hue: 230;
+$auxiliary-shade: 75%;
+$auxiliary-lightness: 50%;
+
+$alpha-primary: 0.9;
+$alpha-secondary: 0.45;
+
+$dominant-primary: theme(primary, off);
+$dominant-secondary: theme(primary, trans);
+$auxiliary-primary: theme(secondary, off);
+$auxiliary-secondary: theme(secondary, trans);
+
 $header-width: 35%;
 
-$body-size: 1.05rem;
+// Fonts
 
 $font-family-header: "Oswald", sans-serif;
 $font-family-body: "Raleway", sans-serif;
+
+$default-font-base: 1.1;
+$default-font-size: 1rem * $default-font-base;
+$body-size: $default-font-size;
+
+$heading-base: 1.1;
+$h6-size: 1rem * pow($heading-base, 1);
+$h5-size: 1rem * pow($heading-base, 2);
+$h4-size: 1rem * pow($heading-base, 3);
+$h3-size: 1rem * pow($heading-base, 4);
+$h2-size: 1rem * pow($heading-base, 5);
+$h1-size: 1rem * pow($heading-base, 7);
+//$thate-tagline-size: calc(#{$h1-size} / (5 / 3));
 
 $section_spacer: 1rem;
 $content_spacer: 0.75rem;
 $card_grid_spacer: 0.5rem;
 
-$h1-size: 2.5rem;
-$h2-size: 1.9rem;
-$h3-size: 1.4rem;
-$thate-tagline-size: calc(#{$h1-size} / (5 / 3));
+$blog-image-max-width: 700px;
+$blog-body-max-width: $blog-image-max-width * 0.8;
 
 $nav_primary_li_size: 1.25rem;
 
