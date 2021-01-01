@@ -23,27 +23,64 @@
 }
 .card_count_1
 {
-    
+    grid-template-columns: 1fr;
 }
 .card_count_2
 {
-    
+    grid-template-columns: repeat(2, 1fr);
 }
 .card_count_3
 {
-    
+    @include query("phone")
+    {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include query("phone-wide")
+    {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 .card_count_4
 {
-    
+    grid-template-columns: repeat(2, 1fr);
+
+    @include query("phone-wide")
+    {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @include query("tablet-landscape")
+    {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
+.card_count_5
+{
+    @include query("tablet-landscape")
+    {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+.card_count_6
+{
+    @include query("tablet-landscape")
+    {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
 .cards-home-primary
 {
 
 }
 .film-portfolio
 {
-
+    grid-template-columns: repeat(2, 1fr);
+    
+    @include query("phone-wide")
+    {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 /**
 **
@@ -71,6 +108,10 @@
         
         color: gray(off-white);
         text-align: left;
+        @include query("phone")
+        {
+            @include edge(0, 0.5rem);
+        }
     }
     & h2, h3
     {

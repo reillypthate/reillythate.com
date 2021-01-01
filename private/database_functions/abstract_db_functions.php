@@ -19,14 +19,20 @@ abstract class DB_Functions
     {
         global $conn;
 
-        $query = "SELECT * FROM `" . $table_name . "` ORDER BY `id` ASC";
-        $result = $conn->query($query);
+        $qb = $conn->createQueryBuilder();
+        $qb
+            ->select('*')
+            ->from($table_name)
+            ->orderBy($table_name . '.id', 'ASC');
+            
+        //echo $qb->getSQL() . "\n";
+        $result = $qb->execute();
 
-        if($result->num_rows > 0)
+        if($result->rowCount() > 0)
         {
-            $final_result = $result->fetch_all(MYSQLI_ASSOC);
-            return $final_result;
+            return $result->fetchAll(\PDO::FETCH_ASSOC);
         }
+
         echo "Fail in `getTable(" . $table_name . ")!";
         return -1;
     }

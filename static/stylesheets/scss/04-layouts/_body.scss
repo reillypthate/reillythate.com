@@ -1,0 +1,16 @@
+//  By default (for phones in portrait mode).
+body
+{
+    &.mobile-mode
+    {
+
+    }
+    &.nav-menu-closed
+    {
+        margin-top: $phone-body-margin-top;
+    }
+    &.nav-menu-open
+    {
+        margin-top: $phone-body-margin-top + 8.5rem;
+    }
+}

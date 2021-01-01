@@ -1,0 +1,107 @@
+//  Color System
+//
+//  The colors will be applied as :root variables in the preprocessed CSS 
+//  document.
+
+$col-background: hsla(0, 0%, 95%, 1.0);
+$col-contrast: hsla(0, 0%, 10%, 1.0);
+
+$col-background-highlight: hsla(0, 0%, 85%, 1.0);
+$col-background-active: hsla(0, 0%, 75%, 1.0);
+
+// Grays
+
+// Used for background theming.
+$white:     hsla(0, 0%, 100%, 1.0) !default;
+$off-white: hsla(0, 0%, 95%, 1.0) !default;
+
+// Used for text/contrast theming.
+$dark-gray: hsla(0, 0%, 25%, 1.0) !default;
+$off-black: hsla(0, 0%, 10%, 1.0) !default;
+$black:     hsla(0, 0%, 0%, 1.0) !default;
+
+$grays: () !default;
+$grays: map-merge(
+    (
+        "white": $white,
+        "off-white": $off-white,
+        "dark-gray": $dark-gray,
+        "off-black": $off-black,
+        "black": $black
+    ),
+    $grays
+);
+
+// Colors
+
+$blue:   blue !default;
+$indigo: indigo !default;
+$purple: purple !default;
+$pink:   pink !default;
+$red:    red !default;
+$orange: orange !default;
+$yellow: yellow !default;
+$green:  green !default;
+$teal:   teal !default;
+$cyan:   cyan !default;
+
+$colors: () !default;
+$colors: map-merge(
+    (
+        "blue":         $blue,
+        "indigo":       $indigo,
+        "purple":       $purple,
+        "pink":         $pink,
+        "red":          $red,
+        "orange":       $orange,
+        "yellow":       $yellow,
+        "green":        $green,
+        "teal":         $teal,
+        "cyan":         $cyan
+    ),
+    $colors
+);
+
+// Theme Colors
+
+$primary: (
+    "hue": 207,
+    "shade": 85%,
+    "lightness": 23%
+);
+$secondary: (
+    "hue": 230,
+    "shade": 75%,
+    "lightness": 50%
+);
+
+$theme-colors: () !default;
+$theme-colors: map-merge(
+    (
+        "primary":      $primary,
+        "secondary":    $secondary,
+    ),
+    $theme-colors
+);
+
+$primary-solid: #{var(--primary-solid)};
+$primary-off: #{var(--primary-off)};
+$primary-trans: #{var(--primary-trans)};
+$secondary-solid: #{var(--secondary-solid)};
+$secondary-off: #{var(--secondary-off)};
+$secondary-trans: #{var(--secondary-trans)};
+
+$dominant-hue: 207;
+$dominant-shade: 85%;
+$dominant-lightness: 23%;
+$auxiliary-hue: 230;
+$auxiliary-shade: 75%;
+$auxiliary-lightness: 50%;
+
+$alpha-primary: 0.9;
+$alpha-secondary: 0.45;
+
+$dominant-primary: theme(primary, off);
+$dominant-secondary: theme(primary, trans);
+$auxiliary-primary: theme(secondary, off);
+$auxiliary-secondary: theme(secondary, trans);

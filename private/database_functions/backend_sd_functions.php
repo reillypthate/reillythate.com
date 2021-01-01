@@ -39,17 +39,17 @@ if(isset($_POST['html_REFRESH']))
  */
 function dir_add($req_vals)
 {
-    global $conn, $errors, 
+    global $conn, $errors,
+        $directory_table, 
         $directory_pid, 
         $directory_slug, 
         $directory_title, 
         $directory_description, 
         $directory_robots, 
         $directory_public,
-        $directory_published;;
+        $directory_published;
 
     $errors = [];
-
 
     $directory_pid = $req_vals['dir_pid'];
     $directory_slug = $req_vals['dir_slug'];
@@ -84,27 +84,43 @@ function dir_add($req_vals)
 
     if(count($errors) == 0)
     {
-        $insert_statement = $conn->prepare("INSERT INTO `site_directory` (p_id, slug, title, description, robots, public, published) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $insert_statement->bind_param('issssi',
-            $directory_pid,
-            $directory_slug, 
-            $directory_title, 
-            $directory_description, 
-            $directory_robots,
-            $directory_public,
-            $directory_published
-        );
-
-        if(!$result = $insert_statement->execute())
+        $qb = $conn->createQueryBuilder();
+        $qb ->insert('site_directory')
+            ->values(
+                array(
+                    'p_id' => '?',
+                    'slug' => '?',
+                    'title' => '?',
+                    'description' => '?',
+                    'robots' => '?',
+                    'public' => '?',
+                    'published' => '?'
+                )
+            )
+            ->setParameter(0, $directory_pid)
+            ->setParameter(1, $directory_slug)
+            ->setParameter(2, $directory_title)
+            ->setParameter(3, $directory_description)
+            ->setParameter(4, $directory_robots)
+            ->setParameter(5, $directory_public)
+            ->setParameter(6, $directory_published)
+        ;
+        try
         {
-            die("There was an error executing the insert statement: [ " . $conn->error . " ]");
+            $result = $qb->execute();
+        }catch(Exception $e)
+        {
+            echo $e->getMessage() . PHP_EOL;
+            
+            $_SESSION['message'] = "Error involved: " . $e->getMessage() . ".";
+            header('location: index.php');
+
+            echo $e->getMessage() . PHP_EOL;
+            exit(-1);
         }
 
-        printf("%d Row inserted.\n", $insert_statement->affected_rows);
-        $insert_statement->close();
-
-        $_SESSION['message'] = "Sub-directory added successfully!";
-        header('location: index.php');
+        $_SESSION['message'] = "Sub-directory added successfully!\n";
+        header('location: index.php?new-slug=' . $directory_slug);
         exit(0);
     }
 }
@@ -192,40 +208,44 @@ function dir_update($req_vals)
 
     if(count($errors) == 0)
     {
-        if($directory_id == 1)
+        $qb = $conn->createQueryBuilder();
+        $qb ->update('site_directory')
+            ->set('site_directory.p_id', '?')
+            ->set('site_directory.slug', '?')
+            ->set('site_directory.title', '?')
+            ->set('site_directory.description', '?')
+            ->set('site_directory.robots', '?')
+            ->set('site_directory.public', '?')
+            ->set('site_directory.published', '?')
+            ->where($qb->expr()->eq('site_directory.id', '?'))
+            ->setParameter(0, $directory_id == 1 ? null : $directory_pid)
+            ->setParameter(1, $directory_slug)
+            ->setParameter(2, $directory_title)
+            ->setParameter(3, $directory_description)
+            ->setParameter(4, $directory_robots)
+            ->setParameter(5, $directory_public)
+            ->setParameter(6, $directory_published)
+            ->setParameter(7, $directory_id)
+        ;
+        
+        try
         {
-            $update_statement = $conn->prepare("UPDATE `site_directory` SET slug=?, title=?, description=?, robots=?, public=?, published=? WHERE id=?");
-            $update_statement->bind_param('ssssiii',
-                $directory_slug, 
-                $directory_title, 
-                $directory_description, 
-                $directory_robots,
-                $directory_public,
-                $directory_published,
-                $directory_id
-            );
-        }else
+            $result = $qb->execute();
+        }catch(Exception $e)
         {
-            $update_statement = $conn->prepare("UPDATE `site_directory` SET p_id=?, slug=?, title=?, description=?, robots=?, public=?, published=? WHERE id=?");
-            $update_statement->bind_param('issssiii',
-                $directory_pid,
-                $directory_slug, 
-                $directory_title, 
-                $directory_description, 
-                $directory_robots,
-                $directory_public,
-                $directory_published,
-                $directory_id
-            );
+            echo $e->getMessage() . PHP_EOL;
+            
+            $_SESSION['message'] = "Error involved: " . $e->getMessage() . ".";
+            header('location: index.php');
+
+            echo $e->getMessage() . PHP_EOL;
+            exit(-1);
         }
 
-        if(!$result = $update_statement->execute())
+        if(!$result)
         {
             die("There was an error executing the update statement: [ " . $conn->error . " ]");
         }
-
-        printf("%d Row updated.\n", $update_statement->affected_rows);
-        $update_statement->close();
 
         $_SESSION['message'] = "Sub-directory updated successfully!";
         header('location: index.php');
@@ -244,21 +264,32 @@ function html_refresh($req_vals)
 
     $directory_id = $req_vals['refresh_id'];
 
-    $update_statement = $conn->prepare("UPDATE `site_directory` SET last_updated=now() WHERE id=?");
-    $update_statement->bind_param('i',
-        $directory_id);
+    $qb = $conn->createQueryBuilder();
+    $qb ->update('site_directory')
+        ->set('last_updated', 'now()')
+        ->where($qb->expr()->eq('site_directory.id', '?'))
+        ->setParameter(0, $directory_id)
+        ;
+        
+    //echo $qb->getSQL() . "\n";
+    $result = $qb->execute();
 
-    if(!$result = $update_statement->execute())
+    try
     {
-        die("There was an error executing the update statement: [ " . $conn->error . " ]");
+        $result = $qb->execute();
+    }catch(Exception $e)
+    {
+        echo $e->getMessage() . PHP_EOL;
+        
+        $_SESSION['message'] = "Error involved: " . $e->getMessage() . ".";
+        header('location: index.php');
+
+        echo $e->getMessage() . PHP_EOL;
+        exit(-1);
     }
 
-    //die("%d Row updated:\n" . $update_statement->affected_rows);
-    printf("%d Row updated.\n", $update_statement->affected_rows);
-    $update_statement->close();
-
     $_SESSION['message'] = "Sub-directory updated successfully!";
-    header('location: ' . $directory_table->linkBySlug('directory') . '/index.php');
+    header('location: ' . $directory_table->linkBySlug('directory') . '/index.php?');
     exit(0);
 }
 ?>

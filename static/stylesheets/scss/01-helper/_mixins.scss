@@ -1,8 +1,23 @@
-@mixin edge($margin-all, $padding-all:$margin-all, $border:false, $border-radius:false)
+//  
+//  Components of an element's Box Model properties:
+//      - Margin
+//      - Padding
+//      - Border
+//      - Border Radius
+//
+//  If called and left empty, there will be no properties added.
+//  
+@mixin edge($margin:false, $padding:false, $border:false, $border-radius:false)
 {
     /* Spacing & Border */
-    margin: $margin-all;
-    padding: $padding-all;
+    @if $margin
+    {
+        margin: $margin;
+    }
+    @if $padding
+    {
+        padding: $padding;
+    }
     @if $border
     {
         border: $border;
@@ -12,7 +27,15 @@
         border-radius: $border-radius;
     }
 }
+/* Positioning */
 
+/* Display & Box Model */
+
+/* Color */
+
+/* Text */
+
+/* Other */
 @mixin flex($flex-direction, $justify-content:false, $align-items:false, $flex-wrap:true)
 {
     display: flex;
@@ -61,7 +84,35 @@
         place-items: $place;
     }
 }
-
+//  
+//  Make an element fixed on the page.
+//  By default, all "sides" are set to 0, so the element will stretch.
+//  Will implement positioning later.
+//  
+@mixin affix(
+    $top:true,
+    $right:true,
+    $bottom:true,
+    $left:true)
+{
+    position: fixed;
+    @if $top
+    {
+        top: 0;
+    }
+    @if $right
+    {
+        right: 0;
+    }
+    @if $bottom
+    {
+        bottom: 0;
+    }
+    @if $left
+    {
+        left: 0;
+    }
+}
 // Set the color of an element and its text.
 @mixin element-color($background-color:$col-background, $text-color:$col-contrast)
 {
@@ -112,5 +163,22 @@
     @if $align
     {
         text-align: $align;
+    }
+}
+
+@mixin query($width, $type: min)
+{
+    @if map-has-key($min-breakpoints, $width)
+    {
+        $width: map-get($min-breakpoints, $width);
+        @if $type == max
+        {
+            $width: $width - 1;
+        }
+
+        @media only screen and (#{$type}-width: $width)
+        {
+            @content;
+        }
     }
 }

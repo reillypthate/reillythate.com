@@ -41,7 +41,7 @@
 
     </head>
     <body>
-        <header id="public_header">
+        <header>
             <a href="<?php echo $directory_table->linkToPage("reillythate.com"); ?>">
                 <img src="<?php echo $directory_table->linkToImage("Renegade_Blues.svg"); ?>" alt="Renegade logo.">
             </a>

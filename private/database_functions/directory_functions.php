@@ -285,5 +285,53 @@ class DirectoryTable extends DB_Functions
     {
         return $this->hierarchy;
     }
+
+    public function printNewIndex($index_slug)
+    {
+        $page = new Element();
+
+        $page->pushLine(0, '<?php');
+        $page->pushLine(1, '// Before we do anything, we need to initialize a bunch of stuff: namely, ');
+        $page->pushLine(1, '// universal constants (for ease of access) and a database connection.');
+        $page->pushLine(1, 'require_once("private/initialize.php");');
+        $page->pushLine(0, '?>');
+        $page->pushLine(0, '<?php');
+        $page->pushLine(1, '    // Page Metadata');
+        $page->pushLine(1, '    $SLUG = "' . $index_slug . '";');
+        $page->pushLine(0, '?>');
+        $page->pushLine(0, '<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>');
+        $page->pushLine(0, "");
+        $page->pushLine(2, '<main>');
+        $page->pushLine(0, "");
+        $page->pushLine(3, '<!-- Insert Content Here -->');
+        $page->pushLine(0, "");
+        $page->pushLine(2, '</main>');
+        $page->pushLine(0, "");
+        $page->pushLine(0, '<?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>');
+
+        $new_link = $this->linkBySlug($_GET['new-slug']);
+        if(!is_dir("../../.." . $new_link))
+        {
+            if(!mkdir("../../.." . $new_link))
+            {
+                die("Failed to create new dir...");
+            }
+        }
+
+        if(!file_exists("../../.." . $new_link . "/index.php"))
+        {
+            $file = fopen("../../.." . $new_link . "/index.php", 'c');
+            foreach($page->getLines() as $line_num=>$line)
+            {
+                fwrite($file, $line . "\n");
+            }
+            fclose($file);
+            touch("../../.." . $new_link . "/index.php");
+            echo '<p class="success">New Directory and Index created at ' . $new_link . '!</p>';
+        }else
+        {
+            echo '<p class="warning">Directory and Index already exist at ' . $new_link . '!</p>';
+        }
+    }
 }
 ?>

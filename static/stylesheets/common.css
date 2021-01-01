@@ -1,5 +1,18 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Oswald:300,400,500|Raleway:100,200,300,400,500,600,700,800,900&display=swap");
+/*
+$p_phone: (
+    "color":        pink,
+    "background":   black,
+);
+$media-queries: (
+    map-set($media-queries, "phone", "p", $p_phone)
+);*/
+/* Positioning */
+/* Display & Box Model */
+/* Color */
+/* Text */
+/* Other */
 .blog-gallery + p, .blog-header + p, p + p, h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p, .blog-gallery + div, .blog-header + div, p + div, h1 + div, h2 + div, h3 + div, h4 + div, h5 + div, h6 + div {
   margin-top: 1.5rem;
 }
@@ -33,7 +46,6 @@
 * {
   /* Spacing & Border */
   margin: 0;
-  padding: 0;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -67,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 /** h1: Main Heading: "Reilly Thate" */
 h1 {
   /* Spacing & Border */
-  margin: 0;
+  margin: 0 auto;
   padding: 0.5rem;
   font-size: 1.9487171rem;
   line-height: 1.9487171rem;
@@ -190,34 +202,21 @@ a:visited:hover {
   color: var(--off-black);
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Page Layout -- Default (No Queries)
- *
- * + LIGHT THEME
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-main {
-  /* Spacing & Border */
-  margin: 1rem;
-  padding: 0 1rem;
+body.nav-menu-closed {
+  margin-top: 7rem;
 }
-
-#video_selection {
-  margin: 0 auto;
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 0.5rem;
+body.nav-menu-open {
+  margin-top: 15.5rem;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * HEADER
  * -- default --
  *
- * #public_header,
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-/**
- * Styling for the <header> element when defined as #public_header.
- */
-#public_header {
+header {
+  /* Positioning */
+  /* Display & Box Model */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -225,35 +224,129 @@ main {
   flex-wrap: wrap;
   /* Spacing & Border */
   margin: 0.5rem;
-  padding: 0.5rem;
+  padding: 0;
   margin-bottom: 0;
   border-bottom: 3px solid var(--primary-trans);
+  /* Color */
+  background: var(--off-white);
+  /* Text */
+  /* Other */
 }
-#public_header > a {
+@media only screen and (min-width: 768px) {
+  header {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  header > a {
+    justify-self: flex-start;
+    width: 10rem;
+    height: 10rem;
+    display: flex;
+  }
+  header img:hover {
+    opacity: 90%;
+  }
+}
+
+.mobile-mode header {
+  /* Positioning */
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  /* Display & Box Model */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 6rem;
+  place-items: center stretch;
+  /* Spacing & Border */
+  margin: 0 0.5rem;
+  padding: 0rem;
+  margin-bottom: 0;
+  /* Color */
+  box-shadow: 0 0.25rem 0.5rem 0.5rem var(--off-white);
+  /* Text */
+  /* Other */
+}
+.mobile-mode header > a {
+  display: none;
+  opacity: 50%;
+}
+.mobile-mode header h1 {
+  grid-column: 1/5;
+  margin-left: 0;
+}
+.mobile-mode header > button {
+  grid-column: 5/6;
+  margin-left: auto;
+}
+.mobile-mode header #nav_primary {
+  grid-row: 2/3;
+  grid-column: 1/6;
+}
+.mobile-mode header #backticks {
+  grid-row: 3/4;
+  grid-column: 1/6;
+}
+.mobile-mode.nav-menu-open header {
+  display: grid;
+  grid-template-rows: 6rem auto;
+}
+.mobile-mode.nav-menu-open header #logo-to-home {
+  position: absolute;
+  top: 6.375rem;
+  left: 0.25rem;
+  width: 130px;
+  height: 130px;
+  display: block;
+}
+#nav-menu-toggle {
+  /* Positioning */
+  width: 48px;
+  height: 48px;
+  /* Display & Box Model */
+  display: none;
+  /* Spacing & Border */
+  padding: 0.5rem;
+  border: 8px solid var(--primary-off);
+  border-radius: 0.25rem;
+  /* Color */
+  background: linear-gradient(to bottom, var(--off-white), var(--off-white) 20%, var(--primary-off) 20%, var(--primary-off) 40%, var(--off-white) 40%, var(--off-white) 60%, var(--primary-off) 60%, var(--primary-off) 80%, var(--off-white) 80%, var(--off-white) 100%);
+  /* Text */
+  /* Other */
+  cursor: pointer;
+  transition-duration: 250ms;
+}
+#nav-menu-toggle:hover {
+  background: linear-gradient(to bottom, var(--off-white), var(--off-white) 20%, var(--primary-off) 20%, var(--primary-off) 40%, var(--off-white) 40%, var(--off-white) 60%, var(--primary-off) 60%, var(--primary-off) 80%, var(--off-white) 80%, var(--off-white) 100%);
+}
+
+.active {
+  background: var(--secondary-trans);
+}
+
+.mobile-mode #nav-menu-toggle {
+  display: flex;
+}
+
+#nav_primary {
+  /* Positioning */
+  /* Display & Box Model */
   /* Spacing & Border */
   margin: 0;
   padding: 0;
-  width: calc(8rem * 0.75);
-  height: calc(8rem * 0.75);
-}
-#public_header img {
-  width: 100%;
-}
-#public_header img:hover {
-  opacity: 90%;
-}
-/**
- * Styling for the <nav> element within the <header> element.
- */
-#nav_primary {
-  margin: 1rem;
-  margin-bottom: 0;
-  flex-basis: 100%;
+  /* Color */
+  /* Text */
+  /* Other */
 }
 #nav_primary ul {
+  display: grid;
+  grid-gap: 0.25rem;
   /* Spacing & Border */
   margin: 0;
   padding: 0.5rem;
+  width: 100%;
   list-style: none;
 }
 #nav_primary li {
@@ -264,8 +357,9 @@ main {
 }
 #nav_primary a {
   display: block;
-  padding: 0.75rem;
-  padding-right: 1.5rem;
+  padding: 0.5rem 1.5rem;
+  padding-right: 1.25rem;
+  border-right: 0.25rem groove var(--primary-trans);
 }
 #nav_primary .nav_active_page {
   cursor: default;
@@ -275,12 +369,78 @@ main {
 #nav_primary .nav_active_page:hover {
   color: var(--off-black);
 }
+@media only screen and (min-width: 768px) {
+  #nav_primary {
+    flex-basis: auto;
+    margin-right: 1rem;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  #nav_primary {
+    position: relative;
+    top: 0.125rem;
+    flex-basis: 50%;
+    justify-self: flex-end;
+  }
+  #nav_primary a {
+    border-right: none;
+    padding: 0.75rem 1.5rem;
+  }
+  #nav_primary ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  #nav_primary li {
+    text-align: center;
+    flex-basis: calc(100% / 3);
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+  }
+  #nav_primary li:last-child {
+    margin-right: 0;
+    border-right: none;
+  }
+  #nav_primary .nav_active_page {
+    cursor: default;
+    border-right: none;
+    border-bottom: 0.25rem groove var(--primary-off);
+    padding-right: 1.5rem;
+    padding-bottom: 0.5rem;
+  }
+  #nav_primary .nav_active_page:hover {
+    color: var(--off-black);
+  }
+}
+
+.mobile-mode #nav_primary, .mobile-mode #backticks {
+  align-self: start;
+  flex-basis: 100%;
+}
+.mobile-mode.nav-menu-closed #nav_primary, .mobile-mode.nav-menu-closed #backticks {
+  display: none;
+  overflow: hidden;
+}
+.mobile-mode.nav-menu-open #nav_primary, .mobile-mode.nav-menu-open #backticks {
+  /* Positioning */
+  z-index: 1;
+  /* Display & Box Model */
+  display: flex;
+  border-top: 3px solid var(--primary-trans);
+  /* Color */
+  /* Text */
+  /* Other */
+}
 
 #backticks {
+  flex-basis: 100%;
   /* Spacing & Border */
-  margin: 0.5rem;
-  padding: 0.5rem 1rem 1rem 1rem;
-  border-bottom: 3px solid var(--primary-trans);
+  padding: 1rem;
+  border-top: 3px solid var(--primary-trans);
+  background: var(--off-white);
 }
 #backticks ul {
   /* Spacing & Border */
@@ -302,7 +462,6 @@ main {
   content: "";
   /* Spacing & Border */
   margin: 0;
-  padding: 0;
 }
 #backticks ul li::before {
   display: inline-block;
@@ -327,6 +486,15 @@ main {
   /* Spacing & Border */
   margin: 1rem;
   padding: 0;
+}
+@media only screen and (min-width: 1024px) {
+  main {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 1500px;
+  }
 }
 
 #manager {
@@ -410,7 +578,6 @@ footer > a img:hover {
 #nav_footer ul {
   /* Spacing & Border */
   margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -443,44 +610,6 @@ footer > a img:hover {
   font-weight: bold;
 }
 
-.collapsible {
-  background: var(--primary-off);
-  /* Spacing & Border */
-  margin: 0;
-  padding: 0.75rem;
-  width: 100%;
-  border: none;
-  border-radius: 0.75rem;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
-  font-size: calc(1.25rem * 1.1);
-  letter-spacing: calc(1.25rem / 15);
-  text-align: center;
-  transition-duration: 250ms;
-  cursor: pointer;
-}
-
-button.collapsible {
-  margin-bottom: 1rem;
-}
-button.collapsible:hover {
-  background: #d9d9d9;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2), -1px -1px 4px 1px white;
-}
-
-.active {
-  background: var(--secondary-trans);
-  margin-bottom: 0 !important;
-}
-
-.collapsible_content {
-  display: none;
-  overflow: hidden;
-}
-
-#nav_primary ul.collapsible_open {
-  display: grid;
-}
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * CARDS
  * -- default --
@@ -501,6 +630,60 @@ button.collapsible:hover {
 }
 .card_gallery:last-child {
   margin-bottom: 1rem;
+}
+
+.card_count_1 {
+  grid-template-columns: 1fr;
+}
+
+.card_count_2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media only screen and (min-width: 375px) {
+  .card_count_3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (min-width: 667px) {
+  .card_count_3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card_count_4 {
+  grid-template-columns: repeat(2, 1fr);
+}
+@media only screen and (min-width: 667px) {
+  .card_count_4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .card_count_4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .card_count_5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .card_count_6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.film-portfolio {
+  grid-template-columns: repeat(2, 1fr);
+}
+@media only screen and (min-width: 667px) {
+  .film-portfolio {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /**
@@ -524,6 +707,13 @@ button.collapsible:hover {
   background: var(--primary-trans);
   color: var(--off-white);
   text-align: left;
+}
+@media only screen and (min-width: 375px) {
+  .portfolio_card h2, .portfolio_card h3, .portfolio_card .pc_description, .portfolio_card .card_description, .card h2, .card h3, .card .pc_description, .card .card_description {
+    /* Spacing & Border */
+    margin: 0;
+    padding: 0.5rem;
+  }
 }
 .portfolio_card h2, .portfolio_card h3, .card h2, .card h3 {
   top: 0;
@@ -570,7 +760,6 @@ button.collapsible:hover {
 form {
   /* Spacing & Border */
   margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -608,37 +797,6 @@ legend {
   font-family: "Oswald", sans-serif;
   font-size: 1.1rem;
   letter-spacing: calc(body-size / 5);
-}
-
-/**
-** Styling for <button> element.
-**/
-button {
-  /* Spacing & Border */
-  margin: 1rem;
-  padding: 0.5rem;
-  border: auto;
-  border-radius: 0.75rem;
-  font-family: "Oswald", sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: calc(body-size / 5);
-  background: var(--primary-off);
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease;
-}
-button:hover {
-  background: var(--primary-trans);
-  color: var(--off-black);
-}
-button[disabled=""] {
-  cursor: default;
-  background: none;
-  color: lightgray;
-}
-button[disabled=""]:hover {
-  background: none;
-  color: lightgray;
 }
 
 label {
@@ -718,6 +876,13 @@ img {
   border: 0;
 }
 
+#video_selection {
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 0.5rem;
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * TABLE
  * -- default --
@@ -741,7 +906,6 @@ table {
 thead {
   /* Spacing & Border */
   margin: 0;
-  padding: 0;
   font-family: "Oswald", sans-serif;
   letter-spacing: calc(1.1rem / 10);
 }
@@ -752,7 +916,6 @@ thead {
 tbody {
   /* Spacing & Border */
   margin: 0;
-  padding: 0;
 }
 
 /**
@@ -761,7 +924,6 @@ tbody {
 tfoot {
   /* Spacing & Border */
   margin: 0;
-  padding: 0;
 }
 
 /**
@@ -794,6 +956,45 @@ td {
   border: none;
 }
 
+button {
+  /* Positioning */
+  /* Display & Box Model */
+  /* Color */
+  /* Text */
+  /* Other */
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0.75rem;
+  width: 100%;
+  border: none;
+  border-radius: 0.5rem;
+  /* Spacing & Border */
+  margin: 1rem;
+  padding: 0.5rem;
+  border: auto;
+  border-radius: 0.75rem;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: calc(body-size / 5);
+  background: var(--primary-off);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+button:hover {
+  background: var(--primary-trans);
+  color: var(--off-black);
+}
+button[disabled=""] {
+  cursor: default;
+  background: none;
+  color: lightgray;
+}
+button[disabled=""]:hover {
+  background: none;
+  color: lightgray;
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * ABOUT
  * -- default --
@@ -802,8 +1003,31 @@ td {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #about_card > article {
   /* Spacing & Border */
-  margin: 1rem;
+  margin: 0.75rem;
   padding: 0;
+}
+@media only screen and (min-width: 667px) {
+  #about_card {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    border-bottom: 3px groove var(--primary-trans);
+  }
+  #about_card img {
+    width: 35%;
+  }
+  #about_card > article {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  #about_card > article > ul {
+    /* Spacing & Border */
+    margin: 0 0 0.75rem 1rem;
+    padding: 0;
+  }
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -826,11 +1050,20 @@ td {
   grid-template-columns: 1fr;
   grid-template-rows: auto;
 }
+@media only screen and (min-width: 667px) {
+  #blog-preview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (min-width: 1024px) {
+  #blog-preview {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
 .blog-preview {
   /* Spacing & Border */
   margin: 0;
-  padding: 0;
   border-bottom: 2px solid var(--primary-trans);
   border-radius: 0 0 1rem 1rem;
 }
@@ -874,7 +1107,6 @@ td {
 .blog-preview .preview-head_details p {
   /* Spacing & Border */
   margin: 0;
-  padding: 0;
 }
 .blog-preview .preview-head_details p::after {
   content: "|";
@@ -892,7 +1124,6 @@ td {
 .blog-preview .preview-head_details time {
   /* Spacing & Border */
   margin: 0;
-  padding: 0;
   display: block;
   font-size: 0.8rem;
 }
@@ -918,6 +1149,12 @@ td {
 .blog {
   position: relative;
   overflow: hidden;
+}
+@media only screen and (min-width: 1024px) {
+  .blog .preview-head {
+    position: absolute;
+    top: 0;
+  }
 }
 
 .blog-header {
@@ -977,7 +1214,6 @@ td {
 .preview-head_details p {
   /* Spacing & Border */
   margin: 0;
-  padding: 0;
 }
 .preview-head_details p::after {
   content: "|";
@@ -995,7 +1231,6 @@ td {
 .preview-head_details time {
   /* Spacing & Border */
   margin: 0;
-  padding: 0;
   display: block;
   font-size: 0.8rem;
 }
@@ -1038,6 +1273,38 @@ td {
   max-width: 840px;
 }
 
+.cols-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.rows-1 {
+  grid-template-rows: repeat(1, 1fr);
+}
+
+.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.rows-2 {
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.rows-3 {
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.rows-4 {
+  grid-template-rows: repeat(4, 1fr);
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * BACKEND
  * -- default --
@@ -1068,580 +1335,7 @@ td {
   align-items: flex-start;
   flex-wrap: wrap;
 }
-
-@media only screen and (max-width: 374px) {
-  #renegade_home_link {
-    width: calc(125vw / 3.75);
-    height: calc(125vw / 3.75);
-  }
-
-  h1 {
-    font-size: calc(1.9487171rem * 0.80);
-  }
-}
-@media only screen and (min-width: 375px) {
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * TYPOGRAPHY
-   * -- min-width: 375px --
-   *
-   * + h1, h2, h3, h4, h5, h6
-   * + p
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /** Set the default font style for heading text. */
-  /** h1: Main Heading: "Reilly Thate" */
-  h1 {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /** h2: Reserved for page headings; i.e. "Blog" */
-  /** h3 */
-  /** h4 */
-  /** h5 */
-  /** h6 */
-  /** Set the default font style for body text. */
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * LINKS
-   * -- min-width: 375px --
-   *
-   * + a, a:link, a:hover, a:visited, a:visited:hover, etc.
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /** Anchor tag styling. */
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * HEADER
-   * -- min-width: 375px --
-   *
-   * #public_header, #nav_primary
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /**
-   * Styling for the <header> element when defined as #public_header.
-   */
-  #public_header > a {
-    /* Spacing & Border */
-    margin: 0;
-    padding: 0;
-    width: 8rem;
-    height: 8rem;
-  }
-  #public_header img {
-    width: 100%;
-  }
-  #public_header img:hover {
-    opacity: 90%;
-  }
-
-  /**
-   * Styling for the <nav> element within the <header> element.
-   */
-  #nav_primary {
-    margin: 1rem;
-    margin-bottom: 0;
-    flex-basis: 100%;
-  }
-  #nav_primary ul {
-    /* Spacing & Border */
-    margin: 0;
-    padding: 0.5rem;
-    list-style: none;
-  }
-  #nav_primary li {
-    text-align: right;
-    font-weight: normal;
-    font-size: calc(1.25rem * 1.1);
-    letter-spacing: calc(1.25rem / 15);
-  }
-  #nav_primary a {
-    display: block;
-    padding: 0.75rem;
-    padding-right: 1.5rem;
-  }
-  #nav_primary .nav_active_page {
-    cursor: default;
-    border-right: 0.25rem groove var(--primary-off);
-    padding-right: 1.25rem;
-  }
-  #nav_primary .nav_active_page:hover {
-    color: var(--off-black);
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * MAIN
-   * -- min-width: 375px --
-   *
-   * main
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /**
-   * Styling for the document's <main> element.
-   */
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * FOOTER
-   * -- min-width: 375px --
-   *
-   * footer, #nav_footer,
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /**
-   * Styling for the footer's <nav> element.
-   */
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * CARDS
-   * -- min-width: 1024px --
-   *
-   * .card_gallery, .card_count_(1-4)
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  .card_count_1 {
-    grid-template-columns: 1fr;
-  }
-
-  .card_count_2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .card_count_3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .card_count_4 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .cards-home-primary {
-    grid-template-columns: 1fr;
-  }
-
-  .film-portfolio {
-    grid-template-columns: 1fr;
-  }
-
-  /**
-  **
-  **/
-  .portfolio_card h2, .portfolio_card h3, .portfolio_card .pc_description, .portfolio_card .card_description, .card h2, .card h3, .card .pc_description, .card .card_description {
-    /* Spacing & Border */
-    margin: 0;
-    padding: 0.5rem;
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * ABOUT
-   * -- min-width: 375px --
-   *
-   * #about_card, 
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  #about_card > article {
-    /* Spacing & Border */
-    margin: 0.75rem;
-    padding: 0;
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * BLOG
-   * -- min-width: 375px --
-   *
-   * #about_thesis, 
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * BACKEND
-   * -- min-width: 375p --
-   *
-   * 
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /**
-   * Container for every element used in #backend.
-   */
-}
-@media only screen and (min-width: 667px) {
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * TYPOGRAPHY
-   * -- min-width: 667px --
-   *
-   * + h1, h2, h3, h4, h5, h6
-   * + p
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /** Set the default font style for heading text. */
-  /** h1: Main Heading: "Reilly Thate" */
-  h1 {
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-  /** h2: Reserved for page headings; i.e. "Blog" */
-  /** h3 */
-  /** h4 */
-  /** h5 */
-  /** h6 */
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * LINKS
-   * -- min-width: 667px --
-   *
-   * + a, a:link, a:hover, a:visited, a:visited:hover, etc.
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /** Anchor tag styling. */
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * HEADER
-   * -- min-width: 667px --
-   *
-   * #public_header, #nav_primary
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /**
-   * Styling for the <header> element when defined as #public_header.
-   */
-  #public_header {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-  }
-  #public_header > a {
-    justify-self: flex-start;
-    width: 10rem;
-    height: 10rem;
-  }
-  #public_header img {
-    width: 10rem;
-  }
-
-  /**
-   * Styling for the <nav> element within the <header> element.
-   */
-  #nav_primary {
-    margin: 0;
-    flex-basis: auto;
-  }
-  #nav_primary button.collapsible {
-    display: none;
-    overflow: hidden;
-  }
-  #nav_primary ul {
-    display: grid;
-  }
-  #nav_primary a {
-    padding: 0.75rem 1.5rem;
-  }
-  #nav_primary .nav_active_page {
-    cursor: default;
-    border-right: 0.25rem groove var(--primary-off);
-    padding-right: 1.25rem;
-  }
-  #nav_primary .nav_active_page:hover {
-    color: var(--off-black);
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * MAIN
-   * -- min-width: 667px --
-   *
-   * main
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /**
-   * Styling for the document's <main> element.
-   */
-  #portfolio_grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * CARDS
-   * -- min-width: 667px --
-   *
-   * .card_gallery, .card_count_(1-4)
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  .card_count_1 {
-    grid-template-columns: 1fr;
-  }
-
-  .card_count_2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .card_count_3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .card_count_4 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .film-portfolio {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /**
-  **
-  **/
-  .portfolio_card h2, .portfolio_card h3, .portfolio_card .pc_description, .portfolio_card .card_description, .card h2, .card h3, .card .pc_description, .card .card_description {
-    /* Spacing & Border */
-    margin: 0;
-    padding: 1rem;
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * ABOUT
-   * -- min-width: 667px --
-   *
-   * #about_card, 
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  #about_card {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: nowrap;
-    padding-bottom: 1rem;
-    border-bottom: 3px groove var(--primary-trans);
-  }
-  #about_card img {
-    width: 35%;
-  }
-  #about_card > article {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  #about_card > article > ul {
-    /* Spacing & Border */
-    margin: 0 0 0.75rem 1rem;
-    padding: 0;
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * BLOG
-   * -- min-width: 667px --
-   *
-   * #about_thesis, 
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  #blog-preview {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .cols-1 {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .rows-1 {
-    grid-template-rows: repeat(1, 1fr);
-  }
-
-  .cols-2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .rows-2 {
-    grid-template-rows: repeat(2, 1fr);
-  }
-
-  .cols-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .rows-3 {
-    grid-template-rows: repeat(3, 1fr);
-  }
-
-  .cols-4 {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .rows-4 {
-    grid-template-rows: repeat(4, 1fr);
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * BACKEND
-   * -- min-width: 667px --
-   *
-   * 
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /**
-   * Container for every element used in #backend.
-   */
-}
 @media only screen and (min-width: 1024px) {
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * TYPOGRAPHY
-   * min-width: 1024px
-   *
-   * + h1, h2, h3, h4, h5, h6
-   * + p
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /** Set the default font style for heading text. */
-  /** h1: Main Heading: "Reilly Thate" */
-  /** h2: Reserved for page headings; i.e. "Blog" */
-  /** h3 */
-  /** h4 */
-  /** h5 */
-  /** h6 */
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * LINKS
-   * -- min-width: 1024px --
-   *
-   * + a, a:link, a:hover, a:visited, a:visited:hover, etc.
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /** Anchor tag styling. */
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * HEADER
-   * -- min-width: 1024px --
-   *
-   * #public_header, #nav_primary
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /**
-   * Styling for the <header> element when defined as #public_header.
-   */
-  #public_header > a {
-    float: left;
-  }
-  /**
-   * Styling for the <nav> element within the <header> element.
-   */
-  #nav_primary {
-    position: relative;
-    top: 0.125rem;
-    flex-basis: 50%;
-    justify-self: flex-end;
-  }
-  #nav_primary ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
-  }
-  #nav_primary li {
-    text-align: center;
-    flex-basis: calc(100% / 3);
-    margin-left: auto;
-    margin-right: auto;
-    border: none;
-  }
-  #nav_primary li:last-child {
-    margin-right: 0;
-    border-right: none;
-  }
-  #nav_primary .nav_active_page {
-    cursor: default;
-    border-right: none;
-    border-bottom: 0.25rem groove var(--primary-off);
-    padding-right: 1.5rem;
-    padding-bottom: 0.5rem;
-  }
-  #nav_primary .nav_active_page:hover {
-    color: var(--off-black);
-  }
-
-  #backticks ul {
-    /* Spacing & Border */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: nowrap;
-    list-style: none;
-  }
-  #backticks ul li {
-    text-decoration: underline;
-  }
-  #backticks ul li:first-child::before {
-    display: inline-block;
-    text-decoration: none;
-    content: "";
-    /* Spacing & Border */
-    margin: 0;
-    padding: 0;
-  }
-  #backticks ul li::before {
-    display: inline-block;
-    text-decoration: none;
-    content: "»";
-    /* Spacing & Border */
-    margin: 0 1rem;
-    padding: 0;
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * MAIN
-   * -- min-width: 1024px --
-   *
-   * main
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /**
-   * Styling for the document's <main> element.
-   */
-  main {
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    max-width: 1500px;
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * CARDS
-   * -- min-width: 1024px --
-   *
-   * .card_gallery, .card_count_(1-4)
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  .card_count_1 {
-    grid-template-columns: 1fr;
-  }
-
-  .card_count_2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .card_count_3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .card_count_4 {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .card_count_5 {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  .card_count_6 {
-    grid-template-columns: repeat(6, 1fr);
-  }
-
-  .film-portfolio {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * ABOUT
-   * -- min-width: 1024px --
-   *
-   * #about_card, 
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * BLOG
-   * -- min-width: 1024px --
-   * 
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  #blog-preview {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .blog .preview-head {
-    position: absolute;
-    top: 0;
-  }
-
-  .blog-gallery {
-    display: grid;
-    gap: 0.1875rem;
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   * BACKEND
-   * -- min-width: 1024px --
-   *
-   * 
-   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-  /**
-   * Container for every element used in #backend.
-   */
   #backend #potential_elements {
     /* Spacing & Border */
     margin: 1rem 0;

@@ -13,6 +13,15 @@
     grid-gap: 1rem;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+
+    @include query("phone-wide")
+    {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include query("tablet-landscape")
+    {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 .blog-preview
 {
@@ -105,6 +114,15 @@
     position: relative;
     //border: 2px solid red;
     overflow: hidden;
+
+    @include query("tablet-landscape")
+    {    
+        .preview-head
+        {
+            position: absolute;
+            top: 0;
+        }
+    }
 }
 .blog-header
 {
@@ -206,4 +224,16 @@
 
     @extend %p-child;
     @extend %adjacent-heading-spacer;
+}
+
+@for $i from 1 through 4
+{
+    .cols-#{$i}
+    {
+        grid-template-columns: repeat($i, 1fr);
+    }
+    .rows-#{$i}
+    {
+        grid-template-rows: repeat($i, 1fr);
+    }
 }

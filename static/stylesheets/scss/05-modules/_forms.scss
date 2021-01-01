@@ -40,42 +40,7 @@ legend
     font-size: $body-size;
     letter-spacing: calc(#{body-size} / 5);
 }
-/**
-** Styling for <button> element.
-**/
-button
-{
-    @include edge(1rem, 0.5rem, auto, 0.75rem);
-    font-family: $font-family-header;
-    font-size: $body-size;
-    letter-spacing: calc(#{body-size} / 5);
 
-    background: theme(primary);
-    color: white;
-    cursor: pointer;
-
-    transition:
-        background-color 0.25s ease,
-        color 0.25s ease;
-
-    &:hover
-    {
-        background: theme(primary, trans);
-        color: gray(off-black);
-    }
-
-    &[disabled=""]
-    {
-        cursor: default;
-        background: none;
-        color: lightgray;
-        &:hover
-        {
-            background: none;
-            color: lightgray;
-        }
-    }
-}
 label
 {
     text-align: left;

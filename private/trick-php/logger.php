@@ -1,0 +1,7 @@
+<?php
+namespace Trick\Logger;
+
+
+
+
+?>

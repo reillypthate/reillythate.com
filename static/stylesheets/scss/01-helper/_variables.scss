@@ -5,114 +5,65 @@
 // Variables should follow the `$component-state-property-size` formula for consistent naming.
 // Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
-// Color System
-//
-// The colors will be applied as :root variables in the preprocessed CSS document.
+@import 'variables/colors';
 
-$col-background: hsla(0, 0%, 95%, 1.0);
-$col-contrast: hsla(0, 0%, 10%, 1.0);
-
-$col-background-highlight: hsla(0, 0%, 85%, 1.0);
-$col-background-active: hsla(0, 0%, 75%, 1.0);
-
-// Grays
-
-// Used for background theming.
-$white:     hsla(0, 0%, 100%, 1.0) !default;
-$off-white: hsla(0, 0%, 95%, 1.0) !default;
-
-// Used for text/contrast theming.
-$dark-gray: hsla(0, 0%, 25%, 1.0) !default;
-$off-black: hsla(0, 0%, 10%, 1.0) !default;
-$black:     hsla(0, 0%, 0%, 1.0) !default;
-
-$grays: () !default;
-$grays: map-merge(
-    (
-        "white": $white,
-        "off-white": $off-white,
-        "dark-gray": $dark-gray,
-        "off-black": $off-black,
-        "black": $black
-    ),
-    $grays
+$max-breakpoints: (
+    //  For anything smaller than this...
+    'dev':                  319px
+);
+$min-breakpoints: (
+    //  Mobile Portrait
+    'phone':                375px,
+    //  Mobile Landscape
+    'phone-wide':           667px,
+    //  Tablet Portrait
+    'tablet-portrait':      768px,
+    //  Tablet Landscape
+    'tablet-landscape':     1024px,
+    //  Laptop
+    'laptop':               1280px,
+    //  Desktop
+    'desktop':              1440px
 );
 
-// Colors
+$phone: 375px;
+$phone-wide: 667px;
+$tablet-portrait: 768px;
+$tablet-landscape: 1024px;
+$laptop: 1280px;
+$desktop: 1440px;
 
-$blue:   blue !default;
-$indigo: indigo !default;
-$purple: purple !default;
-$pink:   pink !default;
-$red:    red !default;
-$orange: orange !default;
-$yellow: yellow !default;
-$green:  green !default;
-$teal:   teal !default;
-$cyan:   cyan !default;
+$media-queries: (
+    "phone": (),
+    "phone-wide": (),
+    
+    "tablet-portrait": (),
+    "tablet-landscape": (),
+    "laptop": (),
+    "desktop": ()
+    
+) !default;
 
-$colors: () !default;
-$colors: map-merge(
-    (
-        "blue":         $blue,
-        "indigo":       $indigo,
-        "purple":       $purple,
-        "pink":         $pink,
-        "red":          $red,
-        "orange":       $orange,
-        "yellow":       $yellow,
-        "green":        $green,
-        "teal":         $teal,
-        "cyan":         $cyan
-    ),
-    $colors
+//@debug $media-queries;
+
+$phone-header-height: 6rem;
+$phone-body-margin-top: $phone-header-height + 1rem;
+
+//@debug $mq-test;
+/*
+$p_phone: (
+    "color":        pink,
+    "background":   black,
 );
-
-// Theme Colors
-
-$primary: (
-    "hue": 207,
-    "shade": 85%,
-    "lightness": 23%
-);
-$secondary: (
-    "hue": 230,
-    "shade": 75%,
-    "lightness": 50%
-);
-
-$theme-colors: () !default;
-$theme-colors: map-merge(
-    (
-        "primary":      $primary,
-        "secondary":    $secondary,
-    ),
-    $theme-colors
-);
-
-$primary-solid: #{var(--primary-solid)};
-$primary-off: #{var(--primary-off)};
-$primary-trans: #{var(--primary-trans)};
-$secondary-solid: #{var(--secondary-solid)};
-$secondary-off: #{var(--secondary-off)};
-$secondary-trans: #{var(--secondary-trans)};
-
-$dominant-hue: 207;
-$dominant-shade: 85%;
-$dominant-lightness: 23%;
-$auxiliary-hue: 230;
-$auxiliary-shade: 75%;
-$auxiliary-lightness: 50%;
-
-$alpha-primary: 0.9;
-$alpha-secondary: 0.45;
-
-$dominant-primary: theme(primary, off);
-$dominant-secondary: theme(primary, trans);
-$auxiliary-primary: theme(secondary, off);
-$auxiliary-secondary: theme(secondary, trans);
+$media-queries: (
+    map-set($media-queries, "phone", "p", $p_phone)
+);*/
 
 $header-width: 35%;
+
+// Form
+
+$button-default-border-radius: 0.5rem;
 
 // Fonts
 
@@ -142,7 +93,7 @@ $blog-body-max-width: $blog-image-max-width * 0.8;
 $nav_primary_li_size: 1.25rem;
 
 $identity_logo-mobile-width: 8rem;
-$identity_logo-mobile-width-667px: 10rem;
+$identity_logo-full-width: 10rem;
 
 $num_nav_items: 3;
 

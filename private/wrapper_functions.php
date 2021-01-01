@@ -6,8 +6,8 @@
  * -- Default JS: jquery-3.5.1.min.js
 **/
     $wanted_stylesheets = array("common.css");
-    $wanted_ext_js = array("jquery-3.5.1.min.js");
-    $wanted_body_js = array("collapsible.js");
+    $wanted_ext_js = array("vendor/jquery-3.5.1.min.js");
+    $wanted_body_js = array();//"collapsible.js");
 
     /**
      * Take the list of $wanted_stylesheets and apply them to the page.

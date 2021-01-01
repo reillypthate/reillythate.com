@@ -7,7 +7,7 @@
     // Page Metadata
     $SLUG = "admin";
     $PAGE_SET = "admin";
-    array_push($wanted_stylesheets, "bootstrap/scss/bootstrap.css");
+    //array_push($wanted_stylesheets, "bootstrap/scss/bootstrap.css");
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		

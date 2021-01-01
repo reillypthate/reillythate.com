@@ -10,6 +10,12 @@
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
         
+<?php 
+    if (isset($_GET['new-slug']))
+    {
+        $directory_table->printNewIndex($_GET['new-slug']);
+    }
+?>
 		<main id="manager">
             <section>
 <?php $directory_table->printTable(3); //printLines($directory_table->printTableLines(3), 3); ?>

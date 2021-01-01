@@ -1,0 +1,53 @@
+#nav-menu-toggle
+{
+    /* Positioning */
+    width: 48px;
+    height: 48px;
+
+    /* Display & Box Model */
+    display: none;
+    @include edge(
+        $padding: 0.5rem, 
+        $border: 8px solid theme(primary),
+        $border-radius: 0.25rem
+    );
+
+    /* Color */
+    background: linear-gradient(
+        to bottom,
+        gray(off-white), gray(off-white) 20%,
+        theme(primary) 20%, theme(primary) 40%,
+        gray(off-white) 40%, gray(off-white) 60%,
+        theme(primary) 60%, theme(primary) 80%,
+        gray(off-white) 80%, gray(off-white) 100%
+    );
+
+    /* Text */
+
+    /* Other */
+    cursor: pointer;
+    transition-duration: 250ms;
+
+    &:hover
+    {
+        background: linear-gradient(
+            to bottom,
+            gray(off-white), gray(off-white) 20%,
+            theme(primary) 20%, theme(primary) 40%,
+            gray(off-white) 40%, gray(off-white) 60%,
+            theme(primary) 60%, theme(primary) 80%,
+            gray(off-white) 80%, gray(off-white) 100%
+        );
+    }
+}
+.active
+{
+    background: theme(secondary, trans);
+}
+.mobile-mode
+{
+    #nav-menu-toggle
+    {
+        display: flex;
+    }
+}

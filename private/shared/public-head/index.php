@@ -34,9 +34,10 @@
 
         <link rel="icon" type="image/png" href="<?php echo $directory_table->linkToImage("renegade_favicon_32x32.ico");?>">
 <?php 
-    // array_push($wanted_stylesheets, "");
-    // array_push($wanted_ext_js, "");
-    // array_push($wanted_body_js, "")
+    //  array_push($wanted_stylesheets, "");
+    array_push($wanted_ext_js, "all-pages/onload.js");
+    //  array_push($wanted_ext_js, "");
+    //  array_push($wanted_body_js, "")
 ?>
 <?php insertWantedStylesheets(); ?>
 <?php insertJavascriptSrcFiles(); ?>
@@ -44,14 +45,14 @@
     </head>
 
     <body>
-        <header id="public_header">
-            <a href="<?php echo $home_link; ?>">
+        <header>
+            <a id="logo-to-home" href="<?php echo $home_link; ?>">
                 <img src="<?php echo $directory_table->linkToImage("Renegade_Blues.svg"); ?>" alt="Renegade logo.">
             </a>
             <h1><a href="<?php echo $home_link; ?>">Reilly Thate</a></h1>
+            <button type="button" id="nav-menu-toggle" class="collapsible"></button>
             <nav id="nav_primary">
-                <button type="button" class="collapsible">Menu</button>
-                <ul class="nav-ul-grid collapsible_content">
+                <ul class="nav-ul-grid">
 <?php 
     if($PAGE_SET == "admin")
     {
@@ -66,14 +67,14 @@
 <?php endforeach; ?>
                 </ul>
             </nav>
-        </header>
 <?php if($SLUG != 'reillythate.com'): ?>
-        <nav id="backticks">
-            <ul>
+            <nav id="backticks">
+                <ul>
 <?php $linkStack = $directory_table->getLinkStack($directory_table->getIdFromSlug($SLUG), array()); ?>
 <?php for($i = count($linkStack) - 2; $i >= 0; $i--): ?>
-                <li class="level_<?php echo count($linkStack) - $i; ?>"><a href="<?php echo $linkStack[$i][1];?>"><?php echo $linkStack[$i][0]; ?></a></li>
-<?php endfor; ?>
-            </ul>
-        </nav>
+                    <li class="level_<?php echo count($linkStack) - $i; ?>"><a href="<?php echo $linkStack[$i][1];?>"><?php echo $linkStack[$i][0]; ?></a></li>
+    <?php endfor; ?>
+                </ul>
+            </nav>
 <?php endif; ?>
+        </header>

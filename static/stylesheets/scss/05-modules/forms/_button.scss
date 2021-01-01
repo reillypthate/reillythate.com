@@ -1,0 +1,55 @@
+//  
+//  Button
+//  
+button
+{
+    /* Positioning */
+
+    /* Display & Box Model */
+
+    /* Color */
+
+    /* Text */
+
+    /* Other */
+
+    // Mixins
+    @include edge(0, 0.75rem);
+
+    width: 100%;
+    border: none;
+    border-radius: $button-default-border-radius;
+
+
+
+    @include edge(1rem, 0.5rem, auto, 0.75rem);
+    font-family: $font-family-header;
+    font-size: $body-size;
+    letter-spacing: calc(#{body-size} / 5);
+
+    background: theme(primary);
+    color: white;
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+
+    &:hover
+    {
+        background: theme(primary, trans);
+        color: gray(off-black);
+    }
+
+    &[disabled=""]
+    {
+        cursor: default;
+        background: none;
+        color: lightgray;
+        &:hover
+        {
+            background: none;
+            color: lightgray;
+        }
+    }
+}

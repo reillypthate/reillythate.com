@@ -1,28 +1,12 @@
-@import 'scss/01-helper/functions';
-@import 'scss/01-helper/variables';
-@import 'scss/01-helper/mixins';
-@import 'scss/01-helper/extensions';
+@import 'scss/01-helper/01-helper';
 
-@import 'scss/03-basics/reset';
-@import 'scss/03-basics/typography';
-@import 'scss/03-basics/links';
+@import 'scss/03-basics/03-basics';
 
-@import 'scss/04-layouts/all-pages';
-@import 'scss/04-layouts/header';
-@import 'scss/04-layouts/main';
-@import 'scss/04-layouts/footer';
+@import 'scss/04-layouts/04-layouts';
 
-@import 'scss/05-modules/admin-sidebar';
-@import 'scss/05-modules/collapsible';
-@import 'scss/05-modules/cards';
-@import 'scss/05-modules/forms';
-@import 'scss/05-modules/images';
-@import 'scss/05-modules/videos';
-@import 'scss/05-modules/tables';
-@import 'scss/05-modules/js_testing';
+@import 'scss/05-modules/05-modules';
 
-@import "scss/06-pages/about";
-@import "scss/06-pages/blog";
+@import 'scss/06-pages/06-pages.scss';
 
 @import 'scss/04-layouts/backend';
 

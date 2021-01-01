@@ -1,0 +1,136 @@
+//  
+//  Styling for header's <nav> element.
+//  
+#nav_primary
+{
+    /* Positioning */
+
+    /* Display & Box Model */
+    @include edge(0, 0);
+    
+    /* Color */
+
+    /* Text */
+
+    /* Other */
+    $page-name__padding-right: 1.25rem;
+    $page-name__border-width: 0.25rem;
+
+    ul
+    {
+        display: grid;
+        grid-gap: 0.25rem;
+        @include edge(0, 0.5rem);
+        width: 100%;
+
+        list-style: none;
+    }
+    li
+    {
+        text-align: right;
+        font-weight: normal;
+
+        font-size: calc(#{$nav_primary_li_size} * 1.1);
+        letter-spacing: calc(#{$nav_primary_li_size} / 15);
+    }
+    a
+    {
+        display: block;
+        padding: 0.5rem 1.5rem;
+        padding-right: $page-name__padding-right;
+        border-right: $page-name__border-width groove theme(primary, trans);
+    }
+    .nav_active_page
+    {
+        cursor: default;
+        border-right: 0.25rem groove theme(primary);
+        padding-right: 1.25rem;
+        &:hover
+        {
+            color: gray(off-black);
+        }
+    }
+
+    @include query("tablet-portrait")
+    {
+        flex-basis: auto;
+        margin-right: 1rem;
+    }
+    @include query("tablet-landscape")
+    {
+        position: relative;
+        top: 0.125rem;
+
+        flex-basis: 50%;
+        justify-self: flex-end;
+
+        a
+        {
+            border-right: none;
+            padding: 0.75rem 1.5rem;
+        }
+        ul
+        {
+            @include flex(row, space-between, center, nowrap);
+        }    
+        li
+        {
+            text-align: center;
+            flex-basis: calc(100% / #{$num_nav_items});
+            margin-left: auto;
+            margin-right: auto;
+            border: none;
+            
+            &:last-child
+            {
+                margin-right: 0;
+                border-right: none;
+            }
+        }
+
+        .nav_active_page
+        {
+            cursor: default;
+            border-right: none;
+            border-bottom: 0.25rem groove theme(primary);
+            padding-right: 1.5rem;
+            padding-bottom: 0.5rem;
+            &:hover
+            {
+                color: gray(off-black);
+            }
+        }
+    }
+}
+.mobile-mode
+{
+    #nav_primary, #backticks
+    {
+        align-self: start;
+        flex-basis: 100%;
+    }
+    &.nav-menu-closed
+    {
+        #nav_primary, #backticks
+        {
+            display: none;
+            overflow: hidden;
+        }
+    }
+    &.nav-menu-open
+    {
+        #nav_primary, #backticks
+        {
+            /* Positioning */
+            z-index: 1;
+            /* Display & Box Model */
+            display: flex;
+            border-top: 3px solid theme(primary, trans);
+            /* Color */
+    
+            /* Text */
+    
+            /* Other */
+        }
+    }
+}

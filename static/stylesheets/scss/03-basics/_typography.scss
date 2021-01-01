@@ -14,6 +14,7 @@ html, body
     @include line-format($default-font-size);
     @include element-color(gray(off-white), gray(off-black));
 }
+
 /** Set the default font style for heading text. */
 h1, h2, h3, h4, h5, h6
 {
@@ -27,8 +28,12 @@ h1, h2, h3, h4, h5, h6
 /** h1: Main Heading: "Reilly Thate" */
 h1
 {
-    @include edge(0, 0.5rem);
+    @include edge(0 auto, 0.5rem);
     @include line-format($h1-size, $align:center);
+
+    //  
+    //  Media Queries
+    //
 }
 /** h2: Reserved for page headings; i.e. "Blog" */
 h2
@@ -49,7 +54,7 @@ h4
 h5
 {
     @include line-format($h5-size);
-}
+}   
 /** h6 */
 h6
 {

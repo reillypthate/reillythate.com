@@ -6,7 +6,7 @@
 <?php
     // Page Metadata
 	$SLUG = "contact";
-    array_push($wanted_ext_js, "wzrd.io.js");
+    array_push($wanted_ext_js, "vendor/wzrd.io.js");
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		

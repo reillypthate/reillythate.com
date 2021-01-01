@@ -30,14 +30,15 @@ function db_getHTML5()
 {
     global $conn;
 
-    $query = "SELECT * FROM `html5_elements` ORDER BY `id` ASC";
-    $result = $conn->query($query);
+    $qb = $conn->createQueryBuilder();
+    $qb ->select('*')
+        ->from('html5_elements')
+        ->orderBy('html5_elements.id', "ASC");
+    $result = $qb->execute();
 
-    if ($result->num_rows > 0)
+    if ($result->rowCount() > 0)
     {
-        $final_result = $result->fetch_all(MYSQLI_ASSOC);
-        // print_r($final_result);
-        return $final_result;
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     echo "Fail";

@@ -13,3 +13,11 @@
     height: 100%;
     border: 0;
 }
+
+#video_selection
+{
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 0.5rem;
+}
