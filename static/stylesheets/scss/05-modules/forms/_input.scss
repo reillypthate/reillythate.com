@@ -1,0 +1,39 @@
+// 
+//  Input
+//  
+ 
+input
+{
+    /* Positioning */
+
+    /* Display & Box Model */
+    @include edge(
+        $padding: 0.75rem,
+        $border: $body-child__border,
+        $border-radius: 0
+    );
+
+    /* Color */
+    &:focus
+    {
+        outline: theme(primary, solid) auto 1px;
+    }
+    /* Text */
+    &::placeholder
+    {
+        color: theme(primary, trans);
+    }
+    
+
+    /* Other */
+
+    &[type="checkbox"]
+    {
+        margin: 0;
+        flex-basis: 5%;
+        width: 1rem;
+        height: 1rem;
+
+        border: 2px solid black;
+    }
+}

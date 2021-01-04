@@ -68,7 +68,7 @@ class CardTable extends DB_Functions
     public function generateCardSection($card_slugs, $heading_level, $num_tabs, $classes="")
     {
         $cardSection = array();
-        array_push($cardSection, '<section class="card_gallery card_count_' . count($card_slugs) . ' ' . $classes  . '">');
+        array_push($cardSection, '<section class="card_gallery card-count__' . count($card_slugs) . ' ' . $classes  . '">');
         foreach($card_slugs as $cs_index=>$slug)
         {
             $cardSection = array_merge($cardSection, $this->getCardLines($slug, $heading_level));

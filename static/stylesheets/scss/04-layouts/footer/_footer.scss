@@ -1,0 +1,64 @@
+footer
+{
+    /* Positioning */
+
+    /* Display & Box Model */
+    @include flex(row, center, center, wrap);
+    @include edge(0.5rem);
+    border-top: $body-child__border;
+
+    /* Color */
+    @include element-color(gray(off-white), gray(off-black));
+
+    /* Text */
+
+    /* Other */
+
+    & > *
+    {
+        flex-basis: 100%;
+    }
+
+}
+#copyright
+{
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#footer-logo-to-home
+{
+    flex-basis: auto;
+    width: 50px;
+
+    text-align: center;
+    img
+    {
+        max-width: 50px;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+
+        filter: grayscale(50%);
+        filter: opacity(50%);
+
+        &:hover
+        {
+            opacity: 90%;
+        }
+    }
+}
+.mobile-mode
+{
+    footer
+    {
+        /* Positioning */
+
+        /* Display & Box Model */
+
+        /* Color */
+
+        /* Text */
+
+        /* Other */
+    }
+}

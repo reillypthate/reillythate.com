@@ -6,11 +6,14 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 .card_gallery
 {
-    @include edge($section_spacer 0 $card_grid_spacer 0, 0);
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: auto;
-    grid-gap: 0.5rem;
+    max-width: $card-gallery__max-width;
+
+    @include edge($section_spacer auto, 0);
+    @include grid(
+        $columns: auto, 
+        $rows: auto,
+        $gap: 0.5rem
+    );
 
     & + .card_gallery
     {
@@ -19,6 +22,20 @@
     &:last-child
     {
         margin-bottom: $section_spacer;
+    }
+}
+@for $i from 1 through 6
+{
+    .card-count__#{$i}
+    {
+        grid-template-columns: 1fr;
+        @if $i > 1
+        {
+            @include query("tablet-portrait")
+            {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     }
 }
 .card_count_1
@@ -72,15 +89,6 @@
 .cards-home-primary
 {
 
-}
-.film-portfolio
-{
-    grid-template-columns: repeat(2, 1fr);
-    
-    @include query("phone-wide")
-    {
-        grid-template-columns: repeat(3, 1fr);
-    }
 }
 /**
 **
@@ -165,6 +173,24 @@
         & p
         {
             color: white;
+        }
+    }
+}
+
+.mobile-mode
+{
+    @for $i from 1 through 6
+    {
+        .card-count__#{$i}
+        {
+            grid-template-columns: 1fr;
+            @if $i > 1
+            {
+                @include query("phone-wide")
+                {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
         }
     }
 }

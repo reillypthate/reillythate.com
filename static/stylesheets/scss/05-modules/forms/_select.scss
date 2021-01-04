@@ -1,0 +1,19 @@
+// 
+//  Select
+//
+
+select
+{
+    /* Positioning */
+
+    /* Display & Box Model */
+    @include edge(
+        $padding: 0.5rem
+    );
+    /* Color */
+
+    /* Text */
+    font-size: $default-font-size;
+
+    /* Other */
+}

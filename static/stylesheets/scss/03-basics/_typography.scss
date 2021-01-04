@@ -104,3 +104,19 @@ input[type="text"], label, textarea, button
     color: color(red);
     font-style: italic;
 }
+
+.success-message
+{
+    @include edge(
+        $margin: $section-spacer 0,
+        $padding: $content-spacer,
+        $border: 3px groove green,
+        $border-radius: 0.25rem
+    );
+
+    background: green;
+    color: gray(off-white);
+
+    font-style: italic;
+    text-align: center;
+}

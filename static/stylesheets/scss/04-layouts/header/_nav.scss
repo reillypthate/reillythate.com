@@ -30,8 +30,8 @@
         text-align: right;
         font-weight: normal;
 
-        font-size: calc(#{$nav_primary_li_size} * 1.1);
-        letter-spacing: calc(#{$nav_primary_li_size} / 15);
+        font-size: calc(#{$nav-primary__li-size} * 1.1);
+        letter-spacing: calc(#{$nav-primary__li-size} / 15);
     }
     a
     {
@@ -76,7 +76,7 @@
         li
         {
             text-align: center;
-            flex-basis: calc(100% / #{$num_nav_items});
+            flex-basis: calc(100% / #{$nav-item__count});
             margin-left: auto;
             margin-right: auto;
             border: none;
@@ -125,7 +125,7 @@
             z-index: 1;
             /* Display & Box Model */
             display: flex;
-            border-top: 3px solid theme(primary, trans);
+            border-top: $body-child__border;
             /* Color */
     
             /* Text */

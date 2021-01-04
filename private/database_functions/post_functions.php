@@ -68,6 +68,7 @@ class PostTable extends DB_Functions
 
         $preview = new Element();
         $preview->pushLine(0, '<article class="blog-preview">');
+        $preview->pushLine(1, '<div class="content">');
         if(isset($post['banner']))
         {
             $banner = $image_table->getRowFromImageId($post['banner']);
@@ -85,8 +86,8 @@ class PostTable extends DB_Functions
             $read_time = $read_time . " min Read";
         }
 
-        $preview->pushLine(1, '<div class="preview-head">');
-        $preview->pushLine(2, '<img class="renegade" src="' . $renegade_stroke . '" alt="' . "The Renegade logo, represented as simple strokes." . '">');
+        $preview->pushLine(2, '<div class="preview-head">');
+        $preview->pushLine(3, '<img class="renegade" src="' . $renegade_stroke . '" alt="' . "The Renegade logo, represented as simple strokes." . '">');
         /*
         $preview->pushLine(2, '<div class="preview-head_details">');
         $preview->pushLine(3, '<p class="author">R.T.</p>');
@@ -94,19 +95,20 @@ class PostTable extends DB_Functions
         $preview->pushLine(3, '<p class="reading-time">' . $read_time . '</p>');
         $preview->pushLine(2, '</div>');
         */
-        $preview->pushLine(2, '<div class="preview-head_tags">');
-        $preview->pushLine(3, '<p class="tag">Film</p>');
+        $preview->pushLine(3, '<div class="preview-head_tags">');
+        $preview->pushLine(4, '<p class="tag">Film</p>');
+        $preview->pushLine(3, '</div>');
         $preview->pushLine(2, '</div>');
-        $preview->pushLine(1, '</div>');
         
-        $preview->pushLine(1, '<div class="preview-body">');
+        $preview->pushLine(2, '<div class="preview-body">');
         $preview->pushLine(2, '<h2>' . $post['title'] . '</h2>');
         foreach(getArticleLines($post['body']) as $article_index=>$line)
         {
-            $preview->pushLine(2, $line);
+            $preview->pushLine(3, $line);
             break; // Break after the first line of the article has been read.
         }
-        $preview->pushLine(1, '<p class="end-preview-link"><a href="' . $directory_table->linkBySlug($post['slug']) . '">Read More</a></p>');
+        $preview->pushLine(2, '<p class="end-preview-link"><a href="' . $directory_table->linkBySlug($post['slug']) . '">Read More</a></p>');
+        $preview->pushLine(2, '</div>');
         $preview->pushLine(1, '</div>');
 
         $preview->pushLine(0, '</article>');

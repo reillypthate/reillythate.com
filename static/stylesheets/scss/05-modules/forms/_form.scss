@@ -1,0 +1,22 @@
+// 
+//  Form
+//  
+
+form
+{
+    /* Positioning */
+
+    /* Display & Box Model */
+    @include edge();
+    @include flex(row, flex-start, flex-start, wrap);
+
+    /* Color */
+
+    /* Text */
+
+    /* Other */
+    & > *
+    {
+        flex-basis: 100%;
+    }
+}

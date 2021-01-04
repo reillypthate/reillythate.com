@@ -1,34 +1,32 @@
+// 
+//  Button variables
+//  
+//  Variables associated with the <button> element.
+//  
+ 
 //  
 //  Button
 //  
 button
 {
     /* Positioning */
+    width: 100%;
 
     /* Display & Box Model */
+    @include edge(
+        $padding: 0.75rem, 
+        $border-radius: $button-default-border-radius);
 
     /* Color */
+    background: theme(primary);
+    color: white;
 
     /* Text */
-
-    /* Other */
-
-    // Mixins
-    @include edge(0, 0.75rem);
-
-    width: 100%;
-    border: none;
-    border-radius: $button-default-border-radius;
-
-
-
-    @include edge(1rem, 0.5rem, auto, 0.75rem);
     font-family: $font-family-header;
     font-size: $body-size;
     letter-spacing: calc(#{body-size} / 5);
 
-    background: theme(primary);
-    color: white;
+    /* Other */
     cursor: pointer;
 
     transition:

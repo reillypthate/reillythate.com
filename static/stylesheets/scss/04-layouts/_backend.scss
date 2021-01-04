@@ -22,7 +22,7 @@
 
     #myEditor
     {
-        @include edge($section_spacer, $content_spacer, 3px solid theme(primary));
+        @include edge($section_spacer, $content_spacer, $body-child__border);
         @include flex(row, flex-start, flex-start, wrap);
         
     }
@@ -51,11 +51,11 @@
         }
         .token
         {
-            @include edge(1rem, 1rem, 3px solid theme(primary, trans), 0.5rem);
+            @include edge(1rem, 1rem, $body-child__border, 0.5rem);
         }
         .token_slot
         {
-            @include edge(1rem, 1rem, 3px dashed theme(primary, trans), 0.5rem);
+            @include edge(1rem, 1rem, $body-child__border, 0.5rem);
         }
         .before, .after
         {

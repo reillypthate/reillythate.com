@@ -7,8 +7,7 @@
     // Page Metadata
     $SLUG = "post";
     $PAGE_SET = "admin";
-    array_push($wanted_ext_js, "jquery-3.5.1.min.js");
-    array_push($wanted_ext_js, "ckeditor/ckeditor.js");
+    array_push($wanted_ext_js, "vendor/ckeditor/ckeditor.js");
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 <?php 
@@ -43,34 +42,33 @@
                 <!-- Edit Post -->
                 <h2>Edit Post</h2>
                 <form method="post" action="<?php echo $directory_table->linkBySlug("blog-admin") . "/index.php"; ?>">
-                    <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
+                    <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
                     <fieldset>
-                        <legend>
-                            Post Slug
-                        </legend>
-                        <input id="post_slug" name="post_slug" type="text" placeholder="slug-xxx-xxx" value="<?php echo $post_slug; ?>">
+                        <legend>Post Slug</legend>
+                        <input id="post_slug" name="post_slug" type="text" placeholder="slug-xxx-xxx" value="<?php echo $post['slug']; ?>">
                     </fieldset>
                     <fieldset>
-                        <legend>
-                            Banner
-                        </legend>
+                        <legend>Banner</legend>
                         <select name="post_banner">
 <?php foreach($image_table->getTable() as $key=>$img): ?>
-                            <option value="<?php echo $img['id'];?>"<?php if($img['id'] == $post_banner){echo " selected";}?>><?php echo $img['name']; ?></option>
+                            <option value="<?php echo $img['id'];?>"<?php if($img['id'] == $post['banner']){echo " selected";}?>><?php echo $img['name']; ?></option>
 <?php endforeach; ?>
                         </select>
                     </fieldset>
                     <fieldset>
-                        <legend>
-                            Details
-                        </legend>
+                        <legend>Details</legend>
+
+                        <label for="post_title">Title</label>
                         <input id="post_title" name="post_title" type="text" placeholder="Title" value="<?php echo $post_title; ?>">
-                        <textarea id="post_body" name="post_body" row="3" col="80" placeholder="Body (long)"><?php echo $post_body; ?></textarea>
+
+                        <label for="post_summary">Summary</label>
+                        <textarea id="post_summary" name="post_summary" row="3" col="80" placeholder="Summary goes here!"><?php echo $post['summary']; ?></textarea>
+
+                        <label for="post_title">Body</label>
+                        <textarea id="post_body" name="post_body" row="12" col="80" placeholder="Body (long)"><?php echo $post['body']; ?></textarea>
                     </fieldset>
                     <fieldset>
-                        <legend>
-                            Published
-                        </legend>
+                        <legend>Legend</legend>
                         <label for="post_published">
                             <input id="post_published" name="post_published" type="checkbox" checked><span class="after_button">Publish</span>
                         </label>
@@ -84,15 +82,11 @@
 <?php include(DOC_PREFIX . SHARED_PATH . "/errors/errors.php"); ?>
                 <form method="post" action="<?php echo $directory_table->linkBySlug("blog-admin") . "/index.php"; ?>">
                     <fieldset>
-                        <legend>
-                            Post Slug
-                        </legend>
+                        <legend>Post Slug</legend>
                         <input id="post_slug" name="post_slug" type="text" placeholder="slug-xxx-xxx">
                     </fieldset>
                     <fieldset>
-                        <legend>
-                            Banner
-                        </legend>
+                        <legend>Banner</legend>
                         <select name="post_banner">
 <?php foreach($image_table->getTable() as $key=>$img): ?>
                             <option value="<?php echo $img['id'];?>"><?php echo $img['name']; ?></option>
@@ -100,16 +94,19 @@
                         </select>
                     </fieldset>
                     <fieldset>
-                        <legend>
-                            Details
-                        </legend>
+                        <legend>Details</legend>
+
+                        <label for="post_title">Title</label>
                         <input id="post_title" name="post_title" type="text" placeholder="Title">
-                        <textarea id="post_body" name="post_body" row="3" col="80" placeholder="Body (long)"></textarea>
+
+                        <label for="post_summary">Summary</label>
+                        <textarea id="post_summary" name="post_summary" row="3" col="80" placeholder="Summary goes here!"></textarea>
+
+                        <label for="post_title">Body</label>
+                        <textarea id="post_body" name="post_body" row="12" col="80" placeholder="Body (long)"></textarea>
                     </fieldset>
                     <fieldset>
-                        <legend>
-                            Published
-                        </legend>
+                        <legend>Published</legend>
                         <label for="post_published">
                             <input name="post_published" type="checkbox" checked><span class="after_button">Publish</span>
                         </label>
@@ -119,7 +116,14 @@
 <?php endif; ?>
             </section>
             <script>
-                CKEDITOR.replace("post_body");
+                $('textarea').each(function() {
+                    CKEDITOR.replace($(this).attr('id'));
+                });
+                /*
+                CKEDITOR.replace("post_summary").setData("post_summary");
+                CKEDITOR.add;
+                CKEDITOR.replace("post_body").setData("post_body");
+                */
                 $("#post_slug").on("keyup", function() { console.log("ZZ"); });
                 
                 $("#post_title").on("keyup", function(e){

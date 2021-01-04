@@ -1,0 +1,17 @@
+// 
+//  Sizing variables
+//  
+//  Variables used in sizing elements.
+//  
+
+$body-child__border-width: 3px;
+$body-child__border-type: solid;
+$body-child__border-color: theme(primary, trans);
+
+$body-child__border: $body-child__border-width $body-child__border-type $body-child__border-color;
+
+$container-child__border-width: 2px;
+$container-child__border-type: dotted;
+$container-child__border-color: theme(primary, trans);
+
+$container-child__border: $container-child__border-width $container-child__border-type $container-child__border-color;

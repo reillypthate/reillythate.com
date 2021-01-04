@@ -53,7 +53,7 @@ function reactToWindowResize()
         $("header").children("nav").removeClass("collapsible_open");
 
         $("body").addClass("mobile-mode nav-menu-closed");
-        $('body').css('margin-top', ($('header').outerHeight() + 16));
+        $('body').css('margin-top', ($('header').outerHeight() + 24));
     }
     if(w >= breakpoints.get("tablet-portrait"))
     {
@@ -61,7 +61,7 @@ function reactToWindowResize()
         $("body").removeClass("mobile-mode nav-menu-open nav-menu-closed");
         $("#nav_primary").removeClass("active");
         $("header").children("nav").removeClass("collapsible_open");
-        $('body').css('margin-top', 0);
+        $('body').css('margin-top', "");
     }
 }
 function reactToMenuToggle()

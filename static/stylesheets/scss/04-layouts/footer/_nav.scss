@@ -1,0 +1,61 @@
+#nav_footer
+{
+    @include edge($padding: 0.5rem 0);
+    border-bottom: $body-child__border;
+
+    ul
+    {
+        @include edge(0);
+        @include grid($columns: repeat(2, 1fr), $gap: 0.25rem);
+
+        @include query("phone-wide")
+        {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @include query("tablet-portrait")
+        {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @include query("tablet-landscape")
+        {
+            grid-template-columns: repeat(5, 1fr);
+        }
+        
+        list-style: none;
+    }
+    li
+    {
+        border: none;
+        border-radius: 0.5rem;
+
+        font-size: $body-size;
+        text-align: center;
+    }
+    a
+    {
+        text-decoration: underline;
+        display: block;
+        padding: 0.5rem;
+    }
+
+    #copyright
+    {
+        text-align: center;
+    }
+}
+
+.mobile-mode
+{
+    #nav_footer
+    {
+        ul
+        {
+            @include grid($columns: repeat(2, 1fr), $gap: 0.25rem);
+
+            @include query("phone-wide")
+            {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    }
+}

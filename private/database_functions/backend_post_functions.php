@@ -6,9 +6,21 @@
 
 $createNewPost = false;
 $isEditingPost = false;
+$post = array(
+    "id" => 0,
+    "title" => "",
+    "slug" => "",
+    "read_time" => "",
+    "created_at" => 0,
+    "updated_at" => 0,
+    "published" => 0,
+    "banner" => 0,
+    "summary" => "",
+    "body" => ""
+);
 $post_id = 0;
-$post_slug = "";
 $post_title = "";
+$post_slug = "";
 $post_description = "";
 $post_banner = 0;
 
@@ -37,17 +49,24 @@ if(isset($_POST['post_CANCEL']))
 function post_add($req_vals)
 {
     global $conn, $errors, 
+        $post;
+        /*
         $post_slug,
         $post_banner, 
         $post_title, 
         $post_body, 
         $post_published;
+        */
 
     $errors = [];
 
     $post_slug = $req_vals['post_slug'];
     $post_title = $req_vals['post_title'];
     $post_body = $req_vals['post_body'];
+
+    $post["slug"] = $req_vals['post_slug'];
+    $post["title"] = $req_vals['post_title'];
+    $post["body"] = $req_vals['post_body'];
 
     // Validate form.
     if(empty($post_slug))

@@ -1,0 +1,28 @@
+// 
+//  Textarea
+//  
+ 
+textarea
+{
+    /* Positioning */
+    @include edge(
+        $padding: 0.75rem,
+        $border: $body-child__border,
+        $border-radius: 0
+    );
+    /* Display & Box Model */
+
+    /* Color */
+    &:focus
+    {
+        outline: theme(primary, solid) auto 1px;
+    }
+    /* Text */
+    &::placeholder
+    {
+        color: theme(primary, trans);
+    }
+    
+    /* Other */
+    
+}

@@ -1,16 +1,13 @@
-//  
-//  Styling for the <header> element when defined as #public_header.
-//  
 header
 {
     /* Positioning */
 
     /* Display & Box Model */
     @include flex(row, space-between, center, wrap);
-    @include edge(0.5rem, 0);
+    @include edge(0.5rem);
 
     margin-bottom: 0;
-    border-bottom: 3px solid theme(primary, trans);
+    border-bottom: $body-child__border;
 
     /* Color */
     background: gray(off-white);
@@ -55,9 +52,7 @@ header
             $place: center stretch
         );
 
-        @include edge(0 0.5rem, 0rem);
-        margin-bottom: 0;
-
+        @include edge(0 0.5rem, 0.25rem 0 0 0);
         /* Color */
         box-shadow: 0 0.25rem 0.5rem 0.5rem gray(off-white);
 

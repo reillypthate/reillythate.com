@@ -27,15 +27,6 @@
         border-radius: $border-radius;
     }
 }
-/* Positioning */
-
-/* Display & Box Model */
-
-/* Color */
-
-/* Text */
-
-/* Other */
 @mixin flex($flex-direction, $justify-content:false, $align-items:false, $flex-wrap:true)
 {
     display: flex;

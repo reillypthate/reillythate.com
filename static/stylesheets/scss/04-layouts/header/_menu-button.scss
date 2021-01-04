@@ -3,10 +3,12 @@
     /* Positioning */
     width: 48px;
     height: 48px;
+    justify-self: end;
 
     /* Display & Box Model */
     display: none;
     @include edge(
+        $margin: 0.5rem,
         $padding: 0.5rem, 
         $border: 8px solid theme(primary),
         $border-radius: 0.25rem

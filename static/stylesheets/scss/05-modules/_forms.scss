@@ -1,99 +1,16 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * FORM
  * -- default --
- *
- * form, fieldset...
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-/**
-** Styling for <form> element.
-**/
-form
-{
-    @include edge(0);
-    @include flex(row, flex-start, flex-start, wrap);
-
-    & > *
-    {
-        flex-basis: 100%;
-    }
-}
-/**
-** Styling for <fieldset> element.
-**/
-fieldset
-{
-    @include edge(0, 1rem);
-    @include flex(row, flex-start, flex-start, wrap);
-
-    & > *
-    {
-        flex-basis: 100%;
-    }
-}
-/**
-** Styling for <fieldset> element.
-**/
-legend
-{
-    @include edge(0, 0 0.5rem);
-    font-family: $font-family-header;
-    font-size: $body-size;
-    letter-spacing: calc(#{body-size} / 5);
-}
-
-label
-{
-    text-align: left;
-    flex-basis: 95%;
-}
-/**
-** Styling for <input> element.
-**/
-input
-{
-    @include edge(0.5rem 0, 0.75rem, none, 0.25rem);
-    
-
-    &:first-child, &:nth-child(2)
-    {
-        margin-top: 0;
-    }
-    &:last-child
-    {
-        margin-bottom: 0;
-    }
-
-    &[type="checkbox"]
-    {
-        margin: 0;
-        flex-basis: 5%;
-        width: 1rem;
-        height: 1rem;
-
-        border: 2px solid black;
-    }
-}
-/**
-** Styling for <textarea> element.
-**/
-textarea
-{
-    @include edge(0.5rem 0, 0.75rem, none, 0.25rem);
-
-    &:first-child, &:nth-child(2)
-    {
-        margin-top: 0;
-    }
-    &:last-child
-    {
-        margin-bottom: 0;
-    }
-}
-/**
-** Styling for <select> element.
-**/
-select
-{
-    @include edge(0, 0.5rem);
-    font-size: $body-size;
-}
+@import 'forms/form';
+@import 'forms/button';
+@import 'forms/input';
+@import 'forms/label';
+@import 'forms/select';
+@import 'forms/textarea';
+@import 'forms/fieldset';
+@import 'forms/legend';
+@import 'forms/datalist';
+@import 'forms/output';
+@import 'forms/option';
+@import 'forms/optgroup';

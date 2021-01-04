@@ -10,6 +10,7 @@
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		
 		<main>
+<?php /*
             <section>
                 <article>
                     <h2>Film</h2>
@@ -18,6 +19,7 @@
                     </p>
                 </article>
             </section>
+*/ ?>
 <?php $card_table->generateCardSection(array("project-birthday-toast", "project-night-lift", "project-ruthless-the-final-chapter", "project-bud-light-for-a-soul"), 3, 3, "film-portfolio"); ?>
 
 		</main>

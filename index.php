@@ -10,7 +10,7 @@
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		
 		<main>
-<?php $card_table->generateCardSection(array("portfolio", "education", "about"), 2, 3, "cards-home-primary"); ?>
+<?php $card_table->generateCardSection(array("portfolio", "education", "about"), 2, 3, ""); ?>
 
             <section class="blog-previews">
                 

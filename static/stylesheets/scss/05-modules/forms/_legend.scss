@@ -1,0 +1,22 @@
+// 
+//  Legend variables
+//  
+//  Variables associated with the <legend> element.
+//  
+ 
+legend
+{
+    /* Positioning */
+
+    /* Display & Box Model */
+    @include edge(
+        $padding: 0 0.5rem
+    );
+    /* Color */
+
+    /* Text */
+    font-family: $font-family-header;
+    font-size: $default-font-size;
+    letter-spacing: calc(#{$default-font-size} / 5);
+    /* Other */
+}

@@ -1,0 +1,163 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * CONTACT
+ * -- default --
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#contact-main
+{
+    /* Positioning */
+    max-width: $tablet-landscape;
+
+    /* Display & Box Model */
+    
+    /* Color */
+
+    /* Text */
+    h2
+    {
+        padding-bottom: $content-spacer / 2;
+        border-bottom: $container-child__border;
+
+        @include query("tablet-portrait")
+        {
+            text-align: center;
+            padding-bottom: $content-spacer;
+        }
+    }
+    /* Other */
+    & > img
+    {
+        
+    }
+    & > article
+    {
+        
+    }
+    .success-message
+    {
+        & > *
+        {
+            &:last-child
+            {
+                display: block;
+                margin-top: $content-spacer;
+                color: gray(off-white);
+                text-decoration: underline;
+            }
+        }
+    }
+}
+#contact-form
+{
+    /* Positioning */
+    max-width: $tablet-portrait;
+    //order: -1;
+    /* Display & Box Model */
+    @include edge(
+        $section-spacer*2 auto
+    );
+    @include grid(
+        $columns: repeat(2, 1fr),
+        $rows: repeat(3, 1fr auto) 1fr 7fr auto,
+        $areas:
+            "cf-label-fn cf-label-ln"
+            "cf-field-fn cf-field-ln"
+            "cf-label-email cf-label-email"
+            "cf-field-email cf-field-email"
+            "cf-label-subject cf-label-subject"
+            "cf-field-subject cf-field-subject"
+            "cf-label-message-body cf-label-message-body"
+            "cf-field-message-body cf-field-message-body"
+            "cf-submit-button cf-submit-button",
+        $gap: 0.25rem,
+        $place: start stretch
+    );
+    column-gap: $content-spacer;
+
+    /* Color */
+
+    /* Text */
+
+    /* Other */
+    & > input, & > textarea
+    {
+        margin-bottom: $content-spacer;
+    }
+    button
+    {
+        grid-area: cf-submit-button;
+    }
+}
+
+#cf-label_first-name
+{
+    grid-area: cf-label-fn;
+}
+#cf-field_first-name
+{
+    grid-area: cf-field-fn;
+}
+#cf-label_last-name
+{
+    grid-area: cf-label-ln;
+}
+#cf-field_last-name
+{
+    grid-area: cf-field-ln;
+}
+#cf-label_email
+{
+    grid-area: cf-label-email;
+}
+#cf-field_email
+{
+    grid-area: cf-field-email;
+}
+#cf-label_subject
+{
+    grid-area: cf-label-subject;
+}
+#cf-field_subject
+{
+    grid-area: cf-field-subject;
+}
+#cf-label_message-body
+{
+    grid-area: cf-label-message-body;
+}
+#cf-field_message-body
+{
+    grid-area: cf-field-message-body;
+    align-self: stretch;
+}
+.mobile-mode
+{
+    #contact-form
+    {
+        /* Positioning */
+
+        /* Display & Box Model */
+        @include query("phone-wide", max)
+        {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(4, 1fr auto) 1fr 10.5fr auto;
+            grid-template-areas:
+                "cf-label-fn"
+                "cf-field-fn"
+                "cf-label-ln"
+                "cf-field-ln"
+                "cf-label-email"
+                "cf-field-email"
+                "cf-label-subject"
+                "cf-field-subject"
+                "cf-label-message-body"
+                "cf-field-message-body"
+                "cf-submit-button";
+        }
+        /* Color */
+
+        /* Text */
+
+        /* Other */
+    }
+}
