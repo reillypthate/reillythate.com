@@ -1,0 +1,78 @@
+//  
+//  Blog Preview: Information
+//
+.blog-preview__information
+{
+    @include edge(
+        $border: $body-child__border
+    );
+    border-top: none;
+}
+.blog-preview__head
+{
+    /* Positioning */
+    
+    /* Display & Box Model */
+    @include flex(row, space-between, center, nowrap);
+    @include edge(
+        $padding: $content_spacer,
+    );
+    border-bottom: $container-child__border;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+
+    /* Color */
+    
+    /* Text */
+    
+    /* Other */
+    img
+    {
+        /* Positioning */
+        width: 100%;
+        /* Display & Box Model */
+        @include edge();
+        /* Color */
+        
+        /* Text */
+        
+        /* Other */
+        filter: none;
+    }
+}
+.blog-preview__author
+{
+
+}
+.blog-preview__date
+{
+
+}
+.blog-preview__read-time
+{
+
+}
+
+.blog-preview__body
+{
+    /* Positioning */
+
+    /* Display & Box Model */
+    @include grid(
+        $rows: repeat(auto-fill, minmax(1.25rem 1fr)),
+        $gap: $content_spacer
+    );
+    @include edge(
+        $padding: $section_spacer
+    );
+    /* Color */
+    
+    /* Text */
+    & > h2, p
+    {
+        margin: 0;
+    }
+
+    /* Other */
+
+}

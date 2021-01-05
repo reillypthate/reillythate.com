@@ -1,5 +1,57 @@
 //  
 //  Blogs: All Blogs
 //  
-//  Ror elements that include a list of blogs or a series of blog previews.
+//  For elements that include a list of blogs or a series of blog previews.
 //  
+
+#blog-list__main
+{
+    /* Positioning */
+    
+    /* Display & Box Model */
+    @include edge(
+        $margin: 0 auto
+    );
+    
+    /* Color */
+    
+    /* Text */
+    
+    /* Other */
+}
+.blog-preview-list
+{
+    /* Positioning */
+    
+    /* Display & Box Model */
+    @include grid(
+        $columns: repeat(auto-fill, minmax(350px, 1fr)),
+        $rows: $content_spacer,
+        $gap: $content_spacer
+    );
+    //grid-auto-flow: row;
+    grid-auto-rows: $content_spacer;
+    /* Color */
+    
+    /* Text */
+    
+    /* Other */
+
+    & > article
+    {
+        
+    }
+}
+
+.mobile-mode
+{
+    .blog-preview-list
+    {
+        grid-template-columns: 1fr;
+
+        @include query("phone-wide")
+        {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}

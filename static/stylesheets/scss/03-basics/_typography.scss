@@ -104,17 +104,20 @@ input[type="text"], label, textarea, button
     color: color(red);
     font-style: italic;
 }
-
+.warning-message
+{
+    color: color(orange);
+}
 .success-message
 {
     @include edge(
         $margin: $section-spacer 0,
         $padding: $content-spacer,
-        $border: 3px groove green,
+        $border: 3px groove color(green),
         $border-radius: 0.25rem
     );
 
-    background: green;
+    background: color(green);
     color: gray(off-white);
 
     font-style: italic;

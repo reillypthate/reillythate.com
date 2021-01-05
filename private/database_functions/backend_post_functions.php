@@ -31,9 +31,8 @@ if(isset($_POST['post_ADD']))
 if(isset($_GET['edit-post']))
 {
     $isEditingPost = true;
-    $post_id = $_GET['edit-post'];
 
-    post_edit($post_id);
+    post_edit($_GET['edit-post']);
 }
 if(isset($_POST['post_UPDATE']))
 {
@@ -127,107 +126,120 @@ function post_add($req_vals)
 
 function post_edit($post_id)
 {
-    global $post_table,
-        $post_id, 
-        $post_slug, 
-        $post_title, 
-        $post_body,
-        $post_banner, 
-        $post_published;
+    global $post_table, $post;
     
     foreach($post_table->getTable() as $key=>$check)
     {
         if($check['id'] == $post_id)
         {
-            $row = $check;
+            $post = $check;
             break;
         }
     }
-    $post_id = $row['id'];
-    $post_slug = $row['slug'];
-    $post_title = $row['title'];
-    $post_body = $row['body'];
-    $post_banner = $row['banner'];
-    $post_published = $row['published'];
 }
+
 /**
  * Update a row in the `post` table.
  */
 function post_update($req_vals)
 {
     global $conn, $errors, 
+        $post;
+        /*
         $post_id,
         $post_slug, 
         $post_title, 
         $post_body, 
         $post_banner,
         $post_published;
+        */
 
     $errors = [];
 
-    $post_id = $req_vals['post_id'];
-    $post_slug = $req_vals['post_slug'];
-    $post_title = $req_vals['post_title'];
-    $post_body = $req_vals['post_body'];
-    $post_published = $req_vals['post_published'];
+    $post['id'] = $req_vals['post_id'];
+    $post['title'] = $req_vals['post_title'];
+    $post['slug'] = $req_vals['post_slug'];
+    $post['read_time'] = strlen($post['body']) / 800.0;
+    $post['updated_at'] = date('Y-m-d H:i:s');
+    if(isset($req_vals['post_published']))
+    {
+        $post['published'] = 1;
+    }
+    else
+    {
+        $post['published'] = 0;
+    }
+    if(isset($req_vals['post_banner']))
+    {
+        $post['banner'] = $req_vals['post_banner'];
+        if($req_vals['post_banner'] == 0)
+        {
+            $post['banner'] = NULL;
+        }
+    }else
+    {
+        $post['banner'] = NULL;
+    }
+    $post['summary'] = $req_vals['post_summary'];
+    $post['body'] = $req_vals['post_body'];
 
     // Validate form.
-    if(empty($post_slug))
+    if(empty($post['slug']))
     {
         array_push($errors, "Slug required!");
     }
-    if(empty($post_title))
+    if(empty($post['title']))
     {
         array_push($errors, "Title required!");
     }
-    if(empty($post_body))
+    if(empty($post['summary']))
+    {
+        array_push($errors, "Summary required!");
+    }
+    if(empty($post['body']))
     {
         array_push($errors, "Body required!");
-    }    
-    if(isset($req_vals['post_published']))
-        $post_published = 1;
-    else
-        $post_published = 0;
-
-    $read_time = strlen($post_body) / 800.0;
+    }
 
     if(count($errors) == 0)
     {
-        if(isset($req_vals['post_banner']))
+        $qb = $conn->createQueryBuilder();
+        $qb ->update('posts')
+            ->set('posts.title', '?')
+            ->set('posts.slug', '?')
+            ->set('posts.read_time', '?')
+            ->set('posts.updated_at', '?')
+            ->set('posts.published', '?')
+            ->set('posts.banner', '?')
+            ->set('posts.summary', '?')
+            ->set('posts.body', '?')
+            ->where($qb->expr()->eq('posts.id', '?'))
+            ->setParameter(0, $post['title'])
+            ->setParameter(1, $post['slug'])
+            ->setParameter(2, $post['read_time'])
+            ->setParameter(3, $post['updated_at'])
+            ->setParameter(4, $post['published'])
+            ->setParameter(5, $post['banner'])
+            ->setParameter(6, $post['summary'])
+            ->setParameter(7, $post['body'])
+            ->setParameter(8, $post['id'])
+        ;
+        try
         {
-            $update_statement = $conn->prepare("UPDATE `posts` SET slug=?, title=?, body=?, read_time=?, published=?, banner=?, updated_at=now() WHERE id=?");
-            $update_statement->bind_param('sssiiii',
-                $post_slug,
-                $post_title, 
-                $post_body, 
-                $read_time,
-                $post_published,
-                $req_vals['post_banner'],
-                $post_id
-            );
-        }else
+            $result = $qb->execute();
+        }catch(Exception $e)
         {
-            $update_statement = $conn->prepare("UPDATE `posts` SET slug=?, title=?, body=?, read_time=?, published=?, updated_at=now() WHERE id=?");
-            $update_statement->bind_param('sssii',
-                $post_slug,
-                $post_title, 
-                $post_body, 
-                $read_time,
-                $post_published,
-                $post_id
-            );
+            echo $e->getMessage() . PHP_EOL;
+            
+            $_SESSION['message'] = "Error involved: " . $e->getMessage() . ".";
+            header('location: ../index.php');
+
+            echo $e->getMessage() . PHP_EOL;
+            exit(-1);
         }
 
-        if(!$result = $update_statement->execute())
-        {
-            die("There was an error executing the update statement: [ " . $conn->error . " ]");
-        }
-
-        printf("%d Row updated.\n", $update_statement->affected_rows);
-        $update_statement->close();
-
-        $_SESSION['message'] = "Post updated successfully!";
-        header('location: index.php');
+        $_SESSION['message'] = "Post updated successfully!\n";
+        header('location: ../index.php?updated-post=' . $post['slug']);
         exit(0);
     }
 }

@@ -1,0 +1,21 @@
+//  
+//  Tag
+//
+.tag
+{
+    /* Positioning */
+
+    /* Display & Box Model */
+    @include edge(
+        $padding: $content-spacer/2 $content-spacer,
+        $border: $body-child__border
+    );
+    padding-top: $content-spacer/2 + 0.1rem;
+    /* Color */
+    background: gray(off-white);
+    /* Text */
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    /* Other */
+}

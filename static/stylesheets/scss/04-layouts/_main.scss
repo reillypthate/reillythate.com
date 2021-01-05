@@ -36,7 +36,7 @@ section
 }
 article
 {
-    @include edge($content_spacer 0, 0);
+    //@include edge($content_spacer 0, 0);
 }
 #portfolio_grid
 {

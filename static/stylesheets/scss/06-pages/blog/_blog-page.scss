@@ -3,3 +3,78 @@
 //  
 //  For elements that are specific to a blog page.
 //  
+
+.blog
+{
+    /* Positioning */
+    
+    /* Display & Box Model */
+    
+    /* Color */
+    
+    /* Text */
+    
+    /* Other */
+    
+}
+.blog-header
+{
+    position: relative;
+    @include query("phone-wide")
+    {
+        .blog-header__details
+        {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+
+            @include flex(column, space-between, flex-start, nowrap);
+        }
+
+        h2
+        {
+            display: inline-block;
+            @include edge(
+                $margin: 0,
+                $padding: $section_spacer,
+                $border-radius: 0 0.5rem 0.5rem 0.5rem
+            );
+
+            background: theme(primary, trans);
+            color: gray(off-white);
+        }
+
+        .blog-header__summary
+        {
+            width: 100%;
+            @include edge(
+                $padding: $section_spacer
+            );
+            background: theme(primary, trans);
+            color: gray(off-white);
+
+            & * + *
+            {
+                margin-top: $content_spacer;
+            }
+        }
+
+    }
+}
+.blog-header__banner
+{
+
+}
+.blog-body
+{
+    h3
+    {
+        a
+        {
+            text-decoration: underline;
+            color: theme(primary, solid);
+        }
+    }
+}

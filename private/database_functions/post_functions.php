@@ -102,12 +102,15 @@ class PostTable extends DB_Functions
         
         $preview->pushLine(2, '<div class="preview-body">');
         $preview->pushLine(2, '<h2>' . $post['title'] . '</h2>');
-        foreach(getArticleLines($post['body']) as $article_index=>$line)
+        $preview->pushLine(2, $post['summary']);
+        try
         {
-            $preview->pushLine(3, $line);
-            break; // Break after the first line of the article has been read.
+            $blog_link = $directory_table->linkBySlug($post['slug']);
+            $preview->pushLine(2, '<p class="end-preview-link"><a href="' . $blog_link . '">Read More</a></p>');
+        }catch(Exception $e)
+        {
+            $preview->pushLine(2, '<p class="warning-message">Dedicated directory doesn\'t exist for this blog post.</p>');
         }
-        $preview->pushLine(2, '<p class="end-preview-link"><a href="' . $directory_table->linkBySlug($post['slug']) . '">Read More</a></p>');
         $preview->pushLine(2, '</div>');
         $preview->pushLine(1, '</div>');
 
@@ -118,17 +121,23 @@ class PostTable extends DB_Functions
 
     public function printBlogPreviews($num_tabs)
     {
+        global $directory_table, $image_table;
         $previews = array();
 
         foreach($this->table as $post_index=>$post)
         {
+            include("blog-preview.php");
+        }
+        /*
             if($post['published'])
                 array_push($previews, $this->generateBlogPreview($post));
+            
         }
         foreach($previews as $preview_index=>$preview)
         {
             $preview->printLines($num_tabs);
         }
+        */
     }
 
     /**
@@ -154,7 +163,13 @@ class PostTable extends DB_Functions
         $blog = new Element();
         $blog->pushLine(0, '<article class="blog">');
         $blog->pushLine(1, '<div class="blog-header">');
-        $blog->pushLine(2, '<img class="blog-banner" src="' . $directory_table->linkToImage($banner['name']) . '" alt="' . $banner['alt'] . '">');
+        try
+        {
+            $blog->pushLine(2, '<img class="blog-banner" src="' . $directory_table->linkToImage($banner['name']) . '" alt="' . $banner['alt'] . '">');
+        }catch(Exception $e)
+        {
+
+        }
         $blog->pushLine(2, '<div class="blog-header_details">');
         $blog->pushLine(3, '<h2 class="blog-title">' . $post['title'] . '</h2>');
         /*
