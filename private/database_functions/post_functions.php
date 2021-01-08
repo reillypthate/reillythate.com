@@ -21,6 +21,10 @@ class PostTable extends DB_Functions
     {
         return $this->getRowFromCellValue("slug", $post_slug);
     }
+    public function getRowFromPostId($post_id)
+    {
+        return $this->getRowFromCellValue("id", $post_id);
+    }
 
     public function buildTable()
     {

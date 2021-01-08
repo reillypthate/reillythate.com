@@ -2,7 +2,7 @@
     $post = $post_table->getRowFromPostSlug($SLUG);
 ?>
 <article class="blog">
-    <div class="blog-header<?php if(isset($post['banner'])) echo " no-banner";?>">
+    <div class="blog-header<?php if(!isset($post['banner'])) echo " no-banner";?>">
 <?php if(isset($post['banner'])): ?>
 <?php $banner = $image_table->getRowFromImageId($post['banner']); ?>
         <img class="blog-header__banner" src="<?php echo $directory_table->linkToImage($banner['name']); ?>" alt ="<?php echo $banner['alt']; ?>">

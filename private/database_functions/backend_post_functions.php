@@ -32,10 +32,23 @@ if(isset($_GET['edit-post']))
 {
     $isEditingPost = true;
 
+    $isEditingModule = true;
+    $row = $post_table->getRowFromPostId($_GET['edit-post']);
+
+    //  Checks to see if the blog post has a module attached to it.
+    if(isset($row['module']))
+    {
+        $module_id = $row['module'];
+    }else
+    {// If not, create a new parent module and assign its value to $module_id.
+        $module_id = initializeParentModule($row['id'], $row['slug']);
+    }
+    editModule($module_id);
     post_edit($_GET['edit-post']);
 }
 if(isset($_POST['post_UPDATE']))
 {
+    updateModule($_POST);
     post_update($_POST);
 }
 if(isset($_POST['post_CANCEL']))
@@ -128,14 +141,7 @@ function post_edit($post_id)
 {
     global $post_table, $post;
     
-    foreach($post_table->getTable() as $key=>$check)
-    {
-        if($check['id'] == $post_id)
-        {
-            $post = $check;
-            break;
-        }
-    }
+    $post = $post_table->getRowFromPostId($post_id);
 }
 
 /**
@@ -181,7 +187,6 @@ function post_update($req_vals)
         $post['banner'] = NULL;
     }
     $post['summary'] = $req_vals['post_summary'];
-    $post['body'] = $req_vals['post_body'];
 
     // Validate form.
     if(empty($post['slug']))
@@ -196,10 +201,6 @@ function post_update($req_vals)
     {
         array_push($errors, "Summary required!");
     }
-    if(empty($post['body']))
-    {
-        array_push($errors, "Body required!");
-    }
 
     if(count($errors) == 0)
     {
@@ -212,7 +213,6 @@ function post_update($req_vals)
             ->set('posts.published', '?')
             ->set('posts.banner', '?')
             ->set('posts.summary', '?')
-            ->set('posts.body', '?')
             ->where($qb->expr()->eq('posts.id', '?'))
             ->setParameter(0, $post['title'])
             ->setParameter(1, $post['slug'])
@@ -221,8 +221,7 @@ function post_update($req_vals)
             ->setParameter(4, $post['published'])
             ->setParameter(5, $post['banner'])
             ->setParameter(6, $post['summary'])
-            ->setParameter(7, $post['body'])
-            ->setParameter(8, $post['id'])
+            ->setParameter(7, $post['id'])
         ;
         try
         {

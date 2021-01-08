@@ -36,12 +36,8 @@ use Monolog\Handler\StreamHandler;
 
 // Setup Mololog logger
 $log = new Logger('reillythate.com');
-$log->pushHandler(new StreamHandler('logs/warnings.log', Logger::WARNING));
-
-// Prepare logger
-//$log = new Logger('myApp');
-//$log->pushHandler(new StreamHandler('logs/development.log', Logger::DEBUG));
-//$log->pushHandler(new StreamHandler('logs/production.log', Logger::WARNING));
+$log->pushHandler(new StreamHandler('logs/development.log', Logger::DEBUG));
+$log->pushHandler(new StreamHandler('logs/production.log', Logger::WARNING));
 
 // Use logger
 //$log->debug('This is a debug message');

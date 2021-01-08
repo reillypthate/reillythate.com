@@ -22,7 +22,9 @@ $elements = db_getHTML5();
 require_once(DB_FUNCS . 'backend_sd_functions.php');
 require_once(DB_FUNCS . 'backend_id_functions.php');
 require_once(DB_FUNCS . 'backend_card_functions.php');
+require_once(DB_FUNCS . 'module.php');
 require_once(DB_FUNCS . 'backend_post_functions.php');
+
 
 
 ?>
