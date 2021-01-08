@@ -1,0 +1,55 @@
+//  
+//  Modals
+//  
+
+@import "image-select/button";
+
+.modal
+{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: theme(primary, solid);
+    background-color: theme(primary, trans);
+}
+.modal-content
+{
+    background-color: gray(off-white);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close-button
+{
+    position: absolute;
+    top: 20%;
+    left: 8%;
+
+    display: inline-block;
+    @include edge(
+        $padding: $content_spacer / 2 $content_spacer / 3 * 2,
+        $border: 1px solid black,
+        $border-radius: 1rem
+    );
+
+    background: color(red);
+    color: gray(off-white);
+    
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: bold;
+
+    &:hover, &:focus
+    {
+        background: color(orange);
+        text-decoration: none;
+        cursor: pointer;
+    }
+}

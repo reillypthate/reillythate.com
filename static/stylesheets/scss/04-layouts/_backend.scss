@@ -1,10 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * BACKEND
  * -- default --
- *
- * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-/**
+
+@import "backend/page-editor";
+
+ /**
  * Container for every element used in #backend.
  */
 #backend

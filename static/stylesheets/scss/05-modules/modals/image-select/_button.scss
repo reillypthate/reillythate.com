@@ -1,0 +1,19 @@
+//  
+//  Image-Select Button
+//  
+
+#modal__image-select
+{
+    .modal-content
+    {
+        @include grid(
+            $columns: repeat(4, 1fr),
+            $gap: $content_spacer,
+            $place: start start
+        );
+    }
+}
+.modal__image-select-option
+{
+
+}

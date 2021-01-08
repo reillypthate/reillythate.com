@@ -1,0 +1,103 @@
+//  
+//  Page Editor
+//  
+.module-insert__container
+{
+    position: relative;
+    height: $section_spacer;
+    justify-self: stretch;
+    align-self: stretch;
+
+    @include edge(
+        $border: $container-child__border
+    );
+    
+}
+.module-insert__button-list
+{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    @include grid(
+        $columns: repeat(2, 1fr),
+        $gap: $content_spacer
+    );
+    display: none;
+    @include edge(
+        $margin: 0,
+        $padding: 0.25rem,
+        $border: $body-child__border,
+        $border-radius: 0.5rem 0.5rem 0 0
+    );
+
+    background: theme(primary, trans);
+
+    list-style: none;
+}
+.module-insert__button
+{
+    width: 100%;
+    @include edge(
+        $padding: $content_spacer/2 $content_spacer
+    );
+
+    background: gray(off-white);
+    color: gray(off-black);
+
+    &:hover
+    {
+        background: gray(dark-gray);
+        color: gray(off-white);
+    }
+}
+.blog-admin__editor
+{
+    @include grid(
+        $columns: 6fr 3fr,
+        $gap: $section_spacer
+    );
+}
+.blog-canvas
+{
+    grid-column: 1 / 2;
+    grid-row: 1 / end;
+
+    @include grid(
+        $columns: 1fr 19fr,
+        $gap: $content_spacer,
+    );
+    & > *
+    {
+        grid-column: 2 / 3;
+    }
+    legend
+    {
+        width: auto;
+    }
+    div, fieldset
+    {
+        //max-width: $tablet-portrait;
+    }
+    & > .delete-button
+    {
+        grid-column: 1 / 2;
+
+        background: red;
+    }
+}
+.blog-metadata
+{
+    grid-column: 2 / 3;
+
+    @include grid(
+        $columns: 1fr,
+        $gap: $content_spacer
+    );
+}
+.module-child-gallery
+{
+    @include grid(
+        $columns: repeat(4, 1fr),
+        $gap: $content_spacer
+    );
+}

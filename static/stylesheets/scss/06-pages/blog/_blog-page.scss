@@ -20,8 +20,34 @@
 .blog-header
 {
     position: relative;
+    max-width: $tablet-portrait;
+
+    @include edge($section_spacer auto);
+    padding-bottom: $medium_spacer;
+    border-bottom: $container-child__border;
+
+    h2
+    {
+        @include edge(
+            $margin: 0,
+            $padding: $content_spacer,
+        );
+        background: theme(primary);
+        color: gray(off-white);
+    }
+
+    .blog-header__summary
+    {
+        & > *
+        {
+            @include edge($margin: $section_spacer);
+        }
+        
+    }
     @include query("phone-wide")
     {
+        border-bottom: none;
+
         .blog-header__details
         {
             position: absolute;
@@ -29,32 +55,38 @@
             right: 0;
             bottom: 0;
             left: 0;
-
-            @include flex(column, space-between, flex-start, nowrap);
         }
 
         h2
         {
-            display: inline-block;
-            @include edge(
-                $margin: 0,
-                $padding: $section_spacer,
-                $border-radius: 0 0.5rem 0.5rem 0.5rem
-            );
+            position: absolute;
+            top: 0;
+            left: 0;
 
-            background: theme(primary, trans);
-            color: gray(off-white);
+            display: inline-block;
+            border-radius: 0 0.5rem 0.5rem 0.5rem;
+
+            background: theme(primary);
+
         }
 
         .blog-header__summary
         {
-            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
             @include edge(
                 $padding: $section_spacer
             );
-            background: theme(primary, trans);
+            background: theme(primary);
             color: gray(off-white);
 
+            & > *
+            {
+                @include edge($margin: 0);
+            }
             & * + *
             {
                 margin-top: $content_spacer;
@@ -65,10 +97,18 @@
 }
 .blog-header__banner
 {
-
+    opacity: 75%;
+    filter: sepia(75%);
 }
 .blog-body
 {
+    *
+    {
+        max-width: $phone-wide;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
     h3
     {
         a
