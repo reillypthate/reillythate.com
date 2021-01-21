@@ -20,8 +20,8 @@ if($read_time < 1)
     <div class="blog-preview__content">
         <div class="blog-preview__banner-container<?php if(!isset($post['banner'])) echo " no-banner"; ?>">
 <?php if(isset($post['banner'])): ?>
-<?php $banner = $image_table->getRowFromImageId($post['banner']); ?>
-            <img class="blog-preview__banner" src="<?php echo $directory_table->linkToImage($banner['name']); ?>" alt ="<?php echo $banner['alt']; ?>">
+<?php $banner = $image_table->getRowFromImageId($post['banner'])['slug']; ?>
+            <?php img($banner); ?>
 <?php endif; ?>
             <div class="blog-preview__banner-overlay">
                 <img class="blog-preview__renegade" src="<?php echo $renegade_stroke; ?>" alt="The Renegade logo, represented as simple strokes.">

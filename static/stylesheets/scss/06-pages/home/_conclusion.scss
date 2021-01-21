@@ -1,0 +1,80 @@
+//
+//  Home Page: Conclusion
+//
+#home-page__conclusion
+{
+    position: relative;
+
+    background: theme(primary);
+
+    & > .parallax-image__container-overlay
+    {
+        @include flex(row, space-between, center, nowrap);
+    }
+    #home-page__conclusion-profile
+    {
+        z-index: 1;
+        @include query("phone-wide")
+        {
+            width: 350px;
+            @include edge(
+                $padding: $section_spacer,
+                $border-radius: 500px
+            );
+        }
+    }
+    article
+    {
+        z-index: 2;
+        @include flex(row, center, center, wrap);
+        margin-left: auto;
+        margin-right: auto;
+        padding: $section_spacer;
+
+        color: gray(off-white);
+        p
+        {
+            z-index: 2;
+            flex-basis: 100%;
+            color: gray(off-white);
+        }
+        @include query("phone-wide")
+        {
+            height: 350px;
+        }
+    }
+}
+
+.mobile-mode
+{
+    #home-page__conclusion
+    {
+        display: block;
+        
+        #home-page__conclusion-profile
+        {
+            max-width: 350px;
+            @include edge(
+                $border-radius: 50rem
+            );
+            margin-left: auto;
+            margin-right: auto;
+
+            @include query("phone-wide")
+            {
+
+            }
+        }
+        .parallax-image__container-overlay
+        {
+            display: block;
+            @include edge(
+                $padding: $content-spacer
+            );
+        }
+        article
+        {
+            height: auto;
+        }
+    }
+}

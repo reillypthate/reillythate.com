@@ -1,0 +1,16 @@
+//  
+//  Debug
+//  
+#session-message__container
+{
+    background: pink;
+    @include edge(
+        $margin: 0.25rem,
+        $padding: 0.75rem,
+        $border: 2px solid theme(primary)
+    );
+    p
+    {
+        text-align: center;
+    }
+}

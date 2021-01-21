@@ -1,28 +1,4 @@
 <?php 
-    /**
-     * User-Defined callback function that replaces the server working root directory with a static root directory.
-     */
-    function callback($buffer)
-    {
-        return (str_replace("/reillythate.com", "http://reillythate.com", $buffer));
-    }
-    /**
-     * Use database functions to build a URL to the Images directory
-     * and appand the $image filename to it.
-     */
-    function linkToImage($image)
-    {
-        return linkToPage("Images") . "/" . $image;
-    }
-
-    /**
-     * For debugging -- print to browser's console.
-     */
-    function console_log( $data ){
-        echo '<script>';
-        echo 'console.log('. json_encode( $data ) .')';
-        echo '</script>';
-      }
 
     /**
      * Echo an array of lines to HTML with the proper number of tabs before each line.

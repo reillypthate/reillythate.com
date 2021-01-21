@@ -1,0 +1,26 @@
+//
+//  Home Page: Breaks
+//
+
+.home-page__card-container
+{
+    @include edge(
+        $border: $body-child__border
+    );
+}
+#home-page__cards
+{
+    @include grid(
+        $columns: repeat(3, 1fr),
+        $gap: $section_spacer
+    );
+}
+.mobile-mode
+{
+    .home-page__break
+    {
+        @include edge(
+            $margin: $section_spacer,
+        );
+    }
+}

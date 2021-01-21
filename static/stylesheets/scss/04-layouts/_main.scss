@@ -10,7 +10,7 @@
 main
 {
     @include element-color(theme(off-white), theme(off-black));
-    @include edge($section_spacer, 0);
+    //@include edge($section_spacer, 0);
 
     @include query("tablet-landscape")
     {

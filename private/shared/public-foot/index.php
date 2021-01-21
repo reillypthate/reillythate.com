@@ -1,14 +1,3 @@
-<?php 
-	if($PAGE_SET == "admin")
-	{
-		$footer_slugs = $page_slugs;
-	}else
-	{
-		$footer_slugs = array("about", "blog", "contact", "portfolio"); 
-		if(!$to_static)
-			array_push($footer_slugs, "admin");
-	}
-?>
 		<footer>
 			<nav id="nav_footer">
 				<ul>
@@ -22,8 +11,9 @@
 				<img id="renegade_footer" src="<?php echo $directory_table->linkToImage("Renegade_Blues.svg"); ?>" alt="Renegade logo.">
 			</a>
 		</footer>
-<?php insertJavascriptFromSrcFiles(); ?>
 
+        <!-- Javascript Body Files <?php if(count($wanted_body_js) == 0) echo "(N/A)"; ?> -->
+<?php require_once('body_scripts.php'); ?>
 
 	</body>
 </html><?php // Finishing touches; for file output.

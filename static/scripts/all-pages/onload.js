@@ -9,24 +9,11 @@ breakpoints.set("tablet-landscape", 1024);
 breakpoints.set("laptop",           1280);
 breakpoints.set("desktop",          1440);
 
+//  Set JQuery cache for common items.
+
 /* After the page has loaded, apply default classes to various elements. */
 function applyDefaultClasses()
 {
-    //  The Primary nav should be "closed" when the page is opened.
-    //      CSS .closed-menu will be dynamically applied when screen is resized.
-
-    let body = document.getElementsByTagName("body")[0];
-    let primaryNav = document.getElementById("nav_primary");
-    let navMenuToggle = document.getElementById("nav-menu-toggle");
-
-/*
-    // On mobile devices, make the Header a fixed element.
-    body.classList.toggle("mobile-mode");
-    body.classList.toggle("nav-menu-open");
-    navMenuToggle.classList.toggle("active");
-    navMenuToggle.nextElementSibling.classList.toggle("collapsible_open");
-    //primaryNav.classList.toggle("nav-menu-closed");
-*/
     applyEventListeners();
 }
 
@@ -45,30 +32,67 @@ function reactToWindowResize()
     let w = window.innerWidth;
     let h = window.innerHeight;
 
-    if(w < breakpoints.get("tablet-portrait"))
+    letNavReactToWindowSize(w, h);
+    //letParallaxReactToWindowSize(w, h);
+}
+//  Nav Code
+function letNavReactToWindowSize(width, height)
+{
+    var $body =         $('body');
+    var $header =       $('header');
+    var $navPrimary =   $('#nav_primary');
+    
+    if(width < breakpoints.get("tablet-portrait"))
     {
         // Nav Menu Functionality
-        $("body").removeClass("mobile-mode nav-menu-open nav-menu-closed");
-        $("#nav_primary").removeClass("active");
-        $("header").children("nav").removeClass("collapsible_open");
+        $body.removeClass("mobile-mode nav-menu-open nav-menu-closed");
+        $navPrimary.removeClass("active");
+        $header.children("nav").removeClass("collapsible_open");
 
-        $("body").addClass("mobile-mode nav-menu-closed");
-        $('body').css('margin-top', ($('header').outerHeight() + 24));
+        $body.addClass("mobile-mode nav-menu-closed");
+        $body.css('margin-top', ($('header').outerHeight() + 24));
     }
-    if(w >= breakpoints.get("tablet-portrait"))
+    if(width >= breakpoints.get("tablet-portrait"))
     {
         // Nav Menu Functionality
-        $("body").removeClass("mobile-mode nav-menu-open nav-menu-closed");
-        $("#nav_primary").removeClass("active");
-        $("header").children("nav").removeClass("collapsible_open");
-        $('body').css('margin-top', "");
+        $body.removeClass("mobile-mode nav-menu-open nav-menu-closed");
+        $navPrimary.removeClass("active");
+        $header.children("nav").removeClass("collapsible_open");
+        $body.css('margin-top', "");
     }
 }
 function reactToMenuToggle()
 {
-    $("body").toggleClass("nav-menu-open nav-menu-closed");
-    $("#nav-menu-toggle").toggleClass("active");
-    $("header").children("nav").toggleClass("collapsible_open");
+    var $body =         $('body');
+    var $header =       $('header');
+    var $navToggle =    $('#nav-menu-toggle');
+    
+    $body.toggleClass("nav-menu-open nav-menu-closed");
+    $navToggle.toggleClass("active");
+    $header.children("nav").toggleClass("collapsible_open");
 
-    $('body').css('margin-top', ($('header').outerHeight() + 16));
+    $body.css('margin-top', ($('header').outerHeight() + 16));
+}
+//  Parallax Code
+function letParallaxReactToWindowSize(width, height)
+{
+    $('.parallax-image__container').each(function() {
+        var overlay = $(this).siblings('.parallax-image__container-overlay');
+        var totalHeight = 0;
+        overlay.children().each(function() {
+            var temp = $(this).outerHeight(true);
+            console.log(temp);
+            totalHeight += $(this).outerHeight(true);
+        });
+        var mTop = parseInt(overlay.css('padding-top'));
+        var mBottom = parseInt(overlay.css('padding-bottom'));
+        
+        if(width < breakpoints.get("tablet-portrait"))
+        {
+            $(this).css('height', totalHeight + mTop);// + mBottom);
+        }else
+        {
+            $(this).css('height', "auto");
+        }
+    });
 }

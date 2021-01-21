@@ -1,0 +1,32 @@
+//  
+//  Portfolio Sections
+//
+.portfolio-section
+{
+    @include grid(
+        $columns: repeat(2, 1fr),
+        $gap: $small_spacer
+    );
+    padding-bottom: $small_spacer;
+    border-bottom: $body-child__border;
+    //background: theme(primary);
+    .parallax-container
+    {
+        min-height: 300px;
+    }
+
+    &:last-child
+    {
+        border-bottom: none;
+    }
+}
+.mobile-mode
+{
+    .portfolio-section
+    {
+        @include grid(
+            $columns: 1fr
+        );
+
+    }
+}

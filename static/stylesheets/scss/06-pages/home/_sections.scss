@@ -1,0 +1,55 @@
+//
+//  Portfolio Section
+//
+.home-section
+{
+    position: relative; 
+    @include flex(row, center, center, nowrap);
+    background: theme(primary);
+    overflow: hidden;
+    
+    article
+    {
+        min-height: 400px;
+        height: 400px;
+        z-index: 1;
+        @include edge(
+            $padding: $section_spacer
+        );
+        h3
+        {
+            color: gray(off-white);
+            text-align: center;
+        }
+    }
+    .parallax-image__container-overlay
+    {
+        & > *
+        {
+            max-width: none;
+        }
+        h3
+        {
+            font-size: $h3-size * 1.25;
+            line-height: $h3-size * 1.5;
+
+            @include query("tablet-portrait")
+            {
+                font-size: $h3-size * 1.5;
+                line-height: $h3-size * 1.75;
+            }
+        }
+        p
+        {
+            padding-bottom: $content_spacer;
+        }
+    }
+}
+
+.mobile-mode
+{
+    .home-section
+    {
+        grid-template-columns: 1fr;
+    }
+}

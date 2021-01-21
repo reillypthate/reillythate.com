@@ -14,6 +14,7 @@ use Trick\Element; // Call the `Element` class from the "Trick" namespace.
 class DirectoryTable extends DB_Functions
 {
     private $hierarchy;
+    private $slugSet;
 
     function __construct()
     {
@@ -24,8 +25,20 @@ class DirectoryTable extends DB_Functions
 
         $this->hierarchy = array();
         $this->chunkSubdirectories();
+        $this->buildSlugSet();
     }
+    /**
+     * Create a lookup table that returns the directory's id.
+     */
+    private function buildSlugSet()
+    {
+        $this->slugSet = array();
 
+        foreach($this->table as $key=>$row)
+        {
+            $this->slugSet[$row['slug']] = $row['id'];
+        }
+    }
     /**
      * Return a URL to the page requested.
      */
@@ -100,6 +113,110 @@ class DirectoryTable extends DB_Functions
 
         return $this->hierarchy;
     }
+    /**
+     * Build the hierarchy of links.
+     */
+    public function buildAllLinks()
+    {
+        $links = array();
+        foreach($this->table as $index=>$row)
+        {
+            if($row['slug'] != "reillythate.com")
+            {
+                $links[$row['id']] = $row['p_id'];
+                //$links[$row['slug']] = $this->getRowFromId($row['p_id'])['slug'];
+            }
+            //array_push($links, $this->linkBySlug($row['slug']));
+        }
+        return $this->r($links);
+    }
+    /**
+     * Look through a series of key-value pairs where each key represents a
+     * child and each value represents a parent.
+     * Attempt to consolidate a set of child-parent pairs into an organized
+     * hierarchy where each child has been grouped under its parent.
+     */
+    private function r($cp)
+    {
+        //  First, create a list of parents.
+        $parents = array();
+        foreach($cp as $key=>$value)
+        {
+            if(!array_key_exists($value, $parents))
+            {
+                $parents[$value] = array();
+            }
+        }
+        //  Then, add the children to their respective parents.
+        foreach($cp as $key=>$value)
+        {
+            $parents[$value][$key] = array();
+            //array_push($parents[$value], $key);
+        }
+        return array(1=>$this->s($parents, 1));
+        //return array("reillythate.com"=>$this->s($parents, "reillythate.com"));
+    }
+    private $failsafe = 0;
+    //  Recursively go through this array, and when you find a match, return.
+    /**
+     * Assume each key corresponds to a non-empty array.
+     */
+    private function s($set, $parent, $child=null)
+    {
+        if($this->failsafe > 100)
+        {
+            die("Iterative steps too high.");
+        }
+        if(isset($child))
+        {
+            //  Recursive end state: The child does not correspond to a sibling.
+            //  Return an empty array, corresponding to a lack of children.
+            if(!array_key_exists($child, $set))
+            {
+                $this->failsafe++;
+                return array();
+            }else
+            {
+                $this->failsafe++;
+                //  Otherwise, a sibling DOES exist. Set the child's value
+                //  to a recursive call with a null CHILD and a $child PARENT.
+                $child_value = $this->s($set, $child);
+                unset($set[$child]);
+                return $child_value;
+            }
+        }else
+        {
+            //  If the child isn't set, then we attempt to iterate through the
+            //  given parent's children to see if they need to be tied to their
+            //  siblings.
+            //  If parent has no children, it's empty.
+            if(count($set[$parent]) == 0)
+            {
+                $this->failsafe++;
+                return array();
+            }else
+            {
+            //  If the parent has children, connect them to the respective 
+            //  sibling.
+                foreach($set[$parent] as $next_child=>$value)
+                {
+                    //  ReillyThate.com -> About
+                    //  Check to see if there's an about sibling.
+                    if(array_key_exists($next_child, $set))
+                    {
+                        //  Create the hierarchy starting from this.
+                        $temp = $this->s($set, $parent, $next_child);
+                        //unset($set[$next_child]);
+                        $set[$parent][$next_child] = $temp;
+                    }else
+                    {
+                        $set[$parent][$next_child] = array();
+                    }
+                }
+                return $set[$parent];
+            }
+        }
+    }
 
     public function getRowFromSlug($page_slug)
     {
@@ -131,10 +248,7 @@ class DirectoryTable extends DB_Functions
     // TABLE functions.
     public function getIdFromSlug($page_slug)
     {
-        $temp = $this->getRowFromCellValue("slug", $page_slug);
-        //print_r($temp);
-        return $this->getRowFromCellValue("slug", $page_slug)
-        ['id'];
+        return $this->slugSet[$page_slug];
     }
 
     /**

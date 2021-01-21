@@ -1,0 +1,55 @@
+//  
+//  Directory Layouts
+//
+#link-list
+{
+    & > ul
+    {
+        border-right: $body-child__border;
+    }
+    ul
+    {
+        list-style: none;
+        @include edge(
+            $margin: $content_spacer / 2 0,
+            $padding: 0 0 0 $section_spacer,
+        );
+        /*
+        */
+        border-top: $body-child__border;
+        border-left: $body-child__border;
+        //border-bottom: 1px solid black;
+    }
+    li
+    {
+        @include edge(
+            $margin: $content_spacer/2 0
+        );
+    }
+    @include edge(
+        $margin: $content_spacer,
+    );
+}
+.directory-item
+{
+    @include flex(row, space-between, center, nowrap);
+    @include edge(
+        $padding: 0 0 0 $content_spacer*2
+    );
+    h3
+    {
+        font-size: $default-font-size;
+    }
+}
+.directory-item__buttons
+{
+    width: 15rem;
+    @include grid(
+        $columns: repeat(2, 1fr),
+        $gap: $content_spacer
+    );
+    @include edge(
+        $margin: $content_spacer,
+        $padding: 0
+    );
+}

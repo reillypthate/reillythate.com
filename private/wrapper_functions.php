@@ -5,11 +5,83 @@
  * -- Default CSS: common.css
  * -- Default JS: jquery-3.5.1.min.js
 **/
+    /**
+     * Initialize desired stylesheets here.
+     */
     $wanted_stylesheets = array("common.css");
-    $wanted_ext_js = array("vendor/jquery-3.5.1.min.js");
-    $wanted_body_js = array();//"collapsible.js");
 
     /**
+     * Initialize desired scripts here.
+     */
+    $wanted_ext_js = array("vendor/jquery-3.5.1.min.js");
+    array_push($wanted_ext_js, "all-pages/onload.js");
+
+    /**
+     * Initialize desired body scripts here.
+     */
+    $wanted_body_js = array();
+
+    /**
+     * Add one or more stylesheets to the document.
+     */
+    function pushStylesheets(...$stylesheet_names)
+    {
+        global $wanted_stylesheets;
+
+        foreach($stylesheet_names as $stylesheet)
+        {
+            array_push($wanted_stylesheets, $stylesheet);
+        }
+    }
+    /**
+     * Add one or more Javascript sources to the document head.
+     */
+    function pushHeadScripts(...$scripts)
+    {
+        global $wanted_ext_js;
+
+        foreach($scripts as $script)
+        {
+            array_push($wanted_ext_js, $script);
+        }
+    }
+    /**
+     * Add one or more Javascript sources to the document body.
+     */
+    function pushFootScripts(...$scripts)
+    {
+        global $wanted_body_js;
+
+        foreach($scripts as $script)
+        {
+            array_push($wanted_body_js, $script);
+        }
+    }
+
+
+    /**
+     * Generate an element of type $element with a list of attributes.
+     * If $closingTag is true, add one.
+     */
+    function generateElement($type, $attributes, $requiresClosingTag = false)
+    {
+        $element = "<" . $type;
+        foreach($attributes as $key => $attribute)
+        {
+            $element = $element . " " . $key . "=" . "\"" . $attribute . "\"";
+        }
+        $element = $element . ">";
+
+        if($requiresClosingTag == true)
+        {
+            $element = $element . "</" . $type . ">";
+        }
+        return $element;
+    }
+
+
+    /** DEPRECATED!!!
+     * 
      * Take the list of $wanted_stylesheets and apply them to the page.
      */
     function insertWantedStylesheets()
@@ -35,8 +107,10 @@
         }
     }
 
-    /**
+    /** DEPRECATED!!!
+     * 
      * Take a list of external JS files and populates the <head> with references to them.
+     * 
      */
     function insertJavascriptSrcFiles()
     {
@@ -60,7 +134,8 @@
             echo "\n\t\t" . generateElement("script", $_attributes, true);
         }
     }
-    /**
+    /** DEPRECATED!!!
+     * 
      * Take a list of external JS files and populates the <body> with them.
      */
     function insertJavascriptFromSrcFiles()
@@ -84,26 +159,6 @@
             $_attributes["src"] = STATIC_PATH. "/scripts/" . $script_file_name;
             echo "\n\t\t" . generateElement("script", $_attributes, true);
         }
-    }
-
-    /**
-     * Generate an element of type $element with a list of attributes.
-     * If $closingTag is true, add one.
-     */
-    function generateElement($type, $attributes, $requiresClosingTag = false)
-    {
-        $element = "<" . $type;
-        foreach($attributes as $key => $attribute)
-        {
-            $element = $element . " " . $key . "=" . "\"" . $attribute . "\"";
-        }
-        $element = $element . ">";
-
-        if($requiresClosingTag == true)
-        {
-            $element = $element . "</" . $type . ">";
-        }
-        return $element;
     }
 
 ?>

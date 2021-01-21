@@ -1,0 +1,93 @@
+//
+//  Parallax
+//
+.parallax-container
+{
+    position: relative;
+    background: theme(primary, solid);
+    overflow: hidden;
+
+    @include flex(row, center, center, nowrap);
+}
+.parallax-image__container
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    z-index: 0;
+
+    background: theme(primary, solid);
+    img
+    {
+        width: 150%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        pointer-events: none;
+        //overflow: hidden;
+        opacity: 75%;
+
+        //-webkit-filter: blur($small_spacer);
+        //filter: blur($small_spacer);
+    }
+}
+.parallax-image__container-overlay
+{
+    z-index: 1;
+    & > *
+    {
+        z-index: 1;
+        max-width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @include edge(
+        $padding: $section_spacer
+    );
+    p + p
+    {
+        margin-top: $content_spacer;
+    }
+}
+.parallax-link
+{
+    &:hover
+    {
+        background: theme(primary);
+    }
+}
+.transparency
+{
+    background: theme(primary, trans);
+    .parallax-image__container
+    {
+        background: theme(primary, trans);
+        img
+        {
+            //-webkit-filter: none;
+            //filter: none;
+        }
+    }
+}
+.white-text
+{
+    & > *
+    {
+        color: gray(off-white);
+        text-align: center;
+    }
+}
+
+.mobile-mode
+{
+    .parallax-image__container
+    {
+        img
+        {
+            width: 101vmax;
+        }
+    }
+}
+@import "parallax-home";

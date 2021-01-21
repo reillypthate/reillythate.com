@@ -21,3 +21,27 @@
     grid-template-rows: repeat(3, 1fr);
     grid-gap: 0.5rem;
 }
+
+.video-background__container
+{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    @include query("tablet-portrait")
+    {
+        height: 400px;
+    }
+    @include query("tablet-landscape")
+    {
+        height: 500px;
+    }
+
+    background: theme(primary);
+    //box-shadow: inset 0 0 1rem gray(off-white);
+}
+.video-background
+{
+    opacity: 50%;
+    z-index: -1;
+}

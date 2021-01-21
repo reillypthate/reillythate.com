@@ -1,0 +1,66 @@
+#home-page
+{
+/* Positioning */
+
+/* Display & Box Model */
+
+/* Color */
+
+/* Text */
+
+/* Other */
+}
+#home-page__intro
+{
+    position: relative;
+
+
+    @include query("tablet-portrait")
+    {
+        margin-top: $section_spacer;
+        margin-left: initial;
+        margin-right: initial;
+        padding-left: initial;
+        padding-right: initial;
+        max-width: auto;
+    }
+}
+.home-page__intro-overlay
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    @include flex(row, center, center, wrap);
+
+    & > *
+    {
+        flex-basis: 100%;
+        color: gray(off-white);
+        text-align: center;
+    }
+
+    h2
+    {
+        //margin-top: auto;
+        font-size: $h2-size * 1.25;
+        line-height: $h2-size * 1.5;
+        @include query("tablet-portrait")
+        {
+            font-size: $h2-size * 1.5;
+            line-height: $h2-size * 1.75;
+        }
+    }
+    article
+    {
+        max-width: $tablet-portrait;
+        margin-bottom: auto;
+    }
+    p
+    {
+        text-align: center;
+    }
+
+}

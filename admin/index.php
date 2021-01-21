@@ -1,4 +1,5 @@
 <?php 
+    $NAV_SET = "admin";
     // Before we do anything, we need to initialize a bunch of stuff: namely, 
     // universal constants (for ease of access) and a database connection.
     require_once("../private/initialize.php");
@@ -6,7 +7,6 @@
 <?php
     // Page Metadata
     $SLUG = "admin";
-    $PAGE_SET = "admin";
     //array_push($wanted_stylesheets, "bootstrap/scss/bootstrap.css");
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>

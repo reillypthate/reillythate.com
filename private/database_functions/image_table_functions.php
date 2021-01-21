@@ -26,6 +26,17 @@ class ImageTable extends DB_Functions
     {
         return $this->getRowFromCellValue("id", $image_id);
     }
+    public function linkBySlug($image_slug, $size=null)
+    {
+        $row = $this->getRowFromImageSlug($image_slug);
+        if(isset($size))
+        {
+            return IMAGE_PATH . '/' . $row['path'] . '/' . $row['name'] . '-' . $size . $row['type'];
+        }else
+        {
+            return IMAGE_PATH . '/' . $row['path'] . '/' . $row['name'] . $row['type'];
+        }
+    }
 
     public function buildTable()
     {

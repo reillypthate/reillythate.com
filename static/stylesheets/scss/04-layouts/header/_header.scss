@@ -42,7 +42,7 @@ header
     {
         /* Positioning */
         @include affix($bottom:false);
-        z-index: 1;
+        z-index: 100;
         //height: $phone-header-height;
 
         /* Display & Box Model */
@@ -52,7 +52,7 @@ header
             $place: center stretch
         );
 
-        @include edge(0 0.5rem, 0.25rem 0 0 0);
+        @include edge(0, 0.25rem 0.5rem 0 0.5rem);
         /* Color */
         box-shadow: 0 0.25rem 0.5rem 0.5rem gray(off-white);
 

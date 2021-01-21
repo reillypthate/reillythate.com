@@ -1,4 +1,5 @@
 <?php 
+    $NAV_SET = "admin";
     // Before we do anything, we need to initialize a bunch of stuff: namely, 
     // universal constants (for ease of access) and a database connection.
     require_once("../../private/initialize.php");
@@ -6,7 +7,6 @@
 <?php
     // Page Metadata
 	$SLUG = "directory";
-    $PAGE_SET = "admin";
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
         
@@ -16,106 +16,138 @@
         $directory_table->printNewIndex($_GET['new-slug']);
     }
 ?>
-		<main id="manager">
-            <section>
-<?php $directory_table->printTable(3); //printLines($directory_table->printTableLines(3), 3); ?>
+<?php //print_r($directory_table->buildAllLinks()); ?>
+
+<?php 
+    function buildHierarchy($list)
+    {
+        global $directory_table;
+        //print_r($list);
+        echo "<ul>";
+        foreach($list as $parent=>$child)
+        {
+            $page = $directory_table->getRowFromId($parent);
+            echo "<li>";
+            echo "<div class=\"directory-item\"";
+            echo " data-dir_id=\"" . $page['id'] . "\"";
+            echo " data-dir_pid=\"" . $page['p_id'] . "\"";
+            echo " data-dir_slug=\"" . $page['slug'] . "\"";
+            echo " data-dir_title=\"" . $page['title'] . "\"";
+            echo " data-dir_description=\"" . $page['description'] . "\"";
+            echo " data-dir_public=\"" . $page['public'] . "\"";
+            echo " data-dir_published=\"" . $page['published'] . "\"";
+            echo "><h3>" . $page['title'] . "</h3></div>";
+            if(count($child) != 0)
+            {
+                echo buildHierarchy($child);
+            }
+            echo "</li>";
+        }
+        echo "</ul>";
+    }
+?>
+
+		<main>
+            <section id="link-list">
+<?php buildHierarchy($directory_table->buildAllLinks()); ?>
             </section>
-            <section>
-<?php if($isEditingDirectory): ?>
-                <!-- Edit Directory -->
-                <h2>Edit Directory</h2>
-                <form method="post" action="<?php echo $directory_table->linkBySlug("directory") . "/index.php"; ?>">
-                    <input type="hidden" name="dir_id" value="<?php echo $directory_id; ?>">
-                    <fieldset>
-                        <legend>
-                            Parent Directory
-                        </legend>
-                        <select name="dir_pid">
-<?php foreach($directory_table->getTable() as $key=>$dirs): ?>
-                            <option value="<?php echo $dirs['id'];?>"<?php if($dirs['id'] == $directory_pid){echo " selected";}?>><?php echo $dirs['slug']; ?></option>
-<?php endforeach; ?>
-                        </select>
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            Directory Slug
-                        </legend>
-                        <input name="dir_slug" type="text" placeholder="slug-xxx-xxx" value="<?php echo $directory_slug; ?>">
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            Metadata
-                        </legend>
-                        <input name="dir_title" type="text" placeholder="Title" value="<?php echo $directory_title; ?>">
-                        <textarea name="dir_description" row="3" col="80" placeholder="Description (255ch)"><?php echo $directory_description; ?></textarea>
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            Public or Backend
-                        </legend>
-                        <label for="dir_public">
-                            <input name="dir_public" type="checkbox" <?php echo $directory_public; ?>><span class="after_button">Public</span>
-                        </label>
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            Published?
-                        </legend>
-                        <label for="dir_published">
-                            <input name="dir_published" type="checkbox" <?php echo $directory_published; ?>><span class="after_button">Published</span>
-                        </label>
-                    </fieldset>
-                    <button type="submit" name="dir_UPDATE">Update Directory</button>
-                </form>
-<?php else: ?>
-                <!-- Add Directory -->
-                <h2>Add New Directory</h2>
-<?php include(DOC_PREFIX . SHARED_PATH . "/errors/errors.php"); ?>
-                <form method="post" action="<?php echo $directory_table->linkBySlug("directory") . "/index.php"; ?>">
-                    <fieldset>
-                        <legend>
-                            Parent Directory
-                        </legend>
-                        <select name="dir_pid">
-<?php foreach($directory_table->getTable() as $key=>$dirs): ?>
-                            <option value="<?php echo $dirs['id'];?>"><?php echo $dirs['slug']; ?></option>
-<?php endforeach; ?>
-                        </select>
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            Directory Slug
-                        </legend>
-                        <input name="dir_slug" type="text" placeholder="slug-xxx-xxx">
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            Metadata
-                        </legend>
-                        <input name="dir_title" type="text" placeholder="Title">
-                        <textarea name="dir_description" row="3" col="80" placeholder="Description (255ch)"></textarea>
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            Public or Backend
-                        </legend>
-                        <label for="dir_public">
-                            <input name="dir_public" type="checkbox" checked><span class="after_button">Public</span>
-                        </label>
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            Published?
-                        </legend>
-                        <label for="dir_published">
-                            <input name="dir_published" type="checkbox" checked><span class="after_button">Published</span>
-                        </label>
-                    </fieldset>
-                    <?php console_log("Above Button"); ?>
-                    <button type="submit" name="dir_ADD">Add Directory</button>
-                </form>
-<?php endif; ?>
-            </section>
-		</main>
+<?php //$directory_table->printTable(3); //printLines($directory_table->printTableLines(3), 3); ?>
+            <div id="modal__edit-page" class="modal">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <form method="post" action="<?php echo $directory_table->linkBySlug("directory") . "/index.php"; ?>">
+                        <input type="hidden" name="dir_id" id="dir_id">
+                        <input type="hidden" name="dir_pid" id="dir_pid">
+
+                        <fieldset>
+                            <legend>Directory Slug</legend>
+                            <input name="dir_slug" type="text" placeholder="slug-xxx-xxx" id="dir_slug">
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Metadata</legend>
+                            <input name="dir_title" type="text" placeholder="Title" id="dir_title">
+                            <textarea name="dir_description" row="3" col="80" placeholder="Description (255ch)" id="dir_description"></textarea>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Public or Backend</legend>
+                            <label for="dir_public">
+                                <input name="dir_public" type="checkbox" id="dir_public"><span class="after_button">Public</span>
+                            </label>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Published?</legend>
+                            <label for="dir_published">
+                                <input name="dir_published" type="checkbox" id="dir_published"><span class="after_button">Published</span>
+                            </label>
+                        </fieldset>
+                        <button type="submit" id="dir_submit" name="dir_UPDATE">Update Directory</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        
+        <script>
+            var di = $('.directory-item');
+            di.css('background', 'lightgray');
+            $('.directory-item').append('<div class="directory-item__buttons"><button class="directory-item__button-edit">Edit</button><button class="directory-item__button-add">Add</button></div>');
+
+            $('.directory-item__button-edit').click(openEditModal);
+            $('.directory-item__button-add').click(openAddModal);
+
+            function openEditModal(i)
+            {
+                $(this).parents('.directory-item').append('<input type="hidden" id="active_directory">');
+
+                $('#dir_submit').attr('name', 'dir_UPDATE').text('Update Directory');
+                $('#modal__edit-page').css('display', 'block');
+                //  Set the input values to the respective directory's data.
+                var a = $(this).parents('.directory-item');
+                $('#dir_id').attr('value', a.data('dir_id'));
+                $('#dir_pid').attr('value', a.data('dir_pid'));
+                $('#dir_slug').attr('value', a.data('dir_slug'));
+                $('#dir_title').attr('value', a.data('dir_title'));
+                $('#dir_description').text(a.data('dir_description'));
+                
+                if(a.data('dir_public') == 1)
+                {
+                    $('#dir_public').attr('checked', "checked");
+                }
+                if(a.data('dir_published') == 1)
+                {
+                    $('#dir_published').attr('checked', "checked");
+                }
+            }
+            function openAddModal(i)
+            {
+                $('#dir_submit').attr('name', 'dir_ADD').text('Add Directory');
+                $('#modal__edit-page').css('display', 'block');
+
+                var a = $(this).parents('.directory-item');
+                $('#dir_id').attr('value', null);
+                $('#dir_pid').attr('value', a.data('dir_id'));
+                $('#dir_slug').attr('value', null);
+                $('#dir_title').attr('value', null);
+                $('#dir_description').text("");
+                
+                if(a.data('dir_public') == 1)
+                {
+                    $('#dir_public').attr('checked', null);
+                }
+                if(a.data('dir_published') == 1)
+                {
+                    $('#dir_published').attr('checked', null);
+                }
+
+            }
+
+            $('#modal__edit-page').find('.close-button').click(function()
+            {
+                $('#modal__edit-page').css('display', 'none');
+                $('#active_directory').remove();
+            });
+        </script>
         
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-foot/index.php"); ?>

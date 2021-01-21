@@ -10,7 +10,7 @@
     @include edge(
         $margin: 0.5rem,
         $padding: 0.5rem, 
-        $border: 8px solid theme(primary),
+        $border: 8px solid theme(primary, solid),
         $border-radius: 0.25rem
     );
 
@@ -18,9 +18,9 @@
     background: linear-gradient(
         to bottom,
         gray(off-white), gray(off-white) 20%,
-        theme(primary) 20%, theme(primary) 40%,
+        theme(primary, solid) 20%, theme(primary, solid) 40%,
         gray(off-white) 40%, gray(off-white) 60%,
-        theme(primary) 60%, theme(primary) 80%,
+        theme(primary, solid) 60%, theme(primary, solid) 80%,
         gray(off-white) 80%, gray(off-white) 100%
     );
 
@@ -35,9 +35,9 @@
         background: linear-gradient(
             to bottom,
             gray(off-white), gray(off-white) 20%,
-            theme(primary) 20%, theme(primary) 40%,
+            theme(primary, solid) 20%, theme(primary, solid) 40%,
             gray(off-white) 40%, gray(off-white) 60%,
-            theme(primary) 60%, theme(primary) 80%,
+            theme(primary, solid) 60%, theme(primary, solid) 80%,
             gray(off-white) 80%, gray(off-white) 100%
         );
     }
