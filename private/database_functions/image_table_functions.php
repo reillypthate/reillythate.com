@@ -1,4 +1,5 @@
 <?php
+use Trick\DB_Functions;
 /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Image Directory Functions
  * + db_getImageDirectory()

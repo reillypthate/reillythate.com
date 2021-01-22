@@ -1,11 +1,17 @@
-//  
+//
 //  Tag
 //
+.tag-container
+{
+    @include edge(0, 0);
+    list-style: none;
+}
 .tag
 {
     /* Positioning */
 
     /* Display & Box Model */
+    display: block;
     @include edge(
         $padding: $content-spacer/2 $content-spacer,
         $border: $body-child__border
@@ -14,8 +20,9 @@
     /* Color */
     background: gray(off-white);
     /* Text */
+    font-weight: bold;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.15rem;
     /* Other */
 }

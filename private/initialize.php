@@ -24,6 +24,8 @@
     require_once('database/database.php');
     //  Retrieve information from the database.
     require_once('database_functions.php');
+    //  Set up functions used to manage the site's content.
+    require_once('dynamic-functions.php');
     require_once('extra_functions.php');
 
 ?>

@@ -4,7 +4,7 @@
             <nav id="nav_primary">
                 <ul class="nav-ul-grid">
 <?php foreach($nav_slugs as $key=>$slug): ?>
-                    <li><a <?php if($SLUG == $slug): ?>class="nav_active_page"<?php else: ?>href="<?php echo $directory_table->linkBySlug($slug); ?>"<?php endif; ?>><?php echo ucwords($slug); ?></a></li>
+                    <li><a <?php if($SLUG == $slug): ?>class="nav_active_page"<?php else: ?>href="<?php echo l($slug); ?>"<?php endif; ?>><?php echo ucwords($slug); ?></a></li>
 <?php endforeach; ?>
                 </ul>
             </nav>

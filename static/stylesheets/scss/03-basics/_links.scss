@@ -27,6 +27,18 @@ a
             color: theme(primary);
         }
     }
+
+    &.parallax-container
+    {
+        &:hover
+        {
+            img
+            {
+                filter: brightness(50%) contrast(87.5%) sepia(100%);
+                //filter: sepia(75%);
+            }
+        }
+    }
 }
 
 .end-preview-link

@@ -1,0 +1,79 @@
+//
+//  Project Page
+//
+#project-header
+{
+    @include grid(
+        $columns: repeat(2, 1fr),
+        $gap: $section_spacer
+    );
+    @include edge($margin: $section_spacer 0);
+    .parallax-container
+    {
+        //height: 125px;
+    }
+    .parallax-image__container
+    {
+        img
+        {
+            opacity: 50%;
+        }
+    }
+    .parallax-image__container-overlay
+    {
+        width: 100%;
+        height: 100%;
+        @include flex(row, center, center, wrap);
+        & > *
+        {
+            flex-basis: 100%;
+        }
+        ol
+        {
+            
+        }
+    }
+
+    .page-break
+    {
+        @include edge(
+            $margin: $medium_spacer 0 $section_spacer 0
+        );
+    }
+}
+.project-header__title
+{
+    //font-size: $h2-size * 1.5;
+    //line-height: $h2-size * 1.75;
+}
+
+.mobile-mode
+{
+    #project-header
+    {
+        display: block;
+        .parallax-image__container
+        {
+            img
+            {
+                width: 100%;
+            }
+        }
+        .page-break
+        {
+            @include edge(
+                $margin: $section_spacer
+            );
+        }
+    }
+    ol
+    {
+
+    }
+    .project-header__title
+    {
+        margin-top: 0;
+        font-size: $h2-size;
+        line-height: $h2-size;
+    }
+}

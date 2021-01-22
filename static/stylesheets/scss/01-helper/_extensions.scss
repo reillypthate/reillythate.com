@@ -7,14 +7,14 @@
 {
     & + p, & + div
     {
-        margin-top: $content_spacer*2;
+        //margin-top: $content_spacer*2;
     }
 }
 %adjacent-heading-spacer
 {
     & + h2, & + h3, & + h4, & + h5, & + h6, & + div
     {
-        margin-top: $section_spacer*2;
-        margin-bottom: $content_spacer*2;
+        //margin-top: $section_spacer*2;
+        //margin-bottom: $content_spacer*2;
     }
 }

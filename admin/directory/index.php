@@ -13,7 +13,7 @@
 <?php 
     if (isset($_GET['new-slug']))
     {
-        $directory_table->printNewIndex($_GET['new-slug']);
+        $content->getDirectory()->printNewIndex($_GET['new-slug']);
     }
 ?>
 <?php //print_r($directory_table->buildAllLinks()); ?>
@@ -21,12 +21,12 @@
 <?php 
     function buildHierarchy($list)
     {
-        global $directory_table;
+        global $content;
         //print_r($list);
         echo "<ul>";
         foreach($list as $parent=>$child)
         {
-            $page = $directory_table->getRowFromId($parent);
+            $page = $content->getDirectory()->getRowFromId($parent);
             echo "<li>";
             echo "<div class=\"directory-item\"";
             echo " data-dir_id=\"" . $page['id'] . "\"";
@@ -49,13 +49,13 @@
 
 		<main>
             <section id="link-list">
-<?php buildHierarchy($directory_table->buildAllLinks()); ?>
+<?php buildHierarchy($content->getDirectory()->buildAllLinks()); ?>
             </section>
 <?php //$directory_table->printTable(3); //printLines($directory_table->printTableLines(3), 3); ?>
             <div id="modal__edit-page" class="modal">
                 <div class="modal-content">
                     <span class="close-button">&times;</span>
-                    <form method="post" action="<?php echo $directory_table->linkBySlug("directory") . "/index.php"; ?>">
+                    <form method="post" action="<?php echo l("directory") . "/index.php"; ?>">
                         <input type="hidden" name="dir_id" id="dir_id">
                         <input type="hidden" name="dir_pid" id="dir_pid">
 

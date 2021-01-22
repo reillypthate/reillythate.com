@@ -1,4 +1,5 @@
 <?php
+use Trick\DB_Functions;
 /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *  Card Functions
  * + db_getCards()

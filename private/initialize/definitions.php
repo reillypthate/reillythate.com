@@ -55,4 +55,12 @@ define("STATIC_PATH", PROJECT_PATH . "/static");
  */
 define("IMAGE_PATH", STATIC_PATH . "/images");
 
+/** 
+ *  "SCRIPT_PATH"
+ * 
+ *      /reillythate.com/static/scripts
+ * 
+ */
+define("SCRIPT_PATH", STATIC_PATH . "/scripts");
+
 ?>

@@ -6,7 +6,6 @@
 @import "blog/all-blogs";
 @import "blog/blog-preview";
 @import "blog/blog-page";
-@import "blog/tags/tag";
 
 .blog-title
 {
@@ -24,8 +23,8 @@
     @include grid($gap:($content-spacer/4));
     max-width: $blog-image-max-width * 1.2;
 
-    @extend %p-child;
-    @extend %adjacent-heading-spacer;
+    //@extend %p-child;
+    //@extend %adjacent-heading-spacer;
 }
 
 @for $i from 1 through 4

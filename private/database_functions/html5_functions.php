@@ -1,4 +1,5 @@
 <?php
+use Trick\DB_Functions;
 /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *  HTML5 Functions
  * + db_getHTML5()

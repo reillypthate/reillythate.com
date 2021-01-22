@@ -10,11 +10,11 @@
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		
-        
 		<main id="home-page">
             <section id="home-page__intro">
                 <div class="video-background__container">
-                    <iframe id="ruthless-video" class="video-background" src="https://player.vimeo.com/video/501963127?background=1" muted="0" loop="1" frameborder="0" allow="autoplay; fullscreen;"  allowfullscreen></iframe>
+                    <iframe id="ruthless-video" class="video-background" src="https://player.vimeo.com/video/501963127?background=1" allow="autoplay; fullscreen;loop;"  allowfullscreen></iframe>
+                </div>
                 <div class="home-page__intro-overlay">
                     <h2>Filmmaker. Web Developer. Artist.</h2>
                 </div>
@@ -24,7 +24,7 @@
                 <p>I am an artist with a background in science.</p>
                 <p>My artistic goal is to integrate craftsmanship and self-education into my creative process with the end goal of seeing my vision come to life in new and unique ways.</p>
             </section>
-            <a class="home-section" href="<?php echo $directory_table->linkBySlug('portfolio'); ?>">
+            <a class="home-section" href="<?php echo l('portfolio'); ?>">
                 <div class="parallax-image__container">
                     <?php img("poster-night-lift", array("data-speed"=>-1)); ?>
                 </div>
@@ -37,7 +37,7 @@
                 <h2>If done right, a simple idea can leave a lasting impression.</h2>
                 <p>I have a flair for leveraging the beauty of complexity into my work, but I also recognize the value of simplicity: in communication, in planning, and in lifestyle, sometimes the best way to get the job done is to focus on the basics.</p>
             </section>
-            <a class="home-section" href="<?php echo $directory_table->linkBySlug('blog'); ?>">
+            <a class="home-section" href="<?php echo l('blog'); ?>">
                 <div class="parallax-image__container">
                     <?php img("experience-books", array("data-speed"=>-0.5)); ?>
                 </div>
@@ -50,7 +50,7 @@
                 <h2>Whether it be film, computer science, or any other field that interests me...</h2>
                 <p>I aspire to develop a well-rounded knowledge base with a complementary skillset.</p>
             </section>
-            <a class="home-section" href="<?php echo $directory_table->linkBySlug('about'); ?>">
+            <a class="home-section" href="<?php echo l('about'); ?>">
                 <div class="parallax-image__container">
                     <?php img("reilly-thate-profile-01", array("data-speed"=>-0.5)); ?>
                 </div>

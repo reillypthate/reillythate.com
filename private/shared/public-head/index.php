@@ -1,20 +1,20 @@
 <?php 
-    $page_row = $directory_table->getRowFromSlug($SLUG);
+    $page_row = page($SLUG);
     if($to_static)
     {
         ob_start("callback"); // Begins output buffer. 
     }
-    $home_link = $directory_table->linkBySlug("reillythate.com");
+    $home_link = l("reillythate.com");
 
     $page = array();
     $page['title'] = $page_row['title'];
     $page['description'] = $page_row['description'];
-    $page['base'] = $directory_table->linkBySlug("reillythate.com");
-    $page['icon'] = $directory_table->linkToImage("renegade_favicon_32x32.ico");
+    $page['base'] = l("reillythate.com");
+    $page['icon'] = li("renegade_favicon_32x32.ico");
     
 ?>
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,7 +49,7 @@
 <?php endif; ?>
         <header>
             <a id="logo-to-home" href="<?php echo $home_link; ?>">
-                <img src="<?php echo $directory_table->linkToImage("Renegade_Blues.svg"); ?>" alt="Renegade logo.">
+                <img src="<?php echo li("Renegade_Blues.svg"); ?>" alt="Renegade logo.">
             </a>
             <h1><a href="<?php echo $home_link; ?>">Reilly Thate</a></h1>
 <?php include_once('head-nav.php'); ?>

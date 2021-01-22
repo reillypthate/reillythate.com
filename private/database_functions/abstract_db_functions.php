@@ -1,4 +1,5 @@
 <?php
+namespace Trick;
 
 abstract class DB_Functions
 {
@@ -7,15 +8,19 @@ abstract class DB_Functions
     /**
      * Constructor for DB_functions subclass.
      */
-    public function __construct($table_name)
+    public function __construct($table_name, $make_assoc_from_id=false)
     {
-        $this->table = $this->fetchTable($table_name);
+        $this->table = $this->fetchTable($table_name, $make_assoc_from_id);
+        if($make_assoc_from_id)
+        {
+            $this->table = $this->setKeysAsId($this->table);
+        }
     }
 
     /**
      * Provides a function that can be applied to all DB tables.
      */
-    private function fetchTable($table_name)
+    private function fetchTable($table_name, $make_assoc_from_id=false)
     {
         global $conn;
 
@@ -26,7 +31,19 @@ abstract class DB_Functions
             ->orderBy($table_name . '.id', 'ASC');
             
         //echo $qb->getSQL() . "\n";
-        $result = $qb->execute();
+        try
+        {
+            $result = $qb->execute();
+        }catch(Exception $e)
+        {
+            echo $e->getMessage() . PHP_EOL;
+            
+            $_SESSION['message'] = "Error involved: " . $e->getMessage() . ".";
+            header('location: index.php');
+
+            echo $e->getMessage() . PHP_EOL;
+            die(-1);
+        }
 
         if($result->rowCount() > 0)
         {
@@ -35,6 +52,17 @@ abstract class DB_Functions
 
         echo "Fail in `getTable(" . $table_name . ")!";
         return -1;
+    }
+    private function setKeysAsId($table)
+    {
+        $a = array();
+
+        foreach($table as $key=>$row)
+        {
+            $a[$row['id']] = $row;
+        }
+
+        return $a;
     }
 
     protected function getRowFromCellValue($column, $cell_value)

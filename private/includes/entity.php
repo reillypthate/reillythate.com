@@ -1,0 +1,1 @@
+<!-- Entity Element --><<?php echo $entity['type']; ?><?php echoAttributes($entity_attributes); ?><?php echoAttributes($attributes); ?>></<?php echo $entity['type']; ?>><?php if(isset($entity_script)): ?><script src="<?php echo SCRIPT_PATH . '/' . $entity_script; ?>"></script><?php endif; ?>

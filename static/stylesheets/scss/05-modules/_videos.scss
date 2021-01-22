@@ -1,10 +1,10 @@
-.vimeo_container, .youtube_container
+.video-container, .vimeo_container, .youtube_container
 {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
 }
-.vimeo_video, .youtube_video
+.video, .vimeo_video, .youtube_video
 {
     position: absolute;
     top: 0;
@@ -27,10 +27,11 @@
     position: relative;
     width: 100%;
     overflow: hidden;
+    height: 45vw;
 
     @include query("tablet-portrait")
     {
-        height: 400px;
+        height: 40vw;
     }
     @include query("tablet-landscape")
     {
@@ -44,4 +45,29 @@
 {
     opacity: 50%;
     z-index: -1;
+}
+.video-gallery
+{
+    @include flex(row, center, center, nowrap);
+    @include edge(
+        $margin: $section_spacer auto $section_spacer auto
+    );
+    max-width: $tablet-portrait;
+
+    iframe
+    {
+        @include edge(
+            $margin: 0,
+            $padding: 0,
+            $border: none
+        );
+    }
+}
+
+.mobile-mode
+{
+    .video-gallery
+    {
+        width: auto;
+    }
 }

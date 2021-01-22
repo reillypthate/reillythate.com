@@ -2,6 +2,7 @@
 $('.parallax-image__container img').each(function(){
     var img = $(this);
     var imgParent = $(this).parent();
+    
     function parallaxImg()
     {
         var speed = img.data('speed');

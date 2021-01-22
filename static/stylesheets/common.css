@@ -9,15 +9,6 @@
 /* Color */
 /* Text */
 /* Other */
-.blog-gallery + p, p + p, h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p, .blog-gallery + div, p + div, h1 + div, h2 + div, h3 + div, h4 + div, h5 + div, h6 + div {
-  margin-top: 1.5rem;
-}
-
-.blog-gallery + h2, p + h2, .blog-gallery + h3, p + h3, .blog-gallery + h4, p + h4, .blog-gallery + h5, p + h5, .blog-gallery + h6, p + h6, .blog-gallery + div, p + div {
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
-}
-
 /**
 **  Set variables.
 **/
@@ -81,6 +72,9 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   color: var(--off-black);
 }
+h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + * {
+  margin-top: 1rem;
+}
 
 /** h1: Main Heading: "Reilly Thate" */
 h1 {
@@ -142,6 +136,9 @@ p + ul {
 }
 p + ul:last-child {
   margin-bottom: 0.25rem;
+}
+p + p {
+  margin-top: 1rem;
 }
 
 ul {
@@ -209,6 +206,9 @@ a:visited {
 }
 a:visited:hover {
   color: var(--primary-off);
+}
+a.parallax-container:hover img {
+  filter: brightness(50%) contrast(87.5%) sepia(100%);
 }
 
 .end-preview-link {
@@ -1041,6 +1041,35 @@ legend {
   align-items: center;
   flex-wrap: nowrap;
 }
+.parallax-container .tag-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+.parallax-container .tag-container li {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0;
+}
+.parallax-container .tag-container li::before {
+  content: "•";
+}
+.parallax-container .tag-container li:first-child::before {
+  content: none;
+}
+.parallax-container .tag {
+  border: none;
+  background: none;
+}
 
 .parallax-image__container {
   width: 100%;
@@ -1058,6 +1087,7 @@ legend {
   transform: translate(-50%, 0%);
   pointer-events: none;
   opacity: 75%;
+  transition: filter 0.5s ease;
 }
 
 .parallax-image__container-overlay {
@@ -1067,14 +1097,12 @@ legend {
 }
 .parallax-image__container-overlay > * {
   z-index: 1;
-  max-width: 75%;
   margin-left: auto;
   margin-right: auto;
+  color: var(--off-white);
+  text-align: center;
+  text-shadow: 0 0 2px var(--off-black), 0 0 6px var(--off-black), 0 0 16px var(--primary-off), 0 0 32px var(--primary-trans);
 }
-.parallax-image__container-overlay p + p {
-  margin-top: 0.75rem;
-}
-
 .parallax-link:hover {
   background: var(--primary-off);
 }
@@ -1085,13 +1113,11 @@ legend {
 .transparency .parallax-image__container {
   background: var(--primary-trans);
 }
-.white-text > * {
-  color: var(--off-white);
-  text-align: center;
-}
-
 .mobile-mode .parallax-image__container img {
-  width: 101vmax;
+  width: 100vmax;
+}
+.mobile-mode .parallax-image__container-overlay > * {
+  max-width: 100%;
 }
 
 img {
@@ -1100,13 +1126,13 @@ img {
   width: 100%;
 }
 
-.vimeo_container, .youtube_container {
+.video-container, .vimeo_container, .youtube_container {
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
 }
 
-.vimeo_video, .youtube_video {
+.video, .vimeo_video, .youtube_video {
   position: absolute;
   top: 0;
   left: 0;
@@ -1126,11 +1152,12 @@ img {
   position: relative;
   width: 100%;
   overflow: hidden;
+  height: 45vw;
   background: var(--primary-off);
 }
 @media only screen and (min-width: 768px) {
   .video-background__container {
-    height: 400px;
+    height: 40vw;
   }
 }
 @media only screen and (min-width: 1024px) {
@@ -1142,6 +1169,27 @@ img {
 .video-background {
   opacity: 50%;
   z-index: -1;
+}
+
+.video-gallery {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  /* Spacing & Border */
+  margin: 1rem auto 1rem auto;
+  max-width: 768px;
+}
+.video-gallery iframe {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.mobile-mode .video-gallery {
+  width: auto;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1411,6 +1459,7 @@ canvas {
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
+  width: 100%;
 }
 
 #session-message__container {
@@ -1429,7 +1478,7 @@ canvas {
   margin: 1.5rem;
   background: var(--off-white);
 }
-.page-break h2 {
+.page-break h2, .page-break h3, .page-break h4, .page-break h5, .page-break h6 {
   color: var(--primary-solid);
 }
 
@@ -1455,6 +1504,31 @@ canvas {
 }
 .mobile-mode .title-archive-link {
   grid-column: 1/2;
+}
+
+.tag-container {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  /* Positioning */
+  /* Display & Box Model */
+  display: block;
+  /* Spacing & Border */
+  padding: 0.375rem 0.75rem;
+  border: 3px solid var(--primary-trans);
+  padding-top: 0.475rem;
+  /* Color */
+  background: var(--off-white);
+  /* Text */
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+  /* Other */
 }
 
 #modal__image-select .modal-content {
@@ -1951,22 +2025,6 @@ canvas {
   color: var(--primary-solid);
 }
 
-.tag {
-  /* Positioning */
-  /* Display & Box Model */
-  /* Spacing & Border */
-  padding: 0.375rem 0.75rem;
-  border: 3px solid var(--primary-trans);
-  padding-top: 0.475rem;
-  /* Color */
-  background: var(--off-white);
-  /* Text */
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  /* Other */
-}
-
 .blog-title {
   /* Spacing & Border */
   margin: 1rem;
@@ -2150,6 +2208,49 @@ canvas {
 .mobile-mode .portfolio-section {
   display: grid;
   grid-template-columns: 1fr;
+}
+
+#project-header {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  /* Spacing & Border */
+  margin: 1rem 0;
+}
+#project-header .parallax-image__container img {
+  opacity: 50%;
+}
+#project-header .parallax-image__container-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#project-header .parallax-image__container-overlay > * {
+  flex-basis: 100%;
+}
+#project-header .page-break {
+  /* Spacing & Border */
+  margin: 0.5rem 0 1rem 0;
+}
+
+.mobile-mode #project-header {
+  display: block;
+}
+.mobile-mode #project-header .parallax-image__container img {
+  width: 100%;
+}
+.mobile-mode #project-header .page-break {
+  /* Spacing & Border */
+  margin: 1rem;
+}
+.mobile-mode .project-header__title {
+  margin-top: 0;
+  font-size: 1.6474467659rem;
+  line-height: 1.6474467659rem;
 }
 
 #link-list {

@@ -1,5 +1,6 @@
 <?php
-
+namespace Trick;
+use Trick\DB_Functions;
 use Trick\Element; // Call the `Element` class from the "Trick" namespace.
 // Use ELEMENT for:
     // Backend Admin table generator
@@ -11,17 +12,14 @@ use Trick\Element; // Call the `Element` class from the "Trick" namespace.
 /**
 ** This class contains the functions required to work with the Site Directory.
 **/
-class DirectoryTable extends DB_Functions
+class Directory extends DB_Functions
 {
     private $hierarchy;
     private $slugSet;
 
     function __construct()
     {
-        parent::__construct("site_directory");
-
-        $this->convertTableToAssoc();
-        
+        parent::__construct("site_directory", true);
 
         $this->hierarchy = array();
         $this->chunkSubdirectories();
@@ -307,92 +305,6 @@ class DirectoryTable extends DB_Functions
         //echo "<!-- " . date("Y-m-d H:i:s", $metaUpdated) . "\t" . $id . "/" . $page . " -->\n";
         //echo "<!-- " . strtotime(date("Y-m-d H:i:s", $metaUpdated)) . "\t" . $id . "/" . $page . " -->\n";
         return date("Y-m-d H:i:s", $metaUpdated);
-    }
-    public function printTable($num_tabs)
-    {
-        $table = new Element();
-
-        $table->pushLine(1, '<table>');
-
-        $table->pushLine(2, '<thead>');
-        $table->pushLine(3, '<tr>');
-        $table->pushLine(4, '<th scope="col">Parent</th>');
-        $table->pushLine(4, '<th scope="col">Slug</th>');
-        $table->pushLine(4, '<th scope="col">Published</th>');
-        $table->pushLine(4, '<th scope="col"></th>'); // Column for Edit Button
-        $table->pushLine(4, '<th scope="col"></th>'); // Column for Convert Button
-        $table->pushLine(3, "</tr>");
-        $table->pushLine(2, "</thead>");
-
-        // Get the keys that will be used to iterate through the hierarchy var.
-        $parent_keys = array_keys($this->hierarchy);
-        $current_key = 0; // Use this to iterate through the hierarchy.
-
-        $table->pushLine(2, "<tbody>");
-
-        $head_updated = (strtotime($this->fileLastUpdated($this->getIdFromSlug('public-head'))) > strtotime($this->table[$this->getIdFromSlug('public-head')]['last_updated']));
-        echo $head_updated ? "Head Updated" : "";
-
-        foreach($this->hierarchy as $h_keys=>$parent)
-        {
-            if($parent['count'] > 1) // Display only the parents with subdirectories.
-            {
-                // Get the directory information for this particular 'parent'.
-                $row = $this->getRowFromId($parent_keys[$current_key]);
-                // Get information regarding this index page's last update.
-                $last_updated = 'Last Update: ' . $this->fileLastUpdated($row['id']);
-                // Use this to determine whether the Update button will be disabled. If TRUE, it's disabled.
-                $needs_update = ($head_updated || (strtotime($this->fileLastUpdated($row['id'])) > strtotime($row['last_updated']))) ? '' : ' disabled';
-                $table->pushLine(3, '<tr>');
-                $table->pushLine(4, '<th rowspan="' . ($parent['count']+1) . '" scope="rowgroup">' . $row['title'] . '</th>');
-                $table->pushLine(4, '<td>' . $row['title'] . '</td>');
-                //$table->pushLine(4, '<td>' . $row['slug'] . '</td>');
-                $table->pushLine(4, '<td>' . ($row['published'] ? 'Yes' : 'No') . '</td>');
-                $table->pushLine(4, '<td><button onclick="window.location.href=\'' . $this->linkBySlug('directory') . '/index.php?edit-dir=' . $row['id'] . '\'">Edit</button></td>');
-
-                $table->pushLine(4, '<td>');
-                $table->pushLine(5, $last_updated);
-                $table->pushLine(5, '<button onclick="window.location.href=\'' . $this->linkById($row['id']) . '/index.php?html-refresh=' . $row['id'] . '\'"' . $needs_update . '>HTML</button>');
-                $table->pushLine(4, '</td>');
-
-                $table->pushLine(3, '</tr>');
-                
-                // Iterate through the child
-                foreach($parent['children'] as $c_keys=>$child)
-                {
-                    // Get the directory information for this particular 'parent'.
-                    $row = $this->getRowFromId($child);
-                    // Get information regarding this index page's last update.
-                    $last_updated = 'Last Update: ' . $this->fileLastUpdated($row['id']);
-                    // Use this to determine whether the Update button will be disabled. If TRUE, it's disabled.
-                    $needs_update = ($head_updated || (strtotime($this->fileLastUpdated($row['id'])) > strtotime($row['last_updated']))) ? '' : ' disabled';
-
-                    $table->pushLine(3, '<tr>');
-                    $table->pushLine(4, '<td>&mdash; ' . $row['title'] . '</td>');
-                    //$table->pushLine(4, '<td>' . $row['slug'] . '</td>');
-                    $table->pushLine(4, '<td>' . ($row['published'] ? 'Yes' : 'No') . '</td>');
-                    $table->pushLine(4, '<td><button onclick="window.location.href=\'' . $this->linkBySlug('directory') . '/index.php?edit-dir=' . $row['id'] . '\'">Edit</button></td>');
-
-                    $table->pushLine(4, '<td>');
-                    $table->pushLine(5, $last_updated);
-                    $table->pushLine(5, '<button onclick="window.location.href=\'' . $this->linkById($row['id']) . '/index.php?html-refresh=' . $row['id'] . '\'"' . $needs_update . '>HTML</button>');
-                    $table->pushLine(4, '</td>');
-
-                    $table->pushLine(3, '</tr>');
-                    
-                }
-            }
-            $current_key++;
-        }
-
-        $table->pushLine(2, "</tbody>");
-
-        $table->pushLine(2, "<tfoot>");
-        $table->pushLine(2, "</tfoot>");
-
-        $table->pushLine(1, "</table>");
-
-        return $table->printLines($num_tabs);
     }
 
     public function printHierarchy()

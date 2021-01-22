@@ -2,13 +2,16 @@
 define("DB_FUNCS", 'database_functions/');
 
 require_once(DB_FUNCS . 'abstract_db_functions.php');
+require_once(DB_FUNCS . 'content.php');
+
+$content = new Content();
 
 require_once(DB_FUNCS . 'directory_functions.php');
 require_once(DB_FUNCS . 'image_table_functions.php');
 require_once(DB_FUNCS . 'card_functions.php');
 require_once(DB_FUNCS . 'post_functions.php');
 
-$directory_table = new DirectoryTable();
+$directory_table = new Directory();
 $image_table = new ImageTable();
 $card_table = new CardTable();
 $post_table = new PostTable();

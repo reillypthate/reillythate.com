@@ -23,7 +23,10 @@ h1, h2, h3, h4, h5, h6
     @include font-look($weight: 400);
     color: gray(off-black);
 
-    @extend %p-child;
+    & + *
+    {
+        margin-top: $section_spacer;
+    }
 }
 /** h1: Main Heading: "Reilly Thate" */
 h1
@@ -66,8 +69,8 @@ p
 {
     @include line-format($default-font-size, calc(#{$default-font-size} * 1.25));
 
-    @extend %p-child;
-    @extend %adjacent-heading-spacer;
+    //@extend %p-child;
+    //@extend %adjacent-heading-spacer;
     & + ul
     {
         @include edge(0 0 0.5rem 2rem, 0);
@@ -76,6 +79,11 @@ p
         {
             margin-bottom: 0.25rem;
         }
+    }
+
+    & + p
+    {
+        margin-top: $section_spacer;
     }
 }
 ul

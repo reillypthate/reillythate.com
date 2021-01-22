@@ -1,4 +1,6 @@
 <?php
+
+use Trick\DB_Functions;
 use Trick\Element; // Call the `Element` class from the "Trick" namespace.
 
 /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

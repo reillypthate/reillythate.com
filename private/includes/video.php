@@ -1,0 +1,1 @@
+<!-- Video iFrame --><iframe class="video" src="<?php echo $video['src']; ?>"<?php echoAttributes($video_attributes); ?><?php echoAttributes($attributes); ?>></iframe>

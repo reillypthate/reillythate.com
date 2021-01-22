@@ -4,4 +4,6 @@
 canvas
 {
     @include flex(row, center, center, nowrap);
+
+    width: 100%;
 }
