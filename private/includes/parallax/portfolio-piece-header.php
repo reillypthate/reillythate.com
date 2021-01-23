@@ -9,10 +9,7 @@
 <?php foreach($content->getTagsForContent($contentSlug) as $tag): ?>
 					            <li><?php tag($tag); ?></li>
 <?php endforeach; ?>
-				            </ol>
+                            </ol>
+                            <?php echo html_entity_decode($contentRow['summary']); ?>
                         </div>
-                    </div>
-                    <div class="page-break">
-                        <h3>Summary</h3>
-                        <?php echo html_entity_decode($contentRow['summary']); ?>
                     </div>

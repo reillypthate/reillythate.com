@@ -3,17 +3,32 @@ namespace Trick;
 
 abstract class DB_Functions
 {
+    protected $table_name;
     protected $table;
+
+    /**
+     * The join table between the child class and the content class.
+     */
+    protected $contentJoinTable;
 
     /**
      * Constructor for DB_functions subclass.
      */
     public function __construct($table_name, $make_assoc_from_id=false)
     {
+        //  Used in join table.
+        $this->table_name = $table_name;
+
         $this->table = $this->fetchTable($table_name, $make_assoc_from_id);
         if($make_assoc_from_id)
         {
             $this->table = $this->setKeysAsId($this->table);
+        }
+
+        if($table_name != 'content' && $table_name != 'directory')
+        {
+            $this->contentJoinTable = $this->fetchContentJoinTable();
+            $this->contentJoinTable = $this->groupElementsByContent();
         }
     }
 
@@ -53,6 +68,84 @@ abstract class DB_Functions
         echo "Fail in `getTable(" . $table_name . ")!";
         return -1;
     }
+    /**
+     * Retrieve a join table containing elements associated with each row of 
+     * content, ordered by position.
+     */
+    protected function fetchContentJoinTable()
+    {
+        global $conn;
+        $t = $this->table_name;
+
+        $qb = $conn->createQueryBuilder();
+        $qb
+            ->select(
+                'c.id AS content_id',
+                'c.slug AS content_slug',
+                ($t . '.id AS ' . $t . '_id'),
+                'j.position AS position'
+            )
+            ->from(('content_' . $t), 'j')
+            ->innerJoin('j', 'content', 'c', 'j.content_id=c.id')
+            ->innerJoin('j', $t, $t, ('j.' . $t . '_id=' . $t . '.id'))
+            ->orderBy('c.slug', 'ASC')
+            ->addOrderBy('j.position', 'ASC')
+        ;
+
+        try
+        {
+            $result = $qb->execute();
+        }catch(Exception $e)
+        {
+            echo $e->getMessage() . PHP_EOL;
+            
+            $_SESSION['message'] = "Error involved: " . $e->getMessage() . ".";
+            header('location: index.php');
+
+            echo $e->getMessage() . PHP_EOL;
+            die(-1);
+        }
+
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    /**
+     *  Builds an associative array where each content_slug value corresponds to
+     *  its respective id and a numerical array of element id.
+     *  Ordered by content slug, and then by join position.
+     */
+    protected function groupElementsByContent()
+    {
+        $g = array();
+        $name = $this->table_name;
+        $id = $this->table_name . '_id';
+
+        foreach($this->contentJoinTable as $key=>$row)
+        {
+            //  Check to see if there's already a unique key for
+            //  this element's respective content.
+            //  If so, then simply add this element to its group.
+            if(array_key_exists($row['content_slug'], $g))
+            {
+                $g[$row['content_slug']][$name][$row['position']] = $row[$id];
+            }else
+            {
+                $g[$row['content_slug']] = array(
+                    "content_id" => $row['content_id'],
+                    $name => array(
+                        $row['position'] => $row[$id]
+                    )
+                );
+            }
+        }
+
+        return $g;
+    }
+
+    public function getContentJoinTable()
+    {
+        return $this->contentJoinTable;
+    }
+
     private function setKeysAsId($table)
     {
         $a = array();
@@ -76,6 +169,14 @@ abstract class DB_Functions
         }
 
         return -1; // No row exists with this cell value in the respective column.
+    }
+
+    /**
+     *  Return a row from this element's table by ID.
+     */
+    public function getRowFromId($id)
+    {
+        return $this->table[$id];
     }
 
     protected function buildTableWithEditButton($hasEditColumn, $backendDirective)

@@ -14,6 +14,12 @@
 		{
 			$content_slug = $_GET['project'];
 		}
+		
+    // Page Metadata
+    if(isset($_GET['project']))
+    {
+        $SLUG = $_GET['project'];
+    }
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 
@@ -24,17 +30,16 @@
 			</section>
 <?php portfolioPieceVideos($content_slug); ?>
 <?php portfolioPieceEntities($content_slug); ?>
-			<section id="project-blogs" class="page-break">
-				<h2>Blogs</h2>
-				<ul>
-					<li>Blog 1</li>
-					<li>Blog 2</li>
-					<li>Blog 3</li>
-				</ul>
-			</section>
 
-			<section id="project-gallery" class="page-break">
+			<section class="page-break">
+				<h3>Blogs</h3>
+<?php portfolioPieceBlogs($content_slug); ?>
+
+			</section>
+			<section class="page-break">
 				<h3>Gallery</h3>
+<?php portfolioPieceImages($content_slug); ?>
+
 			</section>
 			<!-- Goal: Automatically generate a set of "related" projects. -->
 			<section id="related-projects" class="portfolio-section">

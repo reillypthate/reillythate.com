@@ -2,17 +2,21 @@
 
 use Trick\DB_Functions;
 use Trick\Directory as D;
+use Trick\Image as I;
 use Trick\Portfolio as P;
 use Trick\Tags as T;
 use Trick\Video as V;
 use Trick\Entity as E;
+use Trick\BlogPost as BP;
 
-require_once('directory_functions.php');
-require_once('image_table_functions.php');
+require_once('directory.php');
+require_once('image.php');
 require_once('portfolio.php');
 require_once('tags.php');
 require_once('video.php');
 require_once('entity.php');
+
+require_once('blog-post.php');
 
 require_once('card_functions.php');
 require_once('post_functions.php');
@@ -27,21 +31,25 @@ require_once('post_functions.php');
 class Content extends DB_Functions
 {
     protected $directory;
+    protected $images;
     protected $gallery;
     protected $portfolio;
     protected $tags;
     protected $videos;
     protected $entities;
 
+    protected $blogPosts;
+
     function __construct()
     {
-        parent::__construct("site_content", true);
+        parent::__construct("content", true);
         $this->directory = new D();
-        $this->gallery = new ImageTable();
+        $this->images = new I();
         $this->portfolio = new P();
         $this->tags = new T();
         $this->videos = new V();
         $this->entities = new E();
+        $this->blogPosts = new BP();
 
         //print_r($this->table);
         //print_r($this->directory->getTable());
@@ -52,7 +60,7 @@ class Content extends DB_Functions
 
     public function getRowFromSlug($content_slug)
     {
-        return $this->getRowFromCellValue("slug", $page_slug);
+        return $this->getRowFromCellValue("slug", $content_slug);
     }
     public function getRowFromId($content_id)
     {
@@ -88,6 +96,60 @@ class Content extends DB_Functions
         }
 
         return $v;
+    }
+    /**
+     * Retrieves the table for the given element.
+     * If $element is empty, return the $content table.
+     */
+    public function getTable($element=null)
+    {
+        switch($element)
+        {
+            case 'directory': return $this->directory->getTable();
+            case 'image': return $this->images->getTable();
+            case 'portfolio': return $this->portfolio->getContentJoinTable();
+            case 'tag': return $this->tags->getTable();
+            case 'video': return $this->videos->getTable();
+            case 'entity': return $this->entities->getTable();
+            default: return parent::getTable();
+        }
+    }
+    public function elementBySlug($element, $elementSlug)
+    {
+        switch($element)
+        {
+            case 'portfolio': die("The \"" . $element . "\" table has no slug column!");
+            case 'image': return $this->getTable($element)[$this->images->getIdFromSlug($elementSlug)];
+            case 'tag': die("The \"" . $element . "\" table has no slug column!");
+            case 'video':die("The \"" . $element . "\" table has no slug column!");
+            case 'entity': die("The \"" . $element . "\" table has no slug column!");
+            case 'blogPost': return $this->blogPosts->getRowFromId($this->blogPosts->getIdFromSlug($elementSlug));
+            default: return $this->getTable($element)[$elementSlug];
+        }
+    }
+    public function getContentJoin($element)
+    {
+        switch($element)
+        {
+            case 'directory': die("X"); return null;
+            case 'content': die("Y"); return null;
+            case 'image': return $this->images->getContentJoinTable();
+            case 'portfolio': return $this->portfolio->getContentJoinTable();
+            case 'tag': return $this->tags->getContentJoinTable();
+            case 'video': return $this->videos->getContentJoinTable();
+            case 'entity': return $this->entities->getContentJoinTable();
+            case 'blogPost': return $this->blogPosts->getContentJoinTable();
+            default: die("Z"); return null;
+        }
+    }
+    public function contentBySlug($element, $contentSlug)
+    {
+        switch($element)
+        {
+            case 'directory': return null;
+            case 'content': return null;
+            default: return $this->getContentJoin($element)[$contentSlug];
+        }
     }
     /**
      *  Return the Portfolio class for general use.
@@ -147,6 +209,48 @@ class Content extends DB_Functions
         return $v;
     }
     
+    function getImages()
+    {
+        return $this->images->getTable();
+    }
+    function getImagesForContent($slug)
+    {
+        $i = array();
+
+        if(!isset($this->images->getContentJoinTable()[$slug]))
+        {
+            return $i;
+        }
+        foreach($this->images->getContentJoinTable()[$slug]['image'] as $key=>$image_id)
+        {
+            array_push($i, $this->images->getRowFromId($image_id));
+        }
+
+        return $i;
+    }
+
+    function getBlogPosts()
+    {
+        return $this->blogPosts->getTable();
+    }
+
+    function getBlogsForContent($slug)
+    {
+        $b = array();
+
+        if(!isset($this->blogPosts->getContentJoinTable()[$slug]))
+        {
+            return $b;
+        }
+        
+        foreach($this->blogPosts->getContentJoinTable()[$slug]['post'] as $key=>$post_id)
+        {
+            array_push($b, $this->blogPosts->getRowFromId($post_id));
+        }
+
+        return $b;
+    }
+
 }
 
 ?>

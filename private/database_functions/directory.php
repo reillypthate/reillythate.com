@@ -19,7 +19,7 @@ class Directory extends DB_Functions
 
     function __construct()
     {
-        parent::__construct("site_directory", true);
+        parent::__construct("directory", true);
 
         $this->hierarchy = array();
         $this->chunkSubdirectories();

@@ -29,7 +29,7 @@ class Tags extends DB_Functions
         $qb
             ->select('c.id AS content_id', 'c.slug as content_slug', 't.id as tag_id, j.position as position')
             ->from($mainTable, 'j')
-            ->innerJoin('j', 'site_content', 'c', 'j.content_id=c.id')
+            ->innerJoin('j', 'content', 'c', 'j.content_id=c.id')
             ->innerJoin('j', 'tag', 't', 'j.tag_id=t.id')
             ->orderBy('c.slug', 'ASC')
             ->addOrderBy('j.position', 'ASC')

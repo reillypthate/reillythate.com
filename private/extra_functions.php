@@ -15,20 +15,28 @@
     }
     /**
      * Build an <img> element using an image slug.
-     * Takes an optional attributes argument, an associative array of attribute keys and their values.
+     * Takes an optional attributes argument, an associative array of attribute
+     * keys and their values.
      */
     function img($imageSlug, $attributes="")
     {
-        global $image_table;
+        global $content;
         
-        $img = $image_table->getRowFromImageSlug($imageSlug);
+        $img = $content->elementBySlug('image', $imageSlug);
         $img_src = li($img['name']);
         $img_alt = $img['alt'];
 
         if(isset($img['srcset']))
         {
             $img_srcset = json_decode($img['srcset'], true);
-            $img_src = li($img['path'] . '/' . $img['name'] . "_M" . $img['type']);
+            $s = array();
+            foreach($img_srcset as $key=>$value)
+            {
+                $src = IMAGE_PATH . '/' . $img['path'] . '/' . $img['name'] . '-' . $key . $img['type'];
+                $imgSrc = IMAGE_PATH . '/' . $img['path'] . '/' . $img['name'] . '-' . $key . $img['type'];
+
+                array_push($s, $src . ' ' . $value);
+            }
         }
         
         include("includes/image.php");
@@ -76,17 +84,18 @@
     {
         global $content;
 
-        $portfolio = $content->getPortfolioPiece($contentSlug);
-        $contentRow = $content->getRowFromId($portfolio['content_id']);
+        $portfolio = $content->contentBySlug('portfolio', $contentSlug);//getPortfolioPiece($contentSlug);
+        $contentRow = $content->getTable()[$portfolio['content_id']];
         $imageSlug = $portfolio['image_slug'];
 
         include("includes/parallax/portfolio-piece-preview.php");
     }
+
     function portfolioPieceHeader($contentSlug, $parallaxStrength=-1, $attributes=null)
     {
         global $content;
 
-        $portfolio = $content->getPortfolioPiece($contentSlug);
+        $portfolio = $content->contentBySlug('portfolio', $contentSlug);
         $contentRow = $content->getRowFromId($portfolio['content_id']);
         $imageSlug = $portfolio['image_slug'];
 
@@ -117,5 +126,51 @@
             return;
         }
         include("includes/entity-gallery.php");
+    }
+
+
+    function portfolioPieceImages($contentSlug, $attributes=null)
+    {
+        global $content;
+
+        $images = $content->getImagesForContent($contentSlug);
+
+        if(count($images) == 0)
+        {
+            return;
+        }
+        include("includes/image-gallery.php");
+    }
+
+    
+    function portfolioPieceBlogs($contentSlug, $attributes=null)
+    {
+        global $content;
+
+        $blogPosts = $content->getBlogsForContent($contentSlug);
+
+        if(count($blogPosts) == 0)
+        {
+            echo "<p>No blogs yet...</p>";
+            return;
+        }
+        include("includes/blog-gallery.php");
+    }
+    function blogPostPreview($blogPost, $parallaxStrength=-1, $attributes=null)
+    {
+        global $content;
+        
+        include("includes/blog-post-preview.php");
+    }
+
+    function blogPost($postSlug)
+    {
+        global $content;
+
+        $blogPost = $content->getBlogPosts('blogPost', $postSlug)[$postSlug];
+
+        $parallaxStrength = -1;
+
+        include("includes/blog-post-page.php");
     }
 ?>

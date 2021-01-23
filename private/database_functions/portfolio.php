@@ -13,19 +13,22 @@ class Portfolio extends DB_Functions
 {
     function __construct()
     {
-        $this->table = $this->fetchJoinTable('portfolio');
-        $this->table = $this->setKeysAsSlug($this->table);
+        $this->contentJoinTable = $this->fetchPortfolioJoinTable();
+        $this->contentJoinTable = $this->setKeysAsSlug($this->contentJoinTable);
     }
-    private function fetchJoinTable($mainTable)
+    /**
+     * Specialized join table function.
+     */
+    private function fetchPortfolioJoinTable()
     {
         global $conn;
 
         $qb = $conn->createQueryBuilder();
         $qb
             ->select('c.id AS content_id', 'c.slug as content_slug', 'i.id as image_id', 'i.slug as image_slug')
-            ->from($mainTable, 'p')
-            ->innerJoin('p', 'site_content', 'c', 'p.content_id=c.id')
-            ->innerJoin('p', 'image_directory', 'i', 'p.image_id=i.id');
+            ->from('portfolio', 'p')
+            ->innerJoin('p', 'content', 'c', 'p.content_id=c.id')
+            ->innerJoin('p', 'image', 'i', 'p.image_id=i.id');
         
         try
         {

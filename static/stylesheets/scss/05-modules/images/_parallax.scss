@@ -8,6 +8,7 @@
     overflow: hidden;
 
     @include flex(row, center, center, nowrap);
+    display: block;
 
     .tag-container
     {
@@ -80,14 +81,28 @@
         text-align: center;
 
         text-shadow: 0 0 2px gray(off-black), 0 0 6px gray(off-black), 0 0 16px theme(primary), 0 0 32px theme(primary, trans);
-        &:only-child
-        {
-            //max-width: 100%;
-        }
     }
     @include edge(
         $padding: $section_spacer
     );
+
+    height: 250px;
+    @include flex(row, center, center, wrap);
+    & > *
+    {
+        flex-basis: 100%;
+        align-self: center;
+    }
+    h2
+    {
+        margin-top: auto;
+        margin-bottom: 0;
+        align-self: center;
+
+        font-size: $h2-size * 1.5;
+        line-height: $h2-size * 2.0;
+    }
+
 }
 .parallax-link
 {
@@ -112,6 +127,10 @@
 
 .mobile-mode
 {
+    .parallax-container
+    {
+        display: block;
+    }
     .parallax-image__container
     {
         img
@@ -121,6 +140,10 @@
     }
     .parallax-image__container-overlay
     {
+        width: auto;
+        @include edge(
+            $margin: $section_spacer 0
+        );
         & > *
         {
             max-width: 100%;

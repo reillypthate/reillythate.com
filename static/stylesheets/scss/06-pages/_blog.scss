@@ -7,6 +7,23 @@
 @import "blog/blog-preview";
 @import "blog/blog-page";
 
+.blog-information
+{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+
+    @include edge(
+        $padding: $content_spacer/2 $content_spacer
+    );
+    color: gray(off-white);
+    //background: theme(primary);
+    p
+    {
+        font-size: $default-font-size * 0.9;
+    }
+}
 .blog-title
 {
     @include edge($section_spacer, 0);
@@ -20,8 +37,15 @@
 }
 .blog-gallery
 {
-    @include grid($gap:($content-spacer/4));
-    max-width: $blog-image-max-width * 1.2;
+    @include grid(
+        $columns: repeat(2, 1fr),
+        $gap: $content-spacer
+    );
+    
+    .parallax-image__container-overlay
+    {
+        height: auto;
+    }
 
     //@extend %p-child;
     //@extend %adjacent-heading-spacer;
@@ -36,5 +60,13 @@
     .rows-#{$i}
     {
         grid-template-rows: repeat($i, 1fr);
+    }
+}
+
+.mobile-mode
+{
+    .blog-gallery
+    {
+        grid-template-columns: 1fr;
     }
 }

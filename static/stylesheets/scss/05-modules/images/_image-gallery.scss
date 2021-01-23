@@ -1,0 +1,33 @@
+//
+//  Image Gallery
+//
+.image-gallery
+{
+    @include flex(row, center, center, wrap);
+    @include edge(
+        $margin: $section_spacer 0
+    );
+
+    h2, h3, h4, h5, h6
+    {
+        flex-basis: 100%;
+    }
+}
+.img-count_2
+{
+    @include grid(
+        $columns: repeat(2, 1fr),
+        $gap: $section_spacer
+    );
+}
+.img-count_3
+{
+    @include grid(
+        $columns: repeat(3, 1fr),
+        $gap: $section_spacer
+    );
+}
+.image-container
+{
+
+}

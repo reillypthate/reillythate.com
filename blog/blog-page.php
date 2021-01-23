@@ -1,24 +1,25 @@
+<?php blogPost($_GET['blog']); ?>
 <?php
-    $post = $post_table->getRowFromPostSlug($SLUG);
+    die();
+    $post = $content->elementBySlug('blogPost', $SLUG);
+    $postContent = $content->getRowFromSlug($SLUG);
 ?>
 <article class="blog">
     <div class="blog-header<?php if(!isset($post['banner'])) echo " no-banner";?>">
-<?php if(isset($post['banner'])): ?>
-<?php $banner = $image_table->getRowFromImageId($post['banner']); ?>
-        <img class="blog-header__banner" src="<?php echo $directory_table->linkToImage($banner['name']); ?>" alt ="<?php echo $banner['alt']; ?>">
+<?php if(isset($post['image_id'])): ?>
+        <?php img($content->getImages()[$post['image_id']]['slug']); ?>
 <?php endif; ?>
         <div class="blog-header__details">
-            <h2><?php echo $post['title']; ?></h2>
+            <h2><?php echo $postContent['title']; ?></h2>
             <div class="blog-header__summary">
-<?php foreach(getArticleLines($post['summary']) as $index=>$line): ?>
-            <?php echo $line; ?>
-<?php endforeach; ?>
+                <?php echo $postContent['summary']; ?>
             </div>
         </div>
     </div>
     <div class="blog-body">
-<?php foreach(getArticleLines($post['body']) as $index=>$line): ?>
-        <?php echo $line; ?>
-<?php endforeach; ?>
+        <?php echo $post['body']; ?>
+<?php //foreach(getArticleLines($post['body']) as $index=>$line): ?>
+        <?php //echo $line; ?>
+<?php //endforeach; ?>
     </div>
 </article>

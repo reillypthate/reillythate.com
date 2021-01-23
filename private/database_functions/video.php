@@ -18,8 +18,8 @@ class Video extends DB_Functions
         parent::__construct("video", true);
         
         $this->content_videos = $this->fetchJoinTable('content_video');
-
         $this->content_videos = $this->groupVideosByContent($this->content_videos);
+                
         //$this->table = $this->setKeysAsSlug($this->table);
     }
 
@@ -36,7 +36,7 @@ class Video extends DB_Functions
         $qb
             ->select('c.id AS content_id', 'c.slug as content_slug', 'v.id as video_id, j.position as position')
             ->from($mainTable, 'j')
-            ->innerJoin('j', 'site_content', 'c', 'j.content_id=c.id')
+            ->innerJoin('j', 'content', 'c', 'j.content_id=c.id')
             ->innerJoin('j', 'video', 'v', 'j.video_id=v.id')
             ->orderBy('c.slug', 'ASC')
             ->addOrderBy('j.position', 'ASC')

@@ -6,11 +6,13 @@ require_once(DB_FUNCS . 'content.php');
 
 $content = new Content();
 
-require_once(DB_FUNCS . 'directory_functions.php');
+require_once(DB_FUNCS . 'directory.php');
+
 require_once(DB_FUNCS . 'image_table_functions.php');
 require_once(DB_FUNCS . 'card_functions.php');
 require_once(DB_FUNCS . 'post_functions.php');
 
+/*
 $directory_table = new Directory();
 $image_table = new ImageTable();
 $card_table = new CardTable();
@@ -21,7 +23,7 @@ require_once(DB_FUNCS . 'html5_functions.php');
 $html_table = new HTMLTable();
 
 $elements = db_getHTML5();
-
+*/
 require_once(DB_FUNCS . 'backend_sd_functions.php');
 require_once(DB_FUNCS . 'backend_id_functions.php');
 require_once(DB_FUNCS . 'backend_card_functions.php');

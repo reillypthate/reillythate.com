@@ -3,7 +3,12 @@
 //  
 //  For elements that are specific to a blog page.
 //  
-
+.blog-post
+{
+    @include edge(
+        $margin: $section_spacer 0
+    );
+}
 .blog
 {
     /* Positioning */
@@ -34,15 +39,6 @@
         );
         background: theme(primary);
         color: gray(off-white);
-    }
-
-    .blog-header__summary
-    {
-        & > *
-        {
-            @include edge($margin: $section_spacer);
-        }
-        
     }
     @include query("phone-wide")
     {

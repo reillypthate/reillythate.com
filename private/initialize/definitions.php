@@ -39,6 +39,7 @@ define("PRIVATE_PATH", PROJECT_PATH . "/private");
  */
 define("SHARED_PATH", PRIVATE_PATH . "/shared");
 
+define("INCLUDES_PATH", PRIVATE_PATH . "/includes");
 /** 
  *  "STATIC_PATH"
  * 

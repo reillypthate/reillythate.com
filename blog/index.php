@@ -19,10 +19,10 @@
 		
 		<main>
 <?php if($SLUG != "blog"): ?>
-<?php include_once("blog-page.php"); ?>
+<?php blogPost($_GET['blog']); ?>
 <?php else: ?>
             <section id="blog-list__main" class="blog-preview-list">
-<?php foreach($post_table->getTable() as $index=>$post): ?>
+<?php foreach($content->getBlogPosts() as $index=>$post): ?>
 <?php include("blog-preview.php"); ?>
 <?php endforeach; ?>
             </section>

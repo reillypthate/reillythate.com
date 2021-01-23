@@ -35,7 +35,7 @@ class Entity extends DB_Functions
         $qb
             ->select('c.id AS content_id', 'c.slug as content_slug', 'e.id as entity_id, j.position as position')
             ->from($mainTable, 'j')
-            ->innerJoin('j', 'site_content', 'c', 'j.content_id=c.id')
+            ->innerJoin('j', 'content', 'c', 'j.content_id=c.id')
             ->innerJoin('j', 'entity', 'e', 'j.entity_id=e.id')
             ->orderBy('c.slug', 'ASC')
             ->addOrderBy('j.position', 'ASC')

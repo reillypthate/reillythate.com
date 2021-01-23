@@ -1,8 +1,8 @@
 
 <?php
 
-$blog_link = $directory_table->linkBySlug("blog") . "/index.php?blog=" . $post['slug'];
-$renegade_stroke = $directory_table->linkToImage('Renegade_Stroke.svg');
+$blog_link = l("blog") . "/index.php?blog=" . $post['slug'];
+$renegade_stroke = li('Renegade_Stroke.svg');
 $time_html = date("Y-m-d H:i:s.000", strtotime($post['updated_at']));
 $time_normal = date("M j, Y", strtotime($post['updated_at']));
 $read_time = $post['read_time'];
@@ -20,7 +20,7 @@ if($read_time < 1)
     <div class="blog-preview__content">
         <div class="blog-preview__banner-container<?php if(!isset($post['banner'])) echo " no-banner"; ?>">
 <?php if(isset($post['banner'])): ?>
-<?php $banner = $image_table->getRowFromImageId($post['banner'])['slug']; ?>
+<?php $banner = $content->getImages()[$post['banner']]['slug']; ?>
             <?php img($banner); ?>
 <?php endif; ?>
             <div class="blog-preview__banner-overlay">
@@ -38,7 +38,7 @@ if($read_time < 1)
             </div>
             <div class="blog-preview__body">
                 <h2><?php echo $post['title']; ?></h2>
-                <?php echo $post['summary']; ?>
+                <?php echo html_entity_decode($post['summary']); ?>
                 <p class="end-preview-link"><a href="<?php echo $blog_link; ?>">Read More</a></p>
             </div>
         </div>

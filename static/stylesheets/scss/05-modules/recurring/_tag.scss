@@ -3,6 +3,7 @@
 //
 .tag-container
 {
+    align-self: center;
     @include edge(0, 0);
     list-style: none;
 }
@@ -25,4 +26,24 @@
     text-transform: uppercase;
     letter-spacing: 0.15rem;
     /* Other */
+}
+
+.mobile-mode
+{
+    .tag-container
+    {
+        li
+        {
+            &::before
+            {
+                font-size: $default_font_size * 0.75;
+            }
+        }
+    }
+    .tag
+    {
+        padding-left: $content-spacer/3;
+        padding-right: $content-spacer/3;
+        font-size: $default_font_size * 0.75;
+    }
 }
