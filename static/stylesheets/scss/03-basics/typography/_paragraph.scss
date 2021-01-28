@@ -1,0 +1,26 @@
+//
+//  Paragraph
+//  
+//
+//  p
+//
+p
+{
+    @include line-format($body-size, $default-line-height);
+
+    //@extend %p-child;
+    //@extend %adjacent-heading-spacer;
+    // & + ul
+    // {
+    //     @include edge(0 0 0.5rem 2rem, 0);
+
+    //     &:last-child
+    //     {
+    //         margin-bottom: 0.25rem;
+    //     }
+    // }
+    & + *
+    {
+        margin-top: $spacer-ml;
+    }
+}

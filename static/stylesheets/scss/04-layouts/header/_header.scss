@@ -17,7 +17,7 @@ header
 
     @include query("tablet-portrait")
     {
-        justify-content: flex-start;
+        justify-content: space-between;
         flex-wrap: wrap;
 
         & > a

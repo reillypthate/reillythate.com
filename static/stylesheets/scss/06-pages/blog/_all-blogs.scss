@@ -10,7 +10,7 @@
     
     /* Display & Box Model */
     @include edge(
-        $margin: 0 auto
+        $margin: $spacer-m auto
     );
     
     /* Color */

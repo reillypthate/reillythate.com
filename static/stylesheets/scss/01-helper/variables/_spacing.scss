@@ -1,8 +1,21 @@
 // 
-//  Typeface variables
+//  Spacing variables
 //  
 //  Variables used to define box-model spacing.
 //  
+
+$spacer: 1rem !default;
+
+$spacer-m: 1.0rem !default;
+
+$spacer-ms: $spacer-m * 0.75;
+$spacer-s: $spacer-m * 0.5;
+$spacer-xs: $spacer-m * 0.25;
+
+$spacer-ml: $spacer-m * 1.25;
+$spacer-l:  $spacer-m * 1.5;
+$spacer-xl: $spacer-m * 1.75;
+
 
 $section_spacer: 1rem;
 $content_spacer: 0.75rem;

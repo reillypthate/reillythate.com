@@ -1,1 +1,1 @@
-<!-- Tag --><span class="tag"<?php echo $attributes; ?>><?php echo $tag; ?></span>
+<!-- Tag --><span class="tag"<?php echo $attributes; ?>><?php echo $tag['name']; ?></span>

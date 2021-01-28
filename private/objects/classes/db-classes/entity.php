@@ -1,15 +1,19 @@
 <?php
 namespace Trick;
-use Trick\DB_Functions;
+use Trick\DB_Manager;
+use Trick\Interfaces\SlugSet;
+use Trick\Interfaces\PortfolioJoin;
+use Trick\Traits\SlugSetTrait;
+use Trick\Traits\PortfolioJoinTrait;
 
 /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Site Directory Functions
+ * Entity Class
 ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
-** This class contains the functions required to work with the Site Directory.
+** This class contains the functions required to work with the Entity object.
 **/
-class Entity extends DB_Functions
+class Entity extends DB_Manager implements SlugSet, PortfolioJoin
 {
     protected $content_entities;
 
@@ -17,10 +21,13 @@ class Entity extends DB_Functions
     {
         parent::__construct("entity", true);
         
-        $this->content_entities = $this->fetchJoinTable('content_entity');
+        //$this->content_entities = $this->fetchJoinTable('content_entity');
 
-        $this->content_entities = $this->groupEntitiesByContent($this->content_entities);
+        //$this->content_entities = $this->groupEntitiesByContent($this->content_entities);
     }
+
+    use SlugSetTrait;
+    use PortfolioJoinTrait;
 
     public function getRowFromId($content_id)
     {
@@ -90,5 +97,29 @@ class Entity extends DB_Functions
     public function getContentEntities()
     {
         return $this->content_entities;
+    }
+    
+/**
+ * Required Abstract Functions
+ */
+    /**
+     *  Format request values so they can be properly added to 
+     *  the `directory` table.
+     */
+    protected function formatAddValues($request_values)
+    {
+        //  Step 1: Strip the $request_values with the db_dir_ prefix.
+        $addValues = stripPrefix("db_dir_", $request_values);
+
+        print_r($addValues);
+    }
+    /**
+     *  Format request values so the appropriate row can be properly
+     *  updated in the `directory` table.
+     */
+    protected function formatUpdateValues($request_values)
+    {
+        //  Step 1: Strip the $request_values with the db_dir_ prefix.
+        $updateValues = stripPrefix("db_dir_", $request_values);
     }
 }

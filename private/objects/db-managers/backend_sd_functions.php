@@ -119,9 +119,6 @@ function dir_add($req_vals)
             exit(-1);
         }
 
-        $_SESSION['message'] = "Sub-directory added successfully!\n";
-        header('location: index.php?new-slug=' . $directory_slug);
-        exit(0);
     }
 }
 

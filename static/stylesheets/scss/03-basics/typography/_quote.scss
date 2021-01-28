@@ -1,0 +1,72 @@
+//
+//  Quotes and Citations
+//  
+//
+//  abbr, address, blockquote, cite, q
+//
+blockquote
+{
+    @include edge(
+        $margin: $spacer-m/2 $spacer-m,
+        $padding: $spacer-m/2 $spacer-m
+    );
+    margin-right: 0;
+    padding-right: 0;
+    border-left: $border-accent;
+}
+//  <q> inserts open and close quotes around the enclosed text.
+q
+{
+    &::before
+    {
+        
+    }
+    &::after
+    {
+        
+    }
+}
+abbr
+{
+    &[title]
+    {
+        position: relative;
+
+        background: lightgray;
+        text-decoration: none;
+        &::after
+        {
+            opacity: 0;
+        }
+        &:hover::after, &:focus::after
+        {
+            position: absolute;
+            bottom: $default-line-height;
+            left: 0;
+
+            @include edge(
+                $padding: $spacer-xs/2 $spacer-xs,
+                $border-radius: $spacer-xs
+            );
+            text-align: center;
+            white-space: nowrap;
+            opacity: 100%;
+            content: attr(title);
+            color:      gray(off-white);
+            background: theme(primary, trans);
+        }
+    }
+}
+address
+{
+    @include edge(
+        $spacer-m, $spacer-s
+    );
+    font-family: $font-family-code;
+    @include line-format($body-size, $default-line-height);
+}
+//  Defines the title of a work.
+cite
+{
+    font-weight: 500;
+}

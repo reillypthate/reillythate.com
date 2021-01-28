@@ -1,16 +1,17 @@
 <?php 
     $page_row = page($SLUG);
+    $home_link = "/reillythate.com";
     if($to_static)
     {
         ob_start("callback"); // Begins output buffer. 
+        $home_link = "http://reillythate.com";
     }
-    $home_link = l("reillythate.com");
 
     $page = array();
     $page['title'] = $page_row['title'];
     $page['description'] = $page_row['description'];
-    $page['base'] = l("reillythate.com");
-    $page['icon'] = li("renegade_favicon_32x32.ico");
+    $page['base'] = $home_link;
+    $page['icon'] = li("renegade-icon");
     
 ?>
 <!doctype html>
@@ -49,7 +50,7 @@
 <?php endif; ?>
         <header>
             <a id="logo-to-home" href="<?php echo $home_link; ?>">
-                <img src="<?php echo li("Renegade_Blues.svg"); ?>" alt="Renegade logo.">
+                <img src="<?php echo li("renegade-blues"); ?>" alt="Renegade logo.">
             </a>
             <h1><a href="<?php echo $home_link; ?>">Reilly Thate</a></h1>
 <?php include_once('head-nav.php'); ?>

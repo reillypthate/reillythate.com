@@ -21,7 +21,7 @@ thead
 {
     @include edge(0);
 
-    font-family: $font-family-header;
+    font-family: $font-family-headings;
     letter-spacing: calc(#{$body-size} / 10);
 }
 /**

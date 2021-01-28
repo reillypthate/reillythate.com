@@ -1,6 +1,8 @@
 <?php
 namespace Trick;
-use Trick\DB_Functions;
+use Trick\DB_Manager;
+use Trick\Interfaces\SlugSet;
+use Trick\Traits\SlugSetTrait;
 use Trick\Element; // Call the `Element` class from the "Trick" namespace.
 // Use ELEMENT for:
     // Backend Admin table generator
@@ -12,31 +14,19 @@ use Trick\Element; // Call the `Element` class from the "Trick" namespace.
 /**
 ** This class contains the functions required to work with the Site Directory.
 **/
-class Directory extends DB_Functions
+class Directory extends DB_Manager implements SlugSet
 {
     private $hierarchy;
-    private $slugSet;
 
     function __construct()
     {
         parent::__construct("directory", true);
 
-        $this->hierarchy = array();
         $this->chunkSubdirectories();
-        $this->buildSlugSet();
     }
-    /**
-     * Create a lookup table that returns the directory's id.
-     */
-    private function buildSlugSet()
-    {
-        $this->slugSet = array();
 
-        foreach($this->table as $key=>$row)
-        {
-            $this->slugSet[$row['slug']] = $row['id'];
-        }
-    }
+    use SlugSetTrait;
+
     /**
      * Return a URL to the page requested.
      */
@@ -44,7 +34,7 @@ class Directory extends DB_Functions
     {
         // Check to see how the variable has been passed; if it's a slug (string), pass the associated ID to the function.
         // Otherwise, pass the 
-        return "/" . $this->buildURL($this->getIdFromSlug($page_slug));
+        return "/" . $this->buildURL($this->idBySlug($page_slug));
     }
     /**
      * Return a URL to the page requested.
@@ -55,24 +45,53 @@ class Directory extends DB_Functions
         // Otherwise, pass the 
         return "/" . $this->buildURL($page_id);
     }
-    public function linkToImage($image)
-    {
-        return $this->linkBySlug("images") . "/" . $image;
-    }
 
     /**
-     * Convert the table into an assoc array by 'id'.
+     * A recursive function that constructs a URL backwards from a particular page in the `directory`.
+     * 
+     * Note: As constructed, this function returns a url for a STATIC site.
      */
-    private function convertTableToAssoc()
+    public function buildURL($page_id)
     {
-        $tableAssoc = array();
-        foreach($this->table as $t_index=>$row)
+        if($page_id == -1)
         {
-            $tableAssoc[$row['id']] = $row;
+            return "Error: Invalid page id. (If used w/ getPageIdFromPageTitle(...), check spelling of passed variable)";
         }
-        $this->table = $tableAssoc;
-        //print_r($this->table);
+
+        // 1st, find the url associated with the $page_id and get the p_id.
+        $path_chunk = $this->table[$page_id]['slug'];
+        $parent_dir = $this->table[$page_id]['p_id'];
+
+        if($parent_dir) // If not null, it's a sub-directory. Continue recursion.
+        {
+            return $this->buildURL($parent_dir) . "/" . $path_chunk;
+        }
+        // $parent_dir is null; this is the website root. End recursion.
+        return $path_chunk;
     }
+    /**
+     * Used for navigation backticks.
+     */
+    public function getLinkStack($page_id, $stack)
+    {
+        if($page_id == -1)
+        {
+            return "Error: Invalid page id.";
+        }
+
+        $current_link = array($this->table[$page_id]['title'], $this->linkBySlug($this->table[$page_id]['slug']));
+        array_push($stack, $current_link);
+
+        $parent_dir = $this->table[$page_id]['p_id'];
+
+        if($parent_dir) // If not null, it's a sub-directory. Continue recursion.
+        {
+            return $this->getLinkStack($parent_dir, $stack);
+        }
+        // $parent_dir is null; this is the website root. End recursion.
+        return $stack;
+    }
+
     /**
      * Creates a dictionary that details the parent-child relationship between subdirectories.
      * Each row corresponds to its own dictionary with keys named "count" and "children".
@@ -80,6 +99,7 @@ class Directory extends DB_Functions
      */
     private function chunkSubdirectories()
     {
+        $this->hierarchy = array();
         // Set the initial value, so we have a root directory group.
         $this->hierarchy['1'] = array();
         $this->hierarchy['1']['count'] = 0;
@@ -218,82 +238,10 @@ class Directory extends DB_Functions
 
     public function getRowFromSlug($page_slug)
     {
-        return $this->getRowFromCellValue("slug", $page_slug);
-    }
-    public function getRowFromId($page_id)
-    {
-        return $this->getRowFromCellValue("id", $page_id);
+        return $this->table[$this->idBySlug($page_slug)];
     }
 
-    // META functions.
-    /**
-    * Return the `title` of the page associated with the $page_slug.
-    */
-    public function getTitleFromSlug($page_slug)
-    {
-        return $this->getRowFromCellValue("slug", $page_slug)['title'];
-    }
-    public function getDescriptionFromSlug($page_slug)
-    {
-        return $this->getRowFromCellValue("slug", $page_slug)['description'];
-    }
-    public function getRobotsFromSlug($page_slug)
-    {
-        return $this->getRowFromCellValue("slug", $page_slug)['robots'];
-    }
-
-
-    // TABLE functions.
-    public function getIdFromSlug($page_slug)
-    {
-        return $this->slugSet[$page_slug];
-    }
-
-    /**
-     * A recursive function that constructs a URL backwards from a particular page in the `directory`.
-     * 
-     * Note: As constructed, this function returns a url for a STATIC site.
-     */
-    public function buildURL($page_id)
-    {
-        if($page_id == -1)
-        {
-            return "Error: Invalid page id. (If used w/ getPageIdFromPageTitle(...), check spelling of passed variable)";
-        }
-
-        // 1st, find the url associated with the $page_id and get the p_id.
-        $path_chunk = $this->table[$page_id]['slug'];
-        $parent_dir = $this->table[$page_id]['p_id'];
-
-        if($parent_dir) // If not null, it's a sub-directory. Continue recursion.
-        {
-            return $this->buildURL($parent_dir) . "/" . $path_chunk;
-        }
-        // $parent_dir is null; this is the website root. End recursion.
-        return $path_chunk;
-    }
-    /**
-     * Used for navigation backticks.
-     */
-    public function getLinkStack($page_id, $stack)
-    {
-        if($page_id == -1)
-        {
-            return "Error: Invalid page id.";
-        }
-
-        $current_link = array($this->table[$page_id]['title'], $this->linkBySlug($this->table[$page_id]['slug']));
-        array_push($stack, $current_link);
-
-        $parent_dir = $this->table[$page_id]['p_id'];
-
-        if($parent_dir) // If not null, it's a sub-directory. Continue recursion.
-        {
-            return $this->getLinkStack($parent_dir, $stack);
-        }
-        // $parent_dir is null; this is the website root. End recursion.
-        return $stack;
-    }
+    
     public function buildTable()
     {
         return $this->buildTableWithEditButton(TRUE, 'index.php?edit-dir');
@@ -358,6 +306,30 @@ class Directory extends DB_Functions
         {
             echo '<p class="warning">Directory and Index already exist at ' . $new_link . '!</p>';
         }
+    }
+
+/**
+ * Required Abstract Functions
+ */
+    /**
+     *  Format request values so they can be properly added to 
+     *  the `directory` table.
+     */
+    protected function formatAddValues($request_values)
+    {
+        //  Step 1: Strip the $request_values with the db_dir_ prefix.
+        $addValues = stripPrefix("db_dir_", $request_values);
+
+        print_r($addValues);
+    }
+    /**
+     *  Format request values so the appropriate row can be properly
+     *  updated in the `directory` table.
+     */
+    protected function formatUpdateValues($request_values)
+    {
+        //  Step 1: Strip the $request_values with the db_dir_ prefix.
+        $updateValues = stripPrefix("db_dir_", $request_values);
     }
 }
 ?>

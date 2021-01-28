@@ -12,7 +12,7 @@
 
     /* Display & Box Model */
     @include edge();
-    display: flex(row, flex-start, flex-start, nowrap);
+    @include flex(row, flex-start, flex-start, nowrap);
     //border: $body-child__border;
     /* Color */
 
@@ -51,12 +51,14 @@
 }
 .blog-preview__banner-overlay
 {
+    /*
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
 
+    */
     @include flex(row, space-between, center, nowrap);
     
     background: theme(primary, trans);

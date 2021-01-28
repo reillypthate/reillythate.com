@@ -16,19 +16,19 @@
                     <h2>Films</h2>
                     <a>View All</a>
                 </div>
-<?php portfolioPiecePreview('birthday-toast'); ?>
-<?php portfolioPiecePreview('night-lift'); ?>
-<?php portfolioPiecePreview('ruthless-the-final-chapter'); ?>
-<?php portfolioPiecePreview('bud-light-for-a-soul'); ?>
+<?php portfolioParallaxPreview('birthday-toast'); ?>
+<?php portfolioParallaxPreview('night-lift'); ?>
+<?php portfolioParallaxPreview('ruthless-the-final-chapter'); ?>
+<?php portfolioParallaxPreview('bud-light-for-a-soul'); ?>
 
             </section>
-
+            
             <section class="portfolio-section">
                 <div class="page-break title-archive-link">
                     <h2>Dev Projects</h2>
                     <a>View All</a>
                 </div>
-<?php portfolioPiecePreview('travelers-screensaver', -0.45); ?>
+<?php portfolioParallaxPreview('travelers-screensaver', -0.45); ?>
 
             </section>
 

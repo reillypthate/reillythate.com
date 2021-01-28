@@ -1,0 +1,15 @@
+//
+//  List
+//  
+//
+//  ul, ol, dl, li
+//
+ul, ol, dl
+{
+    @include edge();
+}
+li
+{
+    font-family: $font-family-body;
+    @include line-format($body-size, $default-line-height);
+}

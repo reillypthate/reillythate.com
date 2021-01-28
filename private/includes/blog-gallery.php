@@ -1,8 +1,8 @@
 <!-- Blog Gallery -->
 <div class="blog-gallery">
-<?php foreach($blogPosts as $index=>$post): ?>
+<?php foreach($posts as $index=>$postId): ?>
     <div class="blog-container">
-<?php blogPostPreview($post); ?>
+<?php portfolioParallaxPreview($data[BLOG]->slugById($postId)); ?>
     </div>
 <?php endforeach; ?>
 </div>

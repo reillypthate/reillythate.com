@@ -13,7 +13,7 @@
     src: url('../misc/MarsVoyager\ Travelers.ttf') format('truetype'); 
 }
 
-$font-family-header: "Oswald", sans-serif;
+$font-family-headings: "Oswald", sans-serif;
 $font-family-body: "Raleway", sans-serif;
 $font-family-code: "Courier New", monospace;
 $font-family-travelers: "Travelers", monospace;
@@ -21,6 +21,8 @@ $font-family-travelers: "Travelers", monospace;
 $default-font-base: 1.1;
 $default-font-size: 1rem * $default-font-base;
 $body-size: $default-font-size;
+
+$default-line-height: $default-font-size / 1.1 * 1.25;
 
 $heading-base: 1.105;
 $h6-size: 1rem * pow($heading-base, 1);

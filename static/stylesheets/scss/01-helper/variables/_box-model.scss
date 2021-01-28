@@ -15,3 +15,5 @@ $container-child__border-type: dotted;
 $container-child__border-color: theme(primary, trans);
 
 $container-child__border: $container-child__border-width $container-child__border-type $container-child__border-color;
+
+$border-accent: 0.25rem groove theme(primary, trans);

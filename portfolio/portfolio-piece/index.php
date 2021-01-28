@@ -12,33 +12,38 @@
 			header('../');
 		}else
 		{
-			$content_slug = $_GET['project'];
+			$projectSlug = $_GET['project'];
 		}
 		
     // Page Metadata
     if(isset($_GET['project']))
     {
-        $SLUG = $_GET['project'];
+		$SLUG = $_GET['project'];
+		
+        $project = $data[PORTFOLIO]->getRowFromId(
+            $data[PORTFOLIO]->idBySlug($projectSlug)
+        );
+		$projectContent = $data[PORTFOLIO]->getProjectContent($projectSlug);
     }
 ?>
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 
 		<main>
 			<section id="project-header">
-<?php portfolioPieceHeader($content_slug); ?>
+<?php projectHeader(); ?>
 
 			</section>
-<?php portfolioPieceVideos($content_slug); ?>
-<?php portfolioPieceEntities($content_slug); ?>
+<?php projectVideos();?>
+<?php projectEntities(); ?>
 
 			<section class="page-break">
 				<h3>Blogs</h3>
-<?php portfolioPieceBlogs($content_slug); ?>
+<?php projectPosts(); ?>
 
 			</section>
 			<section class="page-break">
 				<h3>Gallery</h3>
-<?php portfolioPieceImages($content_slug); ?>
+<?php projectImages(); ?>
 
 			</section>
 			<!-- Goal: Automatically generate a set of "related" projects. -->
@@ -46,10 +51,6 @@
                 <div class="page-break title-archive-link">
                     <h2>Related Projects</h2>
                 </div>
-<?php portfolioPiecePreview('birthday-toast'); ?>
-<?php portfolioPiecePreview('night-lift'); ?>
-<?php portfolioPiecePreview('ruthless-the-final-chapter'); ?>
-<?php portfolioPiecePreview('bud-light-for-a-soul'); ?>
 
 			</section>
 		</main>

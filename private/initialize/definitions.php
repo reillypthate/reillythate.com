@@ -39,7 +39,15 @@ define("PRIVATE_PATH", PROJECT_PATH . "/private");
  */
 define("SHARED_PATH", PRIVATE_PATH . "/shared");
 
-define("INCLUDES_PATH", PRIVATE_PATH . "/includes");
+define("FUNCTIONS", 'functions');
+
+define("OBJECTS", 'objects');
+define("INTERFACES", 'interfaces');
+define("TRAITS", 'traits');
+define("CLASSES", 'classes');
+define("DB_CLASSES", CLASSES . '/db-classes');
+define("INCLUDES_PATH", "includes");
+define("INCLUDES", DOC_PREFIX . PRIVATE_PATH . '/includes');
 /** 
  *  "STATIC_PATH"
  * 

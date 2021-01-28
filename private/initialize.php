@@ -14,18 +14,20 @@
     //  Initialize error reporting (currently for user notification).
     require_once('initialize/errors-setup.php');
 
+    //  Load functions (mainly used in preprocessing).
     require_once('functions.php');
-    require_once('wrapper_functions.php');
 
-    // DEPRECATED
-    require_once('classes/element.php');
+    // Initialize objects (interfaces & classes)
+    require_once('load-objects.php');
 
     //  Connect to the database.
     require_once('database/database.php');
     //  Retrieve information from the database.
-    require_once('database_functions.php');
+    require_once('build-objects.php');
+    
     //  Set up functions used to manage the site's content.
     require_once('dynamic-functions.php');
     require_once('extra_functions.php');
+    
 
 ?>

@@ -8,7 +8,7 @@
 			</nav>
 			<p id="copyright">&copy; 2020 Reilly Thate</p>
 			<a id="footer-logo-to-home" href="<?php echo $home_link; ?>">
-				<img id="renegade_footer" src="<?php echo li("Renegade_Blues.svg"); ?>" alt="Renegade logo.">
+				<?php img('renegade-blues'); ?>
 			</a>
 		</footer>
 

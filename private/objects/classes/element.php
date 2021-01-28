@@ -2,7 +2,6 @@
 
 namespace Trick;
 {
-
     /** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
      * Element Functions
      * + db_getSiteDirectory()

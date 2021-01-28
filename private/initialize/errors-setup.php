@@ -1,6 +1,7 @@
 <?php
 
     $errors = [];
+    $exceptions = [];
 
     /**
      * Push a new error to the $errors array.
@@ -10,6 +11,16 @@
         global $errors;
 
         array_push($errors, $new_error);
+    }
+
+    /**
+     * Push a new exception to the $exceptions array.
+     */
+    function PUSH_EXCEPTION($new_exception)
+    {
+        global $exceptions;
+
+        array_push($exceptions, $new_exception);
     }
 
     /**

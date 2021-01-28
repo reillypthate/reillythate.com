@@ -6,6 +6,7 @@
 // Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
 @import 'variables/breakpoints';
+@import 'variables/spacing';
 
 @import 'variables/colors';
 @import 'variables/typography';
@@ -13,7 +14,6 @@
 @import 'variables/animation';
 @import 'variables/box-model';
 @import 'variables/sizing';
-@import 'variables/spacing';
 @import 'variables/media';
 
 @import 'variables/mobile-mode';

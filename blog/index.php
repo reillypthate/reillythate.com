@@ -19,11 +19,11 @@
 		
 		<main>
 <?php if($SLUG != "blog"): ?>
-<?php blogPost($_GET['blog']); ?>
+<?php //blogPost($_GET['blog']); ?>
 <?php else: ?>
             <section id="blog-list__main" class="blog-preview-list">
-<?php foreach($content->getBlogPosts() as $index=>$post): ?>
-<?php include("blog-preview.php"); ?>
+<?php foreach($data[BLOG]->getSlugs() as $id=>$slug): ?>
+<?php blogPreview($slug);//include("blog-preview.php"); ?>
 <?php endforeach; ?>
             </section>
 <?php endif; ?>

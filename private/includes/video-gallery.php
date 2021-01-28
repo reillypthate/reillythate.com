@@ -1,8 +1,8 @@
 <!-- Video Gallery -->
 <div class="video-gallery">
-<?php foreach($videos as $index=>$video): ?>
+<?php foreach($videos as $index=>$videoId): ?>
     <div class="video-container">
-        <?php video($video['id']); ?>
+        <?php video($videoId); ?>
     </div>
 <?php endforeach; ?>
 </div>

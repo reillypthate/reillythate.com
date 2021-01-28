@@ -13,7 +13,9 @@
 		<main id="home-page">
             <section id="home-page__intro">
                 <div class="video-background__container">
-                    <iframe id="ruthless-video" class="video-background" src="https://player.vimeo.com/video/501963127?background=1" allow="autoplay; fullscreen;loop;"  allowfullscreen></iframe>
+                    <?php
+                    //<iframe id="ruthless-video" class="video-background" src="https://player.vimeo.com/video/501963127?background=1" allow="autoplay; fullscreen;loop;"  allowfullscreen></iframe>
+                        ?>
                 </div>
                 <div class="home-page__intro-overlay">
                     <h2>Filmmaker. Web Developer. Artist.</h2>

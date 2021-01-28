@@ -1,0 +1,50 @@
+//
+//  Heading
+//  
+//
+//  h1, h2, h3, h4, h5, h6
+//
+%heading
+{
+    @include edge($spacer-m 0, 0);
+    color: gray(off-black);
+    
+    font-family: $font-family-headings;
+    @include font-look(normal, 400);
+
+    & + *
+    {
+        margin-top: $spacer-l;
+    }
+}
+
+h1
+{
+    @extend %heading;
+    @include line-format($h1-size);
+}
+h2
+{
+    @extend %heading;
+    @include line-format($h2-size);
+}
+h3
+{
+    @extend %heading;
+    @include line-format($h3-size);
+}
+h4
+{
+    @extend %heading;
+    @include line-format($h4-size);
+}
+h5
+{
+    @extend %heading;
+    @include line-format($h5-size);
+}
+h6
+{
+    @extend %heading;
+    @include line-format($h6-size);
+}
