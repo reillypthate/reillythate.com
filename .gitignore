@@ -1,0 +1,7 @@
+private/vendor
+static/scripts/vendor
+logs
+static/scripts/ckeditor
+*.html
+static/images/*
+static/documentstest.txt
