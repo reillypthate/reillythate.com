@@ -18,13 +18,20 @@ function img($imageSlug, $attributes="")
     if(isset($img['srcset']))
     {
         $img_srcset = json_decode($img['srcset'], true);
-        $s = array();
-        foreach($img_srcset as $key=>$value)
+        
+        if(count($img_srcset) > 0)
         {
-            $src = IMAGE_PATH . '/' . $img['path'] . '/' . $img['name'] . '-' . $key . $img['type'];
-            $imgSrc = IMAGE_PATH . '/' . $img['path'] . '/' . $img['name'] . '-' . $key . $img['type'];
-    
-            array_push($s, $src . ' ' . $value);
+            $s = array();
+            foreach($img_srcset as $key=>$value)
+            {
+                $src = IMAGE_PATH . '/' . $img['path'] . '/' . $img['name'] . '-' . $key . $img['type'];
+                $imgSrc = IMAGE_PATH . '/' . $img['path'] . '/' . $img['name'] . '-' . $key . $img['type'];
+        
+                array_push($s, $src . ' ' . $value);
+            }
+        }else
+        {
+            unset($img_srcset);
         }
     }
 

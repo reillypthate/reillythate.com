@@ -4,13 +4,17 @@
     require_once("../private/initialize.php");
 ?>
 <?php
+        $SLUG = "blog";
     // Page Metadata
     if(isset($_GET['blog']))
     {
-        $SLUG = $_GET['blog'];
+        $DYNAMIC_BREADCRUMB = array();
+        array_push($DYNAMIC_BREADCRUMB, $data[BLOG]->getRowFromId(
+            $data[BLOG]->idBySlug($_GET['blog']))['title']
+        );
+        array_push($DYNAMIC_BREADCRUMB, "index.php?blog=" . $_GET['blog']);
     }else
     {
-        $SLUG = "blog";
         array_push($wanted_ext_js, "vendor/imagesloaded.pkgd.min.js");
         array_push($wanted_body_js, "page-specific/blog-masonry.js");
     }
@@ -18,8 +22,8 @@
 <?php require_once(DOC_PREFIX . SHARED_PATH . "/public-head/index.php"); ?>
 		
 		<main>
-<?php if($SLUG != "blog"): ?>
-<?php //blogPost($_GET['blog']); ?>
+<?php if(isset($DYNAMIC_BREADCRUMB)): ?>
+<?php blogPost($_GET['blog']); ?>
 <?php else: ?>
             <section id="blog-list__main" class="blog-preview-list">
 <?php foreach($data[BLOG]->getSlugs() as $id=>$slug): ?>

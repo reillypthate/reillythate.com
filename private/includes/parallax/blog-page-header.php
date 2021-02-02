@@ -5,11 +5,7 @@
                         </div>
                         <div class="parallax-image__container-overlay">
                             <h2 class="blog-header__title"><?php echo $blogPost['title']; ?></h2>
-                            <ol class="tag-container">
-<?php foreach($content->getTagsForContent($blogPost['slug']) as $tag): ?>
-					            <li><?php tag($tag); ?></li>
-<?php endforeach; ?>
-                            </ol>
+                            <!-- TAG SET GOES HERE -->
                             <div>
                                 <?php echo html_entity_decode($blogPost['summary']); ?>
                             </div>

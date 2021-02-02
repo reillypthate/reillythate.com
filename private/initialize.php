@@ -19,7 +19,6 @@
 
     // Initialize objects (interfaces & classes)
     require_once('load-objects.php');
-
     //  Connect to the database.
     require_once('database/database.php');
     //  Retrieve information from the database.
@@ -29,5 +28,6 @@
     require_once('dynamic-functions.php');
     require_once('extra_functions.php');
     
-
+    //  Process request values, if any exist.
+    require_once('database/request-handler.php');
 ?>

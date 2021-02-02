@@ -11,10 +11,16 @@ function stripPrefix($prefixToStrip, $array)
     $stripped = array();
     foreach($array as $key=>$value)
     {
-        if(str_contains($key, $prefixToStrip))
+        //echo $key . " ... " . $prefixToStrip . " ... (" . strpos($key, $prefixToStrip) . ")";
+        $strpos = strpos($key, $prefixToStrip);
+        
+        if(is_int($strpos))
         {
             $stripped_key = str_replace($prefixToStrip, "", $key);
             $stripped[$stripped_key] = $value;
+        }else
+        {
+            //echo PHP_EOL;
         }
     }
     return $stripped;

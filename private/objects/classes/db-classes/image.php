@@ -46,9 +46,14 @@ class Image extends DB_Manager implements SlugSet, PortfolioJoin
     protected function formatAddValues($request_values)
     {
         //  Step 1: Strip the $request_values with the db_dir_ prefix.
-        $addValues = stripPrefix("db_dir_", $request_values);
+        $addValues = stripPrefix("db_image_", $request_values);
 
-        print_r($addValues);
+        if(isset($addValues['srcset']))
+        {
+            unset($addValues['srcset']);
+        }
+
+        return $addValues;
     }
     /**
      *  Format request values so the appropriate row can be properly
@@ -57,6 +62,13 @@ class Image extends DB_Manager implements SlugSet, PortfolioJoin
     protected function formatUpdateValues($request_values)
     {
         //  Step 1: Strip the $request_values with the db_dir_ prefix.
-        $updateValues = stripPrefix("db_dir_", $request_values);
+        $updateValues = stripPrefix("db_image_", $request_values);
+
+        if(isset($addValues['srcset']))
+        {
+            unset($addValues['srcset']);
+        }
+        
+        return $updateValues;
     }
 }

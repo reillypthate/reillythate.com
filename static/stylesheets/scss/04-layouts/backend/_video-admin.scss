@@ -1,0 +1,51 @@
+//
+//  For the admin/backend: Image Manager
+//
+#video-admin-list
+{
+    @include edge(
+        $margin: $spacer-m 0
+    );
+
+    & > button
+    {
+        margin-bottom: $spacer-m;
+    }
+
+    ul
+    {
+        @include edge(0, 0);
+        @include grid(
+            $columns: repeat(4, 1fr),
+            $gap: $spacer-m
+        );
+        list-style: none;
+    }
+    li
+    {
+        @include edge(
+            $padding: $spacer-s,
+            $border-radius: $spacer-s
+        );
+        background: theme(primary);
+    }
+    h3
+    {
+        @include edge($spacer-s, $spacer-l
+        );
+        border-bottom: 3px solid theme(primary);
+        color: gray(off-white);
+        background: theme(primary, trans);
+    }
+    img
+    {
+        background: white;
+    }
+
+    .video-item__buttons
+    {
+        @include edge(
+            $spacer-m
+        );
+    }
+}

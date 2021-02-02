@@ -5,16 +5,32 @@
     {
         if($NAV_SET == "admin")
         {
-            $nav_slugs = array("directory", "media", "card", "blog-admin");
+            $nav_slugs = array(
+                "directory"=>"Directory", 
+                "image-admin"=>"Image Manager",
+                "video-admin"=>"Video Manager",
+                //"blog-admin"=>"Blog Manager"
+            );
             $footer_slugs = $nav_slugs;
         }
     }else
     {
-        $nav_slugs = array("portfolio", "blog", "about");
-        $footer_slugs = array("about", "blog", "contact", "portfolio");
+        $nav_slugs = array(
+            "portfolio"=>"Portfolio", 
+            "blog"=>"Blog", 
+            "about"=>"About"
+        );
+        $footer_slugs = array(
+            "about"=>"About",
+            "blog"=>"Blog", 
+            "contact"=>"Contact",
+            "portfolio"=>"Portfolio", 
+            "admin"=>"Admin"
+        );
+
         if(!$to_static)
         {
-            array_push($footer_slugs, "admin");
+            $footer_slugs['admin'] = "Admin";
         }
     }
 

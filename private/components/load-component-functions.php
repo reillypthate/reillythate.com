@@ -12,5 +12,4 @@ require_once(ASSETS . '/video.php');
 require_once(COMPOUND . '/parallax-previews.php');
 require_once(COMPOUND . '/blog-page.php');
 require_once(COMPOUND . '/project-page.php');
-
 ?>
