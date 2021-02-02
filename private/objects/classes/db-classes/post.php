@@ -31,7 +31,7 @@ class Post extends DB_Manager implements SlugSet, PortfolioJoin
     {
         global $data;
 
-        return $data[DIRECTORY]->linkBySlug("blog") . "/index.php?blog-post=" . $postSlug;
+        return $data[DIRECTORY]->linkBySlug("blog") . "/index.php?blog=" . $postSlug;
     }
     /**
      *  Fetches the body for the given post ID.
@@ -52,7 +52,7 @@ class Post extends DB_Manager implements SlugSet, PortfolioJoin
 
         if(isset($tmp))
         {
-            return $this->setKeysAsId($tmp);
+            return json_decode($tmp[0]['body'], true);
         }
         return null;
 

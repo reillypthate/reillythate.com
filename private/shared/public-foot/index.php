@@ -1,8 +1,8 @@
 		<footer>
 			<nav id="nav_footer">
 				<ul>
-<?php foreach($footer_slugs as $key=>$slug): ?>
-                    <li><a <?php if($SLUG == $slug): ?>class="nav_active_page"<?php else: ?>href="<?php echo l($slug); ?>"<?php endif; ?>><?php echo ucwords($slug); ?></a></li>
+<?php foreach($footer_slugs as $slug=>$title): ?>
+                    <li><a <?php if($SLUG == $slug): ?>class="nav_active_page"<?php else: ?>href="<?php echo l($slug); ?>"<?php endif; ?>><?php echo $title; ?></a></li>
 <?php endforeach; ?>
 				</ul>
 			</nav>

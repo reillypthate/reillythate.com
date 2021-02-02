@@ -143,16 +143,24 @@ abstract class DB_Manager
     {
         global $conn;
 
-        $parameters = formatAddValues($request_values);
+        $parameters = $this->formatAddValues($request_values);
+        unset($parameters['id']);
+        $parameterKeys = array_keys($parameters);
 
         //  Build the query.
         $qb = $conn->createQueryBuilder();
         $qb->insert($this->tableName);
         for($i = 0; $i < count($parameters); $i++)
         {
-            $qb->setParameter($i, $parameters[$i]);
+            $qb->setValue($parameterKeys[$i], '?');
+        }
+        for($i = 0; $i < count($parameters); $i++)
+        {
+            $qb->setParameter($i, $parameters[$parameterKeys[$i]]);
         }
 
+        // print_r($qb->getSQL());
+        // die();
         DB\executeTableAdd($qb, "DB_Manager: " . $this->tableName);
     }
 
@@ -167,26 +175,39 @@ abstract class DB_Manager
     {
         global $conn;
 
-        $parameters = formatUpdateValues($request_values);
+        $parameters = $this->formatUpdateValues($request_values);
 
         //  Build the query.
         $qb = $conn->createQueryBuilder();
         $qb->update($this->tableName);
-        foreach($request_values as $key=>$value)
+        foreach($parameters as $key=>$value)
         {
-            //  If the key is `id`, set the WHERE clause.
+            //  If the key is `id`, hold off on setting the WHERE clause.
             if($key == 'id')
             {
-                $qb->where($qb->expr()->eq($this->tableName . 'id', '?'));
                 continue;
             }
             //  Otherwise, set a SET clause.
             $qb->set($this->tableName . '.' . $key, '?');
         }
-        for($i = 0; $i < count($parameters); $i++)
+        $qb->where($qb->expr()->eq($this->tableName . '.id', '?'));
+
+        $param = 0;
+        foreach($parameters as $key=>$value)
         {
-            $qb->setParameter($i, $parameters[$i]);
+            //  If the key is `id`, hold off on setting the WHERE clause.
+            if($key == 'id')
+            {
+                continue;
+            }
+            $qb->setParameter($param, $value);
+            $param++;
         }
+        $qb->setParameter($param, $parameters['id']);
+
+        // print_r($qb->getSQL());
+        // print_r($qb->getParameters());
+        // die();
 
         DB\executeTableUpdate($qb, "DB_Manager: " . $this->tableName);
     }

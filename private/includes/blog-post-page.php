@@ -12,7 +12,7 @@
     $images = array();
     foreach($module['content'] as $image_id)
     {
-        array_push($images, $content->getTable('image')[$image_id]);
+        array_push($images, $image_id);
     }
 ?>
         <?php include("image-gallery.php"); ?>

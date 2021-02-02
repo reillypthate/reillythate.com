@@ -2476,6 +2476,97 @@ canvas {
   grid-template-columns: repeat(4, 1fr);
 }
 
+#image-admin-list {
+  /* Spacing & Border */
+  margin: 1rem 0;
+}
+#image-admin-list > button {
+  margin-bottom: 1rem;
+}
+#image-admin-list ul {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+}
+#image-admin-list li {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: true;
+  /* Spacing & Border */
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: var(--primary-off);
+}
+#image-admin-list h3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  /* Spacing & Border */
+  margin: 0.5rem;
+  padding: 1.5rem;
+  border-bottom: 3px solid var(--primary-off);
+  color: var(--off-white);
+  background: var(--primary-trans);
+}
+#image-admin-list img {
+  background: white;
+}
+#image-admin-list .image-item__buttons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  /* Spacing & Border */
+  margin: 1rem;
+}
+
+#video-admin-list {
+  /* Spacing & Border */
+  margin: 1rem 0;
+}
+#video-admin-list > button {
+  margin-bottom: 1rem;
+}
+#video-admin-list ul {
+  /* Spacing & Border */
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+}
+#video-admin-list li {
+  /* Spacing & Border */
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: var(--primary-off);
+}
+#video-admin-list h3 {
+  /* Spacing & Border */
+  margin: 0.5rem;
+  padding: 1.5rem;
+  border-bottom: 3px solid var(--primary-off);
+  color: var(--off-white);
+  background: var(--primary-trans);
+}
+#video-admin-list img {
+  background: white;
+}
+#video-admin-list .video-item__buttons {
+  /* Spacing & Border */
+  margin: 1rem;
+}
+
 /**
 * Container for every element used in #backend.
 */

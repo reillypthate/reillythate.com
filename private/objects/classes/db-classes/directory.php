@@ -317,10 +317,30 @@ class Directory extends DB_Manager implements SlugSet
      */
     protected function formatAddValues($request_values)
     {
+        // print_r($request_values);
+
         //  Step 1: Strip the $request_values with the db_dir_ prefix.
         $addValues = stripPrefix("db_dir_", $request_values);
 
-        print_r($addValues);
+        if(!isset($addValues['public']))
+        {
+            $addValues['public'] = 0;
+        }else
+        {
+            $addValues['public'] = 1;
+        }
+        if(!isset($addValues['published']))
+        {
+            $addValues['published'] = 0;
+        }else
+        {
+            $addValues['published'] = 1;
+        }
+        // print_r($addValues);
+        // die();
+
+
+        return $addValues;
     }
     /**
      *  Format request values so the appropriate row can be properly
@@ -330,6 +350,26 @@ class Directory extends DB_Manager implements SlugSet
     {
         //  Step 1: Strip the $request_values with the db_dir_ prefix.
         $updateValues = stripPrefix("db_dir_", $request_values);
+
+        if(!isset($updateValues['public']))
+        {
+            $updateValues['public'] = 0;
+        }else
+        {
+            $updateValues['public'] = 1;
+        }
+        if(!isset($updateValues['published']))
+        {
+            $updateValues['published'] = 0;
+        }else
+        {
+            $updateValues['published'] = 1;
+        }
+
+        // print_r($updateValues);
+        // die();
+        
+        return $updateValues;
     }
 }
 ?>

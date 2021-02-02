@@ -1,21 +1,12 @@
 <?php
+    // function blogPost($postSlug)
+    // {
+    //     global $content;
 
-    
-    function blogPostPreview($blogPost, $parallaxStrength=-1, $attributes=null)
-    {
-        global $content;
-        
-        include("includes/blog-post-preview.php");
-    }
+    //     $blogPost = $content->getBlogPosts('blogPost', $postSlug)[$postSlug];
 
-    function blogPost($postSlug)
-    {
-        global $content;
+    //     $parallaxStrength = -1;
 
-        $blogPost = $content->getBlogPosts('blogPost', $postSlug)[$postSlug];
-
-        $parallaxStrength = -1;
-
-        include("includes/blog-post-page.php");
-    }
+    //     include("includes/blog-post-page.php");
+    // }
 ?>

@@ -42,20 +42,21 @@ function executeTableAdd($queryBuilder, $errorType=null)
     global $log;
 
     $result = null;
+
     try
     {
         $result = $queryBuilder->execute();
     }catch(Exception $e)
     {
         EXCEPTION_NOTIFY($e->getMessage());
-        EXCEPTION_NOTIFY("Exception in DB-Manager::" . $this->tableName . "... add attempt failed.");
+        EXCEPTION_NOTIFY("Exception in DB-Manager::" . $errorType . "... add attempt failed.");
         $log->debug($errorType);
 
-        $_SESSION['message'] = "FAILED to add element to (`" . $this->tableName . "`)!!!\n";
+        $_SESSION['message'] = "FAILED to add element to (`" . $errorType . "`)!!!\n";
         echo $e->getMessage() . PHP_EOL;
         exit(-1);
     }
-    $_SESSION['message'] = "Successful addition to (`" . $this->tableName . "`).\n";
+    $_SESSION['message'] = "Successful addition to (`" . $errorType . "`).\n";
     header('location: index.php');//?new-slug=' . $directory_slug);
     exit(0);
 }
@@ -74,14 +75,14 @@ function executeTableUpdate($queryBuilder, $errorType=null)
     }catch(Exception $e)
     {
         EXCEPTION_NOTIFY($e->getMessage());
-        EXCEPTION_NOTIFY("Exception in DB-Manager::" . $this->tableName . "... add attempt failed.");
+        EXCEPTION_NOTIFY("Exception in DB-Manager::" . $errorType . "... add attempt failed.");
         $log->debug($errorType);
 
-        $_SESSION['message'] = "FAILED to update (`" . $this->tableName . "`)!!!\n";
+        $_SESSION['message'] = "FAILED to update (`" . $errorType . "`)!!!\n";
         echo $e->getMessage() . PHP_EOL;
         exit(-1);
     }
-    $_SESSION['message'] = "Successful update in (`" . $this->tableName . "`).\n";
+    $_SESSION['message'] = "Successful update in (`" . $errorType . "`).\n";
     header('location: index.php');//?new-slug=' . $directory_slug);
     exit(0);
 }
